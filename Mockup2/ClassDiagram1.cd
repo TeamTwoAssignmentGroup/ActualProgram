@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Mockup2.AdminForm" Collapsed="true">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQwAmIAACAQAAAIAACEASCCIBi4IAACAHIIBgAIAAg=</HashCode>
+      <FileName>AdminForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mockup2.EditStaffForm" Collapsed="true">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QCAAAAAAACAAABCQAACAAABCIAAIAAAAEEAAAAAAAAA=</HashCode>
+      <FileName>EditStaffForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mockup2.GP_NurseForm" Collapsed="true">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QCCAAAQAISAASBiAAACAAABCIMg5AAAAEDMMAAABDAA=</HashCode>
+      <FileName>GP_NurseForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mockup2.loginForm" Collapsed="true">
+    <Position X="2.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACCAAAAAACAAABAAAACAAAACAAAYAAAAEEAAAABAAAA=</HashCode>
+      <FileName>LoginForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mockup2.MessagePatientForm" Collapsed="true">
+    <Position X="4" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAACAAABAQAACAAAACAAAYAAAAEEAAAAAAAAA=</HashCode>
+      <FileName>MessagePatientForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mockup2.Program" Collapsed="true">
+    <Position X="5.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mockup2.ReceptionistForm" Collapsed="true">
+    <Position X="7.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACiAFAAASAAQEACAACAAAACANg7AAAHAHAGAgEBBQg=</HashCode>
+      <FileName>ReceptionistForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mockup2.ResetPasswordForm" Collapsed="true">
+    <Position X="2.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAACAAABAQAACAAAACAAAIAAAAEAAAAAAAAAA=</HashCode>
+      <FileName>ResetPasswordForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mockup2.SeeStaffListForm" Collapsed="true">
+    <Position X="5.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAEAAACAAAAAAAACAAAACAAgIAAAAAEAAAgAAAAg=</HashCode>
+      <FileName>SeeStaffListForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mockup2.AppointmentForms.AddAppointmentForm" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAABASgACAAAACAAAIAAAAEEAAAAAAAAA=</HashCode>
+      <FileName>AppointmentForms\AddAppointmentForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mockup2.PatientForms.RegisterNewPatientForm" Collapsed="true">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QCAAAAAAASAAABCAAACAAABCIAAIAAAAEEAAAAAAAIA=</HashCode>
+      <FileName>PatientForms\RegisterNewPatientForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mockup2.PatientForms.ViewMedicalHistoryForm" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAEAAASAAABAAAACAAAACAAgAAAABAAAAAAAAAAg=</HashCode>
+      <FileName>PatientForms\ViewMedicalHistoryForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mockup2.PatientForms.ViewPrescriptionsForm" Collapsed="true">
+    <Position X="2.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAEAAASAAAAAAAACAAAACAAgAAAAAAAIAAAAAAAg=</HashCode>
+      <FileName>PatientForms\ViewPrescriptionsForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mockup2.PatientForms.ViewTestHistoryForm" Collapsed="true">
+    <Position X="4" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAEAACSAAAAAAAACAAAACCAgAAAABAAAAAAAAAAg=</HashCode>
+      <FileName>PatientForms\ViewTestHistoryForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mockup2.PrescriptionForms.AmendPrescriptionForm" Collapsed="true">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAACAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>PrescriptionForms\AmendPrescriptionForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mockup2.PrescriptionForms.IssuePrescriptionForm" Collapsed="true">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAACAAABACAACAAAACAAAIAAAAEAAAAAEAAAA=</HashCode>
+      <FileName>PrescriptionForms\IssuePrescriptionForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mockup2.Properties.Resources" Collapsed="true">
+    <Position X="11.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABEAAAAQAAAAAAAAAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mockup2.Properties.Settings" Collapsed="true">
+    <Position X="7.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
