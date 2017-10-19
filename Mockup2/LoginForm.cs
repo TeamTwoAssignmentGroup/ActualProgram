@@ -27,14 +27,17 @@ namespace Mockup2
                     af.WindowState = FormWindowState.Maximized;
                     af.Show();
                     break;
+
                 case "GP": GP_NurseForm gpnf = new GP_NurseForm(false);
                     gpnf.WindowState = FormWindowState.Maximized;
                     gpnf.Show();
                     break;
+
                 case "Nurse": GP_NurseForm gpnf2 = new GP_NurseForm(true);
                     gpnf2.WindowState = FormWindowState.Maximized;
                     gpnf2.Show();
                     break;
+
                 case "Receptionist": ReceptionistForm rf = new ReceptionistForm();
                     rf.WindowState = FormWindowState.Maximized;
                     rf.Show();
