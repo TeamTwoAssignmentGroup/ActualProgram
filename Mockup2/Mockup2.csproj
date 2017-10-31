@@ -90,6 +90,7 @@
     <Compile Include="MessagePatientForm.Designer.cs">
       <DependentUpon>MessagePatientForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Patient.cs" />
     <Compile Include="PatientForms\RegisterNewPatientForm.cs">
       <SubType>Form</SubType>
     </Compile>
