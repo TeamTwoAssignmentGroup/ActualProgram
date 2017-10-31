@@ -280,5 +280,10 @@
               resource lookups using this strongly typed resource class.
             </summary>
         </member>
+        <member name="P:Mockup2.Properties.Resources.MySql_Data">
+            <summary>
+              Looks up a localized resource of type System.Byte[].
+            </summary>
+        </member>
     </members>
 </doc>
