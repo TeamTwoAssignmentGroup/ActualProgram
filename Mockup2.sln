@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.15
+VisualStudioVersion = 15.0.26403.7
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mockup2", "Mockup2\Mockup2.csproj", "{BD340830-9BE6-4E6B-836B-D002E69CBDB9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9F3D2F11-077B-4939-8972-52032A322092}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

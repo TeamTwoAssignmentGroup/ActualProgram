@@ -28,12 +28,12 @@ namespace Mockup2
                     af.Show();
                     break;
 
-                case "GP": GP_NurseForm gpnf = new GP_NurseForm(false);
+                case "GP": GPNurse gpnf = new GPNurse();
                     gpnf.WindowState = FormWindowState.Maximized;
                     gpnf.Show();
                     break;
 
-                case "Nurse": GP_NurseForm gpnf2 = new GP_NurseForm(true);
+                case "Nurse": GPNurse gpnf2= new GPNurse();
                     gpnf2.WindowState = FormWindowState.Maximized;
                     gpnf2.Show();
                     break;
@@ -43,6 +43,11 @@ namespace Mockup2
                     rf.Show();
                     break;
             }
+        }
+
+        private void loginForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

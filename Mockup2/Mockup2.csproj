@@ -64,6 +64,7 @@
     <Compile Include="AdminForm.Designer.cs">
       <DependentUpon>AdminForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Appointment.cs" />
     <Compile Include="AppointmentForms\AddAppointmentForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -77,18 +78,19 @@
     <Compile Include="EditStaffForm.Designer.cs">
       <DependentUpon>EditStaffForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="GPNurse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GPNurse.Designer.cs">
+      <DependentUpon>GPNurse.cs</DependentUpon>
+    </Compile>
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="GP_NurseForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GP_NurseForm.Designer.cs">
-      <DependentUpon>GP_NurseForm.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Medication.cs" />
     <Compile Include="MessagePatientForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -120,6 +122,7 @@
     <Compile Include="PatientForms\ViewTestHistoryForm.Designer.cs">
       <DependentUpon>ViewTestHistoryForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Prescription.cs" />
     <Compile Include="PrescriptionForms\AmendPrescriptionForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -153,6 +156,7 @@
     <Compile Include="SeeStaffListForm.Designer.cs">
       <DependentUpon>SeeStaffListForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Staff.cs" />
     <Compile Include="Table.cs" />
     <EmbeddedResource Include="AdminForm.resx">
       <DependentUpon>AdminForm.cs</DependentUpon>
@@ -163,8 +167,8 @@
     <EmbeddedResource Include="EditStaffForm.resx">
       <DependentUpon>EditStaffForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GP_NurseForm.resx">
-      <DependentUpon>GP_NurseForm.cs</DependentUpon>
+    <EmbeddedResource Include="GPNurse.resx">
+      <DependentUpon>GPNurse.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
