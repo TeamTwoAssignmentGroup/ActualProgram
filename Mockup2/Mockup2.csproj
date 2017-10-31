@@ -84,6 +84,7 @@
     <Compile Include="GP_NurseForm.Designer.cs">
       <DependentUpon>GP_NurseForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Medication.cs" />
     <Compile Include="MessagePatientForm.cs">
       <SubType>Form</SubType>
     </Compile>
