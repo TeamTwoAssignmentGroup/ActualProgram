@@ -60,6 +60,7 @@
     <Compile Include="AdminForm.Designer.cs">
       <DependentUpon>AdminForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Appointment.cs" />
     <Compile Include="AppointmentForms\AddAppointmentForm.cs">
       <SubType>Form</SubType>
     </Compile>
