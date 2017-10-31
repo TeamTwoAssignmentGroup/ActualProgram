@@ -117,6 +117,7 @@
     <Compile Include="PatientForms\ViewTestHistoryForm.Designer.cs">
       <DependentUpon>ViewTestHistoryForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Prescription.cs" />
     <Compile Include="PrescriptionForms\AmendPrescriptionForm.cs">
       <SubType>Form</SubType>
     </Compile>
