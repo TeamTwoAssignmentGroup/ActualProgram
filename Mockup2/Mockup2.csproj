@@ -147,6 +147,7 @@
     <Compile Include="SeeStaffListForm.Designer.cs">
       <DependentUpon>SeeStaffListForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Staff.cs" />
     <EmbeddedResource Include="AdminForm.resx">
       <DependentUpon>AdminForm.cs</DependentUpon>
     </EmbeddedResource>
