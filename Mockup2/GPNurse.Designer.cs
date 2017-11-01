@@ -52,20 +52,15 @@
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.searchBox2 = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NHSNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.firstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.address = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.postcode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nextOfKin = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DOB = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.gender = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.religion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.email = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.phone = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -78,6 +73,7 @@
             this.button14.TabIndex = 51;
             this.button14.Text = "EXIT";
             this.button14.UseVisualStyleBackColor = true;
+            this.button14.Click += new System.EventHandler(this.button14_Click);
             // 
             // button13
             // 
@@ -305,18 +301,33 @@
             this.lastName,
             this.address,
             this.postcode,
-            this.nextOfKin,
-            this.DOB,
-            this.gender,
-            this.religion,
-            this.email,
-            this.phone});
-            this.dataGridView1.Location = new System.Drawing.Point(1133, 509);
+            this.DOB});
+            this.dataGridView1.Location = new System.Drawing.Point(1217, 513);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(670, 348);
+            this.dataGridView1.Size = new System.Drawing.Size(586, 348);
             this.dataGridView1.TabIndex = 55;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(1214, 484);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(85, 18);
+            this.label1.TabIndex = 56;
+            this.label1.Text = "First Name";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(1478, 484);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(84, 18);
+            this.label2.TabIndex = 57;
+            this.label2.Text = "Last Name";
             // 
             // id
             // 
@@ -360,67 +371,12 @@
             this.postcode.ReadOnly = true;
             this.postcode.Width = 77;
             // 
-            // nextOfKin
-            // 
-            this.nextOfKin.HeaderText = "Next Of Kin";
-            this.nextOfKin.Name = "nextOfKin";
-            this.nextOfKin.ReadOnly = true;
-            this.nextOfKin.Width = 86;
-            // 
             // DOB
             // 
             this.DOB.HeaderText = "DOB";
             this.DOB.Name = "DOB";
             this.DOB.ReadOnly = true;
             this.DOB.Width = 55;
-            // 
-            // gender
-            // 
-            this.gender.HeaderText = "Gender";
-            this.gender.Name = "gender";
-            this.gender.ReadOnly = true;
-            this.gender.Width = 67;
-            // 
-            // religion
-            // 
-            this.religion.HeaderText = "Religion";
-            this.religion.Name = "religion";
-            this.religion.ReadOnly = true;
-            this.religion.Width = 70;
-            // 
-            // email
-            // 
-            this.email.HeaderText = "Email";
-            this.email.Name = "email";
-            this.email.ReadOnly = true;
-            this.email.Width = 57;
-            // 
-            // phone
-            // 
-            this.phone.HeaderText = "Phone";
-            this.phone.Name = "phone";
-            this.phone.ReadOnly = true;
-            this.phone.Width = 63;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(1214, 484);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(85, 18);
-            this.label1.TabIndex = 56;
-            this.label1.Text = "First Name";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(1478, 484);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(84, 18);
-            this.label2.TabIndex = 57;
-            this.label2.Text = "Last Name";
             // 
             // GPNurse
             // 
@@ -455,6 +411,7 @@
             this.Controls.Add(this.richTextBox1);
             this.Name = "GPNurse";
             this.Text = "GPNurse";
+            this.Load += new System.EventHandler(this.GPNurse_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -486,19 +443,14 @@
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.TextBox searchBox2;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridViewTextBoxColumn id;
         private System.Windows.Forms.DataGridViewTextBoxColumn NHSNumber;
         private System.Windows.Forms.DataGridViewTextBoxColumn firstName;
         private System.Windows.Forms.DataGridViewTextBoxColumn lastName;
         private System.Windows.Forms.DataGridViewTextBoxColumn address;
         private System.Windows.Forms.DataGridViewTextBoxColumn postcode;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nextOfKin;
         private System.Windows.Forms.DataGridViewTextBoxColumn DOB;
-        private System.Windows.Forms.DataGridViewTextBoxColumn gender;
-        private System.Windows.Forms.DataGridViewTextBoxColumn religion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn email;
-        private System.Windows.Forms.DataGridViewTextBoxColumn phone;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
     }
 }
