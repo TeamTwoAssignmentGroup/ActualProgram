@@ -17,10 +17,25 @@ namespace Mockup2
         static void Main()
         {
             DBConnection dbCon = new DBConnection();
+
+            //Test
+            
+            DateTime date = new DateTime(2008, 12, 22);
+            DateTime date2 = new DateTime(2017, 01, 01);
+
+            DateTime today = new DateTime(date.Year, date.Month, date.Day);
+            AppointmentFactory pFac = new AppointmentFactory(dbCon);
+            foreach(Appointment a in pFac.GetAppointmentsByDate(today))
+            {
+                Console.WriteLine(a);
+            }
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new loginForm(dbCon));
             dbCon.Close();
+            QueryBuilder.DumpLog();
+            Console.ReadLine();
         }
     }
 }

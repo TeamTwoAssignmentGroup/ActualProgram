@@ -23,8 +23,13 @@ namespace Mockup2
             this.username = username;
             this.password = password;
             this.connectionString = string.Format("SERVER={0};DATABASE={1};UID={2};PASSWORD={3}",server,database,username,password);
-            con = new MySqlConnection(connectionString);
-            con.Open();
+            try
+            {
+                con = new MySqlConnection(connectionString);
+                con.Open();
+            }catch(Exception e){
+                Console.WriteLine(e);
+            }
         }
 
         public void Close()

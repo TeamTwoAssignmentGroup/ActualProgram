@@ -1,4 +1,5 @@
 ﻿using Mockup2.AppointmentForms;
+using Mockup2.Factories;
 using Mockup2.PatientForms;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,15 @@ namespace Mockup2
             this.dbCon = dbCon;
             infoFac = new PatientFactory(dbCon);
             this.dataGridView1.SelectionChanged += dataGridView1_SelectionChanged;
+            this.Load += ReceptionistForm_Load;
+        }
+
+        private void ReceptionistForm_Load(object sender, EventArgs e)
+        {
+            DateTime today = DateTime.Today;
+            DateTime date = new DateTime(today.Year,today.Month,today.Day);
+            List<Appointment> apps = new AppointmentFactory(dbCon).GetAppointmentsByDate(date);
+
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -87,11 +97,6 @@ namespace Mockup2
         private void button9_Click(object sender, EventArgs e)
         {
             LoadAllPatients();
-        }
-
-        private void tabPage1_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

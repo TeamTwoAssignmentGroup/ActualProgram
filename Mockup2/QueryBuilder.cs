@@ -10,6 +10,16 @@ namespace Mockup2
     class QueryBuilder
     {
         private string query = "";
+        private static Dictionary<string, int> pastQueries = new Dictionary<string, int>();
+
+        private void AddQuery(string q)
+        {
+            if (!pastQueries.ContainsKey(q))
+            {
+                pastQueries.Add(q, 0);
+            }
+            pastQueries[q]++;
+        }
 
         public QueryBuilder Update(Table table)
         {
@@ -147,6 +157,19 @@ namespace Mockup2
             }
             return result;
         }
+        public WhereClass IsLessThanEqual(Column column1, object o)
+        {
+            WhereClass result;
+            if (o is Column)
+            {
+                result = new WhereClass(column1 + " <= " + o.ToString());
+            }
+            else
+            {
+                result = new WhereClass(column1 + " <= '" + o.ToString() + "'");
+            }
+            return result;
+        }
 
         public WhereClass IsMoreThan(Column column1, object o)
         {
@@ -161,6 +184,19 @@ namespace Mockup2
             }
             return result;
         }
+        public WhereClass IsMoreThanEqual(Column column1, object o)
+        {
+            WhereClass result;
+            if (o is Column)
+            {
+                result = new WhereClass(column1 + " >= " + o.ToString());
+            }
+            else
+            {
+                result = new WhereClass(column1 + " >= '" + o.ToString() + "'");
+            }
+            return result;
+        }
 
         public override string ToString()
         {
@@ -168,7 +204,9 @@ namespace Mockup2
             {
                 throw new MalformedUpdateQueryException("You're trying to update a table without a 'where' clause, you will be break the entire table!");
             }
-            return query+";";
+            query += ";";
+            AddQuery(query);
+            return query;
         }
 
         public class WhereClass
@@ -191,6 +229,14 @@ namespace Mockup2
             public MalformedUpdateQueryException(string message) : base(message)
             {
 
+            }
+        }
+
+        public static void DumpLog()
+        {
+            foreach(KeyValuePair<string,int> kvp in pastQueries)
+            {
+                Console.WriteLine("[{0}] : {1}",kvp.Value,kvp.Key);
             }
         }
     }

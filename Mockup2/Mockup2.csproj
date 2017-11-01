@@ -78,6 +78,8 @@
     <Compile Include="EditStaffForm.Designer.cs">
       <DependentUpon>EditStaffForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Factories\AbstractFactory.cs" />
+    <Compile Include="Factories\AppointmentFactory.cs" />
     <Compile Include="Factories\StaffFactory.cs" />
     <Compile Include="GPNurse.cs">
       <SubType>Form</SubType>
