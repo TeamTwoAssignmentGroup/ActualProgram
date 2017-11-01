@@ -41,7 +41,6 @@
             this.Time = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Notes = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.button9 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.button8 = new System.Windows.Forms.Button();
@@ -100,6 +99,7 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Appointments";
             this.tabPage1.UseVisualStyleBackColor = true;
+            
             // 
             // button7
             // 
@@ -181,7 +181,6 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.button9);
             this.tabPage2.Controls.Add(this.label2);
             this.tabPage2.Controls.Add(this.label1);
             this.tabPage2.Controls.Add(this.button8);
@@ -198,17 +197,6 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Patients";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // button9
-            // 
-            this.button9.AutoSize = true;
-            this.button9.Location = new System.Drawing.Point(601, 472);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(232, 43);
-            this.button9.TabIndex = 9;
-            this.button9.Text = "Show all";
-            this.button9.UseVisualStyleBackColor = true;
-            this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
             // label2
             // 
@@ -436,7 +424,6 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ReceptionistForm";
             this.Text = "ReceptionistForm";
-            this.Load += new System.EventHandler(this.ReceptionistForm_Load_1);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
@@ -488,6 +475,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn religion;
         private System.Windows.Forms.DataGridViewTextBoxColumn email;
         private System.Windows.Forms.DataGridViewTextBoxColumn phone;
-        private System.Windows.Forms.Button button9;
     }
 }

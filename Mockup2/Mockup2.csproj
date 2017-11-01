@@ -80,6 +80,7 @@
     </Compile>
     <Compile Include="Factories\AbstractFactory.cs" />
     <Compile Include="Factories\AppointmentFactory.cs" />
+    <Compile Include="Factories\PrescriptionFactory.cs" />
     <Compile Include="Factories\StaffFactory.cs" />
     <Compile Include="GPNurse.cs">
       <SubType>Form</SubType>

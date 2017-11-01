@@ -30,12 +30,12 @@ namespace Mockup2
                     af.Show();
                     break;
 
-                case "GP": GPNurse gpnf = new GPNurse();
+                case "GP": GPNurse gpnf = new GPNurse(dbCon);
                     gpnf.WindowState = FormWindowState.Maximized;
                     gpnf.Show();
                     break;
 
-                case "Nurse": GPNurse gpnf2= new GPNurse();
+                case "Nurse": GPNurse gpnf2= new GPNurse(dbCon);
                     gpnf2.WindowState = FormWindowState.Maximized;
                     gpnf2.Show();
                     break;
@@ -52,6 +52,11 @@ namespace Mockup2
             this.WindowState = FormWindowState.Maximized;
             this.MinimumSize = this.Size;
             this.MaximumSize = this.Size;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
