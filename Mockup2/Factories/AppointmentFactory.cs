@@ -35,7 +35,8 @@ namespace Mockup2.Factories
                 a.Status = GetString(reader[pt.Status.Name]);
                 result.Add(a);
             }
-
+            reader.Close();
+            reader.Dispose();
             return result;
         }
 
