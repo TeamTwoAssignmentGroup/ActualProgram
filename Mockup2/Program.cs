@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Mockup2.Factories;
+using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,16 +16,26 @@ namespace Mockup2
         [STAThread]
         static void Main()
         {
-            Console.WriteLine("SELECT {0},{1} FROM {2},{3} WHERE {4} = {5}",Tables.APPOINTMENT_TABLE.PatientID,Tables.PATIENT_TABLE.ID,Tables.APPOINTMENT_TABLE,Tables.PATIENT_TABLE,Tables.APPOINTMENT_TABLE.PatientID,Tables.STAFF_TABLE.ID);
-            QueryBuilder b = new QueryBuilder();
-            b.Select(Tables.ALL).From(Tables.APPOINTMENT_TABLE, Tables.PATIENT_TABLE).Where(
-                b.IsEqual(Tables.APPOINTMENT_TABLE.PatientID, Tables.PATIENT_TABLE.ID), b.And(), b.IsEqual(Tables.PATIENT_TABLE.FirstName,"Hello"),
-                b.Or(),b.IsEqual(Tables.PATIENT_TABLE.FirstName,Tables.PATIENT_TABLE.FirstName));
-            Console.WriteLine(b);
             DBConnection dbCon = new DBConnection();
+
+            //Test
+            
+            DateTime date = new DateTime(2008, 12, 22);
+            DateTime date2 = new DateTime(2017, 01, 01);
+
+            DateTime today = new DateTime(date.Year, date.Month, date.Day);
+            AppointmentFactory pFac = new AppointmentFactory(dbCon);
+            foreach(Appointment a in pFac.GetAppointmentsByDate(today))
+            {
+                Console.WriteLine(a);
+            }
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new loginForm());
+            Application.Run(new loginForm(dbCon));
+            dbCon.Close();
+            QueryBuilder.DumpLog();
+            Console.ReadLine();
         }
     }
 }

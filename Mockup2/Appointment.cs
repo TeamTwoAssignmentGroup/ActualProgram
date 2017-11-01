@@ -11,16 +11,23 @@ namespace Mockup2
         int id;
         int staffid;
         int patientid;
-        DateTime appoint;
+        DateTime appointDate;
+        DateTime appointTime;
         string cause;
         string status;
       
 
 
+        public DateTime AppointmentDate
+        {
+            set { appointDate = value; }
+            get { return appointDate; }
+        }
+
         public DateTime AppointmentTime
         {
-            set { appoint = value; }
-            get { return appoint; }
+            set { appointTime = value; }
+            get { return appointTime; }
         }
         
 
@@ -53,9 +60,13 @@ namespace Mockup2
             get { return cause; }
         }
 
-        
+        public override string ToString()
+        {
+            return string.Format("{0} | {1} | {2} | {3} | {4} | {5} | {6}",id,staffid,patientid,appointDate,appointTime,cause,status);
+        }
 
-   
+
+
 
     }
 }
