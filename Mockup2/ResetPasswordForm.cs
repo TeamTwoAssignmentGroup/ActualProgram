@@ -16,5 +16,15 @@ namespace Mockup2
         {
             InitializeComponent();
         }
+
+        private void ResetPasswordForm_Load(object sender, EventArgs e)
+        {
+            // Sets the size of the form upon loading
+            this.Size = new Size(600, 400);
+            // Prevents the form from being re sized
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+
+           
+        }
     }
 }

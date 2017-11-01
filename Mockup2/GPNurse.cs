@@ -16,5 +16,12 @@ namespace Mockup2
         {
             InitializeComponent();
         }
+
+        private void GPNurse_Load(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Maximized;
+            this.MinimumSize = this.Size;
+            this.MaximumSize = this.Size;
+        }
     }
 }

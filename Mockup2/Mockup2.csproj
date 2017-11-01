@@ -192,6 +192,9 @@
     <EmbeddedResource Include="PatientForms\ViewTestHistoryForm.resx">
       <DependentUpon>ViewTestHistoryForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PrescriptionForms\AmendPrescriptionForm.resx">
+      <DependentUpon>AmendPrescriptionForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PrescriptionForms\IssuePrescriptionForm.resx">
       <DependentUpon>IssuePrescriptionForm.cs</DependentUpon>
     </EmbeddedResource>

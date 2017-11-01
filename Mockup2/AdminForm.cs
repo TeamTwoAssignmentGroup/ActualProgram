@@ -45,5 +45,12 @@ namespace Mockup2
         {
 
         }
+
+        private void AdminForm_Load(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Maximized;
+            this.MinimumSize = this.Size;
+            this.MaximumSize = this.Size;
+        }
     }
 }

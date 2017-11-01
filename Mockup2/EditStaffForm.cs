@@ -21,5 +21,12 @@ namespace Mockup2
         {
             this.Close();
         }
+
+        private void EditStaffForm_Load(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Maximized;
+            this.MinimumSize = this.Size;
+            this.MaximumSize = this.Size;
+        }
     }
 }

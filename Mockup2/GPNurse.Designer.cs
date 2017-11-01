@@ -305,6 +305,7 @@
             this.Controls.Add(this.richTextBox1);
             this.Name = "GPNurse";
             this.Text = "GPNurse";
+            this.Load += new System.EventHandler(this.GPNurse_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

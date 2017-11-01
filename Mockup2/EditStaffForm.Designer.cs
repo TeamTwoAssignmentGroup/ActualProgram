@@ -199,6 +199,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "EditStaffForm";
             this.Text = "EditStaffForm";
+            this.Load += new System.EventHandler(this.EditStaffForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

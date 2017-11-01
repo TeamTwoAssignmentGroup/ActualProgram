@@ -21,5 +21,13 @@ namespace Mockup2
         {
             this.Close();
         }
+
+        private void SeeStaffListForm_Load(object sender, EventArgs e)
+        {
+            // Sets the size of the form upon loading
+            this.Size = new Size(700, 700);
+            // Prevents the form from being re sized
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+        }
     }
 }

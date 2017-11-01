@@ -100,7 +100,6 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Appointments";
             this.tabPage1.UseVisualStyleBackColor = true;
-            this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
             // 
             // button7
             // 
@@ -437,6 +436,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ReceptionistForm";
             this.Text = "ReceptionistForm";
+            this.Load += new System.EventHandler(this.ReceptionistForm_Load_1);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
