@@ -34,33 +34,41 @@
             this.button7 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.appointmentDataGridView = new System.Windows.Forms.DataGridView();
             this.StaffID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ApptPatientID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Time = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Notes = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.button9 = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.button8 = new System.Windows.Forms.Button();
+            this.lastNameTextbox = new System.Windows.Forms.TextBox();
+            this.firstNameTextbox = new System.Windows.Forms.TextBox();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.PatientID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Title = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Address = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EmailAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ContactNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NextOfKin = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LateAppts = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MissedAppts = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NHSNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.firstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.address = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.postcode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nextOfKin = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DOB = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.gender = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.religion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.email = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.phone = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.button1 = new System.Windows.Forms.Button();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.appointmentDataGridView)).BeginInit();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabPage3.SuspendLayout();
@@ -84,7 +92,7 @@
             this.tabPage1.Controls.Add(this.button7);
             this.tabPage1.Controls.Add(this.button6);
             this.tabPage1.Controls.Add(this.button5);
-            this.tabPage1.Controls.Add(this.dataGridView2);
+            this.tabPage1.Controls.Add(this.appointmentDataGridView);
             this.tabPage1.Location = new System.Drawing.Point(4, 42);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -92,6 +100,7 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Appointments";
             this.tabPage1.UseVisualStyleBackColor = true;
+            this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
             // 
             // button7
             // 
@@ -125,33 +134,33 @@
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
-            // dataGridView2
+            // appointmentDataGridView
             // 
-            this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.appointmentDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+            this.appointmentDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.appointmentDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.StaffID,
             this.ApptPatientID,
             this.Date,
             this.Time,
             this.Notes});
-            this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.dataGridView2.Location = new System.Drawing.Point(3, 3);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(994, 255);
-            this.dataGridView2.TabIndex = 0;
+            this.appointmentDataGridView.Dock = System.Windows.Forms.DockStyle.Top;
+            this.appointmentDataGridView.Location = new System.Drawing.Point(3, 3);
+            this.appointmentDataGridView.Name = "appointmentDataGridView";
+            this.appointmentDataGridView.Size = new System.Drawing.Size(994, 255);
+            this.appointmentDataGridView.TabIndex = 0;
             // 
             // StaffID
             // 
             this.StaffID.HeaderText = "Staff ID";
             this.StaffID.Name = "StaffID";
-            this.StaffID.Width = 124;
+            this.StaffID.Width = 136;
             // 
             // ApptPatientID
             // 
             this.ApptPatientID.HeaderText = "Patient ID";
             this.ApptPatientID.Name = "ApptPatientID";
-            this.ApptPatientID.Width = 152;
+            this.ApptPatientID.Width = 167;
             // 
             // Date
             // 
@@ -173,6 +182,12 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.button9);
+            this.tabPage2.Controls.Add(this.label2);
+            this.tabPage2.Controls.Add(this.label1);
+            this.tabPage2.Controls.Add(this.button8);
+            this.tabPage2.Controls.Add(this.lastNameTextbox);
+            this.tabPage2.Controls.Add(this.firstNameTextbox);
             this.tabPage2.Controls.Add(this.button4);
             this.tabPage2.Controls.Add(this.button3);
             this.tabPage2.Controls.Add(this.button2);
@@ -184,6 +199,60 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Patients";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // button9
+            // 
+            this.button9.AutoSize = true;
+            this.button9.Location = new System.Drawing.Point(601, 472);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(232, 43);
+            this.button9.TabIndex = 9;
+            this.button9.Text = "Show all";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(154, 523);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(151, 33);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "Last name";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(151, 476);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(154, 33);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "First name";
+            // 
+            // button8
+            // 
+            this.button8.AutoSize = true;
+            this.button8.Location = new System.Drawing.Point(311, 567);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(284, 43);
+            this.button8.TabIndex = 6;
+            this.button8.Text = "Find";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
+            // lastNameTextbox
+            // 
+            this.lastNameTextbox.Location = new System.Drawing.Point(311, 520);
+            this.lastNameTextbox.Name = "lastNameTextbox";
+            this.lastNameTextbox.Size = new System.Drawing.Size(284, 40);
+            this.lastNameTextbox.TabIndex = 5;
+            // 
+            // firstNameTextbox
+            // 
+            this.firstNameTextbox.Location = new System.Drawing.Point(311, 473);
+            this.firstNameTextbox.Name = "firstNameTextbox";
+            this.firstNameTextbox.Size = new System.Drawing.Size(284, 40);
+            this.firstNameTextbox.TabIndex = 4;
             // 
             // button4
             // 
@@ -219,84 +288,116 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AllowUserToOrderColumns = true;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+            this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.PatientID,
-            this.Title,
-            this.FirstName,
-            this.LastName,
-            this.Address,
-            this.EmailAddress,
-            this.ContactNumber,
-            this.NextOfKin,
-            this.LateAppts,
-            this.MissedAppts});
+            this.id,
+            this.NHSNumber,
+            this.firstName,
+            this.lastName,
+            this.address,
+            this.postcode,
+            this.nextOfKin,
+            this.DOB,
+            this.gender,
+            this.religion,
+            this.email,
+            this.phone});
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Top;
             this.dataGridView1.Location = new System.Drawing.Point(3, 3);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(994, 410);
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(994, 414);
             this.dataGridView1.TabIndex = 0;
             // 
-            // PatientID
+            // id
             // 
-            this.PatientID.HeaderText = "Patient ID";
-            this.PatientID.Name = "PatientID";
-            this.PatientID.Width = 152;
+            this.id.HeaderText = "Patient ID";
+            this.id.Name = "id";
+            this.id.ReadOnly = true;
+            this.id.Width = 167;
             // 
-            // Title
+            // NHSNumber
             // 
-            this.Title.HeaderText = "Title";
-            this.Title.Name = "Title";
-            this.Title.Width = 96;
+            this.NHSNumber.HeaderText = "NHS Number";
+            this.NHSNumber.Name = "NHSNumber";
+            this.NHSNumber.ReadOnly = true;
+            this.NHSNumber.Width = 213;
             // 
-            // FirstName
+            // firstName
             // 
-            this.FirstName.HeaderText = "First Name";
-            this.FirstName.Name = "FirstName";
-            this.FirstName.Width = 168;
+            this.firstName.HeaderText = "First Name";
+            this.firstName.Name = "firstName";
+            this.firstName.ReadOnly = true;
+            this.firstName.Width = 184;
             // 
-            // LastName
+            // lastName
             // 
-            this.LastName.HeaderText = "Last Name";
-            this.LastName.Name = "LastName";
-            this.LastName.Width = 165;
+            this.lastName.HeaderText = "Last Name";
+            this.lastName.Name = "lastName";
+            this.lastName.ReadOnly = true;
+            this.lastName.Width = 181;
             // 
-            // Address
+            // address
             // 
-            this.Address.HeaderText = "Address";
-            this.Address.Name = "Address";
-            this.Address.Width = 147;
+            this.address.HeaderText = "Address";
+            this.address.Name = "address";
+            this.address.ReadOnly = true;
+            this.address.Width = 147;
             // 
-            // EmailAddress
+            // postcode
             // 
-            this.EmailAddress.HeaderText = "Email Address";
-            this.EmailAddress.Name = "EmailAddress";
-            this.EmailAddress.Width = 208;
+            this.postcode.HeaderText = "Postcode";
+            this.postcode.Name = "postcode";
+            this.postcode.ReadOnly = true;
+            this.postcode.Width = 161;
             // 
-            // ContactNumber
+            // nextOfKin
             // 
-            this.ContactNumber.HeaderText = "Contact Number";
-            this.ContactNumber.Name = "ContactNumber";
-            this.ContactNumber.Width = 229;
+            this.nextOfKin.HeaderText = "Next Of Kin";
+            this.nextOfKin.Name = "nextOfKin";
+            this.nextOfKin.ReadOnly = true;
+            this.nextOfKin.Width = 189;
             // 
-            // NextOfKin
+            // DOB
             // 
-            this.NextOfKin.HeaderText = "Next of Kin";
-            this.NextOfKin.Name = "NextOfKin";
-            this.NextOfKin.Width = 105;
+            this.DOB.HeaderText = "DOB";
+            this.DOB.Name = "DOB";
+            this.DOB.ReadOnly = true;
+            this.DOB.Width = 103;
             // 
-            // LateAppts
+            // gender
             // 
-            this.LateAppts.HeaderText = "Late Appointments";
-            this.LateAppts.Name = "LateAppts";
-            this.LateAppts.Width = 256;
+            this.gender.HeaderText = "Gender";
+            this.gender.Name = "gender";
+            this.gender.ReadOnly = true;
+            this.gender.Width = 137;
             // 
-            // MissedAppts
+            // religion
             // 
-            this.MissedAppts.HeaderText = "Missed Appointments";
-            this.MissedAppts.Name = "MissedAppts";
-            this.MissedAppts.Width = 289;
+            this.religion.HeaderText = "Religion";
+            this.religion.Name = "religion";
+            this.religion.ReadOnly = true;
+            this.religion.Width = 146;
+            // 
+            // email
+            // 
+            this.email.HeaderText = "Email";
+            this.email.Name = "email";
+            this.email.ReadOnly = true;
+            this.email.Width = 114;
+            // 
+            // phone
+            // 
+            this.phone.HeaderText = "Phone";
+            this.phone.Name = "phone";
+            this.phone.ReadOnly = true;
+            this.phone.Width = 123;
             // 
             // tabPage3
             // 
@@ -340,7 +441,7 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.appointmentDataGridView)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -365,21 +466,29 @@
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridView appointmentDataGridView;
         private System.Windows.Forms.DataGridViewTextBoxColumn StaffID;
         private System.Windows.Forms.DataGridViewTextBoxColumn ApptPatientID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Date;
         private System.Windows.Forms.DataGridViewTextBoxColumn Time;
         private System.Windows.Forms.DataGridViewTextBoxColumn Notes;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PatientID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Title;
-        private System.Windows.Forms.DataGridViewTextBoxColumn FirstName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn LastName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Address;
-        private System.Windows.Forms.DataGridViewTextBoxColumn EmailAddress;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ContactNumber;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NextOfKin;
-        private System.Windows.Forms.DataGridViewTextBoxColumn LateAppts;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MissedAppts;
+        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.TextBox lastNameTextbox;
+        private System.Windows.Forms.TextBox firstNameTextbox;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NHSNumber;
+        private System.Windows.Forms.DataGridViewTextBoxColumn firstName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn lastName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn address;
+        private System.Windows.Forms.DataGridViewTextBoxColumn postcode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nextOfKin;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DOB;
+        private System.Windows.Forms.DataGridViewTextBoxColumn gender;
+        private System.Windows.Forms.DataGridViewTextBoxColumn religion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn email;
+        private System.Windows.Forms.DataGridViewTextBoxColumn phone;
+        private System.Windows.Forms.Button button9;
     }
 }

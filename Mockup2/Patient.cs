@@ -98,6 +98,11 @@ namespace Mockup2
             get { return phone; }
         }
 
+        public override string ToString()
+        {
+            return string.Format("{0} | {1} | {2} | {3} | {4} | {5} | {6} | {7} | {8} | {9} | {10} | {11}",id,nhsumber,firstName,lastName,address,postcode,nextOfKin,dob,gender,religion,email,phone);
+        }
+
 
 
 

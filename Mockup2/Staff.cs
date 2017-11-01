@@ -59,7 +59,10 @@ namespace Mockup2
         }
 
 
-
+        public override string ToString()
+        {
+            return string.Format("{0} | {1} | {2} | {3} | {4} | {5}",id,firstName,lastName,jobrole,password,email);
+        }
 
     }
 }

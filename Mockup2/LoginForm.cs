@@ -12,9 +12,11 @@ namespace Mockup2
 {
     public partial class loginForm : Form
     {
-        public loginForm()
+        DBConnection dbCon;
+        public loginForm(DBConnection dbCon)
         {
             InitializeComponent();
+            this.dbCon = dbCon;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -38,7 +40,7 @@ namespace Mockup2
                     gpnf2.Show();
                     break;
 
-                case "Receptionist": ReceptionistForm rf = new ReceptionistForm();
+                case "Receptionist": ReceptionistForm rf = new ReceptionistForm(dbCon);
                     rf.WindowState = FormWindowState.Maximized;
                     rf.Show();
                     break;

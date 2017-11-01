@@ -24,7 +24,13 @@ namespace Mockup2
             this.password = password;
             this.connectionString = string.Format("SERVER={0};DATABASE={1};UID={2};PASSWORD={3}",server,database,username,password);
             con = new MySqlConnection(connectionString);
-            Test();
+            con.Open();
+        }
+
+        public void Close()
+        {
+            con.Close();
+            con.Dispose();
         }
 
         public DBConnection():this("kiralee.ddns.net", "OverSurgery", "TeamTwo", "ttag")
@@ -32,29 +38,9 @@ namespace Mockup2
             
         }
 
-        private void Test()
+        public MySqlConnection GetConnection()
         {
-            try
-            {
-                con.Open();
-                string query = "SELECT * FROM Staff";
-                MySqlCommand cmd = new MySqlCommand(query, con);
-                MySqlDataReader reader = cmd.ExecuteReader();
-                Console.WriteLine("id | firstName | lastName | jobRole | password | email");
-                while (reader.Read())
-                {
-                    string id = reader["id"]+"";
-                    string firstName = reader["firstName"]+"";
-                    string lastName = reader["lastName"] + "";
-                    string jobRole = reader["jobRole"] + "";
-                    string password = reader["password"] + "";
-                    string email = reader["email"] + "";
-                    Console.WriteLine("{0} | {1} | {2} | {3} | {4} | {5}",id,firstName,lastName,jobRole,password,email);
-                }
-            }catch(Exception e)
-            {
-                MessageBox.Show(e.ToString());
-            }
+            return con;
         }
     }
 }
