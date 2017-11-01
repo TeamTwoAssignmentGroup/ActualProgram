@@ -24,6 +24,23 @@ namespace Mockup2.Factories
             return o + "";
         }
 
+        internal bool GetBool(object o)
+        {
+            if(o is int)
+            {
+                return Convert.ToInt32(o) > 0;
+            }
+            if(o is string)
+            {
+                switch (o.ToString())
+                {
+                    case "1": return true;
+                    case "0": return false;
+                }
+            }
+            return bool.Parse(o.ToString());
+        }
+
         internal DateTime GetDateTime(object o)
         {
             DateTime result;

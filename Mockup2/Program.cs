@@ -24,8 +24,8 @@ namespace Mockup2
             DateTime date2 = new DateTime(2017, 01, 01);
 
             DateTime today = new DateTime(date.Year, date.Month, date.Day);
-            AppointmentFactory pFac = new AppointmentFactory(dbCon);
-            foreach(Appointment a in pFac.GetAppointmentsByDate(today))
+            PrescriptionFactory pFac = new PrescriptionFactory(dbCon);
+            foreach(Prescription a in pFac.GetPrescriptions(10))
             {
                 Console.WriteLine(a);
             }

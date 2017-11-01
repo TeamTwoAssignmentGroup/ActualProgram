@@ -13,8 +13,8 @@ namespace Mockup2
         int staffid;
         int patientid;
         DateTime issuedate;
-        string isRepeatable;
-        string repeatedRequest;
+        bool isRepeatable;
+        bool repeatedRequest;
 
 
 
@@ -42,19 +42,22 @@ namespace Mockup2
             get { return staffid; }
         }
 
-        public string IsRepaetavle
+        public bool IsRepeatable
         {
             set { isRepeatable = value; }
             get { return isRepeatable; }
         }
 
-        public string RepeatedRequest
+        public bool RepeatRequested
         {
             set { repeatedRequest= value; }
             get { return repeatedRequest; }
         }
 
-
+        public override string ToString()
+        {
+            return string.Format("{0} | {1} | {2} | {3} | {4} | {5}",id,patientid,staffid,IsRepeatable,issuedate,repeatedRequest);
+        }
 
     }
 }
