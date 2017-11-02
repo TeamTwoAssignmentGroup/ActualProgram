@@ -24,9 +24,10 @@ namespace Mockup2
 
         private void MessagePatientForm_Load(object sender, EventArgs e)
         {
-            this.WindowState = FormWindowState.Maximized;
-            this.MinimumSize = this.Size;
-            this.MaximumSize = this.Size;
+            // Sets the size of the form upon loading
+            this.Size = new Size(600, 400);
+            // Prevents the form from being re sized
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
         }
     }
 }
