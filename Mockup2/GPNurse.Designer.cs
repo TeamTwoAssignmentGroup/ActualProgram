@@ -52,8 +52,6 @@
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.searchBox2 = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NHSNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.firstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -61,7 +59,18 @@
             this.address = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.postcode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DOB = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.prescriptionDataGridView = new System.Windows.Forms.DataGridView();
+            this.prescriptionID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.prescriptionPatientID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.prescriptionIssuingStaffID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.prescriptionIsRepeatable = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.prescriptionIssueDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.prescriptionRepeatRequested = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.prescriptionDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // button14
@@ -309,26 +318,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(586, 348);
             this.dataGridView1.TabIndex = 55;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(1214, 484);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(85, 18);
-            this.label1.TabIndex = 56;
-            this.label1.Text = "First Name";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(1478, 484);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(84, 18);
-            this.label2.TabIndex = 57;
-            this.label2.Text = "Last Name";
-            // 
             // id
             // 
             this.id.HeaderText = "Patient ID";
@@ -378,11 +367,93 @@
             this.DOB.ReadOnly = true;
             this.DOB.Width = 55;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(1214, 484);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(85, 18);
+            this.label1.TabIndex = 56;
+            this.label1.Text = "First Name";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(1478, 484);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(84, 18);
+            this.label2.TabIndex = 57;
+            this.label2.Text = "Last Name";
+            // 
+            // prescriptionDataGridView
+            // 
+            this.prescriptionDataGridView.AllowUserToAddRows = false;
+            this.prescriptionDataGridView.AllowUserToDeleteRows = false;
+            this.prescriptionDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.prescriptionDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.prescriptionID,
+            this.prescriptionPatientID,
+            this.prescriptionIssuingStaffID,
+            this.prescriptionIsRepeatable,
+            this.prescriptionIssueDate,
+            this.prescriptionRepeatRequested});
+            this.prescriptionDataGridView.Location = new System.Drawing.Point(851, 40);
+            this.prescriptionDataGridView.MultiSelect = false;
+            this.prescriptionDataGridView.Name = "prescriptionDataGridView";
+            this.prescriptionDataGridView.ReadOnly = true;
+            this.prescriptionDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.prescriptionDataGridView.Size = new System.Drawing.Size(176, 307);
+            this.prescriptionDataGridView.TabIndex = 58;
+            // 
+            // prescriptionID
+            // 
+            this.prescriptionID.HeaderText = "Prescription ID";
+            this.prescriptionID.Name = "prescriptionID";
+            // 
+            // prescriptionPatientID
+            // 
+            this.prescriptionPatientID.HeaderText = "Patient ID";
+            this.prescriptionPatientID.Name = "prescriptionPatientID";
+            // 
+            // prescriptionIssuingStaffID
+            // 
+            this.prescriptionIssuingStaffID.HeaderText = "Issuing Staff ID";
+            this.prescriptionIssuingStaffID.Name = "prescriptionIssuingStaffID";
+            // 
+            // prescriptionIsRepeatable
+            // 
+            this.prescriptionIsRepeatable.HeaderText = "Is Repeatable";
+            this.prescriptionIsRepeatable.Name = "prescriptionIsRepeatable";
+            // 
+            // prescriptionIssueDate
+            // 
+            this.prescriptionIssueDate.HeaderText = "Issue Date";
+            this.prescriptionIssueDate.Name = "prescriptionIssueDate";
+            // 
+            // prescriptionRepeatRequested
+            // 
+            this.prescriptionRepeatRequested.HeaderText = "Repeat Requested";
+            this.prescriptionRepeatRequested.Name = "prescriptionRepeatRequested";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(1033, 218);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 59;
+            this.button1.Text = "VIEW";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // GPNurse
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1821, 861);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.prescriptionDataGridView);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridView1);
@@ -413,6 +484,7 @@
             this.Text = "GPNurse";
             this.Load += new System.EventHandler(this.GPNurse_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.prescriptionDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -452,5 +524,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn address;
         private System.Windows.Forms.DataGridViewTextBoxColumn postcode;
         private System.Windows.Forms.DataGridViewTextBoxColumn DOB;
+        private System.Windows.Forms.DataGridView prescriptionDataGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn prescriptionID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn prescriptionPatientID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn prescriptionIssuingStaffID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn prescriptionIsRepeatable;
+        private System.Windows.Forms.DataGridViewTextBoxColumn prescriptionIssueDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn prescriptionRepeatRequested;
+        private System.Windows.Forms.Button button1;
     }
 }

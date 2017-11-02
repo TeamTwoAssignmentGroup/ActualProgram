@@ -10,6 +10,7 @@ namespace Mockup2
     class QueryBuilder
     {
         private string query = "";
+        private List<Column> selectedColumns = new List<Column>();
         private static Dictionary<string, int> pastQueries = new Dictionary<string, int>();
 
         private void AddQuery(string q)
@@ -75,12 +76,18 @@ namespace Mockup2
             return this;
         }
 
+        public List<Column> GetSelectedColumns()
+        {
+            return selectedColumns;
+        }
+
         public QueryBuilder Select(params Column[] columns)
         {
             query += "SELECT ";
             foreach(Mockup2.Tables.Column c in columns)
             {
                 query += c+",";
+                selectedColumns.Add(c);
             }
             TrimQuery(1);
             return this;

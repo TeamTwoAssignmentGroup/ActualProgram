@@ -71,6 +71,7 @@
     <Compile Include="AppointmentForms\AddAppointmentForm.Designer.cs">
       <DependentUpon>AddAppointmentForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="CustomTable.cs" />
     <Compile Include="DatabaseConnection.cs" />
     <Compile Include="EditStaffForm.cs">
       <SubType>Form</SubType>
@@ -80,8 +81,11 @@
     </Compile>
     <Compile Include="Factories\AbstractFactory.cs" />
     <Compile Include="Factories\AppointmentFactory.cs" />
+    <Compile Include="Factories\CustomTableFactory.cs" />
+    <Compile Include="Factories\MedicalNoteFactory.cs" />
     <Compile Include="Factories\PrescriptionFactory.cs" />
     <Compile Include="Factories\StaffFactory.cs" />
+    <Compile Include="Factories\TestResultFactory.cs" />
     <Compile Include="GPNurse.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,6 +99,7 @@
     <Compile Include="LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="MedicalNote.cs" />
     <Compile Include="Medication.cs" />
     <Compile Include="MessagePatientForm.cs">
       <SubType>Form</SubType>
@@ -140,6 +145,12 @@
     <Compile Include="PrescriptionForms\IssuePrescriptionForm.Designer.cs">
       <DependentUpon>IssuePrescriptionForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="PrescriptionForms\ViewPrescription.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PrescriptionForms\ViewPrescription.Designer.cs">
+      <DependentUpon>ViewPrescription.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryBuilder.cs" />
@@ -164,6 +175,7 @@
     </Compile>
     <Compile Include="Staff.cs" />
     <Compile Include="Table.cs" />
+    <Compile Include="TestResults.cs" />
     <EmbeddedResource Include="AdminForm.resx">
       <DependentUpon>AdminForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -199,6 +211,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PrescriptionForms\IssuePrescriptionForm.resx">
       <DependentUpon>IssuePrescriptionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PrescriptionForms\ViewPrescription.resx">
+      <DependentUpon>ViewPrescription.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
