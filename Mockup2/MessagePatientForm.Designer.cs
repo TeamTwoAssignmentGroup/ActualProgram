@@ -124,6 +124,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MessagePatientForm";
             this.Text = "MessagePatientForm";
+            this.Load += new System.EventHandler(this.MessagePatientForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

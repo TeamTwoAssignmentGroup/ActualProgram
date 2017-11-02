@@ -21,5 +21,13 @@ namespace Mockup2.PatientForms
         {
             this.Close();
         }
+
+        private void RegisterNewPatientForm_Load(object sender, EventArgs e)
+        {
+            // Sets the size of the form upon loading
+            this.Size = new Size(600, 700);
+            // Prevents the form from being re sized
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+        }
     }
 }

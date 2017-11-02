@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminForm));
             this.adminTabs = new System.Windows.Forms.TabControl();
             this.rotaTab = new System.Windows.Forms.TabPage();
+            this.button3 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Monday = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Tuesday = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -55,7 +56,6 @@
             this.systemTab = new System.Windows.Forms.TabPage();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
             this.adminTabs.SuspendLayout();
             this.rotaTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -90,6 +90,16 @@
             this.rotaTab.TabIndex = 0;
             this.rotaTab.Text = "Rota";
             this.rotaTab.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            this.button3.AutoSize = true;
+            this.button3.Location = new System.Drawing.Point(8, 634);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(121, 43);
+            this.button3.TabIndex = 1;
+            this.button3.Text = "Update";
+            this.button3.UseVisualStyleBackColor = true;
             // 
             // dataGridView1
             // 
@@ -305,16 +315,6 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button3
-            // 
-            this.button3.AutoSize = true;
-            this.button3.Location = new System.Drawing.Point(8, 634);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(121, 43);
-            this.button3.TabIndex = 1;
-            this.button3.Text = "Update";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
             // AdminForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -324,6 +324,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AdminForm";
             this.Text = "AdminForm";
+            this.Load += new System.EventHandler(this.AdminForm_Load);
             this.adminTabs.ResumeLayout(false);
             this.rotaTab.ResumeLayout(false);
             this.rotaTab.PerformLayout();

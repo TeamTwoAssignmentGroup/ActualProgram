@@ -98,5 +98,12 @@ namespace Mockup2
         {
             LoadAllPatients();
         }
+
+        private void ReceptionistForm_Load_1(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Maximized;
+            this.MinimumSize = this.Size;
+            this.MaximumSize = this.Size;
+        }
     }
 }

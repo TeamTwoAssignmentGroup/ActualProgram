@@ -16,5 +16,10 @@ namespace Mockup2.PatientForms
         {
             InitializeComponent();
         }
+
+        private void ViewMedicalHistoryForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

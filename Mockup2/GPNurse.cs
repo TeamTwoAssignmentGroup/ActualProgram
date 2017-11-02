@@ -24,7 +24,7 @@ namespace Mockup2
         {
             this.dbCon = dbCon;
             infoFac = new PatientFactory(dbCon);
-            //this.dataGridView1.SelectionChanged += dataGridView1_SelectionChanged;
+         
            
                    
             InitializeComponent();
@@ -56,9 +56,19 @@ namespace Mockup2
             foreach (Patient p in patient)
             {
 
-                dataGridView1.Rows.Add(p.ID, p.NHSNumber, p.FirstName, p.LastName, p.Address, p.Postcode, p.NextOfKin, p.DOB, p.Gender, p.Religion, p.Email, p.Phone);
+                dataGridView1.Rows.Add(p.ID, p.NHSNumber, p.FirstName, p.LastName, p.Address, p.Postcode, p.DOB, p.Gender);
             }
 
+        }
+
+        private void GPNurse_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button14_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
