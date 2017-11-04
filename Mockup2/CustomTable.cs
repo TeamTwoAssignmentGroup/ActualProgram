@@ -7,6 +7,10 @@ using static Mockup2.Tables;
 
 namespace Mockup2
 {
+    /// <summary>
+    /// An object representation of a temporary table containing a result set from an SQL
+    /// query. 
+    /// </summary>
     class CustomTable
     {
         private List<Dictionary<Column,object>> columnData;

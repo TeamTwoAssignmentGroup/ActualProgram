@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.button14 = new System.Windows.Forms.Button();
             this.button13 = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
@@ -131,6 +132,7 @@
             this.searchBox1.Name = "searchBox1";
             this.searchBox1.Size = new System.Drawing.Size(147, 22);
             this.searchBox1.TabIndex = 46;
+            this.searchBox1.Text = "trenna";
             // 
             // button10
             // 
@@ -295,6 +297,7 @@
             this.searchBox2.Name = "searchBox2";
             this.searchBox2.Size = new System.Drawing.Size(144, 22);
             this.searchBox2.TabIndex = 54;
+            this.searchBox2.Text = "clayfield";
             // 
             // dataGridView1
             // 
@@ -391,6 +394,14 @@
             // 
             this.prescriptionDataGridView.AllowUserToAddRows = false;
             this.prescriptionDataGridView.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.prescriptionDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.prescriptionDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.prescriptionDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.prescriptionID,
@@ -411,31 +422,37 @@
             // 
             this.prescriptionID.HeaderText = "Prescription ID";
             this.prescriptionID.Name = "prescriptionID";
+            this.prescriptionID.ReadOnly = true;
             // 
             // prescriptionPatientID
             // 
             this.prescriptionPatientID.HeaderText = "Patient ID";
             this.prescriptionPatientID.Name = "prescriptionPatientID";
+            this.prescriptionPatientID.ReadOnly = true;
             // 
             // prescriptionIssuingStaffID
             // 
             this.prescriptionIssuingStaffID.HeaderText = "Issuing Staff ID";
             this.prescriptionIssuingStaffID.Name = "prescriptionIssuingStaffID";
+            this.prescriptionIssuingStaffID.ReadOnly = true;
             // 
             // prescriptionIsRepeatable
             // 
             this.prescriptionIsRepeatable.HeaderText = "Is Repeatable";
             this.prescriptionIsRepeatable.Name = "prescriptionIsRepeatable";
+            this.prescriptionIsRepeatable.ReadOnly = true;
             // 
             // prescriptionIssueDate
             // 
             this.prescriptionIssueDate.HeaderText = "Issue Date";
             this.prescriptionIssueDate.Name = "prescriptionIssueDate";
+            this.prescriptionIssueDate.ReadOnly = true;
             // 
             // prescriptionRepeatRequested
             // 
             this.prescriptionRepeatRequested.HeaderText = "Repeat Requested";
             this.prescriptionRepeatRequested.Name = "prescriptionRepeatRequested";
+            this.prescriptionRepeatRequested.ReadOnly = true;
             // 
             // button1
             // 

@@ -14,6 +14,13 @@ namespace Mockup2.Factories
         {
         }
 
+        /// <summary>
+        /// Retrieves the stored query from the QueryBuilder and executes it against the database
+        /// provided by the dbCon. The results are stored as a list of dictionary objects keyed to a Column.
+        /// The value is an object. Each dictionary represents a row in table.
+        /// </summary>
+        /// <param name="b">The QueryBuilder object containing the SQL query to invoke against the database.</param>
+        /// <returns>A CustomTable that has the resulting 'table' as a list of <code>Dictionary&lt;Column, object&gt;</code></returns>
         public CustomTable GetCustomTable(QueryBuilder b)
         {
             List<Dictionary<Column, object>> result = new List<Dictionary<Column, object>>();
