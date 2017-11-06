@@ -26,6 +26,8 @@ namespace Mockup2.PrescriptionForms
         public string Fri { set { fri = value; } get { return fri; } }
         public string Sat { set { sat = value; } get { return sat; } }
         public string Sun { set { sun = value; } get { return sun; } }
+        public int Id { set { id = value; }get { return id; } }
+        public int StaffId { set { staffID = value; } get { return staffID; } }
 
 
 
