@@ -157,7 +157,14 @@ namespace Mockup2
             query += "SELECT ";
             foreach(Mockup2.Tables.Column c in columns)
             {
-                query += c+",";
+                if (c is AllColumn)
+                {
+                    query += c +",";
+                }
+                else
+                {
+                    query += c + " AS " + c.GetAs() + ",";
+                }
                 selectedColumns.Add(c);
             }
             TrimQuery(1);
@@ -220,6 +227,15 @@ namespace Mockup2
         public WhereClass And()
         {
             return new WhereClass(" AND ");
+        }
+
+        public WhereClass IsBetweenDate(Column c, DateTime date1,DateTime date2)
+        {
+            string date1String = date1.ToString("yyyy-MM-dd");
+            string date2String = date2.ToString("yyyy-MM-dd");
+            WhereClass d1WC = this.IsMoreThanEqual(c, date1String);
+            WhereClass d2WC = this.IsLessThan(c, date2String);
+            return new WhereClass(d1WC+" AND "+d2WC);
         }
 
         /// <summary>
@@ -326,6 +342,7 @@ namespace Mockup2
             }
             query += ";";
             AddQuery(query);
+            Console.WriteLine(query);
             return query;
         }
 

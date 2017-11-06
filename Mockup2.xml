@@ -38,6 +38,29 @@
             the contents of this method with the code editor.
             </summary>
         </member>
+        <member name="F:Mockup2.AppointmentForms.FindAppointmentForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Mockup2.AppointmentForms.FindAppointmentForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Mockup2.AppointmentForms.FindAppointmentForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:Mockup2.CustomTable">
+            <summary>
+            An object representation of a temporary table containing a result set from an SQL
+            query. 
+            </summary>
+        </member>
         <member name="F:Mockup2.EditStaffForm.components">
             <summary>
             Required designer variable.
@@ -54,6 +77,15 @@
             Required method for Designer support - do not modify
             the contents of this method with the code editor.
             </summary>
+        </member>
+        <member name="M:Mockup2.Factories.CustomTableFactory.GetCustomTable(Mockup2.QueryBuilder)">
+            <summary>
+            Retrieves the stored query from the QueryBuilder and executes it against the database
+            provided by the dbCon. The results are stored as a list of dictionary objects keyed to a Column.
+            The value is an object. Each dictionary represents a row in table.
+            </summary>
+            <param name="b">The QueryBuilder object containing the SQL query to invoke against the database.</param>
+            <returns>A CustomTable that has the resulting 'table' as a list of <code>Dictionary&lt;Column, object&gt;</code></returns>
         </member>
         <member name="F:Mockup2.GPNurse.components">
             <summary>
@@ -228,6 +260,159 @@
         <member name="M:Mockup2.Program.Main">
             <summary>
             The main entry point for the application.
+            </summary>
+        </member>
+        <member name="T:Mockup2.QueryBuilder">
+            <summary>
+            The QueryBuilder class facilitates a more OO approach to constructing valid SQL queries. It employs the builder pattern to enable
+            method chaining, which makes constructing a query a bit more natural.
+            The methods that relate to SQL statements (SELECT, for instance) only allow Column objects to be passed in -
+            this is to prevent spelling mistakes and other annoying bugs commonly found when heavily relying on strings.
+            It should be noted that this class only supports a small subset of the full SQL specification, the smallest subset
+            required for this project.
+            Here is a small example of how to use this class:
+            <code>
+            QueryBuilder b = new QueryBuilder();
+            b.Select(Tables.ALL).From(Tables.PATIENT_TABLE); // Selects everything from the Patient table
+            string query = b.ToString();
+            </code>
+            Another example, that utilizes the Where clause to find staff who are doctors:
+            <code>
+            QueryBuilder b = new QueryBuilder();
+            b.Select(Tables.ALL).From(Tables.STAFF_TABLE).Where(b.IsEquals(Tables.STAFF_TABLE.JobRole,"Doctor"));
+            string query = b.ToString();
+            </code>
+            This class keeps a track of all queries it is asked to produce, as well as how many times each query is requested,
+            for debug purposes. This will be useful in troubleshooting slow database queries; for example, somebody
+            may have accidentally been creating and running queries in a loop.
+            It should be noted that this class does not perform any form of error or sanity checking and will allow you to create nonsensical SQL queries
+            provided you use valid Column and Table names, except in the case where the SQL query contains an Update statement.
+            If an Update statement is present without a Where statement, an exception is thrown. This is due to the fact that
+            updating an SQL table without specifying a Where clause will overwrite every row, causing irreperable data loss.
+            </summary>
+        </member>
+        <member name="M:Mockup2.QueryBuilder.AddQuery(System.String)">
+            <summary>
+            Adds the supplied query to pastQueries dictionary, incrementing
+            the number of times it has been created if it already exists.
+            </summary>
+            <param name="q">The query to add.</param>
+        </member>
+        <member name="M:Mockup2.QueryBuilder.Update(Mockup2.Tables.Table)">
+            <summary>
+            Adds an Update statement to the current SQL query. Only supports updating
+            one table at present. This can be easily changed later, if need be.
+            This method MUST be paired with a Where method,
+            else QueryBuilder will throw an exception. See the class description for more details.
+            </summary>
+            <param name="table">The Table to be updated.</param>
+            <returns>This instance of QueryBuilder.</returns>
+        </member>
+        <member name="M:Mockup2.QueryBuilder.Insert(Mockup2.Tables.Table)">
+            <summary>
+            Adds an Insert statement to the current SQL query.
+            </summary>
+            <param name="table">The Table to be inserted into.</param>
+            <returns>This instance of QueryBuilder.</returns>
+        </member>
+        <member name="M:Mockup2.QueryBuilder.Values(System.Object[])">
+            <summary>
+            Adds a Values statement to the current SQL query.
+            There are two ways to perform an insert in SQL - the first is to specify both column name and value,
+            which allows you to leave some values out and have them default.
+            The second is to not specify column names, but instead specify all values in the correct order.
+            This method uses the latter, so ensure you supply ALL values for the given Table, and that they are the
+            correct data type.
+            </summary>
+            <param name="values">The objects that will be used as values to insert into Table.</param>
+            <returns>This instance of QueryBuilder.</returns>
+        </member>
+        <member name="M:Mockup2.QueryBuilder.Set(System.Object[])">
+            <summary>
+            Adds a Set statement to the current SQL query. A word of warning for the parameters:
+            to satisfy SQL, they must be pairs of Column and value. However, there is no way to enforce
+            this and still have the amount supplied be variable (without creating a Tuple, or something similar),
+            so please ensure you supply a Column and a value.
+            </summary>
+            <param name="o">Objects that correspond to pairs of Columns and values to be inserted into said Column.</param>
+            <returns>This instance of QueryBuilder.</returns>
+        </member>
+        <member name="M:Mockup2.QueryBuilder.GetSelectedColumns">
+            <summary>
+            Returns the list of Columns that have been used in a Select method.
+            </summary>
+            <returns>A list of Columns.</returns>
+        </member>
+        <member name="M:Mockup2.QueryBuilder.Select(Mockup2.Tables.Column[])">
+            <summary>
+            Adds a Select statement to the current SQL query.
+            </summary>
+            <param name="columns">The Columns to be selected from the Tables.</param>
+            <returns>This instance of QueryBuilder.</returns>
+        </member>
+        <member name="M:Mockup2.QueryBuilder.TrimQuery(System.Int32)">
+            <summary>
+            Convenience method to quickly trim the query string down by a specified amount of characters.
+            Used to remove trailing characters such as commas from the ends of statements.
+            </summary>
+            <param name="amount">The amount of characters to trim from the end of the string.</param>
+        </member>
+        <member name="M:Mockup2.QueryBuilder.From(Mockup2.Tables.Table[])">
+            <summary>
+            Adds a From statement to the current SQL query.
+            </summary>
+            <param name="tables">The tables to be used in the From statement.</param>
+            <returns>This instance of QueryBuilder.</returns>
+        </member>
+        <member name="M:Mockup2.QueryBuilder.Where(Mockup2.QueryBuilder.WhereClass[])">
+            <summary>
+            Adds a Where statement to the current SQL query. This method takes a list of WhereClass instances as it's parameter.
+            </summary>
+            <param name="clauses">The WhereClass instances to add to this query.</param>
+            <returns>This instance of QueryBuilder.</returns>
+        </member>
+        <member name="M:Mockup2.QueryBuilder.And">
+            <summary>
+            A WhereClass for an SQL And statement. To be used in conjunction with a Where method.
+            </summary>
+            <returns>A WhereClass representing the SQL And statement.</returns>
+        </member>
+        <member name="M:Mockup2.QueryBuilder.Or">
+            <summary>
+            A WhereClass for an SQL Or statement. To be used in conjunction with a Where method.
+            </summary>
+            <returns>A WhereClass representing the SQL Or statement.</returns>
+        </member>
+        <member name="M:Mockup2.QueryBuilder.IsEqual(Mockup2.Tables.Column,System.Object)">
+            <summary>
+            A WhereClass for an SQL equals check. To be used in conjunction with a Where method.
+            Takes a Column and an object.
+            </summary>
+            <param name="column1">The Column to be checked.</param>
+            <param name="o">The object to be checked.</param>
+            <returns>A WhereClass that represents the equality check in SQL.</returns>
+        </member>
+        <member name="M:Mockup2.QueryBuilder.IsLessThan(Mockup2.Tables.Column,System.Object)">
+            <summary>
+            A WhereClass for an SQL less than check. To be used in conjunction with a Where method.
+            Takes a Column and an object.
+            </summary>
+            <param name="column1">The Column to be checked.</param>
+            <param name="o">The object to be checked.</param>
+            <returns>A WhereClass that represents the less than statement in SQL.</returns>
+        </member>
+        <member name="M:Mockup2.QueryBuilder.ToString">
+            <summary>
+            Adds a semicolon to the finished query, and adds the query to the running list of queries performed.
+            Checks to see if an Update statement is present without a Where statement, and throws an exception if so.
+            </summary>
+            <returns>A valid SQL query string.</returns>
+        </member>
+        <member name="M:Mockup2.QueryBuilder.DumpLog">
+            <summary>
+            Dumps the stored queries that have been requested over the program lifetime,
+            and how many times they have been requested.
+            Outputs this information to standard output.
             </summary>
         </member>
         <member name="F:Mockup2.ReceptionistForm.components">

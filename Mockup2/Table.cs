@@ -17,7 +17,15 @@ namespace Mockup2
         public static readonly RotaTable ROTA_TABLE = new RotaTable();
         public static readonly StaffTable STAFF_TABLE = new StaffTable();
         public static readonly TestResultTable TESTRESULT_TABLE = new TestResultTable();
-        public static readonly Column ALL = new Column("*", null);
+        public static readonly Column ALL = new AllColumn("*", null);
+
+        public class AllColumn : Column
+        {
+            public AllColumn(string name, Table parent) : base(name, parent)
+            {
+
+            }
+        }
         public class AppointmentTable : Table
         {
             public readonly Column ID;
@@ -226,6 +234,18 @@ namespace Mockup2
                 else
                 {
                     return Parent.Name + "." + Name;
+                }
+            }
+
+            public string GetAs()
+            {
+                if (Parent == null)
+                {
+                    return Name;
+                }
+                else
+                {
+                    return Parent.Name + "_" + Name;
                 }
             }
 

@@ -71,6 +71,12 @@
     <Compile Include="AppointmentForms\AddAppointmentForm.Designer.cs">
       <DependentUpon>AddAppointmentForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="AppointmentForms\FindAppointmentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AppointmentForms\FindAppointmentForm.Designer.cs">
+      <DependentUpon>FindAppointmentForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="CustomTable.cs" />
     <Compile Include="DatabaseConnection.cs" />
     <Compile Include="EditStaffForm.cs">
@@ -181,6 +187,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AppointmentForms\AddAppointmentForm.resx">
       <DependentUpon>AddAppointmentForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppointmentForms\FindAppointmentForm.resx">
+      <DependentUpon>FindAppointmentForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EditStaffForm.resx">
       <DependentUpon>EditStaffForm.cs</DependentUpon>

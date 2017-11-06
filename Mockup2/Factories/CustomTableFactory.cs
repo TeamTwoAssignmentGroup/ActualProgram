@@ -32,7 +32,7 @@ namespace Mockup2.Factories
                 Dictionary<Column, object> dic = new Dictionary<Column, object>();
                 foreach(Column c in b.GetSelectedColumns())
                 {
-                    dic[c] = reader[c.Name];
+                    dic[c] = reader[c.GetAs()];
                 }
                 result.Add(dic);
             }

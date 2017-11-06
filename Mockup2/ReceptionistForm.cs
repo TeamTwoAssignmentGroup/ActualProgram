@@ -31,7 +31,71 @@ namespace Mockup2
             DateTime today = DateTime.Today;
             DateTime date = new DateTime(today.Year,today.Month,today.Day);
             List<Appointment> apps = new AppointmentFactory(dbCon).GetAppointmentsByDate(date);
+            PopulateAppointments(DateTime.Today,DateTime.Today);
+        }
 
+        public void PopulateAppointments(DateTime d1, DateTime d2)
+        {
+            appointmentDataGridView.Rows.Clear();
+            //DateTime today = DateTime.Today;
+            //DateTime date = new DateTime(today.Year, today.Month, today.Day);
+            //DateTime date2 = date.AddDays(1);
+
+            DateTime date = new DateTime(d1.Year,d1.Month,d1.Day);
+            DateTime date2 = new DateTime(d2.Year,d2.Month,d2.Day).AddDays(1);
+
+            string date1String = date.ToString("yyyy-MM-dd");
+            string date2String = date2.ToString("yyyy-MM-dd");
+            CustomTableFactory ctf = new CustomTableFactory(dbCon);
+            //QueryBuilder b = new QueryBuilder();
+            //b.Select(Tables.STAFF_TABLE.FirstName, Tables.STAFF_TABLE.LastName, Tables.PATIENT_TABLE.FirstName, Tables.PATIENT_TABLE.LastName, Tables.APPOINTMENT_TABLE.AppointmentDate, Tables.APPOINTMENT_TABLE.AppointmentTime)
+            //    .From(Tables.STAFF_TABLE, Tables.PATIENT_TABLE, Tables.APPOINTMENT_TABLE)
+            //    .Where(b.IsEqual(Tables.APPOINTMENT_TABLE.StaffID, Tables.STAFF_TABLE.ID), b.And(),
+            //    b.IsEqual(Tables.APPOINTMENT_TABLE.PatientID, Tables.PATIENT_TABLE.ID), b.And(),
+            //    b.IsMoreThanEqual(Tables.APPOINTMENT_TABLE.AppointmentDate,date1String),b.And(),
+            //    b.IsLessThan(Tables.APPOINTMENT_TABLE.AppointmentDate,date2String));
+            QueryBuilder b = new QueryBuilder();
+            b.Select(Tables.STAFF_TABLE.FirstName, Tables.STAFF_TABLE.LastName, Tables.PATIENT_TABLE.FirstName, Tables.PATIENT_TABLE.LastName, Tables.APPOINTMENT_TABLE.AppointmentDate, Tables.APPOINTMENT_TABLE.AppointmentTime)
+                .From(Tables.STAFF_TABLE, Tables.PATIENT_TABLE, Tables.APPOINTMENT_TABLE)
+                .Where(b.IsEqual(Tables.APPOINTMENT_TABLE.StaffID, Tables.STAFF_TABLE.ID), b.And(),
+                b.IsEqual(Tables.APPOINTMENT_TABLE.PatientID, Tables.PATIENT_TABLE.ID), b.And(),
+                b.IsBetweenDate(Tables.APPOINTMENT_TABLE.AppointmentDate,date,date2));
+            CustomTable ct = ctf.GetCustomTable(b);
+            foreach(var row in ct.GetRows())
+            {
+                foreach(var value in row.Values)
+                {
+
+                    Console.Write(value + " | ");
+                }
+                appointmentDataGridView.Rows.Add(row.Values.ToArray());
+                Console.WriteLine();
+            }
+            
+        }
+
+        public void PopulateAppointments(string firstName,string lastName)
+        {
+            appointmentDataGridView.Rows.Clear();
+            CustomTableFactory ctf = new CustomTableFactory(dbCon);
+            QueryBuilder b = new QueryBuilder();
+            b.Select(Tables.STAFF_TABLE.FirstName, Tables.STAFF_TABLE.LastName, Tables.PATIENT_TABLE.FirstName, Tables.PATIENT_TABLE.LastName, Tables.APPOINTMENT_TABLE.AppointmentDate, Tables.APPOINTMENT_TABLE.AppointmentTime)
+                .From(Tables.STAFF_TABLE, Tables.PATIENT_TABLE, Tables.APPOINTMENT_TABLE)
+                .Where(b.IsEqual(Tables.APPOINTMENT_TABLE.StaffID, Tables.STAFF_TABLE.ID), b.And(),
+                b.IsEqual(Tables.APPOINTMENT_TABLE.PatientID, Tables.PATIENT_TABLE.ID), b.And(),
+                b.IsEqual(Tables.PATIENT_TABLE.FirstName, firstName),b.And(),
+                b.IsEqual(Tables.PATIENT_TABLE.LastName,lastName));
+            CustomTable ct = ctf.GetCustomTable(b);
+            foreach (var row in ct.GetRows())
+            {
+                foreach (var value in row.Values)
+                {
+
+                    Console.Write(value + " | ");
+                }
+                appointmentDataGridView.Rows.Add(row.Values.ToArray());
+                Console.WriteLine();
+            }
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -104,6 +168,11 @@ namespace Mockup2
             this.WindowState = FormWindowState.Maximized;
             this.MinimumSize = this.Size;
             this.MaximumSize = this.Size;
+        }
+
+        private void findAppointmentButton_Click(object sender, EventArgs e)
+        {
+            new FindAppointmentForm(this).Show();
         }
     }
 }
