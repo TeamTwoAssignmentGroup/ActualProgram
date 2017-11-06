@@ -151,6 +151,7 @@
     <Compile Include="PrescriptionForms\IssuePrescriptionForm.Designer.cs">
       <DependentUpon>IssuePrescriptionForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="PrescriptionForms\Rota.cs" />
     <Compile Include="PrescriptionForms\ViewPrescription.cs">
       <SubType>Form</SubType>
     </Compile>

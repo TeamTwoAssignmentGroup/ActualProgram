@@ -9,7 +9,7 @@ using static Mockup2.Tables;
 namespace Mockup2.Factories
 {
     class MedicalNoteFactory : AbstractFactory
-    {
+    { 
         public MedicalNoteFactory(DBConnection dbCon) : base(dbCon)
         {
         }
@@ -37,7 +37,7 @@ namespace Mockup2.Factories
 
         }
 
-        public List<MedicalNote> GetMedicalNotes(int patientID)
+        public List<MedicalNote> GetMedicalNotes( int patientID)
         {
             QueryBuilder b = new QueryBuilder();
             b.Select(Tables.ALL).From(Tables.MEDICALNOTES_TABLE).Where(b.IsEqual(Tables.MEDICALNOTES_TABLE.PatientID,patientID));
@@ -45,10 +45,14 @@ namespace Mockup2.Factories
         }
 
         public List<MedicalNote> GetMedicalNotes()
-        {
+        { 
             QueryBuilder b = new QueryBuilder();
             b.Select(Tables.ALL).From(Tables.MEDICALNOTES_TABLE);
             return GetMedicalNotes(b);
         }
+
+
+
+
     }
 }

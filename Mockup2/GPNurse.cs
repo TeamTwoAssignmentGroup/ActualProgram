@@ -19,6 +19,7 @@ namespace Mockup2
 
         DBConnection dbCon;
         PatientFactory infoFac;
+        Patient currentPatient;
         PrescriptionFactory prescriptionFactory;
 
         public GPNurse(DBConnection dbCon)
@@ -26,8 +27,10 @@ namespace Mockup2
             this.dbCon = dbCon;
             infoFac = new PatientFactory(dbCon);
             prescriptionFactory = new PrescriptionFactory(dbCon);
-           
-                   
+         
+
+
+
             InitializeComponent();
         }
 
@@ -48,23 +51,17 @@ namespace Mockup2
             }
         }
 
+        /***
+         * This button returns one patient from the database as an object
+         * */
         private void button9_Click(object sender, EventArgs e)
         {
             string firstName = searchBox1.Text;
             string lastName = searchBox2.Text;
-            List<Patient> patient = infoFac.GetPatientsByName(firstName, lastName);
+            currentPatient = infoFac.getAPatient(firstName, lastName);
             
             dataGridView1.Rows.Clear();
-            foreach (Patient p in patient)
-            {
-
-                dataGridView1.Rows.Add(p.ID, p.NHSNumber, p.FirstName, p.LastName, p.Address, p.Postcode, p.DOB, p.Gender);
-                List<Prescription> pr = prescriptionFactory.GetPrescriptions(p.ID);
-                foreach(Prescription pre in pr)
-                {
-                   prescriptionDataGridView.Rows.Add(pre.Id, pre.PatientId, pre.StaffId, pre.IsRepeatable, pre.IssueDate, pre.RepeatRequested);
-                }
-            }
+            dataGridView1.Rows.Add(currentPatient.ID, currentPatient.NHSNumber, currentPatient.FirstName,currentPatient.LastName, currentPatient.Address, currentPatient.Postcode, currentPatient.DOB, currentPatient.Gender);
 
         }
 
@@ -87,6 +84,18 @@ namespace Mockup2
                 ViewPrescription vp = new ViewPrescription(prescriptionID,dbCon);
                 vp.Show();
             }
+        }
+
+        private void selectSearch_Click(object sender, EventArgs e)
+        {
+            Prescription currentPrescription;
+            currentPrescription = prescriptionFactory.getAPatientPrescription(currentPatient);
+            prescriptionDataGridView.Rows.Add(currentPrescription.Id,currentPrescription.PatientId,currentPrescription.IssueDate,currentPrescription.IsRepeatable,currentPrescription.IssueDate,currentPrescription.RepeatRequested);
+        }
+
+        private void prescriptionDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+           
         }
     }
 }

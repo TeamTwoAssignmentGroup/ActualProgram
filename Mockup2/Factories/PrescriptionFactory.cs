@@ -50,5 +50,13 @@ namespace Mockup2.Factories
             b.Select(Tables.ALL).From(Tables.PRESCRIPTION_TABLE).Where(b.IsEqual(Tables.PRESCRIPTION_TABLE.PatientID,patientID));
             return GetPrescriptions(b);
         }
+
+
+
+
+
+
+
+
     }
 }
