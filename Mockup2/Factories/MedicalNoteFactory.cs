@@ -50,5 +50,9 @@ namespace Mockup2.Factories
             b.Select(Tables.ALL).From(Tables.MEDICALNOTES_TABLE);
             return GetMedicalNotes(b);
         }
+
+
+
+
     }
 }

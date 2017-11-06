@@ -57,47 +57,6 @@ namespace Mockup2.Factories
 
 
 
-        public Prescription getAPatientPrescription(Patient o)
-        {
-            int i = o.ID;
-            QueryBuilder q = new QueryBuilder();
-            q.Select(Tables.ALL).From(Tables.PRESCRIPTION_TABLE).Where(q.IsEqual(Tables.PRESCRIPTION_TABLE.PatientID, i));
-
-            return getPatientPrescription(q);
-        }
-
-
-
-
-        public Prescription getPatientPrescription( QueryBuilder qb)
-        {
-            DBConnection connect;
-            connect = this.dbCon;
-            Prescription result = new Prescription();
-            MySqlCommand query = new MySqlCommand(qb.ToString(), connect.GetConnection());
-            MySqlDataReader reader = query.ExecuteReader();
-
-            while (reader.Read())
-            {
-
-                Prescription a = new Prescription();
-                PrescriptionTable pt = Tables.PRESCRIPTION_TABLE;
-                a.Id = GetInt(reader[pt.ID.Name]);
-                a.StaffId = GetInt(reader[pt.IssuingStaffID.Name]);
-                a.PatientId = GetInt(reader[pt.PatientID.Name]);
-                a.IsRepeatable = GetBool(reader[pt.IsRepeatable.Name]);
-                a.IssueDate = GetDateTime(reader[pt.IssueDate.Name]);
-                a.RepeatRequested = GetBool(reader[pt.RepeatRequested.Name]);              
-                result = a;
-
-
-            }
-            reader.Close();
-            reader.Dispose();
-            return result;
-
-        }
-
 
     }
 }
