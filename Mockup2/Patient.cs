@@ -24,7 +24,6 @@ namespace Mockup2
         string phone;
 
 
-
         public DateTime DOB
         {
             set { dob = value; }
@@ -100,7 +99,7 @@ namespace Mockup2
 
         public override string ToString()
         {
-            return string.Format("{0} | {1} | {2} | {3} | {4} | {5} | {6} | {7} | {8} | {9} | {10} | {11}",id,nhsumber,firstName,lastName,address,postcode,nextOfKin,dob,gender,religion,email,phone);
+            return string.Format("{0} | {1} | {2} | {3} | {4} | {5} | {6} | {7} | {8} | {9} | {10} | {11}", id, nhsumber,firstName,lastName,address,postcode,nextOfKin,dob,gender,religion,email,phone);
         }
 
 

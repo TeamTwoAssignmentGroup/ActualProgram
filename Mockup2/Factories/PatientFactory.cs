@@ -6,18 +6,24 @@ namespace Mockup2
 {
     class PatientFactory
     {
+
         DBConnection con;
+
         public PatientFactory(DBConnection con)
         {
+
             this.con = con;
+
         }
        
 
         public List<Patient> GetPatients(QueryBuilder b)
         {
+
             List<Patient> result = new List<Patient>();
             MySqlCommand query = new MySqlCommand(b.ToString(), con.GetConnection());
             MySqlDataReader reader = query.ExecuteReader();
+
             while (reader.Read())
             {
                 Patient p = new Patient();
@@ -38,17 +44,24 @@ namespace Mockup2
                 p.Phone = GetString(reader[pt.Phone.Name]);
                 result.Add(p);
             }
+
             reader.Close();
             reader.Dispose();
             return result;
+
         }
+
+
 
         public List<Patient> GetPatientsByName(string firstName,string lastName)
         {
             QueryBuilder b = new QueryBuilder();
-            b.Select(Tables.ALL).From(Tables.PATIENT_TABLE).Where(b.IsEqual(Tables.PATIENT_TABLE.FirstName,firstName),b.And(),b.IsEqual(Tables.PATIENT_TABLE.LastName,lastName));
+            b.Select(Tables.ALL).From(Tables.PATIENT_TABLE).Where(b.IsEqual(Tables.PATIENT_TABLE.FirstName,firstName),b.And(),b.IsEqual(Tables.PATIENT_TABLE.LastName, lastName));
             return GetPatients(b);
         }
+
+
+
 
         public List<Patient> GetPatients()
         {
@@ -57,10 +70,16 @@ namespace Mockup2
             return GetPatients(b);
         }
 
+
+
+
         private int GetInt(object o)
         {
             return int.Parse(o+"");
         }
+
+
+
 
         private string GetString(object o)
         {
@@ -68,22 +87,22 @@ namespace Mockup2
         }
 
 
-
-
-
-
-
-        public Patient getAPatient(string s1 , string s2)
+        /**
+         * returns a patient object by finding it in the database by first and last name
+         * */
+        public Patient getAPatient(string firstName , string lastName)
         {
             QueryBuilder q = new QueryBuilder();
-            q.Select(Tables.ALL).From(Tables.PATIENT_TABLE).Where(q.IsEqual(Tables.PATIENT_TABLE.FirstName, s1), q.And(), q.IsEqual(Tables.PATIENT_TABLE.LastName, s2));
+            q.Select(Tables.ALL).From(Tables.PATIENT_TABLE).Where(q.IsEqual(Tables.PATIENT_TABLE.FirstName, firstName), q.And(), q.IsEqual(Tables.PATIENT_TABLE.LastName, lastName));
 
-            return getPatient(s1,s2,q);
+            return getPatient(firstName,lastName,q);
         }
 
 
 
-
+        /**
+         * Executes query in the database to return details to getAPatient() method
+         * */
         public Patient getPatient(string firstName,string lastName,QueryBuilder qb)
         {
             DBConnection connect;
