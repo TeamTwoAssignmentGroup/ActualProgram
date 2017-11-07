@@ -61,6 +61,60 @@ namespace Mockup2
         }
 
 
+        public Patient GetPatientsByID(int ID)
+        {
+            QueryBuilder b = new QueryBuilder();
+            b.Select(Tables.ALL).From(Tables.PATIENT_TABLE).Where(b.IsEqual(Tables.PATIENT_TABLE.ID, ID));
+            return GetPatientByIdNumber(b);
+
+        }
+
+
+
+
+        public Patient GetPatientByIdNumber(QueryBuilder q)
+        {
+            
+            
+                DBConnection connect;
+                connect = this.con;
+
+                Patient result = new Patient();
+                MySqlCommand query = new MySqlCommand(q.ToString(), connect.GetConnection());
+                MySqlDataReader reader = query.ExecuteReader();
+
+                while (reader.Read())
+                {
+
+                    Prescription a = new Prescription();
+
+                    Patient p = new Patient();
+                    Mockup2.Tables.PatientTable pt = Tables.PATIENT_TABLE;
+                    p.ID = GetInt(reader[pt.ID.Name]);
+                    p.NHSNumber = GetString(reader[pt.NHSNumber.Name]);
+                    p.FirstName = GetString(reader[pt.FirstName.Name]);
+                    p.LastName = GetString(reader[pt.LastName.Name]);
+                    p.Address = GetString(reader[pt.Address.Name]);
+                    p.Postcode = GetString(reader[pt.PostCode.Name]);
+                    p.NextOfKin = GetString(reader[pt.NextOfKin.Name]);
+                    DateTime temp;
+                    DateTime.TryParse(GetString(reader[pt.DOB.Name]), out temp);
+                    p.DOB = temp;
+                    p.Gender = GetString(reader[pt.Gender.Name]);
+                    p.Religion = GetString(reader[pt.Religion.Name]);
+                    p.Email = GetString(reader[pt.Email.Name]);
+                    p.Phone = GetString(reader[pt.Phone.Name]);
+
+                    result = p;
+
+
+                }
+                reader.Close();
+                reader.Dispose();
+                return result;
+
+            }
+        
 
 
         public List<Patient> GetPatients()
