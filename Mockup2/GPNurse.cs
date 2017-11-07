@@ -11,6 +11,7 @@ using Mockup2.AppointmentForms;
 using Mockup2.Factories;
 using Mockup2.PatientForms;
 using Mockup2.PrescriptionForms;
+using Mockup2.Classes;
 
 namespace Mockup2
 {
@@ -22,6 +23,8 @@ namespace Mockup2
         Patient currentPatient;
         PrescriptionFactory prescriptionFactory;
         MedicalNoteFactory medicalNote;
+        MedicineInFactory medication;
+       
        
         TestResultFactory test;
        
@@ -33,6 +36,8 @@ namespace Mockup2
             infoFac = new PatientFactory(dbCon);
             prescriptionFactory = new PrescriptionFactory(dbCon);
             test = new TestResultFactory(dbCon);
+            medication = new MedicineInFactory(dbCon);
+        
 
 
          
@@ -109,14 +114,20 @@ namespace Mockup2
         private void selectSearch_Click(object sender, EventArgs e)
         {
             historyGrid.Rows.Clear();
-           
+            preGrid.Rows.Clear();
             testGrid.ClearSelection();
-            List <MedicalNote> hist  = medicalNote.GetMedicalNotes(currentPatient.ID);
+            List <MedicalNotes> hist  = medicalNote.GetMedicalNotes(currentPatient.ID);
             List<Prescription> pre = prescriptionFactory.GetPrescriptions(currentPatient.ID);
             List<TestResult> tesR = test.GetTestResults(currentPatient.ID);
+            List<MedicationInstance> medicationList=medication.GetMedicnePatient(currentPatient.ID);
 
-            foreach (MedicalNote m in hist ) { historyGrid.Rows.Add(m.ID,m.PatientID,m.Notes,m.WrittenDate); }
-            foreach (Prescription p in pre){preGrid.Rows.Add(p.PatientId);           }
+            foreach (MedicalNotes m in hist ) { historyGrid.Rows.Add(m.ID,m.PatientID,m.Notes,m.WrittenDate); }
+            foreach (Prescription p in pre)
+            {
+                foreach (MedicationInstance m in medicationList)
+                {              
+                 preGrid.Rows.Add(p.PatientId,m.MedicationId, m.Instruction); }
+            }
             foreach (TestResult t in tesR) { testGrid.Rows.Add(t.TestName,t.Results,t.TestDate); }
             detailsBox.Text = currentPatient.FirstName + " " + currentPatient.LastName + "   date of birth: " + currentPatient.DOB + "\n" + currentPatient.Address + " " + currentPatient.Postcode + "\n" + currentPatient.Phone;
 

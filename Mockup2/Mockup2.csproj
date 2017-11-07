@@ -79,6 +79,7 @@
     </Compile>
     <Compile Include="Classes\CustomTable.cs" />
     <Compile Include="Classes\DatabaseConnection.cs" />
+    <Compile Include="Classes\MedicationInstance.cs" />
     <Compile Include="EditStaffForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -89,6 +90,7 @@
     <Compile Include="Factories\AppointmentFactory.cs" />
     <Compile Include="Factories\CustomTableFactory.cs" />
     <Compile Include="Factories\MedicalNoteFactory.cs" />
+    <Compile Include="Factories\MedicineInFactory.cs" />
     <Compile Include="Factories\PrescriptionFactory.cs" />
     <Compile Include="Factories\StaffFactory.cs" />
     <Compile Include="Factories\TestResultFactory.cs" />

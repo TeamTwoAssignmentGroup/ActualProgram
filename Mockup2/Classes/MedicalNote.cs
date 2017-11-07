@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Mockup2
 {
-    class MedicalNote
+    class MedicalNotes
     {
         private int id;
         private int patientID;
