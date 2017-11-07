@@ -89,8 +89,8 @@ namespace Mockup2
         private void selectSearch_Click(object sender, EventArgs e)
         {
             Prescription currentPrescription;
-            currentPrescription = prescriptionFactory.getAPatientPrescription(currentPatient);
-            prescriptionDataGridView.Rows.Add(currentPrescription.Id,currentPrescription.PatientId,currentPrescription.IssueDate,currentPrescription.IsRepeatable,currentPrescription.IssueDate,currentPrescription.RepeatRequested);
+            //currentPrescription = prescriptionFactory.getAPatientPrescription(currentPatient);
+            //prescriptionDataGridView.Rows.Add(currentPrescription.Id,currentPrescription.PatientId,currentPrescription.IssueDate,currentPrescription.IsRepeatable,currentPrescription.IssueDate,currentPrescription.RepeatRequested);
         }
 
         private void prescriptionDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)

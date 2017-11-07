@@ -38,6 +38,23 @@
             the contents of this method with the code editor.
             </summary>
         </member>
+        <member name="F:Mockup2.AppointmentForms.FindAppointmentForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Mockup2.AppointmentForms.FindAppointmentForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Mockup2.AppointmentForms.FindAppointmentForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
         <member name="T:Mockup2.CustomTable">
             <summary>
             An object representation of a temporary table containing a result set from an SQL
@@ -86,6 +103,14 @@
             Required method for Designer support - do not modify
             the contents of this method with the code editor.
             </summary>
+        </member>
+        <member name="M:Mockup2.PatientFactory.getAPatient(System.String,System.String)">
+            returns a patient object by finding it in the database by first and last name
+            
+        </member>
+        <member name="M:Mockup2.PatientFactory.getPatient(System.String,System.String,Mockup2.QueryBuilder)">
+            Executes query in the database to return details to getAPatient() method
+            
         </member>
         <member name="F:Mockup2.loginForm.components">
             <summary>
