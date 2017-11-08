@@ -18,7 +18,7 @@ namespace Mockup2
         static void Main()
         {
             DBConnection dbCon = new DBConnection();
-            Test(dbCon);
+            //Test(dbCon);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new loginForm(dbCon));

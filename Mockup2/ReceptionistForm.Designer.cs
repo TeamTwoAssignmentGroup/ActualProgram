@@ -68,6 +68,7 @@
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.button1 = new System.Windows.Forms.Button();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.appointmentCause = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.appointmentDataGridView)).BeginInit();
@@ -160,7 +161,8 @@
             this.PatientLastName,
             this.Date,
             this.Time,
-            this.AppointmentStatus});
+            this.AppointmentStatus,
+            this.appointmentCause});
             this.appointmentDataGridView.Dock = System.Windows.Forms.DockStyle.Top;
             this.appointmentDataGridView.Location = new System.Drawing.Point(3, 3);
             this.appointmentDataGridView.MultiSelect = false;
@@ -448,6 +450,12 @@
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 40);
             this.dateTimePicker1.TabIndex = 0;
             // 
+            // appointmentCause
+            // 
+            this.appointmentCause.HeaderText = "Cause";
+            this.appointmentCause.Name = "appointmentCause";
+            this.appointmentCause.Width = 124;
+            // 
             // ReceptionistForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -511,5 +519,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Date;
         private System.Windows.Forms.DataGridViewTextBoxColumn Time;
         private System.Windows.Forms.DataGridViewTextBoxColumn AppointmentStatus;
+        private System.Windows.Forms.DataGridViewTextBoxColumn appointmentCause;
     }
 }

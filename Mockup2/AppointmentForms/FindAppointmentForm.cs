@@ -50,10 +50,17 @@ namespace Mockup2.AppointmentForms
             if (nameRadioButton.Checked)
             {
                 parent.PopulateAppointments(firstNameTextBox.Text, lastNameTextBox.Text);
+                parent.searchByName = true;
+                parent.fName = firstNameTextBox.Text;
+                parent.lName = lastNameTextBox.Text;
+
             }
             if (dateRadioButton.Checked)
             {
                 parent.PopulateAppointments(dateTimePicker1.Value, dateTimePicker2.Value);
+                parent.searchByName = false;
+                parent.d1 = dateTimePicker1.Value;
+                parent.d2 = dateTimePicker2.Value;
             }
             this.Close();
             this.Dispose();

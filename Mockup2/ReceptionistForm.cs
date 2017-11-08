@@ -21,6 +21,12 @@ namespace Mockup2
         List<Appointment> selectedAppointments;
         List<Patient> patients;
         QueryBuilder latestAppointmentQuery;
+
+        public bool searchByName = false;
+        public string fName;
+        public string lName;
+        public DateTime d1;
+        public DateTime d2;
         public ReceptionistForm(DBConnection dbCon)
         {
             InitializeComponent();
@@ -30,11 +36,15 @@ namespace Mockup2
             this.Load += ReceptionistForm_Load;
             this.selectedAppointments = new List<Appointment>();
             af = new AppointmentFactory(dbCon);
+            foreach(string s in af.GetTimeslots())
+            {
+                Console.WriteLine(s);
+            }
         }
 
-        public void RefreshAppointments()
+        public void RefreshPatients()
         {
-
+            button8_Click(null, null);
         }
 
         private void ReceptionistForm_Load(object sender, EventArgs e)
@@ -68,7 +78,7 @@ namespace Mockup2
             //    b.IsMoreThanEqual(Tables.APPOINTMENT_TABLE.AppointmentDate,date1String),b.And(),
             //    b.IsLessThan(Tables.APPOINTMENT_TABLE.AppointmentDate,date2String));
             QueryBuilder b = new QueryBuilder();
-            b.Select(Tables.STAFF_TABLE.FirstName, Tables.STAFF_TABLE.LastName, Tables.PATIENT_TABLE.FirstName, Tables.PATIENT_TABLE.LastName, Tables.APPOINTMENT_TABLE.AppointmentDate, Tables.APPOINTMENT_TABLE.AppointmentTime,Tables.APPOINTMENT_TABLE.Status)
+            b.Select(Tables.STAFF_TABLE.FirstName, Tables.STAFF_TABLE.LastName, Tables.PATIENT_TABLE.FirstName, Tables.PATIENT_TABLE.LastName, Tables.APPOINTMENT_TABLE.AppointmentDate, Tables.APPOINTMENT_TABLE.AppointmentTime,Tables.APPOINTMENT_TABLE.Status,Tables.APPOINTMENT_TABLE.Cause)
                 .From(Tables.STAFF_TABLE, Tables.PATIENT_TABLE, Tables.APPOINTMENT_TABLE)
                 .Where(b.IsEqual(Tables.APPOINTMENT_TABLE.StaffID, Tables.STAFF_TABLE.ID), b.And(),
                 b.IsEqual(Tables.APPOINTMENT_TABLE.PatientID, Tables.PATIENT_TABLE.ID), b.And(),
@@ -97,7 +107,7 @@ namespace Mockup2
             selectedAppointments = af.GetAppointments(b2);
             CustomTableFactory ctf = new CustomTableFactory(dbCon);
             QueryBuilder b = new QueryBuilder();
-            b.Select(Tables.STAFF_TABLE.FirstName, Tables.STAFF_TABLE.LastName, Tables.PATIENT_TABLE.FirstName, Tables.PATIENT_TABLE.LastName, Tables.APPOINTMENT_TABLE.AppointmentDate, Tables.APPOINTMENT_TABLE.AppointmentTime,Tables.APPOINTMENT_TABLE.Status)
+            b.Select(Tables.STAFF_TABLE.FirstName, Tables.STAFF_TABLE.LastName, Tables.PATIENT_TABLE.FirstName, Tables.PATIENT_TABLE.LastName, Tables.APPOINTMENT_TABLE.AppointmentDate, Tables.APPOINTMENT_TABLE.AppointmentTime,Tables.APPOINTMENT_TABLE.Status,Tables.APPOINTMENT_TABLE.Cause)
                 .From(Tables.STAFF_TABLE, Tables.PATIENT_TABLE, Tables.APPOINTMENT_TABLE)
                 .Where(b.IsEqual(Tables.APPOINTMENT_TABLE.StaffID, Tables.STAFF_TABLE.ID), b.And(),
                 b.IsEqual(Tables.APPOINTMENT_TABLE.PatientID, Tables.PATIENT_TABLE.ID), b.And(),
@@ -138,15 +148,15 @@ namespace Mockup2
                 int patientID = pf.GetPatientsByName(patFName, patLName)[0].ID;
                 AddAppointmentForm aaf = new AddAppointmentForm(dbCon,staffID,patientID,selectedAppointments[rowNum],this);
 
-                aaf.staffIDTextBox.Text = docFName + " " + docLName;
-                aaf.patientIDTextBox.Text = patFName + " " + patLName;
-                aaf.staffIDTextBox.Enabled = false;
-                aaf.patientIDTextBox.Enabled = false;
+                //aaf.staffIDTextBox.Text = docFName + " " + docLName;
+                //aaf.patientIDTextBox.Text = patFName + " " + patLName;
+                //aaf.staffIDTextBox.Enabled = false;
+                //aaf.patientIDTextBox.Enabled = false;
 
                 aaf.dateTimePicker1.Value = (DateTime) appointmentDataGridView.Rows[rowNum].Cells[4].Value;
-                aaf.dateTimePicker2.Format = DateTimePickerFormat.Custom;
-                aaf.dateTimePicker2.CustomFormat = "HH:mm tt";
-                aaf.dateTimePicker2.Value = aaf.dateTimePicker2.Value.Date + (TimeSpan) appointmentDataGridView.Rows[rowNum].Cells[5].Value;
+               // aaf.dateTimePicker2.Format = DateTimePickerFormat.Custom;
+                //aaf.dateTimePicker2.CustomFormat = "HH:mm tt";
+               // aaf.dateTimePicker2.Value = aaf.dateTimePicker2.Value.Date + (TimeSpan) appointmentDataGridView.Rows[rowNum].Cells[5].Value;
                 Console.WriteLine("Time object is: " + appointmentDataGridView.Rows[rowNum].Cells[5].Value.GetType());
                 aaf.statusComboBox.Text = appointmentDataGridView.Rows[rowNum].Cells[6].Value.ToString();
                 //aaf.causeTextBox.Text = appointmentDataGridView.Rows[0].Cells[7].Value.ToString();
@@ -157,7 +167,7 @@ namespace Mockup2
 
         private void button2_Click(object sender, EventArgs e)
         {
-            new RegisterNewPatientForm(null,infoFac).Show();
+            new RegisterNewPatientForm(null,infoFac,this).Show();
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -166,7 +176,7 @@ namespace Mockup2
             {
                 int rowNum = dataGridView1.CurrentCell.RowIndex;
                 Patient p = patients[rowNum];
-                new RegisterNewPatientForm(p,infoFac).Show();
+                new RegisterNewPatientForm(p,infoFac,this).Show();
             }
         }
 

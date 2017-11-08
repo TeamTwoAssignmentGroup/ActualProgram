@@ -16,6 +16,37 @@ namespace Mockup2.Factories
         {
         }
 
+        public List<string> GetTimeslots()
+        {
+            List<string> result = new List<string>();
+            for(int i = 9; i < 17; i++)
+            {
+                string s = "";
+                if (i < 10)
+                {
+                    s = "0" + i+":";
+                }
+                else
+                {
+                    s = "" + i+":";
+                }
+                for(int j = 0; j < 60; j+=10)
+                {
+                    string s2 = s;
+                    if (j < 10)
+                    {
+                        s2 += "0" + j+":00";
+                    }
+                    else
+                    {
+                        s2 += j+":00";
+                    }
+                    result.Add(s2);
+                }
+            }
+            return result;
+        }
+
         public List<Appointment> GetAppointments(QueryBuilder b)
         {
             List<Appointment> result = new List<Appointment>();

@@ -238,7 +238,7 @@ namespace Mockup2
         public WhereClass IsBetweenDate(Column c, DateTime date1,DateTime date2)
         {
             string date1String = date1.ToString("yyyy-MM-dd");
-            string date2String = date2.ToString("yyyy-MM-dd");
+            string date2String = date2.AddDays(1).ToString("yyyy-MM-dd");
             WhereClass d1WC = this.IsMoreThanEqual(c, date1String);
             WhereClass d2WC = this.IsLessThan(c, date2String);
             return new WhereClass(d1WC+" AND "+d2WC);

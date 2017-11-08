@@ -35,12 +35,12 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
             this.statusComboBox = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.staffIDTextBox = new System.Windows.Forms.TextBox();
-            this.patientIDTextBox = new System.Windows.Forms.TextBox();
+            this.staffcomboBox1 = new System.Windows.Forms.ComboBox();
+            this.patientcomboBox2 = new System.Windows.Forms.ComboBox();
+            this.timeslotcomboBox1 = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // dateTimePicker1
@@ -105,15 +105,6 @@
             this.label4.TabIndex = 8;
             this.label4.Text = "Cause";
             // 
-            // dateTimePicker2
-            // 
-            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dateTimePicker2.Location = new System.Drawing.Point(76, 96);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.ShowUpDown = true;
-            this.dateTimePicker2.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker2.TabIndex = 9;
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -127,6 +118,7 @@
             // 
             this.statusComboBox.FormattingEnabled = true;
             this.statusComboBox.Items.AddRange(new object[] {
+            "Booked",
             "Canceled",
             "Late",
             "Complete",
@@ -145,31 +137,42 @@
             this.label6.TabIndex = 12;
             this.label6.Text = "Status";
             // 
-            // staffIDTextBox
+            // staffcomboBox1
             // 
-            this.staffIDTextBox.Location = new System.Drawing.Point(76, 13);
-            this.staffIDTextBox.Name = "staffIDTextBox";
-            this.staffIDTextBox.Size = new System.Drawing.Size(100, 20);
-            this.staffIDTextBox.TabIndex = 13;
+            this.staffcomboBox1.FormattingEnabled = true;
+            this.staffcomboBox1.Location = new System.Drawing.Point(76, 13);
+            this.staffcomboBox1.Name = "staffcomboBox1";
+            this.staffcomboBox1.Size = new System.Drawing.Size(200, 21);
+            this.staffcomboBox1.TabIndex = 15;
+            this.staffcomboBox1.SelectedIndexChanged += new System.EventHandler(this.staffcomboBox1_SelectedIndexChanged);
             // 
-            // patientIDTextBox
+            // patientcomboBox2
             // 
-            this.patientIDTextBox.Location = new System.Drawing.Point(76, 41);
-            this.patientIDTextBox.Name = "patientIDTextBox";
-            this.patientIDTextBox.Size = new System.Drawing.Size(100, 20);
-            this.patientIDTextBox.TabIndex = 14;
+            this.patientcomboBox2.FormattingEnabled = true;
+            this.patientcomboBox2.Location = new System.Drawing.Point(76, 41);
+            this.patientcomboBox2.Name = "patientcomboBox2";
+            this.patientcomboBox2.Size = new System.Drawing.Size(200, 21);
+            this.patientcomboBox2.TabIndex = 16;
+            // 
+            // timeslotcomboBox1
+            // 
+            this.timeslotcomboBox1.FormattingEnabled = true;
+            this.timeslotcomboBox1.Location = new System.Drawing.Point(77, 102);
+            this.timeslotcomboBox1.Name = "timeslotcomboBox1";
+            this.timeslotcomboBox1.Size = new System.Drawing.Size(121, 21);
+            this.timeslotcomboBox1.TabIndex = 17;
             // 
             // AddAppointmentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(292, 287);
-            this.Controls.Add(this.patientIDTextBox);
-            this.Controls.Add(this.staffIDTextBox);
+            this.Controls.Add(this.timeslotcomboBox1);
+            this.Controls.Add(this.patientcomboBox2);
+            this.Controls.Add(this.staffcomboBox1);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.statusComboBox);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.dateTimePicker2);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -195,8 +198,8 @@
         public System.Windows.Forms.ComboBox statusComboBox;
         public System.Windows.Forms.DateTimePicker dateTimePicker1;
         public System.Windows.Forms.TextBox causeTextBox;
-        public System.Windows.Forms.DateTimePicker dateTimePicker2;
-        public System.Windows.Forms.TextBox staffIDTextBox;
-        public System.Windows.Forms.TextBox patientIDTextBox;
+        private System.Windows.Forms.ComboBox staffcomboBox1;
+        private System.Windows.Forms.ComboBox patientcomboBox2;
+        private System.Windows.Forms.ComboBox timeslotcomboBox1;
     }
 }

@@ -14,11 +14,13 @@ namespace Mockup2.PatientForms
     {
         Patient p;
         PatientFactory pf;
-        public RegisterNewPatientForm(Patient p,PatientFactory pf)
+        ReceptionistForm parent;
+        public RegisterNewPatientForm(Patient p,PatientFactory pf,ReceptionistForm parent)
         {
             InitializeComponent();
             this.p = p;
             this.pf = pf;
+            this.parent = parent;
 
             if (p != null)
             {
@@ -73,6 +75,7 @@ namespace Mockup2.PatientForms
                 p.Email = patientEmailTextBox.Text;
                 pf.UpdatePatient(p);
             }
+            parent.RefreshPatients();
             this.Close();
         }
 
