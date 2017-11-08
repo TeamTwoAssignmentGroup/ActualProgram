@@ -7,9 +7,11 @@ using static Mockup2.Tables;
 
 namespace Mockup2
 {
+
+
+
     /// <summary>
-    /// An object representation of a temporary table containing a result set from an SQL
-    /// query. 
+    /// OUT OF ORDER 
     /// </summary>
     class CustomTable
     {

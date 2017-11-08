@@ -60,9 +60,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.preGrid = new System.Windows.Forms.DataGridView();
-            this.p_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.date_p = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button1 = new System.Windows.Forms.Button();
             this.selectSearch = new System.Windows.Forms.Button();
             this.historyGrid = new System.Windows.Forms.DataGridView();
@@ -77,6 +74,9 @@
             this.searchID = new System.Windows.Forms.TextBox();
             this.lD = new System.Windows.Forms.Label();
             this.detailsBox = new System.Windows.Forms.RichTextBox();
+            this.p_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.date_p = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.preGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.historyGrid)).BeginInit();
@@ -131,7 +131,6 @@
             this.searchBox1.Name = "searchBox1";
             this.searchBox1.Size = new System.Drawing.Size(147, 22);
             this.searchBox1.TabIndex = 46;
-            this.searchBox1.Text = "barny";
             // 
             // button10
             // 
@@ -157,7 +156,7 @@
             // button8
             // 
             this.button8.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button8.Location = new System.Drawing.Point(459, 351);
+            this.button8.Location = new System.Drawing.Point(493, 351);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(75, 23);
             this.button8.TabIndex = 43;
@@ -167,7 +166,7 @@
             // button7
             // 
             this.button7.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button7.Location = new System.Drawing.Point(459, 313);
+            this.button7.Location = new System.Drawing.Point(493, 313);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(75, 23);
             this.button7.TabIndex = 42;
@@ -177,7 +176,7 @@
             // button3
             // 
             this.button3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(459, 274);
+            this.button3.Location = new System.Drawing.Point(493, 274);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 41;
@@ -260,7 +259,6 @@
             this.searchBox2.Name = "searchBox2";
             this.searchBox2.Size = new System.Drawing.Size(144, 22);
             this.searchBox2.TabIndex = 54;
-            this.searchBox2.Text = "meltetal";
             // 
             // dataGridView1
             // 
@@ -377,31 +375,13 @@
             this.preGrid.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.preGrid.RowHeadersWidth = 120;
             this.preGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.preGrid.Size = new System.Drawing.Size(431, 288);
+            this.preGrid.Size = new System.Drawing.Size(465, 288);
             this.preGrid.TabIndex = 20;
             this.preGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.prescriptionDataGridView_CellContentClick);
             // 
-            // p_id
-            // 
-            this.p_id.HeaderText = "Patient";
-            this.p_id.Name = "p_id";
-            this.p_id.Width = 64;
-            // 
-            // name
-            // 
-            this.name.HeaderText = "Medicine";
-            this.name.Name = "name";
-            this.name.Width = 75;
-            // 
-            // date_p
-            // 
-            this.date_p.HeaderText = "Date";
-            this.date_p.Name = "date_p";
-            this.date_p.Width = 55;
-            // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(459, 245);
+            this.button1.Location = new System.Drawing.Point(493, 245);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 59;
@@ -529,6 +509,7 @@
             this.searchID.Name = "searchID";
             this.searchID.Size = new System.Drawing.Size(147, 20);
             this.searchID.TabIndex = 63;
+            this.searchID.Text = "105";
             // 
             // lD
             // 
@@ -545,9 +526,27 @@
             this.detailsBox.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.detailsBox.Location = new System.Drawing.Point(97, 38);
             this.detailsBox.Name = "detailsBox";
-            this.detailsBox.Size = new System.Drawing.Size(283, 73);
+            this.detailsBox.Size = new System.Drawing.Size(283, 85);
             this.detailsBox.TabIndex = 30;
             this.detailsBox.Text = "";
+            // 
+            // p_id
+            // 
+            this.p_id.HeaderText = "Drug";
+            this.p_id.Name = "p_id";
+            this.p_id.Width = 57;
+            // 
+            // name
+            // 
+            this.name.HeaderText = "Medicine";
+            this.name.Name = "name";
+            this.name.Width = 75;
+            // 
+            // date_p
+            // 
+            this.date_p.HeaderText = "Date";
+            this.date_p.Name = "date_p";
+            this.date_p.Width = 55;
             // 
             // GPNurse
             // 
@@ -632,9 +631,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Patient_ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Date;
         private System.Windows.Forms.DataGridViewTextBoxColumn Notes;
-        private System.Windows.Forms.DataGridViewTextBoxColumn p_id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn name;
-        private System.Windows.Forms.DataGridViewTextBoxColumn date_p;
         private System.Windows.Forms.DataGridView testGrid;
         private System.Windows.Forms.DataGridViewTextBoxColumn testName;
         private System.Windows.Forms.DataGridViewTextBoxColumn result;
@@ -642,5 +638,8 @@
         private System.Windows.Forms.TextBox searchID;
         private System.Windows.Forms.Label lD;
         private System.Windows.Forms.RichTextBox detailsBox;
+        private System.Windows.Forms.DataGridViewTextBoxColumn p_id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn date_p;
     }
 }

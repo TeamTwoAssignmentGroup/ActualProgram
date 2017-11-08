@@ -23,9 +23,7 @@ namespace Mockup2
         Patient currentPatient;
         PrescriptionFactory prescriptionFactory;
         MedicalNoteFactory medicalNote;
-        MedicineInFactory medication;
-       
-       
+        MedicineInFactory medicationL;   
         TestResultFactory test;
        
         public GPNurse(DBConnection dbCon)
@@ -36,7 +34,7 @@ namespace Mockup2
             infoFac = new PatientFactory(dbCon);
             prescriptionFactory = new PrescriptionFactory(dbCon);
             test = new TestResultFactory(dbCon);
-            medication = new MedicineInFactory(dbCon);
+            medicationL = new MedicineInFactory(dbCon);
         
 
 
@@ -119,15 +117,54 @@ namespace Mockup2
             List <MedicalNotes> hist  = medicalNote.GetMedicalNotes(currentPatient.ID);
             List<Prescription> pre = prescriptionFactory.GetPrescriptions(currentPatient.ID);
             List<TestResult> tesR = test.GetTestResults(currentPatient.ID);
-            List<MedicationInstance> medicationList=medication.GetMedicnePatient(currentPatient.ID);
+            List<MedicationInstance> medicationList;
+            List<Medication> medication;
+
 
             foreach (MedicalNotes m in hist ) { historyGrid.Rows.Add(m.ID,m.PatientID,m.Notes,m.WrittenDate); }
+
+
+
+
             foreach (Prescription p in pre)
             {
+
+
+
+                 medicationList= medicationL.GetMedicineIdByPrescription(p.Id);
+                
+
+
+
                 foreach (MedicationInstance m in medicationList)
-                {              
-                 preGrid.Rows.Add(p.PatientId,m.MedicationId, m.Instruction); }
+                {
+
+
+
+                    medication = medicationL.GetMedicneNameById(m.MedicationId);
+                    foreach (Medication me in medication)
+                    {
+
+                        preGrid.Rows.Add(me.ScientificName, me.CommercialName, p.IssueDate);
+
+                    }
+
+
+                }
+
+
+
             }
+
+
+
+
+
+
+
+
+
+
             foreach (TestResult t in tesR) { testGrid.Rows.Add(t.TestName,t.Results,t.TestDate); }
             detailsBox.Text = currentPatient.FirstName + " " + currentPatient.LastName + "   date of birth: " + currentPatient.DOB + "\n" + currentPatient.Address + " " + currentPatient.Postcode + "\n" + currentPatient.Phone;
 
