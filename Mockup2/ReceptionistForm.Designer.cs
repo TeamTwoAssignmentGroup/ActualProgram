@@ -31,10 +31,18 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReceptionistForm));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.findAppointmentButton = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.appointmentDataGridView = new System.Windows.Forms.DataGridView();
+            this.StaffFirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StaffLastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PatientFirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PatientLastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Time = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AppointmentStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -60,13 +68,6 @@
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.button1 = new System.Windows.Forms.Button();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.StaffFirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.StaffLastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PatientFirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PatientLastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Time = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.findAppointmentButton = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.appointmentDataGridView)).BeginInit();
@@ -103,6 +104,17 @@
             this.tabPage1.Text = "Appointments";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // findAppointmentButton
+            // 
+            this.findAppointmentButton.AutoSize = true;
+            this.findAppointmentButton.Location = new System.Drawing.Point(9, 319);
+            this.findAppointmentButton.Name = "findAppointmentButton";
+            this.findAppointmentButton.Size = new System.Drawing.Size(253, 43);
+            this.findAppointmentButton.TabIndex = 4;
+            this.findAppointmentButton.Text = "Find Appointment";
+            this.findAppointmentButton.UseVisualStyleBackColor = true;
+            this.findAppointmentButton.Click += new System.EventHandler(this.findAppointmentButton_Click);
+            // 
             // button7
             // 
             this.button7.AutoSize = true;
@@ -112,6 +124,7 @@
             this.button7.TabIndex = 3;
             this.button7.Text = "Cancel Appointment";
             this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // button6
             // 
@@ -146,12 +159,57 @@
             this.PatientFirstName,
             this.PatientLastName,
             this.Date,
-            this.Time});
+            this.Time,
+            this.AppointmentStatus});
             this.appointmentDataGridView.Dock = System.Windows.Forms.DockStyle.Top;
             this.appointmentDataGridView.Location = new System.Drawing.Point(3, 3);
+            this.appointmentDataGridView.MultiSelect = false;
             this.appointmentDataGridView.Name = "appointmentDataGridView";
+            this.appointmentDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.appointmentDataGridView.Size = new System.Drawing.Size(994, 255);
             this.appointmentDataGridView.TabIndex = 0;
+            // 
+            // StaffFirstName
+            // 
+            this.StaffFirstName.HeaderText = "Staff First Name";
+            this.StaffFirstName.Name = "StaffFirstName";
+            this.StaffFirstName.Width = 228;
+            // 
+            // StaffLastName
+            // 
+            this.StaffLastName.HeaderText = "Staff Last Name";
+            this.StaffLastName.Name = "StaffLastName";
+            this.StaffLastName.Width = 225;
+            // 
+            // PatientFirstName
+            // 
+            this.PatientFirstName.HeaderText = "Patient First Name";
+            this.PatientFirstName.Name = "PatientFirstName";
+            this.PatientFirstName.Width = 186;
+            // 
+            // PatientLastName
+            // 
+            this.PatientLastName.HeaderText = "Patient Last Name";
+            this.PatientLastName.Name = "PatientLastName";
+            this.PatientLastName.Width = 183;
+            // 
+            // Date
+            // 
+            this.Date.HeaderText = "Date";
+            this.Date.Name = "Date";
+            this.Date.Width = 101;
+            // 
+            // Time
+            // 
+            this.Time.HeaderText = "Time";
+            this.Time.Name = "Time";
+            this.Time.Width = 106;
+            // 
+            // AppointmentStatus
+            // 
+            this.AppointmentStatus.HeaderText = "Status";
+            this.AppointmentStatus.Name = "AppointmentStatus";
+            this.AppointmentStatus.Width = 122;
             // 
             // tabPage2
             // 
@@ -224,6 +282,7 @@
             this.button4.TabIndex = 3;
             this.button4.Text = "Remove Patient";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button3
             // 
@@ -389,53 +448,6 @@
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 40);
             this.dateTimePicker1.TabIndex = 0;
             // 
-            // StaffFirstName
-            // 
-            this.StaffFirstName.HeaderText = "Staff First Name";
-            this.StaffFirstName.Name = "StaffFirstName";
-            this.StaffFirstName.Width = 228;
-            // 
-            // StaffLastName
-            // 
-            this.StaffLastName.HeaderText = "Staff Last Name";
-            this.StaffLastName.Name = "StaffLastName";
-            this.StaffLastName.Width = 225;
-            // 
-            // PatientFirstName
-            // 
-            this.PatientFirstName.HeaderText = "Patient First Name";
-            this.PatientFirstName.Name = "PatientFirstName";
-            this.PatientFirstName.Width = 186;
-            // 
-            // PatientLastName
-            // 
-            this.PatientLastName.HeaderText = "Patient Last Name";
-            this.PatientLastName.Name = "PatientLastName";
-            this.PatientLastName.Width = 183;
-            // 
-            // Date
-            // 
-            this.Date.HeaderText = "Date";
-            this.Date.Name = "Date";
-            this.Date.Width = 101;
-            // 
-            // Time
-            // 
-            this.Time.HeaderText = "Time";
-            this.Time.Name = "Time";
-            this.Time.Width = 106;
-            // 
-            // findAppointmentButton
-            // 
-            this.findAppointmentButton.AutoSize = true;
-            this.findAppointmentButton.Location = new System.Drawing.Point(9, 319);
-            this.findAppointmentButton.Name = "findAppointmentButton";
-            this.findAppointmentButton.Size = new System.Drawing.Size(253, 43);
-            this.findAppointmentButton.TabIndex = 4;
-            this.findAppointmentButton.Text = "Find Appointment";
-            this.findAppointmentButton.UseVisualStyleBackColor = true;
-            this.findAppointmentButton.Click += new System.EventHandler(this.findAppointmentButton_Click);
-            // 
             // ReceptionistForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -491,12 +503,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn religion;
         private System.Windows.Forms.DataGridViewTextBoxColumn email;
         private System.Windows.Forms.DataGridViewTextBoxColumn phone;
+        private System.Windows.Forms.Button findAppointmentButton;
         private System.Windows.Forms.DataGridViewTextBoxColumn StaffFirstName;
         private System.Windows.Forms.DataGridViewTextBoxColumn StaffLastName;
         private System.Windows.Forms.DataGridViewTextBoxColumn PatientFirstName;
         private System.Windows.Forms.DataGridViewTextBoxColumn PatientLastName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Date;
         private System.Windows.Forms.DataGridViewTextBoxColumn Time;
-        private System.Windows.Forms.Button findAppointmentButton;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AppointmentStatus;
     }
 }

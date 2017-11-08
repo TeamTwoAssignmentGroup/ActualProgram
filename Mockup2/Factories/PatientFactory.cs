@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Mockup2
 {
-    class PatientFactory
+    public class PatientFactory
     {
 
         DBConnection con;
@@ -14,6 +14,34 @@ namespace Mockup2
 
             this.con = con;
 
+        }
+
+        public void InsertPatient(Patient p)
+        {
+            QueryBuilder b = new QueryBuilder();
+            b.Insert(Tables.PATIENT_TABLE).Values(null,p.NHSNumber,p.FirstName,p.LastName,p.Address,p.Postcode,p.NextOfKin,p.DOB.ToString("yyyy-MM-dd"),p.Gender,p.Religion,p.Email,p.Phone);
+            MySqlCommand cmd = new MySqlCommand(b.ToString(), con.GetConnection());
+            cmd.ExecuteNonQuery();
+        }
+
+        public void UpdatePatient(Patient p)
+        {
+            QueryBuilder b = new QueryBuilder();
+            b.Update(Tables.PATIENT_TABLE).Set(
+                Tables.PATIENT_TABLE.NHSNumber,p.NHSNumber,
+                Tables.PATIENT_TABLE.FirstName,p.FirstName,
+                Tables.PATIENT_TABLE.LastName,p.LastName,
+                Tables.PATIENT_TABLE.Address,p.Address,
+                Tables.PATIENT_TABLE.PostCode,p.Postcode,
+                Tables.PATIENT_TABLE.NextOfKin,p.NextOfKin,
+                Tables.PATIENT_TABLE.DOB,p.DOB.ToString("yyyy-MM-dd"),
+                Tables.PATIENT_TABLE.Gender,p.Gender,
+                Tables.PATIENT_TABLE.Religion,p.Religion,
+                Tables.PATIENT_TABLE.Email,p.Email,
+                Tables.PATIENT_TABLE.Phone,p.Phone
+                ).Where(b.IsEqual(Tables.PATIENT_TABLE.ID,p.ID));
+            MySqlCommand cmd = new MySqlCommand(b.ToString(), con.GetConnection());
+            cmd.ExecuteNonQuery();
         }
        
 
@@ -49,6 +77,14 @@ namespace Mockup2
             reader.Dispose();
             return result;
 
+        }
+
+        public void DeletePatient(Patient p)
+        {
+            QueryBuilder b = new QueryBuilder();
+            b.Delete(Tables.PATIENT_TABLE).Where(b.IsEqual(Tables.PATIENT_TABLE.ID, p.ID));
+            MySqlCommand cmd = new MySqlCommand(b.ToString(), con.GetConnection());
+            cmd.ExecuteNonQuery();
         }
 
 

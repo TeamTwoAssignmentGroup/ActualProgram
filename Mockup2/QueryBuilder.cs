@@ -34,7 +34,7 @@ namespace Mockup2
     /// If an Update statement is present without a Where statement, an exception is thrown. This is due to the fact that
     /// updating an SQL table without specifying a Where clause will overwrite every row, causing irreperable data loss.
     /// </summary>
-    class QueryBuilder
+    public class QueryBuilder
     {
         private string query = "";
         private List<Column> selectedColumns = new List<Column>();
@@ -52,6 +52,12 @@ namespace Mockup2
                 pastQueries.Add(q, 0);
             }
             pastQueries[q]++;
+        }
+
+        public QueryBuilder Delete(Table table)
+        {
+            query += "DELETE FROM " + table.Name;
+            return this;
         }
 
         /// <summary>

@@ -17,6 +17,10 @@ namespace Mockup2
     {
         DBConnection dbCon;
         PatientFactory infoFac;
+        AppointmentFactory af;
+        List<Appointment> selectedAppointments;
+        List<Patient> patients;
+        QueryBuilder latestAppointmentQuery;
         public ReceptionistForm(DBConnection dbCon)
         {
             InitializeComponent();
@@ -24,6 +28,13 @@ namespace Mockup2
             infoFac = new PatientFactory(dbCon);
             this.dataGridView1.SelectionChanged += dataGridView1_SelectionChanged;
             this.Load += ReceptionistForm_Load;
+            this.selectedAppointments = new List<Appointment>();
+            af = new AppointmentFactory(dbCon);
+        }
+
+        public void RefreshAppointments()
+        {
+
         }
 
         private void ReceptionistForm_Load(object sender, EventArgs e)
@@ -37,6 +48,8 @@ namespace Mockup2
         public void PopulateAppointments(DateTime d1, DateTime d2)
         {
             appointmentDataGridView.Rows.Clear();
+            selectedAppointments.Clear();
+            selectedAppointments = af.GetAppointmentsByDateRange(d1, d2);
             //DateTime today = DateTime.Today;
             //DateTime date = new DateTime(today.Year, today.Month, today.Day);
             //DateTime date2 = date.AddDays(1);
@@ -55,7 +68,7 @@ namespace Mockup2
             //    b.IsMoreThanEqual(Tables.APPOINTMENT_TABLE.AppointmentDate,date1String),b.And(),
             //    b.IsLessThan(Tables.APPOINTMENT_TABLE.AppointmentDate,date2String));
             QueryBuilder b = new QueryBuilder();
-            b.Select(Tables.STAFF_TABLE.FirstName, Tables.STAFF_TABLE.LastName, Tables.PATIENT_TABLE.FirstName, Tables.PATIENT_TABLE.LastName, Tables.APPOINTMENT_TABLE.AppointmentDate, Tables.APPOINTMENT_TABLE.AppointmentTime)
+            b.Select(Tables.STAFF_TABLE.FirstName, Tables.STAFF_TABLE.LastName, Tables.PATIENT_TABLE.FirstName, Tables.PATIENT_TABLE.LastName, Tables.APPOINTMENT_TABLE.AppointmentDate, Tables.APPOINTMENT_TABLE.AppointmentTime,Tables.APPOINTMENT_TABLE.Status)
                 .From(Tables.STAFF_TABLE, Tables.PATIENT_TABLE, Tables.APPOINTMENT_TABLE)
                 .Where(b.IsEqual(Tables.APPOINTMENT_TABLE.StaffID, Tables.STAFF_TABLE.ID), b.And(),
                 b.IsEqual(Tables.APPOINTMENT_TABLE.PatientID, Tables.PATIENT_TABLE.ID), b.And(),
@@ -77,9 +90,14 @@ namespace Mockup2
         public void PopulateAppointments(string firstName,string lastName)
         {
             appointmentDataGridView.Rows.Clear();
+            int patientID = infoFac.GetPatientsByName(firstName, lastName)[0].ID;
+            selectedAppointments.Clear();
+            QueryBuilder b2 = new QueryBuilder();
+            b2.Select(Tables.ALL).From(Tables.APPOINTMENT_TABLE).Where(b2.IsEqual(Tables.APPOINTMENT_TABLE.PatientID, patientID));
+            selectedAppointments = af.GetAppointments(b2);
             CustomTableFactory ctf = new CustomTableFactory(dbCon);
             QueryBuilder b = new QueryBuilder();
-            b.Select(Tables.STAFF_TABLE.FirstName, Tables.STAFF_TABLE.LastName, Tables.PATIENT_TABLE.FirstName, Tables.PATIENT_TABLE.LastName, Tables.APPOINTMENT_TABLE.AppointmentDate, Tables.APPOINTMENT_TABLE.AppointmentTime)
+            b.Select(Tables.STAFF_TABLE.FirstName, Tables.STAFF_TABLE.LastName, Tables.PATIENT_TABLE.FirstName, Tables.PATIENT_TABLE.LastName, Tables.APPOINTMENT_TABLE.AppointmentDate, Tables.APPOINTMENT_TABLE.AppointmentTime,Tables.APPOINTMENT_TABLE.Status)
                 .From(Tables.STAFF_TABLE, Tables.PATIENT_TABLE, Tables.APPOINTMENT_TABLE)
                 .Where(b.IsEqual(Tables.APPOINTMENT_TABLE.StaffID, Tables.STAFF_TABLE.ID), b.And(),
                 b.IsEqual(Tables.APPOINTMENT_TABLE.PatientID, Tables.PATIENT_TABLE.ID), b.And(),
@@ -100,22 +118,56 @@ namespace Mockup2
 
         private void button5_Click(object sender, EventArgs e)
         {
-            new AddAppointmentForm().Show();
+            new AddAppointmentForm(dbCon,0,0,null,this).Show();
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
-            new AddAppointmentForm().Show();
+            
+            if (appointmentDataGridView.SelectedRows.Count > 0)
+            {
+                int rowNum = appointmentDataGridView.CurrentCell.RowIndex;
+                string docFName = appointmentDataGridView.Rows[rowNum].Cells[0].Value.ToString();
+                string docLName = appointmentDataGridView.Rows[rowNum].Cells[1].Value.ToString();
+                string patFName = appointmentDataGridView.Rows[rowNum].Cells[2].Value.ToString();
+                string patLName = appointmentDataGridView.Rows[rowNum].Cells[3].Value.ToString();
+
+                StaffFactory sf = new StaffFactory(dbCon);
+                PatientFactory pf = new PatientFactory(dbCon);
+                int staffID = sf.GetStaffByName(docFName, docLName)[0].ID;
+                int patientID = pf.GetPatientsByName(patFName, patLName)[0].ID;
+                AddAppointmentForm aaf = new AddAppointmentForm(dbCon,staffID,patientID,selectedAppointments[rowNum],this);
+
+                aaf.staffIDTextBox.Text = docFName + " " + docLName;
+                aaf.patientIDTextBox.Text = patFName + " " + patLName;
+                aaf.staffIDTextBox.Enabled = false;
+                aaf.patientIDTextBox.Enabled = false;
+
+                aaf.dateTimePicker1.Value = (DateTime) appointmentDataGridView.Rows[rowNum].Cells[4].Value;
+                aaf.dateTimePicker2.Format = DateTimePickerFormat.Custom;
+                aaf.dateTimePicker2.CustomFormat = "HH:mm tt";
+                aaf.dateTimePicker2.Value = aaf.dateTimePicker2.Value.Date + (TimeSpan) appointmentDataGridView.Rows[rowNum].Cells[5].Value;
+                Console.WriteLine("Time object is: " + appointmentDataGridView.Rows[rowNum].Cells[5].Value.GetType());
+                aaf.statusComboBox.Text = appointmentDataGridView.Rows[rowNum].Cells[6].Value.ToString();
+                //aaf.causeTextBox.Text = appointmentDataGridView.Rows[0].Cells[7].Value.ToString();
+
+                aaf.Show();
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            new RegisterNewPatientForm().Show();
+            new RegisterNewPatientForm(null,infoFac).Show();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            new RegisterNewPatientForm().Show();
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                int rowNum = dataGridView1.CurrentCell.RowIndex;
+                Patient p = patients[rowNum];
+                new RegisterNewPatientForm(p,infoFac).Show();
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -128,6 +180,7 @@ namespace Mockup2
             string firstName = firstNameTextbox.Text;
             string lastName = lastNameTextbox.Text;
             List<Patient> patient = infoFac.GetPatientsByName(firstName,lastName);
+            patients = patient;
             dataGridView1.Rows.Clear();
             foreach(Patient p in patient)
             {
@@ -173,6 +226,28 @@ namespace Mockup2
         private void findAppointmentButton_Click(object sender, EventArgs e)
         {
             new FindAppointmentForm(this).Show();
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            if (appointmentDataGridView.SelectedRows.Count > 0)
+            {
+                int num = appointmentDataGridView.CurrentCell.RowIndex;
+                Appointment a = selectedAppointments[num];
+                af.DeleteAppointment(a);
+                appointmentDataGridView.Rows.RemoveAt(num);
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                int num = dataGridView1.CurrentCell.RowIndex;
+                Patient p = patients[num];
+                infoFac.DeletePatient(p);
+                dataGridView1.Rows.RemoveAt(num);
+            }
         }
     }
 }

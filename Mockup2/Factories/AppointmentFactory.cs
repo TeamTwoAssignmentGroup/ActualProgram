@@ -57,9 +57,40 @@ namespace Mockup2.Factories
         {
             QueryBuilder b = new QueryBuilder();
             string date1String = date1.ToString("yyyy-MM-dd");
-            string date2String = date2.ToString("yyyy-MM-dd");
+            string date2String = date2.AddDays(1).ToString("yyyy-MM-dd");
             b.Select(Tables.ALL).From(Tables.APPOINTMENT_TABLE).Where(b.IsMoreThanEqual(Tables.APPOINTMENT_TABLE.AppointmentDate, date1String), b.And(), b.IsLessThan(Tables.APPOINTMENT_TABLE.AppointmentDate, date2String));
             return GetAppointments(b);
+        }
+
+        public void UpdateAppointment(Appointment a)
+        {
+            QueryBuilder b = new QueryBuilder();
+            b.Update(Tables.APPOINTMENT_TABLE).Set(
+                Tables.APPOINTMENT_TABLE.StaffID, a.StaffId,
+                Tables.APPOINTMENT_TABLE.PatientID, a.PatientId,
+                Tables.APPOINTMENT_TABLE.AppointmentDate, a.AppointmentDate.ToString("yyyy-MM-dd"),
+                Tables.APPOINTMENT_TABLE.AppointmentTime, a.AppointmentTime.ToString("HH:mm tt"),
+                Tables.APPOINTMENT_TABLE.Cause, a.Cause,
+                Tables.APPOINTMENT_TABLE.Status, a.Status
+                ).Where(b.IsEqual(Tables.APPOINTMENT_TABLE.ID, a.Id));
+            MySqlCommand cmd = new MySqlCommand(b.ToString(), dbCon.GetConnection());
+            cmd.ExecuteNonQuery();
+        }
+
+        public void InsertAppointment(Appointment a)
+        {
+            QueryBuilder b = new QueryBuilder();
+            b.Insert(Tables.APPOINTMENT_TABLE).Values(null, a.StaffId, a.PatientId, a.AppointmentDate.ToString("yyyy-MM-dd"), a.AppointmentTime.ToString("HH:mm tt"), a.Cause, a.Status);
+            MySqlCommand cmd = new MySqlCommand(b.ToString(), dbCon.GetConnection());
+            cmd.ExecuteNonQuery();
+        }
+
+        public void DeleteAppointment(Appointment a)
+        {
+            QueryBuilder b = new QueryBuilder();
+            b.Delete(Tables.APPOINTMENT_TABLE).Where(b.IsEqual(Tables.APPOINTMENT_TABLE.ID, a.Id));
+            MySqlCommand cmd = new MySqlCommand(b.ToString(), dbCon.GetConnection());
+            cmd.ExecuteNonQuery();
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Mockup2
 {
-    class Appointment
+    public class Appointment
     {
         int id;
         int staffid;
