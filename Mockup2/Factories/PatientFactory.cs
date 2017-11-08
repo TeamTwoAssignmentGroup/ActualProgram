@@ -97,11 +97,11 @@ namespace Mockup2
         }
 
 
-        public Patient GetPatientsByID(int ID)
+        public List<Patient> GetPatientsByID(int ID)
         {
             QueryBuilder b = new QueryBuilder();
             b.Select(Tables.ALL).From(Tables.PATIENT_TABLE).Where(b.IsEqual(Tables.PATIENT_TABLE.ID, ID));
-            return GetPatientByIdNumber(b);
+            return GetPatients(b);
 
         }
 

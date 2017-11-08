@@ -139,6 +139,7 @@
             // 
             // staffcomboBox1
             // 
+            this.staffcomboBox1.Enabled = false;
             this.staffcomboBox1.FormattingEnabled = true;
             this.staffcomboBox1.Location = new System.Drawing.Point(76, 13);
             this.staffcomboBox1.Name = "staffcomboBox1";
@@ -200,6 +201,6 @@
         public System.Windows.Forms.TextBox causeTextBox;
         private System.Windows.Forms.ComboBox staffcomboBox1;
         private System.Windows.Forms.ComboBox patientcomboBox2;
-        private System.Windows.Forms.ComboBox timeslotcomboBox1;
+        public System.Windows.Forms.ComboBox timeslotcomboBox1;
     }
 }

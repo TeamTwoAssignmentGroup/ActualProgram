@@ -88,8 +88,8 @@ namespace Mockup2.Factories
         {
             QueryBuilder b = new QueryBuilder();
             string date1String = date1.ToString("yyyy-MM-dd");
-            string date2String = date2.AddDays(1).ToString("yyyy-MM-dd");
-            b.Select(Tables.ALL).From(Tables.APPOINTMENT_TABLE).Where(b.IsMoreThanEqual(Tables.APPOINTMENT_TABLE.AppointmentDate, date1String), b.And(), b.IsLessThan(Tables.APPOINTMENT_TABLE.AppointmentDate, date2String));
+            string date2String = date2.ToString("yyyy-MM-dd");
+            b.Select(Tables.ALL).From(Tables.APPOINTMENT_TABLE).Where(b.IsBetweenDate(Tables.APPOINTMENT_TABLE.AppointmentDate,date1,date2));
             return GetAppointments(b);
         }
 

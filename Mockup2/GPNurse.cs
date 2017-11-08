@@ -80,7 +80,7 @@ namespace Mockup2
                 currentPatient = infoFac.getAPatient(firstName, lastName);
             }
 
-            else { currentPatient = infoFac.GetPatientsByID(byId); }
+            else { currentPatient = infoFac.GetPatientsByID(byId)[0]; }
            
            
             dataGridView1.Rows.Clear();

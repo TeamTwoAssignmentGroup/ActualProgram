@@ -16,6 +16,13 @@ namespace Mockup2.Factories
             this.dbCon = dbCon;
         }
 
+        public List<Staff> GetStaffByID(int id)
+        {
+            QueryBuilder b = new QueryBuilder();
+            b.Select(Tables.ALL).From(Tables.STAFF_TABLE).Where(b.IsEqual(Tables.STAFF_TABLE.ID,id));
+            return GetStaff(b);
+        }
+
         public List<Staff> GetStaff(QueryBuilder b)
         {
             List<Staff> result = new List<Staff>();

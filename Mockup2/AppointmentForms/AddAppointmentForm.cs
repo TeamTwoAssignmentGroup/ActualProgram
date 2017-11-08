@@ -37,8 +37,21 @@ namespace Mockup2.AppointmentForms
             this.app = app;
             this.parent = parent;
 
+            QueryBuilder b = new QueryBuilder();
+            b.Select(Tables.ALL).From(Tables.STAFF_TABLE).Where(b.IsEqual(Tables.STAFF_TABLE.JobRole,"Doctor"),b.Or(),b.IsEqual(Tables.STAFF_TABLE.JobRole,"Nurse"));
             patients = pf.GetPatients();
-            staff = sf.GetStaff();
+            staff = sf.GetStaff(b);
+
+            if (staffID >0)
+            {
+                staff = sf.GetStaffByID(staffID);
+            }
+
+            if (patientID > 0)
+            {
+                patients = pf.GetPatientsByID(patientID);
+            }
+
             ctf = new CustomTableFactory(dbCon);
 
             PopulateComboBoxes();
@@ -46,19 +59,26 @@ namespace Mockup2.AppointmentForms
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
-
+            staffcomboBox1.Enabled = true;
         }
 
         private void PopulateComboBoxes()
         {
             foreach(Patient p in patients)
             {
-                this.patientcomboBox2.Items.Add(string.Format("{0} {1} {2}",p.FirstName,p.LastName,p.DOB.ToShortDateString()));
+                this.patientcomboBox2.Items.Add(string.Format("{0} {1}, {2}",p.FirstName,p.LastName,p.DOB.ToShortDateString()));
             }
             foreach(Staff s in staff)
             {
-                this.staffcomboBox1.Items.Add(string.Format("{0} {1} {2}",s.FirstName,s.LastName,s.JobRole));
+                this.staffcomboBox1.Items.Add(string.Format("{0} {1}, {2}",s.FirstName,s.LastName,s.JobRole));
             }
+            patientcomboBox2.SelectedIndex = 0;
+            staffcomboBox1.SelectedIndex = 0;
+        }
+
+        public void ValidateTimeslots()
+        {
+            staffcomboBox1_SelectedIndexChanged(null, null);
         }
 
         private void staffcomboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -73,6 +93,7 @@ namespace Mockup2.AppointmentForms
                 Console.WriteLine(row[Tables.APPOINTMENT_TABLE.AppointmentTime].ToString());
                 allTimeslots.Remove(row[Tables.APPOINTMENT_TABLE.AppointmentTime].ToString());
             }
+            timeslotcomboBox1.Items.Clear();
             timeslotcomboBox1.Items.AddRange(allTimeslots.ToArray());
         }
 
