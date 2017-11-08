@@ -16,13 +16,15 @@ namespace Mockup2.Factories
 
         public List<TestResult> GetTestResults(QueryBuilder b)
         {
-            
-                List<TestResult> result = new List<TestResult>();
-                MySqlCommand query = new MySqlCommand(b.ToString(), dbCon.GetConnection());
-                MySqlDataReader reader = query.ExecuteReader();
 
+            List<TestResult> result = new List<TestResult>();
+            MySqlCommand query = new MySqlCommand(b.ToString(), dbCon.GetConnection());
+            MySqlDataReader reader = query.ExecuteReader();
+
+           
                 while (reader.Read())
                 {
+               
                     TestResult a = new TestResult();
                     TestResultTable pt = Tables.TESTRESULT_TABLE;
                     a.ID = GetInt(reader[pt.ID.Name]);
@@ -33,11 +35,15 @@ namespace Mockup2.Factories
                     a.TestTime = GetDateTime(reader[pt.TestTime.Name]);
                     a.Results = GetString(reader[pt.Results.Name]);
                     result.Add(a);
-                }
+
+
+                 }
+
                 reader.Close();
                 reader.Dispose();
                 return result;
-            
+
+
         }
 
         public List<TestResult> GetTestResults(int patientID)

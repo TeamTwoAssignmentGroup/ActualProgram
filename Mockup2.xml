@@ -57,8 +57,7 @@
         </member>
         <member name="T:Mockup2.CustomTable">
             <summary>
-            An object representation of a temporary table containing a result set from an SQL
-            query. 
+            OUT OF ORDER 
             </summary>
         </member>
         <member name="F:Mockup2.EditStaffForm.components">

@@ -14,16 +14,16 @@ namespace Mockup2.Factories
         {
         }
 
-        public List<MedicalNote> GetMedicalNotes(QueryBuilder b)
+        public List<MedicalNotes> GetMedicalNotes(QueryBuilder b)
         {
 
-            List<MedicalNote> result = new List<MedicalNote>();
+            List<MedicalNotes> result = new List<MedicalNotes>();
             MySqlCommand query = new MySqlCommand(b.ToString(), dbCon.GetConnection());
             MySqlDataReader reader = query.ExecuteReader();
 
             while (reader.Read())
             {
-                MedicalNote a = new MedicalNote();
+                MedicalNotes a = new MedicalNotes();
                 MedicalNotesTable pt = Tables.MEDICALNOTES_TABLE;
                 a.ID = GetInt(reader[pt.ID.Name]);
                 a.PatientID = GetInt(reader[pt.PatientID.Name]);
@@ -37,14 +37,14 @@ namespace Mockup2.Factories
 
         }
 
-        public List<MedicalNote> GetMedicalNotes( int patientID)
+        public List<MedicalNotes> GetMedicalNotes( int patientID)
         {
             QueryBuilder b = new QueryBuilder();
             b.Select(Tables.ALL).From(Tables.MEDICALNOTES_TABLE).Where(b.IsEqual(Tables.MEDICALNOTES_TABLE.PatientID,patientID));
             return GetMedicalNotes(b);
         }
 
-        public List<MedicalNote> GetMedicalNotes()
+        public List<MedicalNotes> GetMedicalNotes()
         { 
             QueryBuilder b = new QueryBuilder();
             b.Select(Tables.ALL).From(Tables.MEDICALNOTES_TABLE);

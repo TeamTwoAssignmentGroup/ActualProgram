@@ -11,6 +11,7 @@ using Mockup2.AppointmentForms;
 using Mockup2.Factories;
 using Mockup2.PatientForms;
 using Mockup2.PrescriptionForms;
+using Mockup2.Classes;
 
 namespace Mockup2
 {
@@ -21,12 +22,22 @@ namespace Mockup2
         PatientFactory infoFac;
         Patient currentPatient;
         PrescriptionFactory prescriptionFactory;
-
+        MedicalNoteFactory medicalNote;
+        MedicineInFactory medicationL;   
+        TestResultFactory test;
+       
         public GPNurse(DBConnection dbCon)
         {
             this.dbCon = dbCon;
+         
+            medicalNote = new MedicalNoteFactory(dbCon);
             infoFac = new PatientFactory(dbCon);
             prescriptionFactory = new PrescriptionFactory(dbCon);
+            test = new TestResultFactory(dbCon);
+            medicationL = new MedicineInFactory(dbCon);
+        
+
+
          
 
 
@@ -56,10 +67,22 @@ namespace Mockup2
          * */
         private void button9_Click(object sender, EventArgs e)
         {
+
+            int byId = 0;
             string firstName = searchBox1.Text;
             string lastName = searchBox2.Text;
-            currentPatient = infoFac.getAPatient(firstName, lastName);
-            
+            string id = searchID.Text;
+            try { byId = Int32.Parse(id); } catch (FormatException f) {  }
+            { }
+            if (id.Equals(null) || byId == 0)
+            {
+
+                currentPatient = infoFac.getAPatient(firstName, lastName);
+            }
+
+            else { currentPatient = infoFac.GetPatientsByID(byId); }
+           
+           
             dataGridView1.Rows.Clear();
             dataGridView1.Rows.Add(currentPatient.ID, currentPatient.NHSNumber, currentPatient.FirstName,currentPatient.LastName, currentPatient.Address, currentPatient.Postcode, currentPatient.DOB, currentPatient.Gender);
 
@@ -79,8 +102,8 @@ namespace Mockup2
         {
             if (dataGridView1.SelectedRows.Count > 0)
             {
-                Console.WriteLine(prescriptionDataGridView.SelectedRows[0].Cells[0].Value.ToString());
-                int prescriptionID = int.Parse(prescriptionDataGridView.SelectedRows[0].Cells[0].Value.ToString());
+                Console.WriteLine(preGrid.SelectedRows[0].Cells[0].Value.ToString());
+                int prescriptionID = int.Parse(preGrid.SelectedRows[0].Cells[0].Value.ToString());
                 ViewPrescription vp = new ViewPrescription(prescriptionID,dbCon);
                 vp.Show();
             }
@@ -88,9 +111,64 @@ namespace Mockup2
 
         private void selectSearch_Click(object sender, EventArgs e)
         {
-            Prescription currentPrescription;
-            //currentPrescription = prescriptionFactory.getAPatientPrescription(currentPatient);
-            //prescriptionDataGridView.Rows.Add(currentPrescription.Id,currentPrescription.PatientId,currentPrescription.IssueDate,currentPrescription.IsRepeatable,currentPrescription.IssueDate,currentPrescription.RepeatRequested);
+            historyGrid.Rows.Clear();
+            preGrid.Rows.Clear();
+            testGrid.ClearSelection();
+            List <MedicalNotes> hist  = medicalNote.GetMedicalNotes(currentPatient.ID);
+            List<Prescription> pre = prescriptionFactory.GetPrescriptions(currentPatient.ID);
+            List<TestResult> tesR = test.GetTestResults(currentPatient.ID);
+            List<MedicationInstance> medicationList;
+            List<Medication> medication;
+
+
+            foreach (MedicalNotes m in hist ) { historyGrid.Rows.Add(m.ID,m.PatientID,m.Notes,m.WrittenDate); }
+
+
+
+
+            foreach (Prescription p in pre)
+            {
+
+
+
+                 medicationList= medicationL.GetMedicineIdByPrescription(p.Id);
+                
+
+
+
+                foreach (MedicationInstance m in medicationList)
+                {
+
+
+
+                    medication = medicationL.GetMedicneNameById(m.MedicationId);
+                    foreach (Medication me in medication)
+                    {
+
+                        preGrid.Rows.Add(me.ScientificName, me.CommercialName, p.IssueDate);
+
+                    }
+
+
+                }
+
+
+
+            }
+
+
+
+
+
+
+
+
+
+
+            foreach (TestResult t in tesR) { testGrid.Rows.Add(t.TestName,t.Results,t.TestDate); }
+            detailsBox.Text = currentPatient.FirstName + " " + currentPatient.LastName + "   date of birth: " + currentPatient.DOB + "\n" + currentPatient.Address + " " + currentPatient.Postcode + "\n" + currentPatient.Phone;
+
+
         }
 
         private void prescriptionDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
