@@ -25,7 +25,7 @@ namespace Mockup2
             Console.Out.WriteLine("Object: " + cbi);
             switch (cbi)
             {
-                case "Admin":AdminForm af = new AdminForm();
+                case "Admin":AdminForm af = new AdminForm(dbCon);
                     af.WindowState = FormWindowState.Maximized;
                     af.Show();
                     break;

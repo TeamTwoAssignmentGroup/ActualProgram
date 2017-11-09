@@ -7,14 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Mockup2.Factories;
 
 namespace Mockup2
 {
     public partial class AdminForm : Form
     {
-        public AdminForm()
+        DBConnection dbCon;
+        public AdminForm(DBConnection dbCon)
         {
             InitializeComponent();
+            this.dbCon = dbCon;
         }
 
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -39,7 +42,8 @@ namespace Mockup2
 
         private void editStaffButton_Click(object sender, EventArgs e)
         {
-            new EditStaffForm().Show();        }
+            new EditStaffForm().Show();
+        }
 
         private void button3_Click(object sender, EventArgs e)
         {
@@ -51,6 +55,34 @@ namespace Mockup2
             this.WindowState = FormWindowState.Maximized;
             this.MinimumSize = this.Size;
             this.MaximumSize = this.Size;
+
+            List<Staff> staff = new StaffFactory(dbCon).GetStaff();
+            PopulateAdminFormStaff();
+        }
+
+        private void PopulateAdminFormStaff()
+        {
+            CustomTableFactory ctf = new CustomTableFactory(dbCon);
+            QueryBuilder b = new QueryBuilder();
+            b.Select(Tables.STAFF_TABLE.ID, Tables.STAFF_TABLE.FirstName, Tables.STAFF_TABLE.LastName, Tables.STAFF_TABLE.Address, Tables.STAFF_TABLE.JobRole).From(Tables.STAFF_TABLE);
+
+            CustomTable ct = ctf.GetCustomTable(b);
+
+            foreach (var row in ct.GetRows())
+            {
+                foreach (var value in row.Values)
+                {
+
+                    Console.Write(value + " | ");
+                }
+                dataGridView2.Rows.Add(row.Values.ToArray());
+                Console.WriteLine();
+            }
+        }
+
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
 }
