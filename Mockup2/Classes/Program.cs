@@ -29,15 +29,10 @@ namespace Mockup2
 
         public static void Test(DBConnection dbCon)
         {
-            CustomTableFactory ctf = new CustomTableFactory(dbCon);
-            QueryBuilder b = new QueryBuilder();
-            b.Select(Tables.PATIENT_TABLE.FirstName, Tables.PATIENT_TABLE.LastName, Tables.PRESCRIPTION_TABLE.IssueDate)
-                .From(Tables.PATIENT_TABLE, Tables.PRESCRIPTION_TABLE).Where(b.IsEqual(Tables.PATIENT_TABLE.ID,Tables.PRESCRIPTION_TABLE.PatientID));
-            CustomTable ct = ctf.GetCustomTable(b);
-
-            foreach(Dictionary<Column,object> dic in ct.GetRows())
+            PrescriptionFactory pf = new PrescriptionFactory(dbCon);
+            for(int i = 0; i < 10; i++)
             {
-                Console.WriteLine("{0} | {1} | {2}", dic[Tables.PATIENT_TABLE.FirstName],dic[Tables.PATIENT_TABLE.LastName],dic[Tables.PRESCRIPTION_TABLE.IssueDate]);
+                Console.WriteLine("New prescription id would be: "+pf.GetNextAvailablePrescriptionID());
             }
         }
     }

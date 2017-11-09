@@ -15,9 +15,20 @@ namespace Mockup2
         string jobrole;
         string email;
         string password;
-      
+        string address;
+        string postcode;
 
+        public string Address
+        {
+            get { return address; }
+            set { address = value; }
+        }
 
+        public string Postcode
+        {
+            get { return postcode; }
+            set { postcode = value; }
+        }
 
         
 

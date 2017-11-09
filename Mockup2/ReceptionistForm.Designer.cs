@@ -43,6 +43,7 @@
             this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Time = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AppointmentStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.appointmentCause = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -68,7 +69,6 @@
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.button1 = new System.Windows.Forms.Button();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.appointmentCause = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.appointmentDataGridView)).BeginInit();
@@ -151,6 +151,8 @@
             // 
             // appointmentDataGridView
             // 
+            this.appointmentDataGridView.AllowUserToAddRows = false;
+            this.appointmentDataGridView.AllowUserToDeleteRows = false;
             this.appointmentDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.appointmentDataGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.appointmentDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -167,6 +169,7 @@
             this.appointmentDataGridView.Location = new System.Drawing.Point(3, 3);
             this.appointmentDataGridView.MultiSelect = false;
             this.appointmentDataGridView.Name = "appointmentDataGridView";
+            this.appointmentDataGridView.ReadOnly = true;
             this.appointmentDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.appointmentDataGridView.Size = new System.Drawing.Size(994, 255);
             this.appointmentDataGridView.TabIndex = 0;
@@ -175,43 +178,57 @@
             // 
             this.StaffFirstName.HeaderText = "Staff First Name";
             this.StaffFirstName.Name = "StaffFirstName";
+            this.StaffFirstName.ReadOnly = true;
             this.StaffFirstName.Width = 228;
             // 
             // StaffLastName
             // 
             this.StaffLastName.HeaderText = "Staff Last Name";
             this.StaffLastName.Name = "StaffLastName";
+            this.StaffLastName.ReadOnly = true;
             this.StaffLastName.Width = 225;
             // 
             // PatientFirstName
             // 
             this.PatientFirstName.HeaderText = "Patient First Name";
             this.PatientFirstName.Name = "PatientFirstName";
+            this.PatientFirstName.ReadOnly = true;
             this.PatientFirstName.Width = 186;
             // 
             // PatientLastName
             // 
             this.PatientLastName.HeaderText = "Patient Last Name";
             this.PatientLastName.Name = "PatientLastName";
+            this.PatientLastName.ReadOnly = true;
             this.PatientLastName.Width = 183;
             // 
             // Date
             // 
             this.Date.HeaderText = "Date";
             this.Date.Name = "Date";
+            this.Date.ReadOnly = true;
             this.Date.Width = 101;
             // 
             // Time
             // 
             this.Time.HeaderText = "Time";
             this.Time.Name = "Time";
+            this.Time.ReadOnly = true;
             this.Time.Width = 106;
             // 
             // AppointmentStatus
             // 
             this.AppointmentStatus.HeaderText = "Status";
             this.AppointmentStatus.Name = "AppointmentStatus";
+            this.AppointmentStatus.ReadOnly = true;
             this.AppointmentStatus.Width = 122;
+            // 
+            // appointmentCause
+            // 
+            this.appointmentCause.HeaderText = "Cause";
+            this.appointmentCause.Name = "appointmentCause";
+            this.appointmentCause.ReadOnly = true;
+            this.appointmentCause.Width = 124;
             // 
             // tabPage2
             // 
@@ -449,12 +466,6 @@
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 40);
             this.dateTimePicker1.TabIndex = 0;
-            // 
-            // appointmentCause
-            // 
-            this.appointmentCause.HeaderText = "Cause";
-            this.appointmentCause.Name = "appointmentCause";
-            this.appointmentCause.Width = 124;
             // 
             // ReceptionistForm
             // 

@@ -54,6 +54,30 @@ namespace Mockup2
             pastQueries[q]++;
         }
 
+        public QueryBuilder OrderBy(bool desc,params Column[] columns)
+        {
+            query += " ORDER BY ";
+            foreach(Column c in columns){
+                query += c.GetFullName() + ", ";
+            }
+            TrimQuery(2);
+            if (desc)
+            {
+                query += " DESC";
+            }
+            else
+            {
+                query += " ASC";
+            }
+            return this;
+        }
+
+        public QueryBuilder Limit(int num)
+        {
+            query += " LIMIT " + num;
+            return this;
+        }
+
         public QueryBuilder Delete(Table table)
         {
             query += "DELETE FROM " + table.Name;

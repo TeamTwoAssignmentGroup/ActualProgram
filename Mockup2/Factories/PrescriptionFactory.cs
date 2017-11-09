@@ -10,8 +10,18 @@ namespace Mockup2.Factories
 {
     class PrescriptionFactory : AbstractFactory
     {
+        private static int nextAvailablePrescriptionID;
         public PrescriptionFactory(DBConnection dbCon) : base(dbCon)
         {
+            if (nextAvailablePrescriptionID <=0)
+            {
+                nextAvailablePrescriptionID = GetLastPrescriptionID();
+            }
+        }
+
+        public int GetNextAvailablePrescriptionID()
+        {
+            return ++nextAvailablePrescriptionID;
         }
 
         public List<Prescription> GetPrescriptions(QueryBuilder b)
@@ -49,6 +59,13 @@ namespace Mockup2.Factories
             QueryBuilder b = new QueryBuilder();
             b.Select(Tables.ALL).From(Tables.PRESCRIPTION_TABLE).Where(b.IsEqual(Tables.PRESCRIPTION_TABLE.PatientID,patientID));
             return GetPrescriptions(b);
+        }
+
+        public int GetLastPrescriptionID()
+        {
+            QueryBuilder b = new QueryBuilder();
+            b.Select(Tables.ALL).From(Tables.PRESCRIPTION_TABLE).OrderBy(true, Tables.PRESCRIPTION_TABLE.ID).Limit(1);
+            return GetPrescriptions(b)[0].Id;
         }
 
 

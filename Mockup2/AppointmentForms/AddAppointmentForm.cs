@@ -53,6 +53,7 @@ namespace Mockup2.AppointmentForms
             }
 
             ctf = new CustomTableFactory(dbCon);
+            this.statusComboBox.SelectedIndex = 0;
 
             PopulateComboBoxes();
         }
@@ -64,6 +65,8 @@ namespace Mockup2.AppointmentForms
 
         private void PopulateComboBoxes()
         {
+            patientcomboBox2.Items.Clear();
+            staffcomboBox1.Items.Clear();
             foreach(Patient p in patients)
             {
                 this.patientcomboBox2.Items.Add(string.Format("{0} {1}, {2}",p.FirstName,p.LastName,p.DOB.ToShortDateString()));
@@ -95,6 +98,14 @@ namespace Mockup2.AppointmentForms
             }
             timeslotcomboBox1.Items.Clear();
             timeslotcomboBox1.Items.AddRange(allTimeslots.ToArray());
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            string fname = firstnametextBox1.Text;
+            string lname = lastnametextBox2.Text;
+            patients = pf.GetPatientsByName(fname, lname);
+            PopulateComboBoxes();
         }
 
         private void button1_Click(object sender, EventArgs e)

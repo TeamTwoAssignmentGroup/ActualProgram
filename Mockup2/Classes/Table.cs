@@ -169,6 +169,8 @@ namespace Mockup2
             public readonly Column JobRole;
             public readonly Column Password;
             public readonly Column Email;
+            public readonly Column Address;
+            public readonly Column Postcode;
             public StaffTable () : base("Staff")
             {
                 ID = new Column("id", this);
@@ -177,6 +179,8 @@ namespace Mockup2
                 JobRole = new Column("jobRole", this);
                 Password = new Column("password", this);
                 Email = new Column("email", this);
+                Address = new Column("Address", this);
+                Postcode = new Column("PostCode", this);
             }
         }
 
