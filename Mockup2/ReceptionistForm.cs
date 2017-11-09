@@ -186,7 +186,7 @@ namespace Mockup2
 
         private void button1_Click(object sender, EventArgs e)
         {
-            new SeeStaffListForm().Show();
+            new SeeStaffListForm(seerotadateTimePicker1.Value,dbCon).Show();
         }
 
         private async void button8_Click(object sender, EventArgs e)

@@ -68,7 +68,7 @@
             this.phone = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.button1 = new System.Windows.Forms.Button();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.seerotadateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.appointmentDataGridView)).BeginInit();
@@ -440,7 +440,7 @@
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.button1);
-            this.tabPage3.Controls.Add(this.dateTimePicker1);
+            this.tabPage3.Controls.Add(this.seerotadateTimePicker1);
             this.tabPage3.Location = new System.Drawing.Point(4, 42);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
@@ -460,12 +460,12 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // dateTimePicker1
+            // seerotadateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(7, 7);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 40);
-            this.dateTimePicker1.TabIndex = 0;
+            this.seerotadateTimePicker1.Location = new System.Drawing.Point(7, 7);
+            this.seerotadateTimePicker1.Name = "seerotadateTimePicker1";
+            this.seerotadateTimePicker1.Size = new System.Drawing.Size(200, 40);
+            this.seerotadateTimePicker1.TabIndex = 0;
             // 
             // ReceptionistForm
             // 
@@ -496,7 +496,7 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker seerotadateTimePicker1;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.DataGridView dataGridView1;
