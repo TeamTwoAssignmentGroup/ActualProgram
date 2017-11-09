@@ -64,7 +64,7 @@ namespace Mockup2
         {
             CustomTableFactory ctf = new CustomTableFactory(dbCon);
             QueryBuilder b = new QueryBuilder();
-            b.Select(Tables.STAFF_TABLE.ID, Tables.STAFF_TABLE.FirstName, Tables.STAFF_TABLE.LastName, Tables.STAFF_TABLE.JobRole).From(Tables.STAFF_TABLE);
+            b.Select(Tables.STAFF_TABLE.ID, Tables.STAFF_TABLE.FirstName, Tables.STAFF_TABLE.LastName, Tables.STAFF_TABLE.Address, Tables.STAFF_TABLE.JobRole).From(Tables.STAFF_TABLE);
 
             CustomTable ct = ctf.GetCustomTable(b);
 
