@@ -51,7 +51,7 @@
             this.dateTimePicker1.Location = new System.Drawing.Point(76, 69);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker1.TabIndex = 2;
+            this.dateTimePicker1.TabIndex = 3;
             this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // causeTextBox
@@ -60,14 +60,14 @@
             this.causeTextBox.Multiline = true;
             this.causeTextBox.Name = "causeTextBox";
             this.causeTextBox.Size = new System.Drawing.Size(200, 98);
-            this.causeTextBox.TabIndex = 3;
+            this.causeTextBox.TabIndex = 7;
             // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(76, 254);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 4;
+            this.button1.TabIndex = 8;
             this.button1.Text = "Save";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -129,7 +129,7 @@
             this.statusComboBox.Location = new System.Drawing.Point(76, 122);
             this.statusComboBox.Name = "statusComboBox";
             this.statusComboBox.Size = new System.Drawing.Size(121, 21);
-            this.statusComboBox.TabIndex = 11;
+            this.statusComboBox.TabIndex = 6;
             // 
             // label6
             // 
@@ -147,7 +147,7 @@
             this.staffcomboBox1.Location = new System.Drawing.Point(76, 13);
             this.staffcomboBox1.Name = "staffcomboBox1";
             this.staffcomboBox1.Size = new System.Drawing.Size(200, 21);
-            this.staffcomboBox1.TabIndex = 15;
+            this.staffcomboBox1.TabIndex = 4;
             this.staffcomboBox1.SelectedIndexChanged += new System.EventHandler(this.staffcomboBox1_SelectedIndexChanged);
             // 
             // patientcomboBox2
@@ -164,21 +164,21 @@
             this.timeslotcomboBox1.Location = new System.Drawing.Point(76, 95);
             this.timeslotcomboBox1.Name = "timeslotcomboBox1";
             this.timeslotcomboBox1.Size = new System.Drawing.Size(121, 21);
-            this.timeslotcomboBox1.TabIndex = 17;
+            this.timeslotcomboBox1.TabIndex = 5;
             // 
             // firstnametextBox1
             // 
             this.firstnametextBox1.Location = new System.Drawing.Point(283, 41);
             this.firstnametextBox1.Name = "firstnametextBox1";
             this.firstnametextBox1.Size = new System.Drawing.Size(100, 20);
-            this.firstnametextBox1.TabIndex = 18;
+            this.firstnametextBox1.TabIndex = 1;
             // 
             // lastnametextBox2
             // 
             this.lastnametextBox2.Location = new System.Drawing.Point(283, 67);
             this.lastnametextBox2.Name = "lastnametextBox2";
             this.lastnametextBox2.Size = new System.Drawing.Size(100, 20);
-            this.lastnametextBox2.TabIndex = 19;
+            this.lastnametextBox2.TabIndex = 2;
             // 
             // button2
             // 

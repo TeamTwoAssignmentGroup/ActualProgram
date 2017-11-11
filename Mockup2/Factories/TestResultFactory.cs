@@ -8,12 +8,20 @@ using static Mockup2.Tables;
 
 namespace Mockup2.Factories
 {
+    /// <summary>
+    /// Convenience class to handle returning, updating, and inserting TestResult objects into the database.
+    /// </summary>
     class TestResultFactory : AbstractFactory
     {
         public TestResultFactory(DBConnection dbCon) : base(dbCon)
         {
         }
 
+        /// <summary>
+        /// Get a list of TestResult objects based on search criteria given the QueryBuilder.
+        /// </summary>
+        /// <param name="b">QueryBuilder object.</param>
+        /// <returns>A list of TestResult objects.</returns>
         public List<TestResult> GetTestResults(QueryBuilder b)
         {
 
@@ -46,6 +54,11 @@ namespace Mockup2.Factories
 
         }
 
+        /// <summary>
+        /// Convenience method to get all 
+        /// </summary>
+        /// <param name="patientID"></param>
+        /// <returns></returns>
         public List<TestResult> GetTestResults(int patientID)
         {
             QueryBuilder b = new QueryBuilder();

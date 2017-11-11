@@ -25,5 +25,19 @@ namespace Mockup2
         {
             return columnData;
         }
+
+        public override string ToString()
+        {
+            string result = "";
+            foreach(var row in columnData)
+            {
+                foreach(object o in row.Values)
+                {
+                    result += o + " | ";
+                }
+                result += System.Environment.NewLine;
+            }
+            return result;
+        }
     }
 }

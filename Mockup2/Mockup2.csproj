@@ -79,6 +79,7 @@
     </Compile>
     <Compile Include="Classes\CustomTable.cs" />
     <Compile Include="Classes\DatabaseConnection.cs" />
+    <Compile Include="Classes\Emailer.cs" />
     <Compile Include="Classes\MedicationInstance.cs" />
     <Compile Include="EditStaffForm.cs">
       <SubType>Form</SubType>
@@ -263,6 +264,9 @@
   <ItemGroup>
     <Content Include="apple_touch_icon_180x180_uYa_12.ico" />
     <None Include="bin\Debug\MySql.Data.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="UnitTests\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

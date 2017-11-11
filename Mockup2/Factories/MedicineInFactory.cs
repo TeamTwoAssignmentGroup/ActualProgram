@@ -15,7 +15,6 @@ namespace Mockup2.Factories
             {
             
         }
-
             public List<MedicationInstance> GetMedicationID(QueryBuilder b)
             {
                 MedicationInstance a = new MedicationInstance();

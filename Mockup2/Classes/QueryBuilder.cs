@@ -54,6 +54,13 @@ namespace Mockup2
             pastQueries[q]++;
         }
 
+        /// <summary>
+        /// Adds an Order By statement to the current SQL query. Can choose whether to be
+        /// ascending or descending.
+        /// </summary>
+        /// <param name="desc">Whether ordering should be descending or not.</param>
+        /// <param name="columns">The Columns to order by.</param>
+        /// <returns>This instance of QueryBuilder.</returns>
         public QueryBuilder OrderBy(bool desc,params Column[] columns)
         {
             query += " ORDER BY ";
@@ -72,12 +79,22 @@ namespace Mockup2
             return this;
         }
 
+        /// <summary>
+        ///  Adds a Limit statement to the current SQL query. Allows results to be limited.
+        /// </summary>
+        /// <param name="num">Number of results to limit query to.</param>
+        /// <returns>This instance of QueryBuilder.</returns>
         public QueryBuilder Limit(int num)
         {
             query += " LIMIT " + num;
             return this;
         }
 
+        /// <summary>
+        /// Adds a Delete From statement to the current SQL query.
+        /// </summary>
+        /// <param name="table">The Table to be deleting from.</param>
+        /// <returns>This instance of QueryBuilder.</returns>
         public QueryBuilder Delete(Table table)
         {
             query += "DELETE FROM " + table.Name;

@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace Mockup2
 {
+    /// <summary>
+    /// A collection of Table instances that represent the current database. Used primarily
+    /// in QueryBuilder to ensure all queries are valid.
+    /// </summary>
     public class Tables
     {
         public static readonly AppointmentTable APPOINTMENT_TABLE = new AppointmentTable();
@@ -19,6 +23,9 @@ namespace Mockup2
         public static readonly TestResultTable TESTRESULT_TABLE = new TestResultTable();
         public static readonly Column ALL = new AllColumn("*", null);
 
+        /// <summary>
+        /// Represents the all coumns operator in SQL (*)
+        /// </summary>
         public class AllColumn : Column
         {
             public AllColumn(string name, Table parent) : base(name, parent)
@@ -26,6 +33,10 @@ namespace Mockup2
 
             }
         }
+
+        /// <summary>
+        /// Represents the Appointment table.
+        /// </summary>
         public class AppointmentTable : Table
         {
             public readonly Column ID;
@@ -46,6 +57,10 @@ namespace Mockup2
                 Status = new Column("status", this);
             }
         }
+
+        /// <summary>
+        /// Represents the MedicalNotes table.
+        /// </summary>
         public class MedicalNotesTable : Table
         {
             public readonly Column ID;
@@ -60,6 +75,9 @@ namespace Mockup2
                 Notes = new Column("notes", this);
             }
         }
+        /// <summary>
+        /// Represents the Medication table.
+        /// </summary>
         public class MedicationTable : Table
         {
             public readonly Column ID;
@@ -74,6 +92,9 @@ namespace Mockup2
                 Manufacturer = new Column("manufacturer", this);
             }
         }
+        /// <summary>
+        /// Represents the MedicationInstance table.
+        /// </summary>
         public class MedicationInstanceTable : Table
         {
             public readonly Column ID;
@@ -88,6 +109,9 @@ namespace Mockup2
                 Instructions = new Column("instructions", this);
             }
         }
+        /// <summary>
+        /// Represents the Patient table.
+        /// </summary>
         public class PatientTable : Table
         {
             public readonly Column NHSNumber;
@@ -118,6 +142,9 @@ namespace Mockup2
                 Phone = new Column("phone", this);
             }
         }
+        /// <summary>
+        /// Represents the Prescription table.
+        /// </summary>
         public class PrescriptionTable : Table
         {
             public readonly Column ID;
@@ -136,6 +163,9 @@ namespace Mockup2
                 RepeatRequested = new Column("repeatRequested", this);
             }
         }
+        /// <summary>
+        /// Represents the Rota table.
+        /// </summary>
         public class RotaTable : Table
         {
             public readonly Column ID;
@@ -160,7 +190,9 @@ namespace Mockup2
                 Sun = new Column("sun", this);
             }
         }
-
+        /// <summary>
+        /// Represents the Staff table.
+        /// </summary>
         public class StaffTable : Table
         {
             public readonly Column ID;
@@ -183,7 +215,9 @@ namespace Mockup2
                 Postcode = new Column("PostCode", this);
             }
         }
-
+        /// <summary>
+        /// Represents the TestResult table.
+        /// </summary>
         public class TestResultTable : Table
         {
             public readonly Column ID;

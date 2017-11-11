@@ -36,6 +36,7 @@ namespace Mockup2.AppointmentForms
             this.patientID = patientID;
             this.app = app;
             this.parent = parent;
+            this.KeyUp += AddAppointmentForm_KeyUp;
 
             QueryBuilder b = new QueryBuilder();
             b.Select(Tables.ALL).From(Tables.STAFF_TABLE).Where(b.IsEqual(Tables.STAFF_TABLE.JobRole,"Doctor"),b.Or(),b.IsEqual(Tables.STAFF_TABLE.JobRole,"Nurse"));
@@ -56,6 +57,14 @@ namespace Mockup2.AppointmentForms
             this.statusComboBox.SelectedIndex = 0;
 
             PopulateComboBoxes();
+        }
+
+        private void AddAppointmentForm_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                button1_Click(sender, e);
+            }
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)

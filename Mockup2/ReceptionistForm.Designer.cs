@@ -111,7 +111,7 @@
             this.findAppointmentButton.Location = new System.Drawing.Point(9, 319);
             this.findAppointmentButton.Name = "findAppointmentButton";
             this.findAppointmentButton.Size = new System.Drawing.Size(253, 43);
-            this.findAppointmentButton.TabIndex = 4;
+            this.findAppointmentButton.TabIndex = 3;
             this.findAppointmentButton.Text = "Find Appointment";
             this.findAppointmentButton.UseVisualStyleBackColor = true;
             this.findAppointmentButton.Click += new System.EventHandler(this.findAppointmentButton_Click);
@@ -122,7 +122,7 @@
             this.button7.Location = new System.Drawing.Point(268, 319);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(295, 43);
-            this.button7.TabIndex = 3;
+            this.button7.TabIndex = 4;
             this.button7.Text = "Cancel Appointment";
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.button7_Click);
@@ -172,7 +172,7 @@
             this.appointmentDataGridView.ReadOnly = true;
             this.appointmentDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.appointmentDataGridView.Size = new System.Drawing.Size(994, 255);
-            this.appointmentDataGridView.TabIndex = 0;
+            this.appointmentDataGridView.TabIndex = 99;
             // 
             // StaffFirstName
             // 
@@ -273,7 +273,7 @@
             this.button8.Location = new System.Drawing.Point(311, 567);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(284, 43);
-            this.button8.TabIndex = 6;
+            this.button8.TabIndex = 3;
             this.button8.Text = "Find";
             this.button8.UseVisualStyleBackColor = true;
             this.button8.Click += new System.EventHandler(this.button8_Click);
@@ -283,14 +283,14 @@
             this.lastNameTextbox.Location = new System.Drawing.Point(311, 520);
             this.lastNameTextbox.Name = "lastNameTextbox";
             this.lastNameTextbox.Size = new System.Drawing.Size(284, 40);
-            this.lastNameTextbox.TabIndex = 5;
+            this.lastNameTextbox.TabIndex = 2;
             // 
             // firstNameTextbox
             // 
             this.firstNameTextbox.Location = new System.Drawing.Point(311, 473);
             this.firstNameTextbox.Name = "firstNameTextbox";
             this.firstNameTextbox.Size = new System.Drawing.Size(284, 40);
-            this.firstNameTextbox.TabIndex = 4;
+            this.firstNameTextbox.TabIndex = 1;
             // 
             // button4
             // 
@@ -298,7 +298,7 @@
             this.button4.Location = new System.Drawing.Point(601, 423);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(232, 43);
-            this.button4.TabIndex = 3;
+            this.button4.TabIndex = 6;
             this.button4.Text = "Remove Patient";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
@@ -309,7 +309,7 @@
             this.button3.Location = new System.Drawing.Point(311, 423);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(284, 43);
-            this.button3.TabIndex = 2;
+            this.button3.TabIndex = 5;
             this.button3.Text = "Edit Existing Patient";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
@@ -320,7 +320,7 @@
             this.button2.Location = new System.Drawing.Point(7, 423);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(298, 43);
-            this.button2.TabIndex = 1;
+            this.button2.TabIndex = 4;
             this.button2.Text = "Register New Patient";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
@@ -351,7 +351,7 @@
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(994, 414);
-            this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.TabIndex = 100;
             // 
             // id
             // 

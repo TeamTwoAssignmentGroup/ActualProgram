@@ -1,4 +1,5 @@
-﻿using Mockup2.Factories;
+﻿using Mockup2.Classes;
+using Mockup2.Factories;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,11 @@ namespace Mockup2
         {
             DBConnection dbCon = new DBConnection();
             //Test(dbCon);
+            MedicalNotes mn = new MedicalNotes();
+            QueryBuilder qb = new QueryBuilder();
+            qb.Insert(Tables.MEDICALNOTES_TABLE).Values(mn.ID, mn.PatientID, mn.WrittenDate.ToString("yyyy-MM-dd"), mn.Notes);
+            Console.WriteLine(qb);
+            Console.ReadLine();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new loginForm(dbCon));

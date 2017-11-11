@@ -42,6 +42,36 @@ namespace Mockup2
                 Console.WriteLine(s);
             }
             sf = new StaffFactory(dbCon);
+            this.firstNameTextbox.KeyUp += FirstNameTextbox_KeyUp;
+            this.lastNameTextbox.KeyUp += FirstNameTextbox_KeyUp;
+            this.tabControl1.SelectedIndexChanged += TabControl1_SelectedIndexChanged;
+            this.seerotadateTimePicker1.KeyUp += SeerotadateTimePicker1_KeyUp;
+        }
+
+        private void SeerotadateTimePicker1_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                button1_Click(sender,e);
+            }
+        }
+
+        private void TabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch ((sender as TabControl).SelectedIndex)
+            {
+                case 0:break;
+                case 1:this.firstNameTextbox.Focus();break;
+                case 2:this.seerotadateTimePicker1.Focus();break;
+            }
+        }
+
+        private void FirstNameTextbox_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                button8_Click(sender, e);
+            }
         }
 
         public void RefreshPatients()

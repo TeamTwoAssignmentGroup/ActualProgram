@@ -1,29 +1,37 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Mockup2.Factories;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 
 namespace Mockup2
 {
-    public class PatientFactory
+    /// <summary>
+    /// Convenience class to handle pulling Patients from, and inserting Patients into, the database. As well as updating them.
+    /// </summary>
+    public class PatientFactory : AbstractFactory
     {
+        
 
-        DBConnection con;
-
-        public PatientFactory(DBConnection con)
+        public PatientFactory(DBConnection con) : base(con)
         {
-
-            this.con = con;
-
         }
 
+        /// <summary>
+        /// Inserts the given Patient information into the database.
+        /// </summary>
+        /// <param name="p">The Patient to pull information from.</param>
         public void InsertPatient(Patient p)
         {
             QueryBuilder b = new QueryBuilder();
             b.Insert(Tables.PATIENT_TABLE).Values(null,p.NHSNumber,p.FirstName,p.LastName,p.Address,p.Postcode,p.NextOfKin,p.DOB.ToString("yyyy-MM-dd"),p.Gender,p.Religion,p.Email,p.Phone);
-            MySqlCommand cmd = new MySqlCommand(b.ToString(), con.GetConnection());
+            MySqlCommand cmd = new MySqlCommand(b.ToString(), dbCon.GetConnection());
             cmd.ExecuteNonQuery();
         }
 
+        /// <summary>
+        /// Updates the given Patient information in the database.
+        /// </summary>
+        /// <param name="p">The Patient to get updated information from.</param>
         public void UpdatePatient(Patient p)
         {
             QueryBuilder b = new QueryBuilder();
@@ -40,16 +48,22 @@ namespace Mockup2
                 Tables.PATIENT_TABLE.Email,p.Email,
                 Tables.PATIENT_TABLE.Phone,p.Phone
                 ).Where(b.IsEqual(Tables.PATIENT_TABLE.ID,p.ID));
-            MySqlCommand cmd = new MySqlCommand(b.ToString(), con.GetConnection());
+            MySqlCommand cmd = new MySqlCommand(b.ToString(), dbCon.GetConnection());
             cmd.ExecuteNonQuery();
+
         }
        
-
+        /// <summary>
+        /// Returns a list of Patients based on certain search criteria, provided
+        /// by the QueryBuilder SQL code.
+        /// </summary>
+        /// <param name="b">QueryBuilder containing the SQL query to run.</param>
+        /// <returns>A list of Patient objects.</returns>
         public List<Patient> GetPatients(QueryBuilder b)
         {
 
             List<Patient> result = new List<Patient>();
-            MySqlCommand query = new MySqlCommand(b.ToString(), con.GetConnection());
+            MySqlCommand query = new MySqlCommand(b.ToString(), dbCon.GetConnection());
             MySqlDataReader reader = query.ExecuteReader();
 
             while (reader.Read())
@@ -79,16 +93,30 @@ namespace Mockup2
 
         }
 
+        /// <summary>
+        /// Delete an entry from the Patient table in the database,
+        /// based on information given by the Patient object.
+        /// </summary>
+        /// <param name="p">Patient representation of information to delete.</param>
         public void DeletePatient(Patient p)
         {
             QueryBuilder b = new QueryBuilder();
             b.Delete(Tables.PATIENT_TABLE).Where(b.IsEqual(Tables.PATIENT_TABLE.ID, p.ID));
-            MySqlCommand cmd = new MySqlCommand(b.ToString(), con.GetConnection());
+            MySqlCommand cmd = new MySqlCommand(b.ToString(), dbCon.GetConnection());
             cmd.ExecuteNonQuery();
         }
 
 
-
+        /// <summary>
+        /// Conveience method to get all patients by their first and last name.
+        /// Most of the time, this method is expected to return a list containing
+        /// only one value. However, this cannot be guranteed as name collisions
+        /// cannot be prevented. Similarly, it shouln't be assumed this method will
+        /// always return at least one entry - sometimes it doesn't, if the patient cannot be found.
+        /// </summary>
+        /// <param name="firstName">Patient's first name.</param>
+        /// <param name="lastName">Patients's last name.</param>
+        /// <returns>A list of Patients that have the first and last name provided. Size of the list may be more than 1, or 0.</returns>
         public List<Patient> GetPatientsByName(string firstName,string lastName)
         {
             QueryBuilder b = new QueryBuilder();
@@ -96,7 +124,11 @@ namespace Mockup2
             return GetPatients(b);
         }
 
-
+        /// <summary>
+        /// Returns a patient by their Id number.
+        /// </summary>
+        /// <param name="ID">The Patient corresponding to the given ID.</param>
+        /// <returns>A list of patients that match the ID. Should have a size of 1 almost always, but is a list just in case.</returns>
         public List<Patient> GetPatientsByID(int ID)
         {
             QueryBuilder b = new QueryBuilder();
@@ -113,7 +145,7 @@ namespace Mockup2
             
             
                 DBConnection connect;
-                connect = this.con;
+                connect = this.dbCon;
 
                 Patient result = new Patient();
                 MySqlCommand query = new MySqlCommand(q.ToString(), connect.GetConnection());
@@ -152,28 +184,15 @@ namespace Mockup2
             }
         
 
-
+        /// <summary>
+        /// Convenience method to return all Patients currently stored in the database.
+        /// </summary>
+        /// <returns>A list of all Patients.</returns>
         public List<Patient> GetPatients()
         {
             QueryBuilder b = new QueryBuilder();
             b.Select(Tables.ALL).From(Tables.PATIENT_TABLE);
             return GetPatients(b);
-        }
-
-
-
-
-        private int GetInt(object o)
-        {
-            return int.Parse(o+"");
-        }
-
-
-
-
-        private string GetString(object o)
-        {
-            return o + "";
         }
 
 
@@ -196,7 +215,7 @@ namespace Mockup2
         public Patient getPatient(string firstName,string lastName,QueryBuilder qb)
         {
             DBConnection connect;
-            connect = this.con;
+            connect = this.dbCon;
 
             Patient result = new Patient();
             MySqlCommand query = new MySqlCommand(qb.ToString(), connect.GetConnection());

@@ -60,6 +60,52 @@
             OUT OF ORDER 
             </summary>
         </member>
+        <member name="T:Mockup2.DBConnection">
+            <summary>
+            A helper class for wrapping a MySQLConnection
+            </summary>
+        </member>
+        <member name="M:Mockup2.DBConnection.#ctor(System.String,System.String,System.String,System.String)">
+            <summary>
+            Creates the underlying MySQLConnection based on the input parameters, and then attempts to open the connection.
+            Failure outputs the exception to Console.
+            </summary>
+            <param name="server">Server hostname.</param>
+            <param name="database">Database to use once connected.</param>
+            <param name="username">Username to login with.</param>
+            <param name="password">Password to use.</param>
+        </member>
+        <member name="M:Mockup2.DBConnection.Close">
+            <summary>
+            Ensures the connection is closed cleanly to prevent memory leaks.
+            Closes and disposes the underlying MySQLConnection.
+            </summary>
+        </member>
+        <member name="M:Mockup2.DBConnection.#ctor">
+            <summary>
+            Overloaded constructor for convenience of connecting to a particular database.
+            </summary>
+        </member>
+        <member name="M:Mockup2.DBConnection.GetConnection">
+            <summary>
+            Gets the underlying MySQL connection for processes that require it.
+            </summary>
+            <returns>The underlying MySQL connection.</returns>
+        </member>
+        <member name="T:Mockup2.Classes.Emailer">
+            <summary>
+            Static help class to send an email. Uses the Gmail smtp server, which requires an authorized user to send emails.
+            One was created specifically for this project.
+            </summary>
+        </member>
+        <member name="M:Mockup2.Classes.Emailer.SendEmail(System.String,System.String,System.String)">
+            <summary>
+            Sends an email message to the supplied email address, using the supplied subject and message.
+            </summary>
+            <param name="email">Email address of the recipient.</param>
+            <param name="subject">Subject of the email message.</param>
+            <param name="message">The email message itself.</param>
+        </member>
         <member name="F:Mockup2.EditStaffForm.components">
             <summary>
             Required designer variable.
@@ -77,6 +123,117 @@
             the contents of this method with the code editor.
             </summary>
         </member>
+        <member name="T:Mockup2.Factories.AbstractFactory">
+            <summary>
+            An astract factory class for othe table factories to inherit from. Provides
+            some convenience methods for parsing data from the database.
+            </summary>
+        </member>
+        <member name="M:Mockup2.Factories.AbstractFactory.GetInt(System.Object)">
+            <summary>
+            Parses the given object as an int.
+            </summary>
+            <param name="o">Object to parse.</param>
+            <returns>An int from the object.</returns>
+        </member>
+        <member name="M:Mockup2.Factories.AbstractFactory.GetString(System.Object)">
+            <summary>
+            Converts the given object to a string. Simply calls
+            <code>o.ToString()</code>
+            </summary>
+            <param name="o">The object to parse.</param>
+            <returns>A string from the object.</returns>
+        </member>
+        <member name="M:Mockup2.Factories.AbstractFactory.GetBool(System.Object)">
+            <summary>
+            Parses the object as a boolean.
+            </summary>
+            <param name="o">The object to parse.</param>
+            <returns>A boolean representation of the object.</returns>
+        </member>
+        <member name="M:Mockup2.Factories.AbstractFactory.GetDateTime(System.Object)">
+            <summary>
+            Parses the object as a DateTime object.
+            </summary>
+            <param name="o">The object to parse.</param>
+            <returns>A DateTime representation of the object, if possible.</returns>
+        </member>
+        <member name="M:Mockup2.Factories.AppointmentFactory.GetNextAvailableAppointmentID">
+            <summary>
+            Returns the next available appointment id. 
+            </summary>
+            <returns>Next available appointment id.</returns>
+        </member>
+        <member name="M:Mockup2.Factories.AppointmentFactory.SetNextAvailableAppointmentID">
+            <summary>
+            Sets the next available appointment id by pulling the last listed
+            Appointment from the database. Should only be called once.
+            </summary>
+        </member>
+        <member name="M:Mockup2.Factories.AppointmentFactory.GetTimeslots">
+            <summary>
+            Returns a list of formatted strings to be used as timeslots when booking an appointment.
+            Timeslot increment is given as 10 minutes.
+            </summary>
+            <returns>A list of strings formatted in the following way: hh:mm:ss, for example: 09:40:00</returns>
+        </member>
+        <member name="M:Mockup2.Factories.AppointmentFactory.GetAppointments(Mockup2.QueryBuilder)">
+            <summary>
+            Returns a list of Appointments that match the critera given by the QueryBuilder.
+            In order to get sensible results, the first part of the query should be:
+            SELECT * FROM Appointment
+            with only the Where changing.
+            </summary>
+            <param name="b">The QueryBuilder to use as the SQL query.</param>
+            <returns>A list of Appointments that match the SQL query.</returns>
+        </member>
+        <member name="M:Mockup2.Factories.AppointmentFactory.GetAppointments">
+            <summary>
+            Convenience method to return all appointments, with no matching criteria, ie everything.
+            </summary>
+            <returns>Every appointment in the database.</returns>
+        </member>
+        <member name="M:Mockup2.Factories.AppointmentFactory.GetAppointmentsByDate(System.DateTime)">
+            <summary>
+            Conveience method that gets all appointments on a given date.
+            </summary>
+            <param name="date">The date to match appointments to.</param>
+            <returns>A list of appointments booked for the date given.</returns>
+        </member>
+        <member name="M:Mockup2.Factories.AppointmentFactory.GetAppointmentsByDateRange(System.DateTime,System.DateTime)">
+            <summary>
+            Convenience method that gets all appointments booked between the given dates.
+            </summary>
+            <param name="date1">The minimum bound date to look for.</param>
+            <param name="date2">The maximum bound date to look for.</param>
+            <returns>A list of appointments that fall between the given dates.</returns>
+        </member>
+        <member name="M:Mockup2.Factories.AppointmentFactory.UpdateAppointment(Mockup2.Appointment)">
+            <summary>
+            Updates an existing appointment in the database, based on the information provided
+            in the Appointment object.
+            </summary>
+            <param name="a">The Appointment to pull data from.</param>
+        </member>
+        <member name="M:Mockup2.Factories.AppointmentFactory.SendConfirmationEmail(Mockup2.Appointment)">
+            <summary>
+            Sends a confirmation email to the patient linked to the appointment given.
+            </summary>
+            <param name="a">The appointment to notify the patient abour.</param>
+        </member>
+        <member name="M:Mockup2.Factories.AppointmentFactory.InsertAppointment(Mockup2.Appointment)">
+            <summary>
+            Inserts a new appointment into the database, using information pulled from the given Appointment object.
+            
+            </summary>
+            <param name="a">The appointment object to pull data from.</param>
+        </member>
+        <member name="M:Mockup2.Factories.AppointmentFactory.DeleteAppointment(Mockup2.Appointment)">
+            <summary>
+            Deletes an appointment from the database based on information given in the supplied Appointment.
+            </summary>
+            <param name="a">The appointment object to delete.</param>
+        </member>
         <member name="M:Mockup2.Factories.CustomTableFactory.GetCustomTable(Mockup2.QueryBuilder)">
             <summary>
             Retrieves the stored query from the QueryBuilder and executes it against the database
@@ -85,6 +242,121 @@
             </summary>
             <param name="b">The QueryBuilder object containing the SQL query to invoke against the database.</param>
             <returns>A CustomTable that has the resulting 'table' as a list of <code>Dictionary&lt;Column, object&gt;</code></returns>
+        </member>
+        <member name="T:Mockup2.Factories.MedicalNoteFactory">
+            <summary>
+            Helper class to pull whole MedicalNote objects from the database based on various critera.
+            </summary>
+        </member>
+        <member name="M:Mockup2.Factories.MedicalNoteFactory.GetMedicalNotes(Mockup2.QueryBuilder)">
+            <summary>
+            Gets all MedicalNote objects that match the given SQL query criteria contained in the QueryBuilder.
+            </summary>
+            <param name="b">QueryBuilder containing the SQL query.</param>
+            <returns>A list of MedicalNote objects.</returns>
+        </member>
+        <member name="M:Mockup2.Factories.MedicalNoteFactory.GetMedicalNotes(System.Int32)">
+            <summary>
+            Convenience method to get all MedicalNotes for a particular patient, keyed by their id.
+            </summary>
+            <param name="patientID">ID of the patient to get MedicalNotes for.</param>
+            <returns>A list of MedicalNotes for the Patient given by id.</returns>
+        </member>
+        <member name="M:Mockup2.Factories.MedicalNoteFactory.GetMedicalNotes">
+            <summary>
+            Convenience method to get all the MedicalNotes in the database.
+            </summary>
+            <returns>A list of all MedialNotes in the database.</returns>
+        </member>
+        <member name="T:Mockup2.Factories.PrescriptionFactory">
+            <summary>
+            Convenience method to handle returning, updating, and inserting Prescription objects into the database.
+            </summary>
+        </member>
+        <member name="M:Mockup2.Factories.PrescriptionFactory.GetNextAvailablePrescriptionID">
+            <summary>
+            Returns the next available prescription id.
+            </summary>
+            <returns>Next available prescription id.</returns>
+        </member>
+        <member name="M:Mockup2.Factories.PrescriptionFactory.GetPrescriptions(Mockup2.QueryBuilder)">
+            <summary>
+            Gets a list of Prescriptions from the database based on search critera provided by the QueryBuilder.
+            </summary>
+            <param name="b">QueryBuilder containing the SQL code.</param>
+            <returns>A list of Prescriptions.</returns>
+        </member>
+        <member name="M:Mockup2.Factories.PrescriptionFactory.GetPrescriptions">
+            <summary>
+            Convenience method to get all prescriptions.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mockup2.Factories.PrescriptionFactory.GetPrescriptions(System.Int32)">
+            <summary>
+            Convenience method to get all prescriptions based on the patient id they belong to.
+            </summary>
+            <param name="patientID">ID of the patient to find prescriptions for.</param>
+            <returns>A list of Prescriptions.</returns>
+        </member>
+        <member name="M:Mockup2.Factories.PrescriptionFactory.GetLastPrescriptionID">
+            <summary>
+            Gets the last available prescription id currently in the database.
+            </summary>
+            <returns>The last available prescription id.</returns>
+        </member>
+        <member name="T:Mockup2.Factories.StaffFactory">
+            <summary>
+            Convenience class to handle returning, updating, and inserting Staff objects into the database.
+            </summary>
+        </member>
+        <member name="M:Mockup2.Factories.StaffFactory.GetStaffByID(System.Int32)">
+            <summary>
+            Gets a list of Staff by their ID number. This method should only return a list of size one, but
+            that is not guranteed.
+            </summary>
+            <param name="id">ID of the staff member to look for.</param>
+            <returns>A list of Staff.</returns>
+        </member>
+        <member name="M:Mockup2.Factories.StaffFactory.GetStaff(Mockup2.QueryBuilder)">
+            <summary>
+            Returns a list of Staff objects based on search critera given the QueryBuilder.
+            </summary>
+            <param name="b">QueryBuilder containing the SQL code.</param>
+            <returns>A list of staff.</returns>
+        </member>
+        <member name="M:Mockup2.Factories.StaffFactory.GetStaffByName(System.String,System.String)">
+            <summary>
+            Return a list of Staff members by their first and last name.
+            </summary>
+            <param name="firstName">First name to look for.</param>
+            <param name="lastName">Last name to look for.</param>
+            <returns>A list of Staff objects.</returns>
+        </member>
+        <member name="M:Mockup2.Factories.StaffFactory.GetStaff">
+            <summary>
+            Convenience method to get all Staff members from the database.
+            </summary>
+            <returns>A list of all Staff</returns>
+        </member>
+        <member name="T:Mockup2.Factories.TestResultFactory">
+            <summary>
+            Convenience class to handle returning, updating, and inserting TestResult objects into the database.
+            </summary>
+        </member>
+        <member name="M:Mockup2.Factories.TestResultFactory.GetTestResults(Mockup2.QueryBuilder)">
+            <summary>
+            Get a list of TestResult objects based on search criteria given the QueryBuilder.
+            </summary>
+            <param name="b">QueryBuilder object.</param>
+            <returns>A list of TestResult objects.</returns>
+        </member>
+        <member name="M:Mockup2.Factories.TestResultFactory.GetTestResults(System.Int32)">
+            <summary>
+            Convenience method to get all 
+            </summary>
+            <param name="patientID"></param>
+            <returns></returns>
         </member>
         <member name="F:Mockup2.GPNurse.components">
             <summary>
@@ -102,6 +374,63 @@
             Required method for Designer support - do not modify
             the contents of this method with the code editor.
             </summary>
+        </member>
+        <member name="T:Mockup2.PatientFactory">
+            <summary>
+            Convenience class to handle pulling Patients from, and inserting Patients into, the database. As well as updating them.
+            </summary>
+        </member>
+        <member name="M:Mockup2.PatientFactory.InsertPatient(Mockup2.Patient)">
+            <summary>
+            Inserts the given Patient information into the database.
+            </summary>
+            <param name="p">The Patient to pull information from.</param>
+        </member>
+        <member name="M:Mockup2.PatientFactory.UpdatePatient(Mockup2.Patient)">
+            <summary>
+            Updates the given Patient information in the database.
+            </summary>
+            <param name="p">The Patient to get updated information from.</param>
+        </member>
+        <member name="M:Mockup2.PatientFactory.GetPatients(Mockup2.QueryBuilder)">
+            <summary>
+            Returns a list of Patients based on certain search criteria, provided
+            by the QueryBuilder SQL code.
+            </summary>
+            <param name="b">QueryBuilder containing the SQL query to run.</param>
+            <returns>A list of Patient objects.</returns>
+        </member>
+        <member name="M:Mockup2.PatientFactory.DeletePatient(Mockup2.Patient)">
+            <summary>
+            Delete an entry from the Patient table in the database,
+            based on information given by the Patient object.
+            </summary>
+            <param name="p">Patient representation of information to delete.</param>
+        </member>
+        <member name="M:Mockup2.PatientFactory.GetPatientsByName(System.String,System.String)">
+            <summary>
+            Conveience method to get all patients by their first and last name.
+            Most of the time, this method is expected to return a list containing
+            only one value. However, this cannot be guranteed as name collisions
+            cannot be prevented. Similarly, it shouln't be assumed this method will
+            always return at least one entry - sometimes it doesn't, if the patient cannot be found.
+            </summary>
+            <param name="firstName">Patient's first name.</param>
+            <param name="lastName">Patients's last name.</param>
+            <returns>A list of Patients that have the first and last name provided. Size of the list may be more than 1, or 0.</returns>
+        </member>
+        <member name="M:Mockup2.PatientFactory.GetPatientsByID(System.Int32)">
+            <summary>
+            Returns a patient by their Id number.
+            </summary>
+            <param name="ID">The Patient corresponding to the given ID.</param>
+            <returns>A list of patients that match the ID. Should have a size of 1 almost always, but is a list just in case.</returns>
+        </member>
+        <member name="M:Mockup2.PatientFactory.GetPatients">
+            <summary>
+            Convenience method to return all Patients currently stored in the database.
+            </summary>
+            <returns>A list of all Patients.</returns>
         </member>
         <member name="M:Mockup2.PatientFactory.getAPatient(System.String,System.String)">
             returns a patient object by finding it in the database by first and last name
@@ -305,6 +634,29 @@
             </summary>
             <param name="q">The query to add.</param>
         </member>
+        <member name="M:Mockup2.QueryBuilder.OrderBy(System.Boolean,Mockup2.Tables.Column[])">
+            <summary>
+            Adds an Order By statement to the current SQL query. Can choose whether to be
+            ascending or descending.
+            </summary>
+            <param name="desc">Whether ordering should be descending or not.</param>
+            <param name="columns">The Columns to order by.</param>
+            <returns>This instance of QueryBuilder.</returns>
+        </member>
+        <member name="M:Mockup2.QueryBuilder.Limit(System.Int32)">
+            <summary>
+             Adds a Limit statement to the current SQL query. Allows results to be limited.
+            </summary>
+            <param name="num">Number of results to limit query to.</param>
+            <returns>This instance of QueryBuilder.</returns>
+        </member>
+        <member name="M:Mockup2.QueryBuilder.Delete(Mockup2.Tables.Table)">
+            <summary>
+            Adds a Delete From statement to the current SQL query.
+            </summary>
+            <param name="table">The Table to be deleting from.</param>
+            <returns>This instance of QueryBuilder.</returns>
+        </member>
         <member name="M:Mockup2.QueryBuilder.Update(Mockup2.Tables.Table)">
             <summary>
             Adds an Update statement to the current SQL query. Only supports updating
@@ -471,6 +823,62 @@
             <summary>
             Required method for Designer support - do not modify
             the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:Mockup2.Tables">
+            <summary>
+            A collection of Table instances that represent the current database. Used primarily
+            in QueryBuilder to ensure all queries are valid.
+            </summary>
+        </member>
+        <member name="T:Mockup2.Tables.AllColumn">
+            <summary>
+            Represents the all coumns operator in SQL (*)
+            </summary>
+        </member>
+        <member name="T:Mockup2.Tables.AppointmentTable">
+            <summary>
+            Represents the Appointment table.
+            </summary>
+        </member>
+        <member name="T:Mockup2.Tables.MedicalNotesTable">
+            <summary>
+            Represents the MedicalNotes table.
+            </summary>
+        </member>
+        <member name="T:Mockup2.Tables.MedicationTable">
+            <summary>
+            Represents the Medication table.
+            </summary>
+        </member>
+        <member name="T:Mockup2.Tables.MedicationInstanceTable">
+            <summary>
+            Represents the MedicationInstance table.
+            </summary>
+        </member>
+        <member name="T:Mockup2.Tables.PatientTable">
+            <summary>
+            Represents the Patient table.
+            </summary>
+        </member>
+        <member name="T:Mockup2.Tables.PrescriptionTable">
+            <summary>
+            Represents the Prescription table.
+            </summary>
+        </member>
+        <member name="T:Mockup2.Tables.RotaTable">
+            <summary>
+            Represents the Rota table.
+            </summary>
+        </member>
+        <member name="T:Mockup2.Tables.StaffTable">
+            <summary>
+            Represents the Staff table.
+            </summary>
+        </member>
+        <member name="T:Mockup2.Tables.TestResultTable">
+            <summary>
+            Represents the TestResult table.
             </summary>
         </member>
         <member name="T:Mockup2.Properties.Resources">

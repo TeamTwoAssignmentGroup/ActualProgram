@@ -8,12 +8,20 @@ using static Mockup2.Tables;
 
 namespace Mockup2.Factories
 {
+    /// <summary>
+    /// Helper class to pull whole MedicalNote objects from the database based on various critera.
+    /// </summary>
     class MedicalNoteFactory : AbstractFactory
     { 
         public MedicalNoteFactory(DBConnection dbCon) : base(dbCon)
         {
         }
 
+        /// <summary>
+        /// Gets all MedicalNote objects that match the given SQL query criteria contained in the QueryBuilder.
+        /// </summary>
+        /// <param name="b">QueryBuilder containing the SQL query.</param>
+        /// <returns>A list of MedicalNote objects.</returns>
         public List<MedicalNotes> GetMedicalNotes(QueryBuilder b)
         {
 
@@ -37,6 +45,11 @@ namespace Mockup2.Factories
 
         }
 
+        /// <summary>
+        /// Convenience method to get all MedicalNotes for a particular patient, keyed by their id.
+        /// </summary>
+        /// <param name="patientID">ID of the patient to get MedicalNotes for.</param>
+        /// <returns>A list of MedicalNotes for the Patient given by id.</returns>
         public List<MedicalNotes> GetMedicalNotes( int patientID)
         {
             QueryBuilder b = new QueryBuilder();
@@ -44,11 +57,27 @@ namespace Mockup2.Factories
             return GetMedicalNotes(b);
         }
 
+        /// <summary>
+        /// Convenience method to get all the MedicalNotes in the database.
+        /// </summary>
+        /// <returns>A list of all MedialNotes in the database.</returns>
         public List<MedicalNotes> GetMedicalNotes()
         { 
             QueryBuilder b = new QueryBuilder();
             b.Select(Tables.ALL).From(Tables.MEDICALNOTES_TABLE);
             return GetMedicalNotes(b);
+        }
+
+        /// <summary>
+        /// Convenience method to insert a new MedicalNotes object into the database.
+        /// </summary>
+        /// <param name="mn">The MedicalNotes object to pull data from.</param>
+        public void InsertMedicalNote(MedicalNotes mn)
+        {
+            QueryBuilder b = new QueryBuilder();
+            b.Insert(Tables.MEDICALNOTES_TABLE).Values(null, mn.PatientID, mn.WrittenDate.ToString("yyyy-MM-dd"), mn.Notes);
+            MySqlCommand cmd = new MySqlCommand(b.ToString(), dbCon.GetConnection());
+            cmd.ExecuteNonQuery();
         }
 
 

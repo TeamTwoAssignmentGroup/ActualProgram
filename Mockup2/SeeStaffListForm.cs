@@ -22,9 +22,18 @@ namespace Mockup2
             InitializeComponent();
             this.date = date;
             this.dbCon = dbCon;
+            this.dataGridView1.KeyUp += DataGridView1_KeyUp;
 
             PopulateRotaRows();
             DisplayRotaRows();
+        }
+
+        private void DataGridView1_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                button1_Click(sender, e);
+            }
         }
 
         private void PopulateRotaRows()
