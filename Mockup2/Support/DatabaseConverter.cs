@@ -76,27 +76,7 @@ namespace Mockup2.Support
 
 
 
-        public Patient findPatientById(string id)
-        {
-
-            int i = 0;
-
-            try
-            {
-
-                i = Int32.Parse(id);
-
-            }
-            catch (FormatException f)
-
-            {
-                return null;
-            }
-
-            currentPatient = infoFac.GetPatientsByID(i);
-
-            return currentPatient;
-        }
+        
 
 
 
@@ -177,7 +157,7 @@ namespace Mockup2.Support
         public void insertPatientNote(Patient p,List<string>newNotes)
         {
 
-            medicalNote.InsterPatientNote(p, newNotes);
+            medicalNote.InsertPatientNote(p, newNotes);
 
         }
 

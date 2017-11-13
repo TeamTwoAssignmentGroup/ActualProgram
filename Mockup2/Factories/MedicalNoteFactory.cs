@@ -72,12 +72,33 @@ namespace Mockup2.Factories
         /// Convenience method to insert a new MedicalNotes object into the database.
         /// </summary>
         /// <param name="mn">The MedicalNotes object to pull data from.</param>
-        public void InsertMedicalNote(MedicalNotes mn)
+        public void InsertPatientNote(Patient o, List<string>notes)
         {
-            QueryBuilder b = new QueryBuilder();
-            b.Insert(Tables.MEDICALNOTES_TABLE).Values(null, mn.PatientID, mn.WrittenDate.ToString("yyyy-MM-dd"), mn.Notes);
-            MySqlCommand cmd = new MySqlCommand(b.ToString(), dbCon.GetConnection());
-            cmd.ExecuteNonQuery();
+            List<MedicalNotes> getID = GetMedicalNotes(o.ID);
+            MedicalNotes newEntry;
+            QueryBuilder qb = new QueryBuilder();
+
+
+            foreach (string s in notes)
+            {
+                newEntry = new MedicalNotes();
+                newEntry.Notes = s;
+                newEntry.PatientID = o.ID;
+                newEntry.WrittenDate = DateTime.Now;
+
+
+
+
+                qb.Insert(Tables.MEDICALNOTES_TABLE).Values
+                    (null,
+                    newEntry.PatientID,
+                    newEntry.WrittenDate.ToString("yyyy-MM-dd"),
+                    newEntry.Notes);
+
+
+                MySqlCommand cmd = new MySqlCommand(qb.ToString(), dbCon.GetConnection());
+                cmd.ExecuteNonQuery();
+            }
         }
 
 
