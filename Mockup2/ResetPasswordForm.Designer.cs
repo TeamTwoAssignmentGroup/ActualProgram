@@ -44,7 +44,7 @@
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(333, 78);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 41);
+            this.comboBox1.Size = new System.Drawing.Size(218, 41);
             this.comboBox1.TabIndex = 0;
             // 
             // textBox1
@@ -72,6 +72,7 @@
             this.button1.TabIndex = 3;
             this.button1.Text = "Reset";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label1
             // 
@@ -79,9 +80,9 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(33, 86);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(111, 33);
+            this.label1.Size = new System.Drawing.Size(189, 33);
             this.label1.TabIndex = 4;
-            this.label1.Text = "Staff ID";
+            this.label1.Text = "Staff Member";
             // 
             // label2
             // 

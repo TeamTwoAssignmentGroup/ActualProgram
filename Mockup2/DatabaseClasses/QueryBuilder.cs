@@ -54,6 +54,47 @@ namespace Mockup2
             pastQueries[q]++;
         }
 
+        /// <summary>
+        /// Adds an Order By statement to the current SQL query. Can choose whether to be
+        /// ascending or descending.
+        /// </summary>
+        /// <param name="desc">Whether ordering should be descending or not.</param>
+        /// <param name="columns">The Columns to order by.</param>
+        /// <returns>This instance of QueryBuilder.</returns>
+        public QueryBuilder OrderBy(bool desc,params Column[] columns)
+        {
+            query += " ORDER BY ";
+            foreach(Column c in columns){
+                query += c.GetFullName() + ", ";
+            }
+            TrimQuery(2);
+            if (desc)
+            {
+                query += " DESC";
+            }
+            else
+            {
+                query += " ASC";
+            }
+            return this;
+        }
+
+        /// <summary>
+        ///  Adds a Limit statement to the current SQL query. Allows results to be limited.
+        /// </summary>
+        /// <param name="num">Number of results to limit query to.</param>
+        /// <returns>This instance of QueryBuilder.</returns>
+        public QueryBuilder Limit(int num)
+        {
+            query += " LIMIT " + num;
+            return this;
+        }
+
+        /// <summary>
+        /// Adds a Delete From statement to the current SQL query.
+        /// </summary>
+        /// <param name="table">The Table to be deleting from.</param>
+        /// <returns>This instance of QueryBuilder.</returns>
         public QueryBuilder Delete(Table table)
         {
             query += "DELETE FROM " + table.Name;
@@ -238,7 +279,7 @@ namespace Mockup2
         public WhereClass IsBetweenDate(Column c, DateTime date1,DateTime date2)
         {
             string date1String = date1.ToString("yyyy-MM-dd");
-            string date2String = date2.ToString("yyyy-MM-dd");
+            string date2String = date2.AddDays(1).ToString("yyyy-MM-dd");
             WhereClass d1WC = this.IsMoreThanEqual(c, date1String);
             WhereClass d2WC = this.IsLessThan(c, date2String);
             return new WhereClass(d1WC+" AND "+d2WC);

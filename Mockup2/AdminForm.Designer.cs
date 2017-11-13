@@ -45,17 +45,16 @@
             this.editStaffButton = new System.Windows.Forms.Button();
             this.addStaffButton = new System.Windows.Forms.Button();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.StaffID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Address = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.JobTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PayRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Notes = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.reportsTab = new System.Windows.Forms.TabPage();
             this.systemTab = new System.Windows.Forms.TabPage();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.StaffID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Address = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PostCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.JobTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.adminTabs.SuspendLayout();
             this.rotaTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -105,7 +104,7 @@
             // 
             this.dataGridView1.AllowUserToResizeColumns = false;
             this.dataGridView1.AllowUserToResizeRows = false;
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Monday,
@@ -214,63 +213,21 @@
             this.dataGridView2.AllowUserToResizeColumns = false;
             this.dataGridView2.AllowUserToResizeRows = false;
             this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+            this.dataGridView2.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.StaffID,
             this.FirstName,
             this.LastName,
             this.Address,
-            this.JobTitle,
-            this.PayRate,
-            this.Notes});
+            this.PostCode,
+            this.JobTitle});
             this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Top;
             this.dataGridView2.Location = new System.Drawing.Point(3, 3);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.Size = new System.Drawing.Size(994, 338);
             this.dataGridView2.TabIndex = 0;
             this.dataGridView2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
-            // 
-            // StaffID
-            // 
-            this.StaffID.HeaderText = "Staff ID";
-            this.StaffID.Name = "StaffID";
-            this.StaffID.Width = 136;
-            // 
-            // FirstName
-            // 
-            this.FirstName.HeaderText = "First Name";
-            this.FirstName.Name = "FirstName";
-            this.FirstName.Width = 184;
-            // 
-            // LastName
-            // 
-            this.LastName.HeaderText = "Last Name";
-            this.LastName.Name = "LastName";
-            this.LastName.Width = 181;
-            // 
-            // Address
-            // 
-            this.Address.HeaderText = "Address";
-            this.Address.Name = "Address";
-            this.Address.Width = 147;
-            // 
-            // JobTitle
-            // 
-            this.JobTitle.HeaderText = "Job Title";
-            this.JobTitle.Name = "JobTitle";
-            this.JobTitle.Width = 151;
-            // 
-            // PayRate
-            // 
-            this.PayRate.HeaderText = "Pay Rate";
-            this.PayRate.Name = "PayRate";
-            this.PayRate.Width = 159;
-            // 
-            // Notes
-            // 
-            this.Notes.HeaderText = "Notes";
-            this.Notes.Name = "Notes";
-            this.Notes.Width = 116;
             // 
             // reportsTab
             // 
@@ -315,6 +272,49 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // StaffID
+            // 
+            this.StaffID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.StaffID.HeaderText = "Staff ID";
+            this.StaffID.Name = "StaffID";
+            this.StaffID.Width = 136;
+            // 
+            // FirstName
+            // 
+            this.FirstName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.FirstName.HeaderText = "First Name";
+            this.FirstName.Name = "FirstName";
+            this.FirstName.Width = 184;
+            // 
+            // LastName
+            // 
+            this.LastName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.LastName.HeaderText = "Last Name";
+            this.LastName.Name = "LastName";
+            this.LastName.Width = 181;
+            // 
+            // Address
+            // 
+            this.Address.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.Address.HeaderText = "Address";
+            this.Address.Name = "Address";
+            this.Address.Width = 147;
+            // 
+            // PostCode
+            // 
+            this.PostCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.PostCode.HeaderText = "Post Code";
+            this.PostCode.Name = "PostCode";
+            this.PostCode.ReadOnly = true;
+            this.PostCode.Width = 175;
+            // 
+            // JobTitle
+            // 
+            this.JobTitle.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.JobTitle.HeaderText = "Job Title";
+            this.JobTitle.Name = "JobTitle";
+            this.JobTitle.Width = 151;
+            // 
             // AdminForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -357,15 +357,14 @@
         private System.Windows.Forms.Button editStaffButton;
         private System.Windows.Forms.Button addStaffButton;
         private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.DataGridViewTextBoxColumn StaffID;
         private System.Windows.Forms.DataGridViewTextBoxColumn FirstName;
         private System.Windows.Forms.DataGridViewTextBoxColumn LastName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Address;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PostCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn JobTitle;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PayRate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Notes;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button3;
     }
 }

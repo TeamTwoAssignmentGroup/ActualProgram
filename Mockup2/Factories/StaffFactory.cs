@@ -8,14 +8,33 @@ using static Mockup2.Tables;
 
 namespace Mockup2.Factories
 {
-    class StaffFactory
+    /// <summary>
+    /// Convenience class to handle returning, updating, and inserting Staff objects into the database.
+    /// </summary>
+    class StaffFactory : AbstractFactory
     {
-        DBConnection dbCon;
-        public StaffFactory(DBConnection dbCon)
+        public StaffFactory(DBConnection dbCon) : base(dbCon)
         {
-            this.dbCon = dbCon;
         }
 
+        /// <summary>
+        /// Gets a list of Staff by their ID number. This method should only return a list of size one, but
+        /// that is not guranteed.
+        /// </summary>
+        /// <param name="id">ID of the staff member to look for.</param>
+        /// <returns>A list of Staff.</returns>
+        public List<Staff> GetStaffByID(int id)
+        {
+            QueryBuilder b = new QueryBuilder();
+            b.Select(Tables.ALL).From(Tables.STAFF_TABLE).Where(b.IsEqual(Tables.STAFF_TABLE.ID,id));
+            return GetStaff(b);
+        }
+
+        /// <summary>
+        /// Returns a list of Staff objects based on search critera given the QueryBuilder.
+        /// </summary>
+        /// <param name="b">QueryBuilder containing the SQL code.</param>
+        /// <returns>A list of staff.</returns>
         public List<Staff> GetStaff(QueryBuilder b)
         {
             List<Staff> result = new List<Staff>();
@@ -38,6 +57,12 @@ namespace Mockup2.Factories
             return result;
         }
 
+        /// <summary>
+        /// Return a list of Staff members by their first and last name.
+        /// </summary>
+        /// <param name="firstName">First name to look for.</param>
+        /// <param name="lastName">Last name to look for.</param>
+        /// <returns>A list of Staff objects.</returns>
         public List<Staff> GetStaffByName(string firstName, string lastName)
         {
             QueryBuilder b = new QueryBuilder();
@@ -45,21 +70,15 @@ namespace Mockup2.Factories
             return GetStaff(b);
         }
 
+        /// <summary>
+        /// Convenience method to get all Staff members from the database.
+        /// </summary>
+        /// <returns>A list of all Staff</returns>
         public List<Staff> GetStaff()
         {
             QueryBuilder b = new QueryBuilder();
             b.Select(Tables.ALL).From(Tables.STAFF_TABLE);
             return GetStaff(b);
-        }
-
-        private int GetInt(object o)
-        {
-            return int.Parse(o + "");
-        }
-
-        private string GetString(object o)
-        {
-            return o + "";
         }
     }
 }
