@@ -12,7 +12,10 @@ namespace Mockup2.Factories
     { 
         public MedicalNoteFactory(DBConnection dbCon) : base(dbCon)
         {
+            this.dbCon = dbCon;
         }
+
+
 
         public List<MedicalNotes> GetMedicalNotes(QueryBuilder b)
         {
@@ -36,6 +39,47 @@ namespace Mockup2.Factories
             return result;
 
         }
+
+
+
+
+        public void InsterPatientNote(Patient p,List<string>newNotes)
+        {
+
+            List<MedicalNotes> getID = GetMedicalNotes(p.ID);
+            MedicalNotes newEntry;
+            QueryBuilder qb = new QueryBuilder();
+                 
+                foreach (string s in newNotes)
+                {
+                newEntry = new MedicalNotes();
+
+             
+                newEntry.Notes = s;
+                newEntry.PatientID = p.ID;
+                newEntry.WrittenDate = DateTime.Now;
+
+
+                qb.Insert(Tables.MEDICALNOTES_TABLE).Values
+                    (
+
+                    null,
+                    newEntry.PatientID,
+                    newEntry.WrittenDate.ToString("yyyy-MM-dd"),
+                    newEntry.Notes
+                   
+                    );
+
+                MySqlCommand cmd = new MySqlCommand(qb.ToString(), dbCon.GetConnection());
+                cmd.ExecuteNonQuery();
+                }
+            
+
+
+        }
+
+
+
 
         public List<MedicalNotes> GetMedicalNotes( int patientID)
         {

@@ -12,6 +12,7 @@ using Mockup2.Factories;
 using Mockup2.PatientForms;
 using Mockup2.PrescriptionForms;
 using Mockup2.Classes;
+using Mockup2.Support;
 
 namespace Mockup2
 {
@@ -21,159 +22,338 @@ namespace Mockup2
         DBConnection dbCon;
         PatientFactory infoFac;
         Patient currentPatient;
-        PrescriptionFactory prescriptionFactory;
-        MedicalNoteFactory medicalNote;
-        MedicineInFactory medicationL;   
-        TestResultFactory test;
+        Patient found;
+        string timeIs;
+
+
+
+
+
+        List<string> history= new List<string>();
+        List<string> prescription =new List<string>();
+        List<string> testresults= new List<string>();
+        List<string> patient = new List<string>();
+        List<string> note = new List<string>();
        
+
         public GPNurse(DBConnection dbCon)
         {
-            this.dbCon = dbCon;
-         
-            medicalNote = new MedicalNoteFactory(dbCon);
+            this.dbCon = dbCon;         
+
             infoFac = new PatientFactory(dbCon);
-            prescriptionFactory = new PrescriptionFactory(dbCon);
-            test = new TestResultFactory(dbCon);
-            medicationL = new MedicineInFactory(dbCon);
-        
 
-
-         
-
-
-
+            Timer timer1 = new Timer();  
+            timer1.Start();
+          
             InitializeComponent();
         }
 
 
 
-     
 
 
 
-        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
-        {
-            foreach (DataGridViewRow row in dataGridView1.SelectedRows)
-            {
-                string value1 = row.Cells["firstName"].Value.ToString();
-                string value2 = row.Cells["lastName"].Value.ToString();
-                searchBox1.Text = value1;
-                searchBox2.Text = value2;
-            }
-        }
-
-        /***
+        /**
          * This button returns one patient from the database as an object
+         * can be by name or nhs number
          * */
-        private void button9_Click(object sender, EventArgs e)
-        {
+        private void OK_Click(object sender, EventArgs e)
+        { 
 
-            int byId = 0;
-            string firstName = searchBox1.Text;
-            string lastName = searchBox2.Text;
-            string id = searchID.Text;
-            try { byId = Int32.Parse(id); } catch (FormatException f) {  }
-            { }
-            if (id.Equals(null) || byId == 0)
+            DatabaseConverter manager = new DatabaseConverter(dbCon);
+           
+            string firstName = firstText.Text;
+            string lastName = lastText.Text;
+           
+
+
+          
+            found=manager.findPatientByName(firstName, lastName);
+
+          
+            searchBox.Items.Add(found.FirstName + " " + found.LastName);
+           
+            textBoxCleaner(firstText);
+            textBoxCleaner(lastText);
+          
+
+        }
+
+            
+
+      
+
+            /**
+             * This button (Viev this patient details) loads in selected patient details on the page
+             * */
+            private void selectSearch_Click(object sender, EventArgs e)
             {
 
-                currentPatient = infoFac.getAPatient(firstName, lastName);
+            saveChanges();
+          
+                textBoxCleaner(detailsBox);
+                textBoxCleaner(historyBox);
+                ListBoxCleaner(testList);
+                ListBoxCleaner(searchBox);
+                textBoxCleaner(prescriptionsBox);
+                ListBoxCleaner(testList);
+                textBoxCleaner(firstText);
+                textBoxCleaner(lastText);
+
+
+                //clearnote
+
+                currentPatient = found;
+            if (currentPatient != null)
+            {
+                DatabaseConverter convert = new DatabaseConverter(dbCon, currentPatient);
+
+
+                history = convert.HistoryData();
+                prescription = convert.PrescriptionData();
+                testresults = convert.TestResults();
+
+
+                textBoxWriter(history, historyBox);
+                textBoxWriter(prescription, prescriptionsBox);
+                ListBoxWriter(testresults, testList);
+                detailsBox.Text = currentPatient.FirstName + " " + currentPatient.LastName + " " + currentPatient.DOB + "\nGender: " + currentPatient.Gender + "\nNext of kin: " + currentPatient.NextOfKin + "\nAddress " + currentPatient.Address;
+            }
+            else { MessageBox.Show("Select patient"); }
+          
+            
             }
 
-            else { currentPatient = infoFac.GetPatientsByID(byId); }
-           
-           
-            dataGridView1.Rows.Clear();
-            dataGridView1.Rows.Add(currentPatient.ID, currentPatient.NHSNumber, currentPatient.FirstName,currentPatient.LastName, currentPatient.Address, currentPatient.Postcode, currentPatient.DOB, currentPatient.Gender);
-
-        }
-
-        private void GPNurse_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button14_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            if (dataGridView1.SelectedRows.Count > 0)
-            {
-                Console.WriteLine(preGrid.SelectedRows[0].Cells[0].Value.ToString());
-                int prescriptionID = int.Parse(preGrid.SelectedRows[0].Cells[0].Value.ToString());
-                ViewPrescription vp = new ViewPrescription(prescriptionID,dbCon);
-                vp.Show();
-            }
-        }
-
-        private void selectSearch_Click(object sender, EventArgs e)
-        {
-            historyGrid.Rows.Clear();
-            preGrid.Rows.Clear();
-            testGrid.ClearSelection();
-            List <MedicalNotes> hist  = medicalNote.GetMedicalNotes(currentPatient.ID);
-            List<Prescription> pre = prescriptionFactory.GetPrescriptions(currentPatient.ID);
-            List<TestResult> tesR = test.GetTestResults(currentPatient.ID);
-            List<MedicationInstance> medicationList;
-            List<Medication> medication;
-
-
-            foreach (MedicalNotes m in hist ) { historyGrid.Rows.Add(m.ID,m.PatientID,m.Notes,m.WrittenDate); }
 
 
 
-
-            foreach (Prescription p in pre)
+            /**
+             * Prinitg any list <string></string> data into the textbox
+             * */
+            public void textBoxWriter(List<string> s,RichTextBox r)
             {
 
-
-
-                 medicationList= medicationL.GetMedicineIdByPrescription(p.Id);
-                
-
-
-
-                foreach (MedicationInstance m in medicationList)
+                for (int i = 0;i<s.Count();i++)
                 {
 
+                
+                r.AppendText("\n"+s[i]);
+
+                }
+               
+
+            }
 
 
-                    medication = medicationL.GetMedicneNameById(m.MedicationId);
-                    foreach (Medication me in medication)
-                    {
+     
+    
 
-                        preGrid.Rows.Add(me.ScientificName, me.CommercialName, p.IssueDate);
 
-                    }
 
+        /**
+        * Prinitg any list <string></string> data into the textbox
+        * */
+        public void ListBoxWriter(List<string> s, ListBox lb)
+        {
+
+            for (int i = 0; i < s.Count(); i++)
+            {
+
+                string bd = s[i];
+                
+                
+                    
+                    lb.Items.Add(bd);
+                    
+ 
+
+               
+
+            }
+
+
+        }
+
+
+
+
+        /**
+         * Clears selected textbox
+         * */
+        public void textBoxCleaner(RichTextBox r)
+                {
+
+                    r.Clear();
 
                 }
 
 
 
+
+        /**
+         * Clears selected textbox
+         * */
+        public void textBoxCleaner(TextBox t)
+        {
+
+            t.Clear();
+
+        }
+
+
+
+
+        /**
+        * Clears selected textbox
+        * */
+        public void ListBoxCleaner(ListBox l)
+        {
+
+            l.Items.Clear();
+
+        }
+
+
+
+
+        private void clear_Click(object sender, EventArgs e,ListBox o)
+        {
+            ListBoxCleaner(o);
+        }
+
+
+
+        public void addNote()
+        {
+            textBoxCleaner(historyBox);
+            textBoxWriter(history, historyBox);
+            
+            string s = "";
+            s=noteBox.Text;
+            if (!s.Equals(""))
+            {
+                note.Add(s);
+                textBoxWriter(note, historyBox);
+            }
+            else
+            {
+                MessageBox.Show("Please write a note!");
+            }
+        
+        }
+
+
+
+
+
+        private void save_Click(object sender, EventArgs e)
+        {
+
+           
+            addNote();
+            textBoxCleaner(noteBox);
+        }
+
+
+
+
+
+        private void remove_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int i = note.Count();
+                i = i - 1;
+                note.RemoveAt(i);
+            }
+            catch (ArgumentOutOfRangeException r)
+            {
+                MessageBox.Show("No history!\n" + r);
             }
 
+            textBoxCleaner(noteBox);
+            textBoxCleaner(historyBox);
 
-
-
-
-
-
-
-
-
-            foreach (TestResult t in tesR) { testGrid.Rows.Add(t.TestName,t.Results,t.TestDate); }
-            detailsBox.Text = currentPatient.FirstName + " " + currentPatient.LastName + "   date of birth: " + currentPatient.DOB + "\n" + currentPatient.Address + " " + currentPatient.Postcode + "\n" + currentPatient.Phone;
+            textBoxWriter(history, historyBox);
+            textBoxWriter(note, historyBox);
 
 
         }
 
-        private void prescriptionDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+
+
+        /**
+         * prompting the user to save their work
+         * */
+        public void saveChanges()
         {
-           
+
+            if (currentPatient != null)
+            {
+                DatabaseConverter manager = new DatabaseConverter(dbCon);
+                DialogResult result;
+
+                result = MessageBox.Show("Save changes for current patient?", "",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == System.Windows.Forms.DialogResult.Yes)
+                {
+                    manager.insertPatientNote(currentPatient, note);
+                    //save changes into database
+
+
+                }
+                if (result == System.Windows.Forms.DialogResult.No)
+                {
+                    //clear note array
+
+                }
+                note.Clear();
+            }
+            else {  }
+
+        }
+
+
+
+
+
+        private void nextButton_Click(object sender, EventArgs e)
+        {
+            saveChanges();
+            //getNext Patient from the appointments----->diversion through class
+        }
+
+        private void exitButton_Click(object sender, EventArgs e)
+        {
+            saveChanges();
+            this.Close();
+        }
+
+        private void searchBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+      
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            timeNow();
+            TimeLabel.Text = timeIs;
+        }
+
+        public string timeNow()
+        {
+
+            timeIs = DateTime.Now.ToString("hh:mm");
+            return timeIs;
+
+        }
+
+        private void TimeLabel_Click(object sender, EventArgs e)
+        {
+            TimeLabel.BackColor = System.Drawing.Color.Transparent;
         }
     }
 }

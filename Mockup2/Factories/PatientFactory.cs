@@ -16,6 +16,9 @@ namespace Mockup2
 
         }
 
+      
+
+
         public void InsertPatient(Patient p)
         {
             QueryBuilder b = new QueryBuilder();

@@ -64,7 +64,7 @@
     <Compile Include="AdminForm.Designer.cs">
       <DependentUpon>AdminForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Classes\Appointment.cs" />
+    <Compile Include="DatabaseClasses\Appointment.cs" />
     <Compile Include="AppointmentForms\AddAppointmentForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -77,9 +77,9 @@
     <Compile Include="AppointmentForms\FindAppointmentForm.Designer.cs">
       <DependentUpon>FindAppointmentForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Classes\CustomTable.cs" />
-    <Compile Include="Classes\DatabaseConnection.cs" />
-    <Compile Include="Classes\MedicationInstance.cs" />
+    <Compile Include="DatabaseClasses\CustomTable.cs" />
+    <Compile Include="DatabaseClasses\DatabaseConnection.cs" />
+    <Compile Include="DatabaseClasses\MedicationInstance.cs" />
     <Compile Include="EditStaffForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -107,15 +107,15 @@
     <Compile Include="LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Classes\MedicalNote.cs" />
-    <Compile Include="Classes\Medication.cs" />
+    <Compile Include="DatabaseClasses\MedicalNote.cs" />
+    <Compile Include="DatabaseClasses\Medication.cs" />
     <Compile Include="MessagePatientForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MessagePatientForm.Designer.cs">
       <DependentUpon>MessagePatientForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Classes\Patient.cs" />
+    <Compile Include="DatabaseClasses\Patient.cs" />
     <Compile Include="PatientForms\RegisterNewPatientForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -140,7 +140,7 @@
     <Compile Include="PatientForms\ViewTestHistoryForm.Designer.cs">
       <DependentUpon>ViewTestHistoryForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Classes\Prescription.cs" />
+    <Compile Include="DatabaseClasses\Prescription.cs" />
     <Compile Include="PrescriptionForms\AmendPrescriptionForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -159,9 +159,9 @@
     <Compile Include="PrescriptionForms\ViewPrescription.Designer.cs">
       <DependentUpon>ViewPrescription.cs</DependentUpon>
     </Compile>
-    <Compile Include="Classes\Program.cs" />
+    <Compile Include="DatabaseClasses\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Classes\QueryBuilder.cs" />
+    <Compile Include="DatabaseClasses\QueryBuilder.cs" />
     <Compile Include="ReceptionistForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -174,16 +174,17 @@
     <Compile Include="ResetPasswordForm.Designer.cs">
       <DependentUpon>ResetPasswordForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Classes\Rota.cs" />
+    <Compile Include="DatabaseClasses\Rota.cs" />
     <Compile Include="SeeStaffListForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="SeeStaffListForm.Designer.cs">
       <DependentUpon>SeeStaffListForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Classes\Staff.cs" />
-    <Compile Include="Classes\Table.cs" />
-    <Compile Include="Classes\TestResults.cs" />
+    <Compile Include="DatabaseClasses\Staff.cs" />
+    <Compile Include="DatabaseClasses\Table.cs" />
+    <Compile Include="DatabaseClasses\TestResults.cs" />
+    <Compile Include="Support\DatabaseConverter.cs" />
     <EmbeddedResource Include="AdminForm.resx">
       <DependentUpon>AdminForm.cs</DependentUpon>
     </EmbeddedResource>

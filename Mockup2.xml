@@ -86,6 +86,39 @@
             <param name="b">The QueryBuilder object containing the SQL query to invoke against the database.</param>
             <returns>A CustomTable that has the resulting 'table' as a list of <code>Dictionary&lt;Column, object&gt;</code></returns>
         </member>
+        <member name="M:Mockup2.GPNurse.OK_Click(System.Object,System.EventArgs)">
+            This button returns one patient from the database as an object
+            can be by name or nhs number
+            
+        </member>
+        <member name="M:Mockup2.GPNurse.selectSearch_Click(System.Object,System.EventArgs)">
+            This button (Viev this patient details) loads in selected patient details on the page
+            
+        </member>
+        <member name="M:Mockup2.GPNurse.textBoxWriter(System.Collections.Generic.List{System.String},System.Windows.Forms.RichTextBox)">
+            Prinitg any list <string></string> data into the textbox
+            
+        </member>
+        <member name="M:Mockup2.GPNurse.ListBoxWriter(System.Collections.Generic.List{System.String},System.Windows.Forms.ListBox)">
+            Prinitg any list <string></string> data into the textbox
+            
+        </member>
+        <member name="M:Mockup2.GPNurse.textBoxCleaner(System.Windows.Forms.RichTextBox)">
+            Clears selected textbox
+            
+        </member>
+        <member name="M:Mockup2.GPNurse.textBoxCleaner(System.Windows.Forms.TextBox)">
+            Clears selected textbox
+            
+        </member>
+        <member name="M:Mockup2.GPNurse.ListBoxCleaner(System.Windows.Forms.ListBox)">
+            Clears selected textbox
+            
+        </member>
+        <member name="M:Mockup2.GPNurse.saveChanges">
+            prompting the user to save their work
+            
+        </member>
         <member name="F:Mockup2.GPNurse.components">
             <summary>
             Required designer variable.
