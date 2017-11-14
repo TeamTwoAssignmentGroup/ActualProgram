@@ -1,11 +1,11 @@
-﻿using Mockup2.Classes;
+﻿using Mockup2.DatabaseClasses;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static Mockup2.Tables;
+using static Mockup2.DatabaseClasses.Tables;
 
 namespace Mockup2.Factories
 {
@@ -173,28 +173,14 @@ namespace Mockup2.Factories
         /// <param name="a">The appointment to notify the patient abour.</param>
         private void SendConfirmationEmail(Appointment a)
         {
-            CustomTableFactory ctf = new CustomTableFactory(dbCon);
-            QueryBuilder b = new QueryBuilder();
-            b.Select(Tables.PATIENT_TABLE.Email, Tables.APPOINTMENT_TABLE.AppointmentDate, Tables.APPOINTMENT_TABLE.AppointmentTime,Tables.PATIENT_TABLE.FirstName,Tables.PATIENT_TABLE.LastName).From(Tables.PATIENT_TABLE, Tables.APPOINTMENT_TABLE).Where(
-                b.IsEqual(Tables.APPOINTMENT_TABLE.PatientID, Tables.PATIENT_TABLE.ID), b.And(), b.IsEqual(Tables.APPOINTMENT_TABLE.ID, a.Id)
-                );
-            CustomTable ct = ctf.GetCustomTable(b);
-            Console.WriteLine(ct);
+            StaffFactory sf = new StaffFactory(dbCon);
+            PatientFactory pf = new PatientFactory(dbCon);
+            Staff staff = sf.GetStaffByID(a.StaffId)[0];
+            DateTime date = a.AppointmentDate;
+            DateTime time = a.AppointmentTime;
+            string email = pf.GetPatientsByID(a.PatientId)[0].Email;
 
-            string email = ct.GetRows()[0][Tables.PATIENT_TABLE.Email].ToString();
-            DateTime date = GetDateTime(ct.GetRows()[0][Tables.APPOINTMENT_TABLE.AppointmentDate]);
-            DateTime time = GetDateTime(ct.GetRows()[0][Tables.APPOINTMENT_TABLE.AppointmentTime]);
-
-            string ln = System.Environment.NewLine;
-
-            string fName = GetString(ct.GetRows()[0][Tables.PATIENT_TABLE.FirstName]);
-            string lName = GetString(ct.GetRows()[0][Tables.PATIENT_TABLE.LastName]);
-
-            string subject = "Confirmation of appointment booking";
-            string message = string.Format("Dear {0} {1}, this is an automated message to confirm your surgery appointment on"+ln +
-                "{2} at {3}"+ln+
-                " if you cannot make this appointment, please contact the surgery as soon as possible.",fName,lName,date.ToString("dd-MM-yyyy"),time.ToString("HH:mm"));
-            Emailer.SendEmail(email, subject, message);
+            Emailer.SendAppointmentEmail(email, staff, date, time);
         }
 
         /// <summary>

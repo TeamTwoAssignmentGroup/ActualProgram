@@ -303,6 +303,7 @@
             // 
             this.testList.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.testList.FormattingEnabled = true;
+            this.testList.HorizontalScrollbar = true;
             this.testList.ItemHeight = 25;
             this.testList.Location = new System.Drawing.Point(17, 609);
             this.testList.Name = "testList";

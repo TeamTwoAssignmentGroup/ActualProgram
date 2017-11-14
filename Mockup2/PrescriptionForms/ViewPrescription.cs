@@ -1,4 +1,5 @@
-﻿using Mockup2.Factories;
+﻿using Mockup2.DatabaseClasses;
+using Mockup2.Factories;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static Mockup2.Tables;
+using static Mockup2.DatabaseClasses.Tables;
 
 namespace Mockup2.PrescriptionForms
 {

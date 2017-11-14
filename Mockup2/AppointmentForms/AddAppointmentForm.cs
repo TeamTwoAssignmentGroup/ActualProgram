@@ -1,4 +1,5 @@
-﻿using Mockup2.Factories;
+﻿using Mockup2.DatabaseClasses;
+using Mockup2.Factories;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -135,7 +136,10 @@ namespace Mockup2.AppointmentForms
                 app.StaffId = staffID;
                 app.PatientId = patientID;
                 app.AppointmentDate = dateTimePicker1.Value;
-                app.AppointmentTime = DateTime.ParseExact(timeslotcomboBox1.SelectedItem.ToString(), "HH:mm:ss", CultureInfo.InvariantCulture);
+                if (timeslotcomboBox1.SelectedItem != null)
+                {
+                    app.AppointmentTime = DateTime.ParseExact(timeslotcomboBox1.SelectedItem.ToString(), "HH:mm:ss", CultureInfo.InvariantCulture);
+                }
                 app.Cause = causeTextBox.Text;
                 app.Status = statusComboBox.SelectedItem.ToString();
                 af.UpdateAppointment(app);

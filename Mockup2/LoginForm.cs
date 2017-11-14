@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Mockup2.DatabaseClasses;
+using Mockup2.Factories;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -22,6 +24,18 @@ namespace Mockup2
         private void button1_Click(object sender, EventArgs e)
         {
             object cbi = this.staffJobComboBox.SelectedItem;
+            if (Program.ENFORCE_LOGIN)
+            {
+                int staffID = int.Parse(staffIDtextBox1.Text);
+                string password = staffPasswordtextBox2.Text;
+                Console.WriteLine("Searching for ID:{0} Password:{1}",staffID,password);
+                StaffFactory sf = new StaffFactory(dbCon);
+                List<Staff> s = sf.GetStaffByID(staffID);
+                if (s.Count > 0)
+                {
+                    cbi = s[0].JobRole;
+                }
+            }
             Console.Out.WriteLine("Object: " + cbi);
             switch (cbi)
             {
@@ -30,7 +44,7 @@ namespace Mockup2
                     af.Show();
                     break;
 
-                case "GP": GPNurse gpnf = new GPNurse(dbCon);
+                case "Doctor": GPNurse gpnf = new GPNurse(dbCon);
                     gpnf.WindowState = FormWindowState.Maximized;
                     gpnf.Show();
                     break;

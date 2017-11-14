@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Mockup2
+namespace Mockup2.DatabaseClasses
 {
     /// <summary>
     /// A helper class for wrapping a MySQLConnection
