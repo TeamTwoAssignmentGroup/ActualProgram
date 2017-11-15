@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net;
 
-namespace Mockup2.Classes
+namespace Mockup2
 {
     /// <summary>
     /// Static help class to send an email. Uses the Gmail smtp server, which requires an authorized user to send emails.

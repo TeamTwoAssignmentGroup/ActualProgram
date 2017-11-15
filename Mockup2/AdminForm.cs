@@ -33,7 +33,7 @@ namespace Mockup2
 
         private void button1_Click(object sender, EventArgs e)
         {
-            new MessagePatientForm().Show();
+            new MessagePatientForm(dbCon).Show();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -48,7 +48,15 @@ namespace Mockup2
 
         private void button3_Click(object sender, EventArgs e)
         {
-
+            b = new QueryBuilder();
+            object[] pass = new object[14];
+            int staffID = 0;
+            for (int i = 0; i < dataGridView1.RowCount; i++)
+            {
+                pass = DataSet(i).Item1;
+                staffID = DataSet(i).Item2;
+                b.Update(Tables.ROTA_TABLE).Set(pass).Where(b.IsEqual(Tables.ROTA_TABLE.StaffID, staffID));
+            }
         }
 
         private void AdminForm_Load(object sender, EventArgs e)
@@ -66,7 +74,8 @@ namespace Mockup2
         {
             CustomTableFactory ctf = new CustomTableFactory(dbCon);
             b = new QueryBuilder();
-            b.Select(Tables.STAFF_TABLE.ID, Tables.STAFF_TABLE.FirstName, Tables.STAFF_TABLE.LastName, Tables.STAFF_TABLE.Address, Tables.STAFF_TABLE.Postcode, Tables.STAFF_TABLE.JobRole).From(Tables.STAFF_TABLE);
+            b.Select(Tables.STAFF_TABLE.ID, Tables.STAFF_TABLE.FirstName, Tables.STAFF_TABLE.LastName, Tables.STAFF_TABLE.JobRole, 
+                Tables.STAFF_TABLE.Email, Tables.STAFF_TABLE.Address, Tables.STAFF_TABLE.Postcode).From(Tables.STAFF_TABLE);
 
             CustomTable ct = ctf.GetCustomTable(b);
 
@@ -79,19 +88,6 @@ namespace Mockup2
                 }
                 dataGridView2.Rows.Add(row.Values.ToArray());
                 Console.WriteLine();
-            }
-        }
-
-        private void button3_Click_1(object sender, EventArgs e)
-        {
-            b = new QueryBuilder();
-            object[] pass = new object[14];
-            int staffID = 0;
-            for (int i = 0; i < dataGridView1.RowCount; i++)
-            {
-                pass = DataSet(i).Item1;
-                staffID = DataSet(i).Item2;
-                b.Update(Tables.ROTA_TABLE).Set(pass).Where(b.IsEqual(Tables.ROTA_TABLE.StaffID, staffID));
             }
         }
 
@@ -116,12 +112,13 @@ namespace Mockup2
             Tuple<object[], int> rotaData = new Tuple<object[], int>(pass, staffID);
             return rotaData;
         }
+
         private void PopulateAdminFormRota()
         {
             CustomTableFactory ctf = new CustomTableFactory(dbCon);
             b = new QueryBuilder();
-            b.Select(Tables.ROTA_TABLE.StaffID, Tables.ROTA_TABLE.Mon, Tables.ROTA_TABLE.Tue, Tables.ROTA_TABLE.Wed,
-                Tables.ROTA_TABLE.Thur, Tables.ROTA_TABLE.Fri, Tables.ROTA_TABLE.Sat, Tables.ROTA_TABLE.Sun).From(Tables.ROTA_TABLE);
+            b.Select(Tables.ROTA_TABLE.StaffID, Tables.STAFF_TABLE.FirstName, Tables.STAFF_TABLE.LastName, Tables.ROTA_TABLE.Mon, Tables.ROTA_TABLE.Tue, Tables.ROTA_TABLE.Wed,
+                Tables.ROTA_TABLE.Thur, Tables.ROTA_TABLE.Fri, Tables.ROTA_TABLE.Sat, Tables.ROTA_TABLE.Sun).From(Tables.ROTA_TABLE, Tables.STAFF_TABLE).Where(b.IsEqual(Tables.STAFF_TABLE.ID, Tables.ROTA_TABLE.StaffID));
             CustomTable ct = ctf.GetCustomTable(b);
             foreach (var row in ct.GetRows())
             {

@@ -92,13 +92,13 @@
             </summary>
             <returns>The underlying MySQL connection.</returns>
         </member>
-        <member name="T:Mockup2.Classes.Emailer">
+        <member name="T:Mockup2.Emailer">
             <summary>
             Static help class to send an email. Uses the Gmail smtp server, which requires an authorized user to send emails.
             One was created specifically for this project.
             </summary>
         </member>
-        <member name="M:Mockup2.Classes.Emailer.SendEmail(System.String,System.String,System.String)">
+        <member name="M:Mockup2.Emailer.SendEmail(System.String,System.String,System.String)">
             <summary>
             Sends an email message to the supplied email address, using the supplied subject and message.
             </summary>
@@ -918,6 +918,23 @@
         <member name="T:Mockup2.Tables.TestResultTable">
             <summary>
             Represents the TestResult table.
+            </summary>
+        </member>
+        <member name="F:Mockup2.updateStaff.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Mockup2.updateStaff.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Mockup2.updateStaff.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
             </summary>
         </member>
         <member name="T:Mockup2.Properties.Resources">
