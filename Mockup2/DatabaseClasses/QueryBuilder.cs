@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static Mockup2.Tables;
+using static Mockup2.DatabaseClasses.Tables;
 
-namespace Mockup2
+namespace Mockup2.DatabaseClasses
 {
     /// <summary>
     /// The QueryBuilder class facilitates a more OO approach to constructing valid SQL queries. It employs the builder pattern to enable
@@ -202,7 +202,7 @@ namespace Mockup2
         public QueryBuilder Select(params Column[] columns)
         {
             query += "SELECT ";
-            foreach(Mockup2.Tables.Column c in columns)
+            foreach(Column c in columns)
             {
                 if (c is AllColumn)
                 {

@@ -5,8 +5,13 @@ using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using System.Net;
+using System.Threading;
+using System.Drawing;
+using System.IO;
+using System.Drawing.Imaging;
+using System.Net.Mime;
 
-namespace Mockup2
+namespace Mockup2.DatabaseClasses
 {
     /// <summary>
     /// Static help class to send an email. Uses the Gmail smtp server, which requires an authorized user to send emails.
@@ -14,6 +19,7 @@ namespace Mockup2
     /// </summary>
     public static class Emailer
     {
+
         /// <summary>
         /// Sends an email message to the supplied email address, using the supplied subject and message.
         /// </summary>
@@ -22,19 +28,104 @@ namespace Mockup2
         /// <param name="message">The email message itself.</param>
         public static void SendEmail(string email, string subject, string message)
         {
-            Console.WriteLine("Attempting to send email with subject: {0} message: {1} to: {2}", subject, message, email);
-            MailMessage mail = new MailMessage("noreply.oversurgery@gmail.com", email);
-            SmtpClient client = new SmtpClient();
+            new Thread(() => {
+                Console.WriteLine("Attempting to send email with subject: {0} message: {1} to: {2}", subject, message, email);
+                MailMessage mail = new MailMessage("noreply.oversurgery@gmail.com", email);
+                SmtpClient client = new SmtpClient();
 
-            client.Port = 587;
-            client.DeliveryMethod = SmtpDeliveryMethod.Network;
-            client.UseDefaultCredentials = false;
-            client.Host = "smtp.gmail.com";
-            client.EnableSsl = true;
-            client.Credentials = new NetworkCredential("noreply.oversurgery@gmail.com", "qaz123456789");
-            mail.Subject = subject;
-            mail.Body = message;
-            client.Send(mail);
+                client.Port = 587;
+                client.DeliveryMethod = SmtpDeliveryMethod.Network;
+                client.UseDefaultCredentials = false;
+                client.Host = "smtp.gmail.com";
+                client.EnableSsl = true;
+                client.Credentials = new NetworkCredential("noreply.oversurgery@gmail.com", "qaz123456789");
+                mail.Subject = subject;
+                mail.Body = message;
+                mail.IsBodyHtml = true;
+                client.Send(mail);
+            }).Start();
+            
+        }
+
+        public static void SendAppointmentEmail(string email, Staff staff, DateTime date,DateTime time)
+        {
+            string staffString = staff.JobRole + " " + staff.FirstName + " " + staff.LastName;
+            string dateString = date.ToString("dd/MM/yyyy");
+            string timeString = time.ToString("HH:mm");
+            new Thread(() => {
+                string bodyString = string.Format(Properties.Resources.formattedemail, DateTime.Now.ToShortDateString(), staffString, dateString, timeString);
+                MailMessage mail = new MailMessage("noreply.oversurgery@gmail.com", email);
+                SmtpClient client = new SmtpClient();
+
+                // Images
+
+                // NHS
+                Bitmap nhs = Properties.Resources.favicon;
+                MemoryStream nhsMS = new MemoryStream();
+                nhs.Save(nhsMS, ImageFormat.Jpeg);
+                nhsMS.Position = 0;
+                Attachment nhsAttachment = new Attachment(nhsMS, "", MediaTypeNames.Image.Jpeg);
+                nhsAttachment.ContentId = "nhs.images.oversurgery";
+                nhsAttachment.ContentDisposition.Inline = true;
+                nhsAttachment.ContentDisposition.DispositionType = DispositionTypeNames.Inline;
+
+                // Success
+                Bitmap success = Properties.Resources.okok;
+                MemoryStream successMS = new MemoryStream();
+                success.Save(successMS, ImageFormat.Gif);
+                successMS.Position = 0;
+                Attachment successAttachment = new Attachment(successMS,"",MediaTypeNames.Image.Gif);
+                successAttachment.ContentId = "success.images.oversurgery";
+                successAttachment.ContentDisposition.Inline = true;
+                successAttachment.ContentDisposition.DispositionType = DispositionTypeNames.Inline;
+
+                // Facebook
+                Bitmap facebook = Properties.Resources.facebook_2x;
+                MemoryStream facebookMS = new MemoryStream();
+                facebook.Save(facebookMS, ImageFormat.Png);
+                facebookMS.Position = 0;
+                Attachment facebookAttachment = new Attachment(facebookMS, "", MediaTypeNames.Image.Jpeg);
+                facebookAttachment.ContentId = "facebook.images.oversurgery";
+                facebookAttachment.ContentDisposition.Inline = true;
+                facebookAttachment.ContentDisposition.DispositionType = DispositionTypeNames.Inline;
+
+                // Twitter
+                Bitmap twitter = Properties.Resources.twitter_2x;
+                MemoryStream twitterMS = new MemoryStream();
+                twitter.Save(twitterMS, ImageFormat.Png);
+                twitterMS.Position = 0;
+                Attachment twitterAttachment = new Attachment(twitterMS, "", MediaTypeNames.Image.Jpeg);
+                twitterAttachment.ContentId = "twitter.images.oversurgery";
+                twitterAttachment.ContentDisposition.Inline = true;
+                twitterAttachment.ContentDisposition.DispositionType = DispositionTypeNames.Inline;
+
+                // Google
+                Bitmap google = Properties.Resources.googleplus_2x;
+                MemoryStream googleMS = new MemoryStream();
+                google.Save(googleMS, ImageFormat.Png);
+                googleMS.Position = 0;
+                Attachment googleAttachment = new Attachment(googleMS, "", MediaTypeNames.Image.Jpeg);
+                googleAttachment.ContentId = "google.images.oversurgery";
+                googleAttachment.ContentDisposition.Inline = true;
+                googleAttachment.ContentDisposition.DispositionType = DispositionTypeNames.Inline;
+
+                client.Port = 587;
+                client.DeliveryMethod = SmtpDeliveryMethod.Network;
+                client.UseDefaultCredentials = false;
+                client.Host = "smtp.gmail.com";
+                client.EnableSsl = true;
+                client.Credentials = new NetworkCredential("noreply.oversurgery@gmail.com", "qaz123456789");
+                mail.Subject = "Booked Appointment";
+                mail.IsBodyHtml = true;
+                mail.Body = bodyString;
+                mail.Attachments.Add(successAttachment);
+                mail.Attachments.Add(facebookAttachment);
+                mail.Attachments.Add(twitterAttachment);
+                mail.Attachments.Add(googleAttachment);
+                mail.Attachments.Add(nhsAttachment);
+
+                client.Send(mail);
+            }).Start();
         }
     }
 }

@@ -11,8 +11,8 @@ using Mockup2.AppointmentForms;
 using Mockup2.Factories;
 using Mockup2.PatientForms;
 using Mockup2.PrescriptionForms;
-using Mockup2.Classes;
 using Mockup2.Support;
+using Mockup2.DatabaseClasses;
 
 namespace Mockup2
 {

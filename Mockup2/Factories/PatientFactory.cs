@@ -1,9 +1,11 @@
-﻿using Mockup2.Factories;
+﻿using Mockup2.DatabaseClasses;
+using Mockup2.Factories;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using static Mockup2.DatabaseClasses.Tables;
 
-namespace Mockup2
+namespace Mockup2.Factories
 {
     /// <summary>
     /// Convenience class to handle pulling Patients from, and inserting Patients into, the database. As well as updating them.
@@ -69,7 +71,7 @@ namespace Mockup2
             while (reader.Read())
             {
                 Patient p = new Patient();
-                Mockup2.Tables.PatientTable pt = Tables.PATIENT_TABLE;
+                PatientTable pt = Tables.PATIENT_TABLE;
                 p.ID = GetInt(reader[pt.ID.Name]);
                 p.NHSNumber = GetString(reader[pt.NHSNumber.Name]);
                 p.FirstName = GetString(reader[pt.FirstName.Name]);
@@ -157,7 +159,7 @@ namespace Mockup2
                     Prescription a = new Prescription();
 
                     Patient p = new Patient();
-                    Mockup2.Tables.PatientTable pt = Tables.PATIENT_TABLE;
+                    PatientTable pt = Tables.PATIENT_TABLE;
                     p.ID = GetInt(reader[pt.ID.Name]);
                     p.NHSNumber = GetString(reader[pt.NHSNumber.Name]);
                     p.FirstName = GetString(reader[pt.FirstName.Name]);
@@ -227,7 +229,7 @@ namespace Mockup2
                     Prescription a = new Prescription();
                  
                     Patient p = new Patient();
-                    Mockup2.Tables.PatientTable pt = Tables.PATIENT_TABLE;
+                    PatientTable pt = Tables.PATIENT_TABLE;
                     p.ID = GetInt(reader[pt.ID.Name]);
                     p.NHSNumber = GetString(reader[pt.NHSNumber.Name]);
                     p.FirstName = GetString(reader[pt.FirstName.Name]);

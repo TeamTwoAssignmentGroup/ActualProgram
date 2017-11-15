@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Mockup2
+namespace Mockup2.DatabaseClasses
 {
     /// <summary>
     /// A collection of Table instances that represent the current database. Used primarily

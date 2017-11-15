@@ -19,7 +19,7 @@ namespace Mockup2.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -61,12 +61,104 @@ namespace Mockup2.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional //EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot;&gt;&lt;head&gt;
+        ///    &lt;!--[if gte mso 9]&gt;&lt;xml&gt;
+        ///     &lt;o:OfficeDocumentSettings&gt;
+        ///      &lt;o:AllowPNG/&gt;
+        ///      &lt;o:PixelsPerInch&gt;96&lt;/o:PixelsPerInch&gt;
+        ///     &lt;/o:OfficeDocumentSettings&gt;
+        ///    &lt;/xml&gt;&lt;![endif]--&gt;
+        ///    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8 [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string appointmentmessage {
+            get {
+                return ResourceManager.GetString("appointmentmessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap facebook_2x {
+            get {
+                object obj = ResourceManager.GetObject("facebook_2x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap favicon {
+            get {
+                object obj = ResourceManager.GetObject("favicon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional //EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot;&gt;&lt;head&gt;
+        ///    &lt;!--[if gte mso 9]&gt;&lt;xml&gt;
+        ///     &lt;o:OfficeDocumentSettings&gt;
+        ///      &lt;o:AllowPNG/&gt;
+        ///      &lt;o:PixelsPerInch&gt;96&lt;/o:PixelsPerInch&gt;
+        ///     &lt;/o:OfficeDocumentSettings&gt;
+        ///    &lt;/xml&gt;&lt;![endif]--&gt;
+        ///    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8 [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string formattedemail {
+            get {
+                return ResourceManager.GetString("formattedemail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap googleplus_2x {
+            get {
+                object obj = ResourceManager.GetObject("googleplus_2x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
         internal static byte[] MySql_Data {
             get {
                 object obj = ResourceManager.GetObject("MySql_Data", resourceCulture);
                 return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap nhs_logo {
+            get {
+                object obj = ResourceManager.GetObject("nhs_logo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap okok {
+            get {
+                object obj = ResourceManager.GetObject("okok", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap twitter_2x {
+            get {
+                object obj = ResourceManager.GetObject("twitter_2x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
     }
