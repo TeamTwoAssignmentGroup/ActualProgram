@@ -13,7 +13,7 @@ namespace Mockup2.DatabaseClasses
     /// <summary>
     /// OUT OF ORDER 
     /// </summary>
-    class CustomTable
+    public class CustomTable
     {
         private List<Dictionary<Column,object>> columnData;
         public CustomTable(List<Dictionary<Column, object>> columnData)

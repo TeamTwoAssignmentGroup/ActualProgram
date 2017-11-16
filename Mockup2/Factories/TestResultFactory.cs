@@ -12,7 +12,7 @@ namespace Mockup2.Factories
     /// <summary>
     /// Convenience class to handle returning, updating, and inserting TestResult objects into the database.
     /// </summary>
-    class TestResultFactory : AbstractFactory
+    public class TestResultFactory : AbstractFactory
     {
         public TestResultFactory(DBConnection dbCon) : base(dbCon)
         {

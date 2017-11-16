@@ -12,7 +12,7 @@ namespace Mockup2.Factories
     /// <summary>
     /// Helper class to pull whole MedicalNote objects from the database based on various critera.
     /// </summary>
-    class MedicalNoteFactory : AbstractFactory
+    public class MedicalNoteFactory : AbstractFactory
     { 
         public MedicalNoteFactory(DBConnection dbCon) : base(dbCon)
         {

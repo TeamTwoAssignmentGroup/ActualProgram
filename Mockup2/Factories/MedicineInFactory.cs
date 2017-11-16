@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Mockup2.Factories
 {
-    class MedicineInFactory :AbstractFactory
+    public class MedicineInFactory :AbstractFactory
     {
         DBConnection con;
             public MedicineInFactory(DBConnection dbCon) : base(dbCon)

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Mockup2.DatabaseClasses
 {
-    class TestResult
+    public class TestResult
     {
         private int id;
         private int patientID;

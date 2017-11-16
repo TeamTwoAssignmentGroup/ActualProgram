@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -419,14 +420,20 @@ namespace Mockup2.DatabaseClasses
         /// <summary>
         /// Dumps the stored queries that have been requested over the program lifetime,
         /// and how many times they have been requested.
-        /// Outputs this information to standard output.
+        /// Outputs this information to standard output and a text file named querylog.txt
+        /// in the same folder as the exe.
         /// </summary>
         public static void DumpLog()
         {
+            StreamWriter sw = new StreamWriter("querylog.txt");
             foreach(KeyValuePair<string,int> kvp in pastQueries)
             {
                 Console.WriteLine("[{0}] : {1}",kvp.Value,kvp.Key);
+                sw.WriteLine("[{0}] : {1}", kvp.Value, kvp.Key);
             }
+            sw.Flush();
+            sw.Close();
+            sw.Dispose();
         }
     }
 }

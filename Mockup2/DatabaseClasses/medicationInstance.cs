@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Mockup2.DatabaseClasses
 {
-    class MedicationInstance
+    public class MedicationInstance
     {
 
         int id;

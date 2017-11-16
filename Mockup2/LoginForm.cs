@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -66,11 +67,37 @@ namespace Mockup2
             this.WindowState = FormWindowState.Maximized;
             this.MinimumSize = this.Size;
             this.MaximumSize = this.Size;
+            this.staffJobComboBox.SelectedIndex = 0;
+            if (Program.ENFORCE_LOGIN)
+            {
+                this.staffJobComboBox.Visible = false;
+                this.staffJobLabel.Visible = false;
+            }
+            this.staffIDtextBox1.Focus();
+            this.staffPasswordtextBox2.KeyUp += StaffPasswordtextBox2_KeyUp;
+        }
+
+        private void StaffPasswordtextBox2_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                button1_Click(sender, e);
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://www.nhs.uk/pages/home.aspx");
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            Process.Start("http://kiralee.ddns.net/TTAG/");
         }
     }
 }

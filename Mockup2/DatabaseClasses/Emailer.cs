@@ -26,7 +26,8 @@ namespace Mockup2.DatabaseClasses
         /// <param name="email">Email address of the recipient.</param>
         /// <param name="subject">Subject of the email message.</param>
         /// <param name="message">The email message itself.</param>
-        public static void SendEmail(string email, string subject, string message)
+        /// <param name="fileNamesToAttach">File names as strings to attach to this email, if any.</param>
+        public static void SendEmail(string email, string subject, string message, params string[] fileNamesToAttach)
         {
             new Thread(() => {
                 Console.WriteLine("Attempting to send email with subject: {0} message: {1} to: {2}", subject, message, email);
@@ -42,11 +43,23 @@ namespace Mockup2.DatabaseClasses
                 mail.Subject = subject;
                 mail.Body = message;
                 mail.IsBodyHtml = true;
+                foreach(string s in fileNamesToAttach)
+                {
+                    mail.Attachments.Add(new Attachment(s));
+                }
                 client.Send(mail);
             }).Start();
             
         }
 
+        /// <summary>
+        /// Sends a preformatted HTML email to the supplied email address, which should be a Patient's, detailing their appointment date and time
+        /// as well as the member of staff they will be seeing.
+        /// </summary>
+        /// <param name="email">Email address of patient.</param>
+        /// <param name="staff">The Staff object that representing the member of staff that the patient will be seeing.</param>
+        /// <param name="date">The date of the appointment.</param>
+        /// <param name="time">The time of the appointment.</param>
         public static void SendAppointmentEmail(string email, Staff staff, DateTime date,DateTime time)
         {
             string staffString = staff.JobRole + " " + staff.FirstName + " " + staff.LastName;
@@ -58,6 +71,15 @@ namespace Mockup2.DatabaseClasses
                 SmtpClient client = new SmtpClient();
 
                 // Images
+                // NHS
+                Bitmap logo = Properties.Resources.logo;
+                MemoryStream logoMS = new MemoryStream();
+                logo.Save(logoMS, ImageFormat.Jpeg);
+                logoMS.Position = 0;
+                Attachment logoAttachment = new Attachment(logoMS, "", MediaTypeNames.Image.Jpeg);
+                logoAttachment.ContentId = "logo.images.oversurgery";
+                logoAttachment.ContentDisposition.Inline = true;
+                logoAttachment.ContentDisposition.DispositionType = DispositionTypeNames.Inline;
 
                 // NHS
                 Bitmap nhs = Properties.Resources.favicon;
@@ -123,6 +145,7 @@ namespace Mockup2.DatabaseClasses
                 mail.Attachments.Add(twitterAttachment);
                 mail.Attachments.Add(googleAttachment);
                 mail.Attachments.Add(nhsAttachment);
+                mail.Attachments.Add(logoAttachment);
 
                 client.Send(mail);
             }).Start();

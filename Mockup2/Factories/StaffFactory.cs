@@ -12,7 +12,7 @@ namespace Mockup2.Factories
     /// <summary>
     /// Convenience class to handle returning, updating, and inserting Staff objects into the database.
     /// </summary>
-    class StaffFactory : AbstractFactory
+    public class StaffFactory : AbstractFactory
     {
         public StaffFactory(DBConnection dbCon) : base(dbCon)
         {

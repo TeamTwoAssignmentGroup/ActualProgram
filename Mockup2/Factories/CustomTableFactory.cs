@@ -9,7 +9,7 @@ using static Mockup2.DatabaseClasses.Tables;
 
 namespace Mockup2.Factories
 {
-    class CustomTableFactory : AbstractFactory
+    public class CustomTableFactory : AbstractFactory
     {
         public CustomTableFactory(DBConnection dbCon) : base(dbCon)
         {

@@ -9,7 +9,7 @@ using static Mockup2.DatabaseClasses.Tables;
 
 namespace Mockup2.Factories
 {
-    class AppointmentFactory : AbstractFactory
+    public class AppointmentFactory : AbstractFactory
     {
         private static int nextAvailableAppointmentID;
 

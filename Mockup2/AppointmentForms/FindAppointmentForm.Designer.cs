@@ -29,18 +29,18 @@
         private void InitializeComponent()
         {
             this.radioButtonGroupBox = new System.Windows.Forms.GroupBox();
-            this.nameRadioButton = new System.Windows.Forms.RadioButton();
             this.dateRadioButton = new System.Windows.Forms.RadioButton();
+            this.nameRadioButton = new System.Windows.Forms.RadioButton();
             this.nameGroupBox = new System.Windows.Forms.GroupBox();
-            this.dateGroupBox = new System.Windows.Forms.GroupBox();
-            this.firstNameTextBox = new System.Windows.Forms.TextBox();
-            this.lastNameTextBox = new System.Windows.Forms.TextBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lastNameTextBox = new System.Windows.Forms.TextBox();
+            this.firstNameTextBox = new System.Windows.Forms.TextBox();
+            this.dateGroupBox = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.searchButton = new System.Windows.Forms.Button();
             this.radioButtonGroupBox.SuspendLayout();
             this.nameGroupBox.SuspendLayout();
@@ -60,27 +60,27 @@
             this.radioButtonGroupBox.TabStop = false;
             this.radioButtonGroupBox.Text = "Search Options";
             // 
-            // nameRadioButton
-            // 
-            this.nameRadioButton.AutoSize = true;
-            this.nameRadioButton.Location = new System.Drawing.Point(7, 20);
-            this.nameRadioButton.Name = "nameRadioButton";
-            this.nameRadioButton.Size = new System.Drawing.Size(102, 17);
-            this.nameRadioButton.TabIndex = 0;
-            this.nameRadioButton.Text = "Search by name";
-            this.nameRadioButton.UseVisualStyleBackColor = true;
-            this.nameRadioButton.CheckedChanged += new System.EventHandler(this.nameRadioButton_CheckedChanged);
-            // 
             // dateRadioButton
             // 
             this.dateRadioButton.AutoSize = true;
             this.dateRadioButton.Location = new System.Drawing.Point(7, 44);
             this.dateRadioButton.Name = "dateRadioButton";
             this.dateRadioButton.Size = new System.Drawing.Size(97, 17);
-            this.dateRadioButton.TabIndex = 1;
+            this.dateRadioButton.TabIndex = 100;
             this.dateRadioButton.Text = "Search by date";
             this.dateRadioButton.UseVisualStyleBackColor = true;
             this.dateRadioButton.CheckedChanged += new System.EventHandler(this.dateRadioButton_CheckedChanged);
+            // 
+            // nameRadioButton
+            // 
+            this.nameRadioButton.AutoSize = true;
+            this.nameRadioButton.Location = new System.Drawing.Point(7, 20);
+            this.nameRadioButton.Name = "nameRadioButton";
+            this.nameRadioButton.Size = new System.Drawing.Size(102, 17);
+            this.nameRadioButton.TabIndex = 100;
+            this.nameRadioButton.Text = "Search by name";
+            this.nameRadioButton.UseVisualStyleBackColor = true;
+            this.nameRadioButton.CheckedChanged += new System.EventHandler(this.nameRadioButton_CheckedChanged);
             // 
             // nameGroupBox
             // 
@@ -95,6 +95,38 @@
             this.nameGroupBox.TabStop = false;
             this.nameGroupBox.Text = "Name";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(29, 50);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(58, 13);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Last Name";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(31, 23);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(57, 13);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "First Name";
+            // 
+            // lastNameTextBox
+            // 
+            this.lastNameTextBox.Location = new System.Drawing.Point(93, 47);
+            this.lastNameTextBox.Name = "lastNameTextBox";
+            this.lastNameTextBox.Size = new System.Drawing.Size(100, 20);
+            this.lastNameTextBox.TabIndex = 2;
+            // 
+            // firstNameTextBox
+            // 
+            this.firstNameTextBox.Location = new System.Drawing.Point(94, 20);
+            this.firstNameTextBox.Name = "firstNameTextBox";
+            this.firstNameTextBox.Size = new System.Drawing.Size(100, 20);
+            this.firstNameTextBox.TabIndex = 1;
+            // 
             // dateGroupBox
             // 
             this.dateGroupBox.Controls.Add(this.label4);
@@ -108,51 +140,14 @@
             this.dateGroupBox.TabStop = false;
             this.dateGroupBox.Text = "Date";
             // 
-            // firstNameTextBox
+            // label4
             // 
-            this.firstNameTextBox.Location = new System.Drawing.Point(94, 20);
-            this.firstNameTextBox.Name = "firstNameTextBox";
-            this.firstNameTextBox.Size = new System.Drawing.Size(100, 20);
-            this.firstNameTextBox.TabIndex = 0;
-            // 
-            // lastNameTextBox
-            // 
-            this.lastNameTextBox.Location = new System.Drawing.Point(93, 47);
-            this.lastNameTextBox.Name = "lastNameTextBox";
-            this.lastNameTextBox.Size = new System.Drawing.Size(100, 20);
-            this.lastNameTextBox.TabIndex = 1;
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(88, 19);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker1.TabIndex = 0;
-            // 
-            // dateTimePicker2
-            // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(88, 44);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker2.TabIndex = 1;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(31, 23);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(57, 13);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "First Name";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(29, 50);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(58, 13);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Last Name";
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(5, 50);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(77, 13);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "Maximum Date";
             // 
             // label3
             // 
@@ -164,14 +159,19 @@
             this.label3.Text = "Minimum Date";
             this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
-            // label4
+            // dateTimePicker2
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(5, 50);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(77, 13);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Maximum Date";
+            this.dateTimePicker2.Location = new System.Drawing.Point(88, 44);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePicker2.TabIndex = 1;
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(88, 19);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePicker1.TabIndex = 0;
             // 
             // searchButton
             // 

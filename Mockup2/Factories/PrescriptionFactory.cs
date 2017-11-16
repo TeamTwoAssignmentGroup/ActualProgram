@@ -12,7 +12,7 @@ namespace Mockup2.Factories
     /// <summary>
     /// Convenience method to handle returning, updating, and inserting Prescription objects into the database.
     /// </summary>
-    class PrescriptionFactory : AbstractFactory
+    public class PrescriptionFactory : AbstractFactory
     {
         private static int nextAvailablePrescriptionID;
         public PrescriptionFactory(DBConnection dbCon) : base(dbCon)

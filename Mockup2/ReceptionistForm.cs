@@ -192,7 +192,7 @@ namespace Mockup2
                // aaf.dateTimePicker2.Value = aaf.dateTimePicker2.Value.Date + (TimeSpan) appointmentDataGridView.Rows[rowNum].Cells[5].Value;
                 Console.WriteLine("Time object is: " + appointmentDataGridView.Rows[rowNum].Cells[5].Value);
                 aaf.statusComboBox.Text = appointmentDataGridView.Rows[rowNum].Cells[6].Value.ToString();
-                //aaf.causeTextBox.Text = appointmentDataGridView.Rows[0].Cells[7].Value.ToString();
+                aaf.causeTextBox.Text = appointmentDataGridView.Rows[rowNum].Cells[7].Value.ToString();
                 Console.WriteLine("Index of selected timeslot is: " + aaf.timeslotcomboBox1.Items.IndexOf(appointmentDataGridView.Rows[rowNum].Cells[5].Value));
                 aaf.timeslotcomboBox1.SelectedIndex = aaf.timeslotcomboBox1.FindStringExact(appointmentDataGridView.Rows[rowNum].Cells[5].Value.ToString());
                 aaf.ValidateTimeslots();
