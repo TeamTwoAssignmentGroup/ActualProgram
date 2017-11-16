@@ -58,31 +58,6 @@
             </summary>
             <returns>The underlying MySQL connection.</returns>
         </member>
-        <member name="T:Mockup2.DatabaseClasses.Emailer">
-            <summary>
-            Static help class to send an email. Uses the Gmail smtp server, which requires an authorized user to send emails.
-            One was created specifically for this project.
-            </summary>
-        </member>
-        <member name="M:Mockup2.DatabaseClasses.Emailer.SendEmail(System.String,System.String,System.String,System.String[])">
-            <summary>
-            Sends an email message to the supplied email address, using the supplied subject and message.
-            </summary>
-            <param name="email">Email address of the recipient.</param>
-            <param name="subject">Subject of the email message.</param>
-            <param name="message">The email message itself.</param>
-            <param name="fileNamesToAttach">File names as strings to attach to this email, if any.</param>
-        </member>
-        <member name="M:Mockup2.DatabaseClasses.Emailer.SendAppointmentEmail(System.String,Mockup2.DatabaseClasses.Staff,System.DateTime,System.DateTime)">
-            <summary>
-            Sends a preformatted HTML email to the supplied email address, which should be a Patient's, detailing their appointment date and time
-            as well as the member of staff they will be seeing.
-            </summary>
-            <param name="email">Email address of patient.</param>
-            <param name="staff">The Staff object that representing the member of staff that the patient will be seeing.</param>
-            <param name="date">The date of the appointment.</param>
-            <param name="time">The time of the appointment.</param>
-        </member>
         <member name="M:Mockup2.DatabaseClasses.Program.Main">
             <summary>
             The main entry point for the application.
@@ -261,8 +236,7 @@
             <summary>
             Dumps the stored queries that have been requested over the program lifetime,
             and how many times they have been requested.
-            Outputs this information to standard output and a text file named querylog.txt
-            in the same folder as the exe.
+            Outputs this information to standard output.
             </summary>
         </member>
         <member name="T:Mockup2.DatabaseClasses.Tables">
@@ -354,6 +328,20 @@
             Required method for Designer support - do not modify
             the contents of this method with the code editor.
             </summary>
+        </member>
+        <member name="T:Mockup2.Classes.Emailer">
+            <summary>
+            Static help class to send an email. Uses the Gmail smtp server, which requires an authorized user to send emails.
+            One was created specifically for this project.
+            </summary>
+        </member>
+        <member name="M:Mockup2.Classes.Emailer.SendEmail(System.String,System.String,System.String)">
+            <summary>
+            Sends an email message to the supplied email address, using the supplied subject and message.
+            </summary>
+            <param name="email">Email address of the recipient.</param>
+            <param name="subject">Subject of the email message.</param>
+            <param name="message">The email message itself.</param>
         </member>
         <member name="F:Mockup2.EditStaffForm.components">
             <summary>
@@ -932,18 +920,18 @@
             the contents of this method with the code editor.
             </summary>
         </member>
-        <member name="F:Mockup2.updateStaff.components">
+        <member name="F:Mockup2.UpdateStaff.components">
             <summary>
             Required designer variable.
             </summary>
         </member>
-        <member name="M:Mockup2.updateStaff.Dispose(System.Boolean)">
+        <member name="M:Mockup2.UpdateStaff.Dispose(System.Boolean)">
             <summary>
             Clean up any resources being used.
             </summary>
             <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         </member>
-        <member name="M:Mockup2.updateStaff.InitializeComponent">
+        <member name="M:Mockup2.UpdateStaff.InitializeComponent">
             <summary>
             Required method for Designer support - do not modify
             the contents of this method with the code editor.
@@ -1000,16 +988,6 @@
             </summary>
         </member>
         <member name="P:Mockup2.Properties.Resources.googleplus_2x">
-            <summary>
-              Looks up a localized resource of type System.Drawing.Bitmap.
-            </summary>
-        </member>
-        <member name="P:Mockup2.Properties.Resources.logo">
-            <summary>
-              Looks up a localized resource of type System.Drawing.Bitmap.
-            </summary>
-        </member>
-        <member name="P:Mockup2.Properties.Resources.logo1">
             <summary>
               Looks up a localized resource of type System.Drawing.Bitmap.
             </summary>

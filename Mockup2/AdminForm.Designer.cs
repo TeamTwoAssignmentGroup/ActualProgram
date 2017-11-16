@@ -58,6 +58,9 @@
             this.systemTab = new System.Windows.Forms.TabPage();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
             this.adminTabs.SuspendLayout();
             this.rotaTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -82,6 +85,7 @@
             // 
             // rotaTab
             // 
+            this.rotaTab.Controls.Add(this.button4);
             this.rotaTab.Controls.Add(this.button3);
             this.rotaTab.Controls.Add(this.dataGridView1);
             this.rotaTab.Location = new System.Drawing.Point(4, 42);
@@ -94,17 +98,19 @@
             // 
             // button3
             // 
+            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button3.AutoSize = true;
-            this.button3.Location = new System.Drawing.Point(7, 619);
+            this.button3.Location = new System.Drawing.Point(8, 623);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(149, 52);
             this.button3.TabIndex = 1;
             this.button3.Text = "Update";
             this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click_1);
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AllowUserToResizeColumns = false;
             this.dataGridView1.AllowUserToResizeRows = false;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
@@ -124,7 +130,9 @@
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Top;
             this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dataGridView1.Location = new System.Drawing.Point(3, 3);
+            this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(994, 609);
@@ -134,6 +142,7 @@
             // 
             this.Rota_StaffID.HeaderText = "Staff ID";
             this.Rota_StaffID.Name = "Rota_StaffID";
+            this.Rota_StaffID.ReadOnly = true;
             this.Rota_StaffID.Visible = false;
             this.Rota_StaffID.Width = 136;
             // 
@@ -155,46 +164,54 @@
             // 
             this.Monday.HeaderText = "Monday";
             this.Monday.Name = "Monday";
+            this.Monday.ReadOnly = true;
             this.Monday.Width = 143;
             // 
             // Tuesday
             // 
             this.Tuesday.HeaderText = "Tuesday";
             this.Tuesday.Name = "Tuesday";
+            this.Tuesday.ReadOnly = true;
             this.Tuesday.Width = 152;
             // 
             // Wednesday
             // 
             this.Wednesday.HeaderText = "Wednesday";
             this.Wednesday.Name = "Wednesday";
+            this.Wednesday.ReadOnly = true;
             this.Wednesday.Width = 193;
             // 
             // Thursday
             // 
             this.Thursday.HeaderText = "Thursday";
             this.Thursday.Name = "Thursday";
+            this.Thursday.ReadOnly = true;
             this.Thursday.Width = 162;
             // 
             // Friday
             // 
             this.Friday.HeaderText = "Friday";
             this.Friday.Name = "Friday";
+            this.Friday.ReadOnly = true;
             this.Friday.Width = 122;
             // 
             // Saturday
             // 
             this.Saturday.HeaderText = "Saturday";
             this.Saturday.Name = "Saturday";
+            this.Saturday.ReadOnly = true;
             this.Saturday.Width = 156;
             // 
             // Sunday
             // 
             this.Sunday.HeaderText = "Sunday";
             this.Sunday.Name = "Sunday";
+            this.Sunday.ReadOnly = true;
             this.Sunday.Width = 138;
             // 
             // staffTab
             // 
+            this.staffTab.Controls.Add(this.button5);
             this.staffTab.Controls.Add(this.removeStaffButton);
             this.staffTab.Controls.Add(this.editStaffButton);
             this.staffTab.Controls.Add(this.addStaffButton);
@@ -260,7 +277,7 @@
             this.dataGridView2.MultiSelect = false;
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView2.Size = new System.Drawing.Size(994, 494);
+            this.dataGridView2.Size = new System.Drawing.Size(994, 581);
             this.dataGridView2.TabIndex = 0;
             this.dataGridView2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
             // 
@@ -316,6 +333,7 @@
             // 
             // systemTab
             // 
+            this.systemTab.Controls.Add(this.button6);
             this.systemTab.Controls.Add(this.button2);
             this.systemTab.Controls.Add(this.button1);
             this.systemTab.Location = new System.Drawing.Point(4, 42);
@@ -346,6 +364,39 @@
             this.button1.Text = "Message Patient";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button4
+            // 
+            this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button4.Location = new System.Drawing.Point(839, 623);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(153, 52);
+            this.button4.TabIndex = 2;
+            this.button4.Text = "Exit";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // button5
+            // 
+            this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button5.Location = new System.Drawing.Point(839, 618);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(153, 52);
+            this.button5.TabIndex = 4;
+            this.button5.Text = "Exit";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // button6
+            // 
+            this.button6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button6.Location = new System.Drawing.Point(824, 604);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(153, 52);
+            this.button6.TabIndex = 3;
+            this.button6.Text = "Exit";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // AdminForm
             // 
@@ -401,5 +452,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Email;
         private System.Windows.Forms.DataGridViewTextBoxColumn Address;
         private System.Windows.Forms.DataGridViewTextBoxColumn PostCode;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button6;
     }
 }

@@ -1,4 +1,5 @@
-﻿using Mockup2.DatabaseClasses;
+﻿using Mockup2.Classes;
+using Mockup2.DatabaseClasses;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;

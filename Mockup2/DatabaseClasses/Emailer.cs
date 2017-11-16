@@ -10,8 +10,9 @@ using System.Drawing;
 using System.IO;
 using System.Drawing.Imaging;
 using System.Net.Mime;
+using Mockup2.DatabaseClasses;
 
-namespace Mockup2.DatabaseClasses
+namespace Mockup2.Classes
 {
     /// <summary>
     /// Static help class to send an email. Uses the Gmail smtp server, which requires an authorized user to send emails.
