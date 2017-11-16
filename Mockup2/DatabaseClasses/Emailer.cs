@@ -10,6 +10,7 @@ using System.Drawing;
 using System.IO;
 using System.Drawing.Imaging;
 using System.Net.Mime;
+using Mockup2.DatabaseClasses;
 
 namespace Mockup2.Classes
 {

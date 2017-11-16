@@ -110,9 +110,9 @@
             "Doctor",
             "Nurse",
             "Receptionist"});
-            this.staffJobComboBox.Location = new System.Drawing.Point(529, 72);
+            this.staffJobComboBox.Location = new System.Drawing.Point(463, 72);
             this.staffJobComboBox.Name = "staffJobComboBox";
-            this.staffJobComboBox.Size = new System.Drawing.Size(121, 41);
+            this.staffJobComboBox.Size = new System.Drawing.Size(187, 41);
             this.staffJobComboBox.TabIndex = 6;
             // 
             // label3

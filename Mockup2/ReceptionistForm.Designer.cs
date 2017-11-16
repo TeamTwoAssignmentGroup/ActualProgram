@@ -276,7 +276,7 @@
             this.button8.TabIndex = 3;
             this.button8.Text = "Find";
             this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.button8_Click);
+            this.button8.Click += new System.EventHandler(this.Button8_Click);
             // 
             // lastNameTextbox
             // 

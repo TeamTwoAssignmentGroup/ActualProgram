@@ -20,6 +20,7 @@ namespace Mockup2
         {
             InitializeComponent();
             this.dbCon = dbCon;
+            this.button3.Click += button3_Click;
         }
 
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -49,24 +50,26 @@ namespace Mockup2
 
         private void button3_Click(object sender, EventArgs e)
         {
-            b = new QueryBuilder();
-            object[] pass = new object[14];
-            int staffID = 0;
-            for (int i = 0; i < dataGridView1.RowCount; i++)
+            if (dataGridView1.SelectedRows.Count > 1)
             {
-                pass = DataSet(i).Item1;
-                staffID = DataSet(i).Item2;
-                b.Update(Tables.ROTA_TABLE).Set(pass).Where(b.IsEqual(Tables.ROTA_TABLE.StaffID, staffID));
+                //validate
             }
+            int rowNumber = Convert.ToInt32(dataGridView1.SelectedRows[0].Index);
+            object[] pass = DataSet(rowNumber).Item1;
+            object[] staffName = DataSet(rowNumber).Item2;
+            int staffID = DataSet(rowNumber).Item3;
+
+            Console.WriteLine(rowNumber + "\t" + staffID);
+
+            new UpdateStaff(dbCon, pass, staffName, staffID).ShowDialog();
+            PopulateAdminFormRota();
         }
 
         private void AdminForm_Load(object sender, EventArgs e)
         {
-            this.WindowState = FormWindowState.Maximized;
             this.MinimumSize = this.Size;
             this.MaximumSize = this.Size;
 
-            List<Staff> staff = new StaffFactory(dbCon).GetStaff();
             PopulateAdminFormStaff();
             PopulateAdminFormRota();
         }
@@ -92,30 +95,34 @@ namespace Mockup2
             }
         }
 
-        private Tuple<object[], int> DataSet(int rowNumber)
+        private Tuple<object[], object[], int> DataSet(int rowNumber)
         {
             object[] pass = new object[14];
-            int staffID = Convert.ToInt32(dataGridView1[rowNumber, 0].Value);
+            object[] staffName = new object[2];
+            int staffID = Convert.ToInt32(dataGridView1[0, rowNumber].Value);
+            staffName[0] = Convert.ToString(dataGridView1[1, rowNumber].Value);
+            staffName[1] = Convert.ToString(dataGridView1[2, rowNumber].Value);
             pass[0] = Tables.ROTA_TABLE.Mon;
-            pass[1] = Convert.ToInt32(dataGridView1[rowNumber, 1].Value);
+            pass[1] = Convert.ToInt32(dataGridView1[3, rowNumber].Value);
             pass[2] = Tables.ROTA_TABLE.Tue;
-            pass[3] = Convert.ToInt32(dataGridView1[rowNumber, 2].Value);
+            pass[3] = Convert.ToInt32(dataGridView1[4, rowNumber].Value);
             pass[4] = Tables.ROTA_TABLE.Wed;
-            pass[5] = Convert.ToInt32(dataGridView1[rowNumber, 3].Value);
+            pass[5] = Convert.ToInt32(dataGridView1[5, rowNumber].Value);
             pass[6] = Tables.ROTA_TABLE.Thur;
-            pass[7] = Convert.ToInt32(dataGridView1[rowNumber, 4].Value);
+            pass[7] = Convert.ToInt32(dataGridView1[6, rowNumber].Value);
             pass[8] = Tables.ROTA_TABLE.Fri;
-            pass[9] = Convert.ToInt32(dataGridView1[rowNumber, 5].Value);
+            pass[9] = Convert.ToInt32(dataGridView1[7, rowNumber].Value);
             pass[10] = Tables.ROTA_TABLE.Sat;
-            pass[11] = Convert.ToInt32(dataGridView1[rowNumber, 6].Value);
+            pass[11] = Convert.ToInt32(dataGridView1[8, rowNumber].Value);
             pass[12] = Tables.ROTA_TABLE.Sun;
-            pass[13] = Convert.ToInt32(dataGridView1[rowNumber, 7].Value);
-            Tuple<object[], int> rotaData = new Tuple<object[], int>(pass, staffID);
+            pass[13] = Convert.ToInt32(dataGridView1[9, rowNumber].Value);
+            Tuple<object[], object[], int> rotaData = new Tuple<object[], object[], int>(pass, staffName, staffID);
             return rotaData;
         }
 
         private void PopulateAdminFormRota()
         {
+            dataGridView1.Rows.Clear();
             CustomTableFactory ctf = new CustomTableFactory(dbCon);
             b = new QueryBuilder();
             b.Select(Tables.ROTA_TABLE.StaffID, Tables.STAFF_TABLE.FirstName, Tables.STAFF_TABLE.LastName, Tables.ROTA_TABLE.Mon, Tables.ROTA_TABLE.Tue, Tables.ROTA_TABLE.Wed,
@@ -130,6 +137,21 @@ namespace Mockup2
                 dataGridView1.Rows.Add(row.Values.ToArray());
                 Console.WriteLine();
             }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

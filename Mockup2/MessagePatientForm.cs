@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Mockup2.Factories;
+using Mockup2.DatabaseClasses;
+using Mockup2.Classes;
 
 namespace Mockup2
 {
@@ -30,15 +32,13 @@ namespace Mockup2
         private void MessagePatientForm_Load(object sender, EventArgs e)
         {
             // Sets the size of the form upon loading
-            this.Size = new Size(800, 800);
+            this.Size = new Size(1000, 800);
             // Prevents the form from being re sized
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
 
-            //List<Staff> staff = new StaffFactory(dbCon).GetStaff();
            PopulateAdminMessage();
-
-
         }
+
         private void PopulateAdminMessage()
         {
             CustomTableFactory ctf = new CustomTableFactory(dbCon);
@@ -62,6 +62,11 @@ namespace Mockup2
         private void button2_Click_1(object sender, EventArgs e)
         {
             Emailer.SendEmail(dataGridView1.SelectedRows[0].Cells[3].Value.ToString(), textBox1.Text, textBox2.Text);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

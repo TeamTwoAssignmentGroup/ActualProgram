@@ -2,6 +2,8 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Mockup2;
 using System.Collections.Generic;
+using Mockup2.DatabaseClasses;
+using Mockup2.Factories;
 
 namespace ShaunsTests
 {

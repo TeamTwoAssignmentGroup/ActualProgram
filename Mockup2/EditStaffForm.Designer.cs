@@ -48,11 +48,12 @@
             // 
             // textBox1
             // 
+            this.textBox1.BackColor = System.Drawing.SystemColors.Window;
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox1.Location = new System.Drawing.Point(332, 19);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(199, 40);
+            this.textBox1.Size = new System.Drawing.Size(308, 40);
             this.textBox1.TabIndex = 0;
             // 
             // textBox2
@@ -60,7 +61,7 @@
             this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox2.Location = new System.Drawing.Point(332, 77);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(199, 40);
+            this.textBox2.Size = new System.Drawing.Size(308, 40);
             this.textBox2.TabIndex = 1;
             // 
             // textBox3
@@ -68,7 +69,7 @@
             this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox3.Location = new System.Drawing.Point(332, 132);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(199, 40);
+            this.textBox3.Size = new System.Drawing.Size(308, 40);
             this.textBox3.TabIndex = 2;
             // 
             // textBox4
@@ -77,7 +78,7 @@
             this.textBox4.Location = new System.Drawing.Point(332, 190);
             this.textBox4.Multiline = true;
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(278, 124);
+            this.textBox4.Size = new System.Drawing.Size(387, 124);
             this.textBox4.TabIndex = 3;
             // 
             // textBox6
@@ -85,7 +86,7 @@
             this.textBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox6.Location = new System.Drawing.Point(332, 409);
             this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(199, 40);
+            this.textBox6.Size = new System.Drawing.Size(308, 40);
             this.textBox6.TabIndex = 5;
             // 
             // label1
@@ -159,7 +160,7 @@
             "Receptionist"});
             this.comboBox1.Location = new System.Drawing.Point(332, 478);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(199, 41);
+            this.comboBox1.Size = new System.Drawing.Size(308, 41);
             this.comboBox1.TabIndex = 14;
             // 
             // button1
@@ -188,14 +189,14 @@
             this.textBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox5.Location = new System.Drawing.Point(332, 355);
             this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(278, 40);
+            this.textBox5.Size = new System.Drawing.Size(387, 40);
             this.textBox5.TabIndex = 17;
             // 
             // EditStaffForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(629, 632);
+            this.ClientSize = new System.Drawing.Size(766, 632);
             this.Controls.Add(this.textBox5);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.button1);

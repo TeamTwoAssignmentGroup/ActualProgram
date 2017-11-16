@@ -186,11 +186,11 @@
     <Compile Include="DatabaseClasses\Table.cs" />
     <Compile Include="DatabaseClasses\TestResults.cs" />
     <Compile Include="Support\DatabaseConverter.cs" />
-    <Compile Include="updateStaff.cs">
+    <Compile Include="UpdateStaff.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="updateStaff.Designer.cs">
-      <DependentUpon>updateStaff.cs</DependentUpon>
+    <Compile Include="UpdateStaff.Designer.cs">
+      <DependentUpon>UpdateStaff.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="AdminForm.resx">
       <DependentUpon>AdminForm.cs</DependentUpon>
@@ -253,8 +253,8 @@
     <EmbeddedResource Include="SeeStaffListForm.resx">
       <DependentUpon>SeeStaffListForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="updateStaff.resx">
-      <DependentUpon>updateStaff.cs</DependentUpon>
+    <EmbeddedResource Include="UpdateStaff.resx">
+      <DependentUpon>UpdateStaff.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="ClassDiagram1.cd" />
     <None Include="ClassDiagram2.cd" />
