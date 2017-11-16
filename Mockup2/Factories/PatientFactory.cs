@@ -140,6 +140,20 @@ namespace Mockup2
 
 
 
+
+        public Patient GetAPatientByID(int ID)
+        {
+            QueryBuilder b = new QueryBuilder();
+            b.Select(Tables.ALL).From(Tables.PATIENT_TABLE).Where(b.IsEqual(Tables.PATIENT_TABLE.ID, ID));
+            return GetPatientByIdNumber(b);
+
+        }
+
+
+
+
+
+
         public Patient GetPatientByIdNumber(QueryBuilder q)
         {
             

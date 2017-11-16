@@ -185,6 +185,7 @@
     <Compile Include="DatabaseClasses\Staff.cs" />
     <Compile Include="DatabaseClasses\Table.cs" />
     <Compile Include="DatabaseClasses\TestResults.cs" />
+    <Compile Include="Support\AppointmentSort.cs" />
     <Compile Include="Support\DatabaseConverter.cs" />
     <EmbeddedResource Include="AdminForm.resx">
       <DependentUpon>AdminForm.cs</DependentUpon>

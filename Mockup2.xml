@@ -369,7 +369,7 @@
             can be by name or nhs number
             
         </member>
-        <member name="M:Mockup2.GPNurse.selectSearch_Click(System.Object,System.EventArgs)">
+        <member name="M:Mockup2.GPNurse.loadCurrentPatient">
             This button (Viev this patient details) loads in selected patient details on the page
             
         </member>
