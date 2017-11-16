@@ -1,14 +1,15 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Mockup2.DatabaseClasses;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static Mockup2.Tables;
+using static Mockup2.DatabaseClasses.Tables;
 
 namespace Mockup2.Factories
 {
-    class CustomTableFactory : AbstractFactory
+    public class CustomTableFactory : AbstractFactory
     {
         public CustomTableFactory(DBConnection dbCon) : base(dbCon)
         {

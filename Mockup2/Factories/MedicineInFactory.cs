@@ -1,4 +1,4 @@
-﻿using Mockup2.Classes;
+﻿using Mockup2.DatabaseClasses;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Mockup2.Factories
 {
-    class MedicineInFactory :AbstractFactory
+    public class MedicineInFactory :AbstractFactory
     {
         DBConnection con;
             public MedicineInFactory(DBConnection dbCon) : base(dbCon)
@@ -26,7 +26,7 @@ namespace Mockup2.Factories
                 {
                 
                 
-                   Mockup2.Tables.MedicationInstanceTable pt = Tables.MEDICATIONINSTANCE_TABLE;
+                    Tables.MedicationInstanceTable pt = Tables.MEDICATIONINSTANCE_TABLE;
                     a.Id = GetInt(reader[pt.ID.Name]);
                     a.MedicationId = GetInt(reader[pt.MedicationID.Name]);
                     a.PrescriptionId = GetInt(reader[pt.PrescriptionID.Name]);
@@ -72,7 +72,7 @@ namespace Mockup2.Factories
             {
 
 
-                Mockup2.Tables.MedicationTable pt = Tables.MEDICATION_TABLE;
+                Tables.MedicationTable pt = Tables.MEDICATION_TABLE;
                 a.ID = GetInt(reader[pt.ID.Name]);
                 a.CommercialName = GetString(reader[pt.CommercialName.Name]);
                 a.Manufacturer = GetString(reader[pt.Manufacturer.Name]);

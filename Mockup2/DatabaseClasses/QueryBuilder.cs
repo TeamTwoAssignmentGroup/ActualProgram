@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static Mockup2.Tables;
+using static Mockup2.DatabaseClasses.Tables;
 
-namespace Mockup2
+namespace Mockup2.DatabaseClasses
 {
     /// <summary>
     /// The QueryBuilder class facilitates a more OO approach to constructing valid SQL queries. It employs the builder pattern to enable
@@ -202,7 +203,7 @@ namespace Mockup2
         public QueryBuilder Select(params Column[] columns)
         {
             query += "SELECT ";
-            foreach(Mockup2.Tables.Column c in columns)
+            foreach(Column c in columns)
             {
                 if (c is AllColumn)
                 {
@@ -419,14 +420,20 @@ namespace Mockup2
         /// <summary>
         /// Dumps the stored queries that have been requested over the program lifetime,
         /// and how many times they have been requested.
-        /// Outputs this information to standard output.
+        /// Outputs this information to standard output and a text file named querylog.txt
+        /// in the same folder as the exe.
         /// </summary>
         public static void DumpLog()
         {
+            StreamWriter sw = new StreamWriter("querylog.txt");
             foreach(KeyValuePair<string,int> kvp in pastQueries)
             {
                 Console.WriteLine("[{0}] : {1}",kvp.Value,kvp.Key);
+                sw.WriteLine("[{0}] : {1}", kvp.Value, kvp.Key);
             }
+            sw.Flush();
+            sw.Close();
+            sw.Dispose();
         }
     }
 }

@@ -18,6 +18,17 @@ namespace Mockup2.AppointmentForms
             InitializeComponent();
             this.parent = parent;
             this.nameRadioButton.Checked = true;
+            this.lastNameTextBox.KeyUp += LastNameTextBox_KeyUp;
+            this.Load += FindAppointmentForm_Load;
+            this.nameGroupBox.Enabled = true;
+        }
+
+        private void LastNameTextBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                searchButton_Click(sender, e);
+            }
         }
 
         private void nameRadioButton_CheckedChanged(object sender, EventArgs e)
@@ -64,6 +75,12 @@ namespace Mockup2.AppointmentForms
             }
             this.Close();
             this.Dispose();
+        }
+
+        private void FindAppointmentForm_Load(object sender, EventArgs e)
+        {
+            Console.WriteLine("Hello this is the form loader");
+            Console.WriteLine("Focusing the textbox was successful: "+this.firstNameTextBox.Focus());
         }
     }
 }

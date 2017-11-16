@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Mockup2
+namespace Mockup2.DatabaseClasses
 {
-    class MedicalNotes
+    public class MedicalNotes
     {
         private int id;
         private int patientID;

@@ -1,17 +1,18 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Mockup2.DatabaseClasses;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static Mockup2.Tables;
+using static Mockup2.DatabaseClasses.Tables;
 
 namespace Mockup2.Factories
 {
     /// <summary>
     /// Helper class to pull whole MedicalNote objects from the database based on various critera.
     /// </summary>
-    class MedicalNoteFactory : AbstractFactory
+    public class MedicalNoteFactory : AbstractFactory
     { 
         public MedicalNoteFactory(DBConnection dbCon) : base(dbCon)
         {

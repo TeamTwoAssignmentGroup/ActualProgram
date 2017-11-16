@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Mockup2;
+using Mockup2.DatabaseClasses;
 
 namespace ShaunsTests
 {

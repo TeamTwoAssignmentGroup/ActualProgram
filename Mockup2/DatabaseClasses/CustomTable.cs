@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static Mockup2.Tables;
+using static Mockup2.DatabaseClasses.Tables;
 
-namespace Mockup2
+namespace Mockup2.DatabaseClasses
 {
 
 
@@ -13,7 +13,7 @@ namespace Mockup2
     /// <summary>
     /// OUT OF ORDER 
     /// </summary>
-    class CustomTable
+    public class CustomTable
     {
         private List<Dictionary<Column,object>> columnData;
         public CustomTable(List<Dictionary<Column, object>> columnData)

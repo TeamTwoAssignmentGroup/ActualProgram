@@ -1,4 +1,5 @@
 ﻿using Mockup2.AppointmentForms;
+using Mockup2.DatabaseClasses;
 using Mockup2.Factories;
 using Mockup2.PatientForms;
 using System;
@@ -70,13 +71,13 @@ namespace Mockup2
         {
             if (e.KeyCode == Keys.Enter)
             {
-                button8_Click(sender, e);
+                Button8_Click(sender, e);
             }
         }
 
         public void RefreshPatients()
         {
-            button8_Click(null, null);
+            Button8_Click(null, null);
         }
 
         private void ReceptionistForm_Load(object sender, EventArgs e)
@@ -191,7 +192,7 @@ namespace Mockup2
                // aaf.dateTimePicker2.Value = aaf.dateTimePicker2.Value.Date + (TimeSpan) appointmentDataGridView.Rows[rowNum].Cells[5].Value;
                 Console.WriteLine("Time object is: " + appointmentDataGridView.Rows[rowNum].Cells[5].Value);
                 aaf.statusComboBox.Text = appointmentDataGridView.Rows[rowNum].Cells[6].Value.ToString();
-                //aaf.causeTextBox.Text = appointmentDataGridView.Rows[0].Cells[7].Value.ToString();
+                aaf.causeTextBox.Text = appointmentDataGridView.Rows[rowNum].Cells[7].Value.ToString();
                 Console.WriteLine("Index of selected timeslot is: " + aaf.timeslotcomboBox1.Items.IndexOf(appointmentDataGridView.Rows[rowNum].Cells[5].Value));
                 aaf.timeslotcomboBox1.SelectedIndex = aaf.timeslotcomboBox1.FindStringExact(appointmentDataGridView.Rows[rowNum].Cells[5].Value.ToString());
                 aaf.ValidateTimeslots();
@@ -219,7 +220,7 @@ namespace Mockup2
             new SeeStaffListForm(seerotadateTimePicker1.Value,dbCon).Show();
         }
 
-        private async void button8_Click(object sender, EventArgs e)
+        private async void Button8_Click(object sender, EventArgs e)
         {
             string firstName = firstNameTextbox.Text;
             string lastName = lastNameTextbox.Text;
