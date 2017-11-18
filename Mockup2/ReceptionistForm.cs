@@ -47,6 +47,8 @@ namespace Mockup2
             this.lastNameTextbox.KeyUp += FirstNameTextbox_KeyUp;
             this.tabControl1.SelectedIndexChanged += TabControl1_SelectedIndexChanged;
             this.seerotadateTimePicker1.KeyUp += SeerotadateTimePicker1_KeyUp;
+            this.d1 = DateTime.Now;
+            this.d2 = DateTime.Now;
         }
 
         private void SeerotadateTimePicker1_KeyUp(object sender, KeyEventArgs e)
@@ -161,7 +163,7 @@ namespace Mockup2
 
         private void button5_Click(object sender, EventArgs e)
         {
-            new AddAppointmentForm(dbCon,0,0,null,this).Show();
+            new AddAppointmentForm(dbCon,0,0,null,this,false).Show();
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -179,7 +181,7 @@ namespace Mockup2
                 PatientFactory pf = new PatientFactory(dbCon);
                 int staffID = sf.GetStaffByName(docFName, docLName)[0].ID;
                 int patientID = pf.GetPatientsByName(patFName, patLName)[0].ID;
-                AddAppointmentForm aaf = new AddAppointmentForm(dbCon,staffID,patientID,selectedAppointments[rowNum],this);
+                AddAppointmentForm aaf = new AddAppointmentForm(dbCon,staffID,patientID,selectedAppointments[rowNum],this,true);
 
                 //aaf.staffIDTextBox.Text = docFName + " " + docLName;
                 //aaf.patientIDTextBox.Text = patFName + " " + patLName;
@@ -321,6 +323,29 @@ namespace Mockup2
                 infoFac.DeletePatient(p);
                 dataGridView1.Rows.RemoveAt(num);
             }
+        }
+
+        private void tabPage3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            this.Dispose();
+        }
+
+        private void button9_Click_1(object sender, EventArgs e)
+        {
+            this.Close();
+            this.Dispose();
+        }
+
+        private void Exit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            this.Dispose();
         }
     }
 }

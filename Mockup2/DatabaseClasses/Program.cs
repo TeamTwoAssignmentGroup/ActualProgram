@@ -12,13 +12,17 @@ namespace Mockup2.DatabaseClasses
     static class Program
     {
         public static readonly bool ENFORCE_LOGIN = false;
+        public static readonly bool SEND_TEXTS = false;
+        public static readonly bool SEND_EMAILS = false;
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
         static void Main()
         {
+            
             DBConnection dbCon = new DBConnection();
+            Console.WriteLine(new PrescriptionFactory(dbCon).GetNextAvailablePrescriptionID());
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new loginForm(dbCon));

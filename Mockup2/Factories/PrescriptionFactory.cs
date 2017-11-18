@@ -94,6 +94,21 @@ namespace Mockup2.Factories
             return GetPrescriptions(b)[0].Id;
         }
 
+        /// <summary>
+        /// Inserts the supplied Prescription into the database. It's important to note that
+        /// the Prescription must have a valid id, obtained using the
+        /// <code>GetNextAvailableID()</code> method in this class. Any Prescriptions
+        /// that have MedicationInstances linked to them will need to be inserted before
+        /// the MedicationInstances are to avoid foreign key constraint problems.
+        /// </summary>
+        /// <param name="p">The Prescription object to insert.</param>
+        public void InsertPrescription(Prescription p)
+        {
+            QueryBuilder b = new QueryBuilder();
+            b.Insert(Tables.PRESCRIPTION_TABLE).Values(p.Id,p.PatientId,p.StaffId,p.IsRepeatable,p.IssueDate.ToString("yyyy-MM-dd"),p.RepeatRequested);
+            MySqlCommand cmd = new MySqlCommand(b.ToString(), dbCon.GetConnection());
+            cmd.ExecuteNonQuery();
+        }
 
 
 

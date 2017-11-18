@@ -58,6 +58,27 @@
             </summary>
             <returns>The underlying MySQL connection.</returns>
         </member>
+        <member name="T:Mockup2.DatabaseClasses.Texter">
+            <summary>
+            Helper class to send text message confirmation of appointments.
+            </summary>
+        </member>
+        <member name="M:Mockup2.DatabaseClasses.Texter.SendAppointmentText(System.String,Mockup2.DatabaseClasses.Staff,System.DateTime,System.DateTime)">
+            <summary>
+            Sends a text confirmation of an appointment to the supplied number, utilising the
+            <a href="https://www.nuget.org/packages/Twilio/">Twilio NuGet package</a> and <a href="https://www.twilio.com/">Web API backend</a>. The message includes appointment date and time,
+            as well as the name and job role of the medical staff being seen.
+            This method expects the mobile number to be properly formatted and have the
+            leading +44 intact; this is a requirement of the Twilio backend.
+            
+            (It should be noted that at current, all texts are received by one phone number - mine. This
+            is a restriction in Twilio's free trial service.)
+            </summary>
+            <param name="number">The mobile phone number to send texts to.</param>
+            <param name="staff">The member of <see cref="T:Mockup2.DatabaseClasses.Staff"/>Staff being seen.</param>
+            <param name="appointmentDate">The date of the <see cref="T:Mockup2.DatabaseClasses.Appointment"/>Appointment.</param>
+            <param name="appointmentTime">The time of the <see cref="T:Mockup2.DatabaseClasses.Appointment"/>Appointment.</param>
+        </member>
         <member name="M:Mockup2.DatabaseClasses.Program.Main">
             <summary>
             The main entry point for the application.
@@ -236,7 +257,8 @@
             <summary>
             Dumps the stored queries that have been requested over the program lifetime,
             and how many times they have been requested.
-            Outputs this information to standard output.
+            Outputs this information to standard output and a text file named querylog.txt
+            in the same folder as the exe.
             </summary>
         </member>
         <member name="T:Mockup2.DatabaseClasses.Tables">
@@ -335,13 +357,24 @@
             One was created specifically for this project.
             </summary>
         </member>
-        <member name="M:Mockup2.Classes.Emailer.SendEmail(System.String,System.String,System.String)">
+        <member name="M:Mockup2.Classes.Emailer.SendEmail(System.String,System.String,System.String,System.String[])">
             <summary>
             Sends an email message to the supplied email address, using the supplied subject and message.
             </summary>
             <param name="email">Email address of the recipient.</param>
             <param name="subject">Subject of the email message.</param>
             <param name="message">The email message itself.</param>
+            <param name="fileNamesToAttach">File names as strings to attach to this email, if any.</param>
+        </member>
+        <member name="M:Mockup2.Classes.Emailer.SendAppointmentEmail(System.String,Mockup2.DatabaseClasses.Staff,System.DateTime,System.DateTime)">
+            <summary>
+            Sends a preformatted HTML email to the supplied email address, which should be a Patient's, detailing their appointment date and time
+            as well as the member of staff they will be seeing.
+            </summary>
+            <param name="email">Email address of patient.</param>
+            <param name="staff">The Staff object that representing the member of staff that the patient will be seeing.</param>
+            <param name="date">The date of the appointment.</param>
+            <param name="time">The time of the appointment.</param>
         </member>
         <member name="F:Mockup2.EditStaffForm.components">
             <summary>
@@ -988,6 +1021,16 @@
             </summary>
         </member>
         <member name="P:Mockup2.Properties.Resources.googleplus_2x">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Mockup2.Properties.Resources.logo">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Mockup2.Properties.Resources.logo1">
             <summary>
               Looks up a localized resource of type System.Drawing.Bitmap.
             </summary>
