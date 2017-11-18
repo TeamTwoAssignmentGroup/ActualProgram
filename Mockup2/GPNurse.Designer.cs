@@ -48,16 +48,15 @@
             this.lastText = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.selectSearch = new System.Windows.Forms.Button();
             this.detailsBox = new System.Windows.Forms.RichTextBox();
             this.historyBox = new System.Windows.Forms.RichTextBox();
             this.prescriptionsBox = new System.Windows.Forms.RichTextBox();
             this.searchBox = new System.Windows.Forms.ListBox();
-            this.testList = new System.Windows.Forms.ListBox();
             this.nxtPatient = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.TimeLabel = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.nextLabel = new System.Windows.Forms.Label();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // exitButton
@@ -74,7 +73,7 @@
             // nextButton
             // 
             this.nextButton.Font = new System.Drawing.Font("Arial", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nextButton.Location = new System.Drawing.Point(1691, 320);
+            this.nextButton.Location = new System.Drawing.Point(1691, 335);
             this.nextButton.Name = "nextButton";
             this.nextButton.Size = new System.Drawing.Size(118, 48);
             this.nextButton.TabIndex = 50;
@@ -250,17 +249,6 @@
             this.label2.TabIndex = 57;
             this.label2.Text = "Last Name";
             // 
-            // selectSearch
-            // 
-            this.selectSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.selectSearch.Location = new System.Drawing.Point(1596, 929);
-            this.selectSearch.Name = "selectSearch";
-            this.selectSearch.Size = new System.Drawing.Size(198, 35);
-            this.selectSearch.TabIndex = 60;
-            this.selectSearch.Text = "View this patient";
-            this.selectSearch.UseVisualStyleBackColor = true;
-            this.selectSearch.Click += new System.EventHandler(this.selectSearch_Click);
-            // 
             // detailsBox
             // 
             this.detailsBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -298,17 +286,7 @@
             this.searchBox.Size = new System.Drawing.Size(584, 220);
             this.searchBox.TabIndex = 68;
             this.searchBox.SelectedIndexChanged += new System.EventHandler(this.searchBox_SelectedIndexChanged);
-            // 
-            // testList
-            // 
-            this.testList.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.testList.FormattingEnabled = true;
-            this.testList.HorizontalScrollbar = true;
-            this.testList.ItemHeight = 25;
-            this.testList.Location = new System.Drawing.Point(17, 609);
-            this.testList.Name = "testList";
-            this.testList.Size = new System.Drawing.Size(485, 354);
-            this.testList.TabIndex = 70;
+            this.searchBox.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.searchBox_MouseDoubleClick);
             // 
             // nxtPatient
             // 
@@ -336,29 +314,37 @@
             this.TimeLabel.TabIndex = 75;
             this.TimeLabel.Click += new System.EventHandler(this.TimeLabel_Click);
             // 
-            // label3
+            // nextLabel
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Arial", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(1221, 327);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(242, 41);
-            this.label3.TabIndex = 76;
-            this.label3.Text = "Dan Garnham";
+            this.nextLabel.AccessibleRole = System.Windows.Forms.AccessibleRole.MenuBar;
+            this.nextLabel.AutoSize = true;
+            this.nextLabel.Font = new System.Drawing.Font("Arial", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nextLabel.Location = new System.Drawing.Point(1221, 296);
+            this.nextLabel.Name = "nextLabel";
+            this.nextLabel.Size = new System.Drawing.Size(181, 41);
+            this.nextLabel.TabIndex = 76;
+            this.nextLabel.Text = "no patient";
+            // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(17, 610);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(485, 329);
+            this.listBox1.TabIndex = 77;
             // 
             // GPNurse
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1821, 975);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.nextLabel);
             this.Controls.Add(this.TimeLabel);
             this.Controls.Add(this.nxtPatient);
-            this.Controls.Add(this.testList);
             this.Controls.Add(this.searchBox);
             this.Controls.Add(this.prescriptionsBox);
             this.Controls.Add(this.historyBox);
-            this.Controls.Add(this.selectSearch);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lastText);
@@ -406,15 +392,14 @@
         private System.Windows.Forms.TextBox lastText;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button selectSearch;
         private System.Windows.Forms.RichTextBox detailsBox;
         private System.Windows.Forms.RichTextBox historyBox;
         private System.Windows.Forms.RichTextBox prescriptionsBox;
         private System.Windows.Forms.ListBox searchBox;
-        private System.Windows.Forms.ListBox testList;
         private System.Windows.Forms.Label nxtPatient;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label TimeLabel;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label nextLabel;
+        private System.Windows.Forms.ListBox listBox1;
     }
 }

@@ -196,6 +196,7 @@
     <Compile Include="DatabaseClasses\Staff.cs" />
     <Compile Include="DatabaseClasses\Table.cs" />
     <Compile Include="DatabaseClasses\TestResults.cs" />
+    <Compile Include="Support\AppointmentSort.cs" />
     <Compile Include="Support\DatabaseConverter.cs" />
     <Compile Include="UpdateStaff.cs">
       <SubType>Form</SubType>

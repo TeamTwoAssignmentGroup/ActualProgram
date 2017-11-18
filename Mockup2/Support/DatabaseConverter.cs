@@ -14,21 +14,37 @@ namespace Mockup2.Support
         DBConnection dbCon;
         PatientFactory infoFac;
         Patient currentPatient;
+        Patient nextPatientret;
         PrescriptionFactory prescriptionFactory;
         MedicalNoteFactory medicalNote;
-        MedicineInFactory medicationL;
+        MedicineInFactory medicationFactory;
         TestResultFactory test;
+        Appointment appointment = new Appointment();
+        AppointmentSort appointmentClass;
+        List<MedicalNotes> history;
+        List<Prescription> prescription;
+        List<TestResult> testresults;
+        List<MedicationInstance> medicationList;
+        List<Medication> medication;
+        List<Prescription> prescriptionList = new List<Prescription>();
+
+
+
 
         List<string> listPrescription = new List<string>();
         List<string> listHistory = new List<string>();
         List<string> listTestResults = new List<string>();
 
 
+       
+
+
+
         public DatabaseConverter(DBConnection dbCon, Patient patientObject)
         {
 
             InitClass(dbCon);
-       
+            
             load(patientObject);
         
         }
@@ -39,10 +55,23 @@ namespace Mockup2.Support
         public DatabaseConverter(DBConnection dbCon)
         {
             InitClass(dbCon);
+            
+        }
 
 
+
+
+
+        public List<Prescription> getPrescription()
+        {
+            return prescription;
 
         }
+
+
+
+
+
 
 
 
@@ -56,7 +85,9 @@ namespace Mockup2.Support
             infoFac = new PatientFactory(dbCon);
             prescriptionFactory = new PrescriptionFactory(dbCon);
             test = new TestResultFactory(dbCon);
-            medicationL = new MedicineInFactory(dbCon);
+            medicationFactory = new MedicineInFactory(dbCon);
+            appointmentClass = new AppointmentSort(dbCon);
+
 
         }
 
@@ -73,12 +104,33 @@ namespace Mockup2.Support
 
         }
 
+        public void removeAppointment()
+        {
+
+            appointment = appointmentClass.getNextAppointment();
+            nextPatientret = infoFac.GetAPatientByID(appointment.PatientId);
+            appointmentClass.removeAppointment();
+
+        }
 
 
 
-        
 
+        public void loadList()
+        {
 
+            history = medicalNote.GetMedicalNotes(currentPatient.ID);
+            prescription = prescriptionFactory.GetPrescriptions(currentPatient.ID);
+            testresults = test.GetTestResults(currentPatient.ID);
+            
+          
+        }
+
+        public List<Prescription> GetPrescription()
+        {
+            return prescriptionList;
+
+        }
 
 
         public void load(Patient o)
@@ -86,25 +138,19 @@ namespace Mockup2.Support
             try
             {
                 currentPatient = o;
+                loadList();
 
-                List<MedicalNotes> hist = medicalNote.GetMedicalNotes(currentPatient.ID);
-                List<Prescription> pre = prescriptionFactory.GetPrescriptions(currentPatient.ID);
-                List<TestResult> tesR = test.GetTestResults(currentPatient.ID);
-                List<MedicationInstance> medicationList;
-                List<Medication> medication;
+                foreach (MedicalNotes m in history) { listHistory.Add(m.ID + " " + m.PatientID + " " + m.Notes + " " + m.WrittenDate + "\n"); }
 
-
-                foreach (MedicalNotes m in hist) { listHistory.Add(m.ID + " " + m.PatientID + " " + m.Notes + " " + m.WrittenDate + "\n"); }
-
-                foreach (Prescription p in pre)
+                foreach (Prescription p in prescription)
                 {
 
-                    medicationList = medicationL.GetMedicineIdByPrescription(p.Id);
+                    medicationList = medicationFactory.GetMedicineIdByPrescription(p.Id);
 
                     foreach (MedicationInstance m in medicationList)
                     {
 
-                        medication = medicationL.GetMedicneNameById(m.MedicationId);
+                        medication = medicationFactory.GetMedicneNameById(m.MedicationId);
 
                         foreach (Medication me in medication)
                         {
@@ -114,12 +160,24 @@ namespace Mockup2.Support
                         }
                     }
                 }
+                prescriptionList = prescriptionFactory.GetPrescriptions(currentPatient.ID);
 
-                foreach (TestResult t in tesR) { listTestResults.Add(t.TestName + " " + t.Results + " " + t.TestDate + "\n"); }
+                
             }
             catch (NullReferenceException ne) { Console.WriteLine("no object " + ne); }
 
         }
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -160,6 +218,28 @@ namespace Mockup2.Support
             medicalNote.InsertPatientNote(p, newNotes);
 
         }
+
+       
+
+        public  Patient InitNextPatient()
+        {
+          
+            appointment = appointmentClass.getNextAppointment();
+            nextPatientret = infoFac.GetAPatientByID(appointment.PatientId);
+            
+            return nextPatientret;
+
+
+        }
+
+        public Appointment nextPatientAppointment()
+        {
+            
+            
+            return appointment;
+
+        }
+
 
     }
     

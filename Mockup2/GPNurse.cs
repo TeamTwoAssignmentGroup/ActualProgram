@@ -23,7 +23,24 @@ namespace Mockup2
         PatientFactory infoFac;
         Patient currentPatient;
         Patient found;
+        Patient nextPatient;
+        DatabaseConverter converter;
+        
         string timeIs;
+        string name;
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -34,19 +51,77 @@ namespace Mockup2
         List<string> testresults= new List<string>();
         List<string> patient = new List<string>();
         List<string> note = new List<string>();
-       
+        List<Prescription> prescriptionList = new List<Prescription>();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        public void Init(DBConnection dbCon)
+
+        {
+
+            this.dbCon = dbCon;
+            infoFac = new PatientFactory(dbCon);
+            Timer timer1 = new Timer();
+            timer1.Start();
+            converter = new DatabaseConverter(dbCon);
+           
+
+
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         public GPNurse(DBConnection dbCon)
         {
-            this.dbCon = dbCon;         
-
-            infoFac = new PatientFactory(dbCon);
-
-            Timer timer1 = new Timer();  
-            timer1.Start();
-          
+            Init(dbCon);
             InitializeComponent();
+            getNextPatient();
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -60,7 +135,7 @@ namespace Mockup2
         private void OK_Click(object sender, EventArgs e)
         { 
 
-            DatabaseConverter manager = new DatabaseConverter(dbCon);
+          
            
             string firstName = firstText.Text;
             string lastName = lastText.Text;
@@ -68,61 +143,194 @@ namespace Mockup2
 
 
           
-            found=manager.findPatientByName(firstName, lastName);
-
+            found=converter.findPatientByName(firstName, lastName);
+            foundPatientObject();
           
             searchBox.Items.Add(found.FirstName + " " + found.LastName);
            
             textBoxCleaner(firstText);
             textBoxCleaner(lastText);
           
+            
 
         }
 
-            
 
-      
+
+
+
+
+
+
+
+
+
+
+
+        public void cleanAll()
+        {
+
+            textBoxCleaner(detailsBox);
+            textBoxCleaner(historyBox);
+            ListBoxCleaner(listBox1);
+            ListBoxCleaner(searchBox);
+            textBoxCleaner(prescriptionsBox);
+            ListBoxCleaner(listBox1);
+            textBoxCleaner(firstText);
+            textBoxCleaner(lastText);
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             /**
              * This button (Viev this patient details) loads in selected patient details on the page
              * */
-            private void selectSearch_Click(object sender, EventArgs e)
+            private void loadCurrentPatient()
             {
 
-            saveChanges();
-          
-                textBoxCleaner(detailsBox);
-                textBoxCleaner(historyBox);
-                ListBoxCleaner(testList);
-                ListBoxCleaner(searchBox);
-                textBoxCleaner(prescriptionsBox);
-                ListBoxCleaner(testList);
-                textBoxCleaner(firstText);
-                textBoxCleaner(lastText);
+
+            cleanAll();
+             
 
 
-                //clearnote
-
-                currentPatient = found;
+           
             if (currentPatient != null)
             {
                 DatabaseConverter convert = new DatabaseConverter(dbCon, currentPatient);
 
-
+                convert.loadList();
                 history = convert.HistoryData();
                 prescription = convert.PrescriptionData();
                 testresults = convert.TestResults();
+                prescriptionList = convert.GetPrescription();
 
-
+                listBox1.Items.Add (getPrescriptions());
                 textBoxWriter(history, historyBox);
                 textBoxWriter(prescription, prescriptionsBox);
-                ListBoxWriter(testresults, testList);
+            
+                
+              
                 detailsBox.Text = currentPatient.FirstName + " " + currentPatient.LastName + " " + currentPatient.DOB + "\nGender: " + currentPatient.Gender + "\nNext of kin: " + currentPatient.NextOfKin + "\nAddress " + currentPatient.Address;
             }
             else { MessageBox.Show("Select patient"); }
           
             
             }
+
+
+
+        public string getPrescriptions()
+        {
+
+            foreach (Prescription p in prescriptionList) { return p.IssueDate.ToString(); }
+
+            return "null";
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        public void foundPatientObject()
+        {
+            //clearnote
+         
+                currentPatient = found;
+           
+           
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+        public void swapPatient(Patient o)
+        {
+            currentPatient = o;
+
+        }
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -147,6 +355,19 @@ namespace Mockup2
 
      
     
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -177,6 +398,49 @@ namespace Mockup2
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+        public void getNextPatient()
+        {
+            
+            nextPatient = converter.InitNextPatient();
+            converter.removeAppointment();
+            string appointment = converter.nextPatientAppointment().AppointmentTime.ToString();
+            name = nextPatient.FirstName + " " + nextPatient.LastName+"\n"+appointment;
+
+           
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         /**
          * Clears selected textbox
          * */
@@ -186,6 +450,19 @@ namespace Mockup2
                     r.Clear();
 
                 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -203,6 +480,18 @@ namespace Mockup2
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
         /**
         * Clears selected textbox
         * */
@@ -216,10 +505,40 @@ namespace Mockup2
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         private void clear_Click(object sender, EventArgs e,ListBox o)
         {
             ListBoxCleaner(o);
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -246,6 +565,25 @@ namespace Mockup2
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         private void save_Click(object sender, EventArgs e)
         {
 
@@ -253,6 +591,22 @@ namespace Mockup2
             addNote();
             textBoxCleaner(noteBox);
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -282,37 +636,81 @@ namespace Mockup2
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         /**
          * prompting the user to save their work
          * */
         public void saveChanges()
         {
 
-            if (currentPatient != null)
+            if (currentPatient != null )
             {
-                DatabaseConverter manager = new DatabaseConverter(dbCon);
-                DialogResult result;
+               
+                  
+                    DatabaseConverter manager = new DatabaseConverter(dbCon);
+                    DialogResult result;
 
-                result = MessageBox.Show("Save changes for current patient?", "",
-                MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    result = MessageBox.Show("Save changes for current patient?", "",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                if (result == System.Windows.Forms.DialogResult.Yes)
-                {
-                    manager.insertPatientNote(currentPatient, note);
-                    //save changes into database
+                    if (result == System.Windows.Forms.DialogResult.Yes)
+                    {
+            
+                        manager.insertPatientNote(currentPatient, note);
+                        
 
 
+                    }
+                    if (result == System.Windows.Forms.DialogResult.No)
+                    {
+                        
+                    }
+                    note.Clear();
                 }
-                if (result == System.Windows.Forms.DialogResult.No)
-                {
-                    //clear note array
-
-                }
-                note.Clear();
-            }
-            else {  }
+                
+            
+            else { }
 
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -320,9 +718,42 @@ namespace Mockup2
 
         private void nextButton_Click(object sender, EventArgs e)
         {
-            saveChanges();
-            //getNext Patient from the appointments----->diversion through class
+
+
+            
+            swapPatient(nextPatient);
+          
+            getNextPatient();
+            loadCurrentPatient();
+            
+           
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         private void exitButton_Click(object sender, EventArgs e)
         {
@@ -335,13 +766,74 @@ namespace Mockup2
 
         }
 
-      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         private void timer1_Tick(object sender, EventArgs e)
         {
             timeNow();
-            TimeLabel.Text = timeIs;
+            try
+            {
+
+
+                TimeLabel.Text = timeIs;
+                nextLabel.Text = name;
+            }
+            catch (NullReferenceException ex) { nextLabel.Text = "no patient  for 10 mins"; }
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         public string timeNow()
         {
@@ -351,9 +843,50 @@ namespace Mockup2
 
         }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         private void TimeLabel_Click(object sender, EventArgs e)
         {
             TimeLabel.BackColor = System.Drawing.Color.Transparent;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            getNextPatient();
+        }
+
+        private void searchBox_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            loadCurrentPatient();
         }
     }
 }

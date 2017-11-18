@@ -19,6 +19,11 @@ namespace Mockup2.Factories
             SetNextAvailableAppointmentID();
         }
 
+
+
+
+
+
         /// <summary>
         /// Returns the next available appointment id. 
         /// </summary>
@@ -27,6 +32,11 @@ namespace Mockup2.Factories
         {
             return ++nextAvailableAppointmentID;
         }
+
+
+
+
+
 
         /// <summary>
         /// Sets the next available appointment id by pulling the last listed
@@ -41,6 +51,10 @@ namespace Mockup2.Factories
                 nextAvailableAppointmentID= GetAppointments(b)[0].Id;
             }
         }
+
+
+
+
 
         /// <summary>
         /// Returns a list of formatted strings to be used as timeslots when booking an appointment.
@@ -78,6 +92,10 @@ namespace Mockup2.Factories
             return result;
         }
 
+
+
+
+
         /// <summary>
         /// Returns a list of Appointments that match the critera given by the QueryBuilder.
         /// In order to get sensible results, the first part of the query should be:
@@ -110,6 +128,10 @@ namespace Mockup2.Factories
             return result;
         }
 
+
+
+
+
         /// <summary>
         /// Convenience method to return all appointments, with no matching criteria, ie everything.
         /// </summary>
@@ -121,6 +143,10 @@ namespace Mockup2.Factories
             return GetAppointments(b);
         }
 
+
+
+
+
         /// <summary>
         /// Conveience method that gets all appointments on a given date.
         /// </summary>
@@ -131,6 +157,10 @@ namespace Mockup2.Factories
             DateTime date2 = date.AddDays(1);
             return GetAppointmentsByDateRange(date, date2);
         }
+
+
+
+
 
         /// <summary>
         /// Convenience method that gets all appointments booked between the given dates.
@@ -146,6 +176,10 @@ namespace Mockup2.Factories
             b.Select(Tables.ALL).From(Tables.APPOINTMENT_TABLE).Where(b.IsBetweenDate(Tables.APPOINTMENT_TABLE.AppointmentDate,date1,date2));
             return GetAppointments(b);
         }
+
+
+
+
 
         /// <summary>
         /// Updates an existing appointment in the database, based on the information provided
@@ -168,6 +202,10 @@ namespace Mockup2.Factories
             SendConfirmationEmail(a);
         }
 
+
+
+
+
         /// <summary>
         /// Sends a confirmation email to the patient linked to the appointment given.
         /// </summary>
@@ -186,6 +224,11 @@ namespace Mockup2.Factories
             Texter.SendAppointmentText(phone, staff, date, time);
         }
 
+
+
+
+
+
         /// <summary>
         /// Inserts a new appointment into the database, using information pulled from the given Appointment object.
         /// 
@@ -201,6 +244,10 @@ namespace Mockup2.Factories
             SendConfirmationEmail(a);
         }
 
+
+
+
+
         /// <summary>
         /// Deletes an appointment from the database based on information given in the supplied Appointment.
         /// </summary>
@@ -212,5 +259,13 @@ namespace Mockup2.Factories
             MySqlCommand cmd = new MySqlCommand(b.ToString(), dbCon.GetConnection());
             cmd.ExecuteNonQuery();
         }
+
+
+
+
+
+
+
+
     }
 }
