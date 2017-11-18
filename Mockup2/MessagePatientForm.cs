@@ -18,6 +18,7 @@ namespace Mockup2
     {
         DBConnection dbCon;
         QueryBuilder b;
+        string[] attachments;
         public MessagePatientForm(DBConnection dbCon)
         {
             InitializeComponent();
@@ -26,7 +27,12 @@ namespace Mockup2
 
         private void button1_Click(object sender, EventArgs e)
         {
-            new OpenFileDialog().ShowDialog();
+            OpenFileDialog opf = new OpenFileDialog();
+            opf.Multiselect = true;
+            if (opf.ShowDialog() == DialogResult.OK)
+            {
+                attachments = opf.FileNames;
+            }
         }
 
         private void MessagePatientForm_Load(object sender, EventArgs e)
@@ -61,7 +67,9 @@ namespace Mockup2
 
         private void button2_Click_1(object sender, EventArgs e)
         {
-            Emailer.SendEmail(dataGridView1.SelectedRows[0].Cells[3].Value.ToString(), textBox1.Text, textBox2.Text);
+            Emailer.SendEmail(dataGridView1.SelectedRows[0].Cells[3].Value.ToString(), textBox1.Text, textBox2.Text,attachments);
+            this.Close();
+            this.Dispose();
         }
 
         private void button3_Click(object sender, EventArgs e)

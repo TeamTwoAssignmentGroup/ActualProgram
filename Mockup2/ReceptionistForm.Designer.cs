@@ -69,6 +69,9 @@
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.button1 = new System.Windows.Forms.Button();
             this.seerotadateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.Exit = new System.Windows.Forms.Button();
+            this.button9 = new System.Windows.Forms.Button();
+            this.button10 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.appointmentDataGridView)).BeginInit();
@@ -92,6 +95,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.Exit);
             this.tabPage1.Controls.Add(this.findAppointmentButton);
             this.tabPage1.Controls.Add(this.button7);
             this.tabPage1.Controls.Add(this.button6);
@@ -99,8 +103,8 @@
             this.tabPage1.Controls.Add(this.appointmentDataGridView);
             this.tabPage1.Location = new System.Drawing.Point(4, 42);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tabPage1.Size = new System.Drawing.Size(1000, 683);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(1081, 683);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Appointments";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -171,7 +175,7 @@
             this.appointmentDataGridView.Name = "appointmentDataGridView";
             this.appointmentDataGridView.ReadOnly = true;
             this.appointmentDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.appointmentDataGridView.Size = new System.Drawing.Size(994, 255);
+            this.appointmentDataGridView.Size = new System.Drawing.Size(1075, 255);
             this.appointmentDataGridView.TabIndex = 99;
             // 
             // StaffFirstName
@@ -232,6 +236,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.button9);
             this.tabPage2.Controls.Add(this.label2);
             this.tabPage2.Controls.Add(this.label1);
             this.tabPage2.Controls.Add(this.button8);
@@ -243,7 +248,7 @@
             this.tabPage2.Controls.Add(this.dataGridView1);
             this.tabPage2.Location = new System.Drawing.Point(4, 42);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(1081, 683);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Patients";
@@ -439,15 +444,17 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.button10);
             this.tabPage3.Controls.Add(this.button1);
             this.tabPage3.Controls.Add(this.seerotadateTimePicker1);
             this.tabPage3.Location = new System.Drawing.Point(4, 42);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tabPage3.Size = new System.Drawing.Size(1000, 683);
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(1081, 683);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Rota";
             this.tabPage3.UseVisualStyleBackColor = true;
+            this.tabPage3.Click += new System.EventHandler(this.tabPage3_Click);
             // 
             // button1
             // 
@@ -466,6 +473,36 @@
             this.seerotadateTimePicker1.Name = "seerotadateTimePicker1";
             this.seerotadateTimePicker1.Size = new System.Drawing.Size(200, 40);
             this.seerotadateTimePicker1.TabIndex = 0;
+            // 
+            // Exit
+            // 
+            this.Exit.Location = new System.Drawing.Point(711, 625);
+            this.Exit.Name = "Exit";
+            this.Exit.Size = new System.Drawing.Size(364, 52);
+            this.Exit.TabIndex = 100;
+            this.Exit.Text = "Exit";
+            this.Exit.UseVisualStyleBackColor = true;
+            this.Exit.Click += new System.EventHandler(this.Exit_Click);
+            // 
+            // button9
+            // 
+            this.button9.Location = new System.Drawing.Point(711, 625);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(364, 52);
+            this.button9.TabIndex = 101;
+            this.button9.Text = "Exit";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click_1);
+            // 
+            // button10
+            // 
+            this.button10.Location = new System.Drawing.Point(711, 625);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(364, 52);
+            this.button10.TabIndex = 101;
+            this.button10.Text = "Exit";
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
             // 
             // ReceptionistForm
             // 
@@ -531,5 +568,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Time;
         private System.Windows.Forms.DataGridViewTextBoxColumn AppointmentStatus;
         private System.Windows.Forms.DataGridViewTextBoxColumn appointmentCause;
+        private System.Windows.Forms.Button Exit;
+        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button button10;
     }
 }

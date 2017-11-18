@@ -30,6 +30,11 @@ namespace Mockup2.Classes
         /// <param name="fileNamesToAttach">File names as strings to attach to this email, if any.</param>
         public static void SendEmail(string email, string subject, string message, params string[] fileNamesToAttach)
         {
+            if (!Program.SEND_EMAILS)
+            {
+                Console.WriteLine("You're attempting to send an email, but they're disabled in Program.");
+                return;
+            }
             new Thread(() => {
                 Console.WriteLine("Attempting to send email with subject: {0} message: {1} to: {2}", subject, message, email);
                 MailMessage mail = new MailMessage("noreply.oversurgery@gmail.com", email);
@@ -63,6 +68,11 @@ namespace Mockup2.Classes
         /// <param name="time">The time of the appointment.</param>
         public static void SendAppointmentEmail(string email, Staff staff, DateTime date,DateTime time)
         {
+            if (!Program.SEND_EMAILS)
+            {
+                Console.WriteLine("You're attempting to send an email, but they're disabled in Program.");
+                return;
+            }
             string staffString = staff.JobRole + " " + staff.FirstName + " " + staff.LastName;
             string dateString = date.ToString("dd/MM/yyyy");
             string timeString = time.ToString("HH:mm");
