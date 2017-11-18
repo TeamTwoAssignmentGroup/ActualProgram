@@ -27,6 +27,7 @@ namespace Mockup2.Support
         List<MedicationInstance> medicationList;
         List<Medication> medication;
         List<Prescription> prescriptionList = new List<Prescription>();
+        List<TestResult> testresult = new List<TestResult>();
 
 
 
@@ -65,6 +66,14 @@ namespace Mockup2.Support
         public List<Prescription> getPrescription()
         {
             return prescription;
+
+        }
+
+        public List<TestResult> getTestResults()
+        {
+
+
+            return testresult;
 
         }
 
@@ -155,12 +164,14 @@ namespace Mockup2.Support
                         foreach (Medication me in medication)
                         {
 
-                            listPrescription.Add(me.ScientificName + " " + me.CommercialName + " " + p.IssueDate + "\n");
+                            listPrescription.Add(me.ScientificName + " " + p.IssueDate);
 
                         }
                     }
                 }
                 prescriptionList = prescriptionFactory.GetPrescriptions(currentPatient.ID);
+                testresult = test.GetTestResults(currentPatient.ID);
+                foreach (TestResult tr in testresult) { listTestResults.Add(tr.TestName.ToString() + " " + tr.TestDate.ToString()); }
 
                 
             }
@@ -217,6 +228,26 @@ namespace Mockup2.Support
 
             medicalNote.InsertPatientNote(p, newNotes);
 
+        }
+
+
+
+        public void editPrescription(List<Prescription> pre)
+        {
+
+            prescriptionFactory.InsertEditedPrescription(pre);
+
+        }
+
+        public void removePrescription(Prescription pre)
+        {
+            prescriptionFactory.DeletePrescription(pre);
+
+        }
+
+        public void addPrescription(Prescription pre)
+        {
+            prescriptionFactory.addPrescription(pre);
         }
 
        

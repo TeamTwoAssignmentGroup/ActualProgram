@@ -45,15 +45,19 @@ namespace Mockup2.Factories
 
             while (reader.Read())
             {
-                Prescription a = new Prescription();
-                PrescriptionTable pt = Tables.PRESCRIPTION_TABLE;
-                a.Id = GetInt(reader[pt.ID.Name]);
-                a.StaffId = GetInt(reader[pt.IssuingStaffID.Name]);
-                a.PatientId = GetInt(reader[pt.PatientID.Name]);
-                a.IsRepeatable = GetBool(reader[pt.IsRepeatable.Name]);
-                a.IssueDate = GetDateTime(reader[pt.IssueDate.Name]);
-                a.RepeatRequested = GetBool(reader[pt.RepeatRequested.Name]);
-                result.Add(a);
+                
+                    Prescription a = new Prescription();
+                    PrescriptionTable pt = Tables.PRESCRIPTION_TABLE;
+                    a.Id = GetInt(reader[pt.ID.Name]);
+                    a.StaffId = GetInt(reader[pt.IssuingStaffID.Name]);
+                    a.PatientId = GetInt(reader[pt.PatientID.Name]);
+                    a.IsRepeatable = GetBool(reader[pt.IsRepeatable.Name]);
+                    a.IssueDate = GetDateTime(reader[pt.IssueDate.Name]);
+                    a.RepeatRequested = GetBool(reader[pt.RepeatRequested.Name]);
+                    result.Add(a);
+                
+               
+                
             }
             reader.Close();
             reader.Dispose();
@@ -95,11 +99,67 @@ namespace Mockup2.Factories
         }
 
 
+        public void InsertEditedPrescription(List<Prescription> pre)
+        {
+            
+            
+            QueryBuilder qb = new QueryBuilder();
 
 
 
 
+           
 
+            for (int i = 0; i < pre.Count; i++)
+            {
+
+                qb.Insert(Tables.PRESCRIPTION_TABLE).Where(qb.IsEqual(Tables.PRESCRIPTION_TABLE.ID, pre[i].Id)).Values
+                (
+                pre[i].IsRepeatable,
+                pre[i].StaffId,
+                DateTime.Now.ToString("yyyy-mm-dd"),
+                pre[i].IsRepeatable,
+                pre[i].RepeatRequested
+                );
+
+
+
+                MySqlCommand cmd = new MySqlCommand(qb.ToString(), dbCon.GetConnection());
+                cmd.ExecuteNonQuery();
+                }
+            
+        }
+
+
+        public void DeletePrescription(Prescription pre)
+        {
+            QueryBuilder b = new QueryBuilder();
+            b.Delete(Tables.PRESCRIPTION_TABLE).Where(b.IsEqual(Tables.PRESCRIPTION_TABLE.ID, pre.Id));
+            MySqlCommand cmd = new MySqlCommand(b.ToString(), dbCon.GetConnection());
+            cmd.ExecuteNonQuery();
+        }
+
+
+        public void addPrescription(Prescription p)
+        {
+            QueryBuilder b = new QueryBuilder();
+            b.Insert(Tables.PRESCRIPTION_TABLE).Values
+                (
+                null,
+                p.PatientId,
+                p.StaffId,
+                p.IsRepeatable,
+                p.IssueDate.ToString("yyyy-mm-dd"),
+                p.RepeatRequested
+                );
+
+            MySqlCommand cmd = new MySqlCommand(b.ToString(), dbCon.GetConnection());
+            cmd.ExecuteNonQuery();
+        }
+
+
+
+        
 
     }
 }

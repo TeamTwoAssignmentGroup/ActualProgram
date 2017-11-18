@@ -35,8 +35,7 @@
             this.firstText = new System.Windows.Forms.TextBox();
             this.AddNoteButton = new System.Windows.Forms.Button();
             this.OkButton = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
+            this.editButton = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.remove = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
@@ -50,13 +49,15 @@
             this.label2 = new System.Windows.Forms.Label();
             this.detailsBox = new System.Windows.Forms.RichTextBox();
             this.historyBox = new System.Windows.Forms.RichTextBox();
-            this.prescriptionsBox = new System.Windows.Forms.RichTextBox();
             this.searchBox = new System.Windows.Forms.ListBox();
             this.nxtPatient = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.TimeLabel = new System.Windows.Forms.Label();
             this.nextLabel = new System.Windows.Forms.Label();
             this.listBox1 = new System.Windows.Forms.ListBox();
+            this.listBox2 = new System.Windows.Forms.ListBox();
+            this.allow = new System.Windows.Forms.Button();
+            this.decline = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // exitButton
@@ -121,35 +122,27 @@
             this.OkButton.UseVisualStyleBackColor = true;
             this.OkButton.Click += new System.EventHandler(this.OK_Click);
             // 
-            // button8
+            // editButton
             // 
-            this.button8.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button8.Location = new System.Drawing.Point(300, 475);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(120, 35);
-            this.button8.TabIndex = 43;
-            this.button8.Text = "AMEND";
-            this.button8.UseVisualStyleBackColor = true;
-            // 
-            // button7
-            // 
-            this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button7.Location = new System.Drawing.Point(56, 475);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(115, 35);
-            this.button7.TabIndex = 42;
-            this.button7.Text = "EDIT";
-            this.button7.UseVisualStyleBackColor = true;
+            this.editButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.editButton.Location = new System.Drawing.Point(108, 475);
+            this.editButton.Name = "editButton";
+            this.editButton.Size = new System.Drawing.Size(115, 35);
+            this.editButton.TabIndex = 42;
+            this.editButton.Text = "EDIT";
+            this.editButton.UseVisualStyleBackColor = true;
+            this.editButton.Click += new System.EventHandler(this.editButton_Click_1);
             // 
             // button3
             // 
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(177, 475);
+            this.button3.Location = new System.Drawing.Point(253, 475);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(117, 35);
             this.button3.TabIndex = 41;
             this.button3.Text = "ADD";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // remove
             // 
@@ -160,7 +153,7 @@
             this.remove.TabIndex = 40;
             this.remove.Text = "Undo";
             this.remove.UseVisualStyleBackColor = true;
-            this.remove.Click += new System.EventHandler(this.remove_Click);
+            this.remove.Click += new System.EventHandler(this.undo_Click);
             // 
             // label9
             // 
@@ -267,15 +260,6 @@
             this.historyBox.TabIndex = 65;
             this.historyBox.Text = "";
             // 
-            // prescriptionsBox
-            // 
-            this.prescriptionsBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.prescriptionsBox.Location = new System.Drawing.Point(13, 215);
-            this.prescriptionsBox.Name = "prescriptionsBox";
-            this.prescriptionsBox.Size = new System.Drawing.Size(489, 254);
-            this.prescriptionsBox.TabIndex = 66;
-            this.prescriptionsBox.Text = "";
-            // 
             // searchBox
             // 
             this.searchBox.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -285,7 +269,6 @@
             this.searchBox.Name = "searchBox";
             this.searchBox.Size = new System.Drawing.Size(584, 220);
             this.searchBox.TabIndex = 68;
-            this.searchBox.SelectedIndexChanged += new System.EventHandler(this.searchBox_SelectedIndexChanged);
             this.searchBox.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.searchBox_MouseDoubleClick);
             // 
             // nxtPatient
@@ -327,23 +310,61 @@
             // 
             // listBox1
             // 
+            this.listBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(17, 610);
+            this.listBox1.ItemHeight = 20;
+            this.listBox1.Location = new System.Drawing.Point(12, 217);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(485, 329);
+            this.listBox1.Size = new System.Drawing.Size(403, 244);
             this.listBox1.TabIndex = 77;
+            this.listBox1.DoubleClick += new System.EventHandler(this.listBox1_DoubleClick);
+            // 
+            // listBox2
+            // 
+            this.listBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listBox2.FormattingEnabled = true;
+            this.listBox2.ItemHeight = 25;
+            this.listBox2.Location = new System.Drawing.Point(17, 597);
+            this.listBox2.Name = "listBox2";
+            this.listBox2.Size = new System.Drawing.Size(499, 229);
+            this.listBox2.TabIndex = 78;
+            this.listBox2.DoubleClick += new System.EventHandler(this.listBox2_DoubleClick);
+            // 
+            // allow
+            // 
+            this.allow.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.allow.Location = new System.Drawing.Point(421, 296);
+            this.allow.Name = "allow";
+            this.allow.Size = new System.Drawing.Size(116, 41);
+            this.allow.TabIndex = 79;
+            this.allow.Text = "Allow";
+            this.allow.UseVisualStyleBackColor = true;
+            this.allow.Click += new System.EventHandler(this.allow_Click);
+            // 
+            // decline
+            // 
+            this.decline.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.decline.Location = new System.Drawing.Point(421, 357);
+            this.decline.Name = "decline";
+            this.decline.Size = new System.Drawing.Size(116, 41);
+            this.decline.TabIndex = 80;
+            this.decline.Text = "Decline";
+            this.decline.UseVisualStyleBackColor = true;
+            this.decline.Click += new System.EventHandler(this.decline_Click);
             // 
             // GPNurse
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1821, 975);
+            this.Controls.Add(this.decline);
+            this.Controls.Add(this.allow);
+            this.Controls.Add(this.listBox2);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.nextLabel);
             this.Controls.Add(this.TimeLabel);
             this.Controls.Add(this.nxtPatient);
             this.Controls.Add(this.searchBox);
-            this.Controls.Add(this.prescriptionsBox);
             this.Controls.Add(this.historyBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -354,8 +375,7 @@
             this.Controls.Add(this.firstText);
             this.Controls.Add(this.AddNoteButton);
             this.Controls.Add(this.OkButton);
-            this.Controls.Add(this.button8);
-            this.Controls.Add(this.button7);
+            this.Controls.Add(this.editButton);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.remove);
             this.Controls.Add(this.label9);
@@ -379,8 +399,7 @@
         private System.Windows.Forms.TextBox firstText;
         private System.Windows.Forms.Button AddNoteButton;
         private System.Windows.Forms.Button OkButton;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button editButton;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button remove;
         private System.Windows.Forms.Label label9;
@@ -394,12 +413,14 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.RichTextBox detailsBox;
         private System.Windows.Forms.RichTextBox historyBox;
-        private System.Windows.Forms.RichTextBox prescriptionsBox;
         private System.Windows.Forms.ListBox searchBox;
         private System.Windows.Forms.Label nxtPatient;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label TimeLabel;
         private System.Windows.Forms.Label nextLabel;
         private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox listBox2;
+        private System.Windows.Forms.Button allow;
+        private System.Windows.Forms.Button decline;
     }
 }
