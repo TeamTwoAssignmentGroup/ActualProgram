@@ -257,7 +257,6 @@ namespace Mockup2.Support
           
             appointment = appointmentClass.getNextAppointment();
             nextPatientret = infoFac.GetAPatientByID(appointment.PatientId);
-            
             return nextPatientret;
 
 

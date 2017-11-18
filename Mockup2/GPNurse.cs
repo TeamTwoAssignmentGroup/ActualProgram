@@ -514,7 +514,7 @@ namespace Mockup2
         /**
          * Timer is running ad refreshing the form (checks for patient when time passes)
          * */
-        private void timer2_Tick(object sender, EventArgs e)
+        private void timer2_Tick_1(object sender, EventArgs e)
         {
             getNextPatient();
        
@@ -535,7 +535,7 @@ namespace Mockup2
                 TimeLabel.Text = timeIs;
                 nextLabel.Text = name;
             }
-            catch (NullReferenceException ex) { nextLabel.Text = "no patient  for 10 mins"; }
+            catch (NullReferenceException ex) { nextLabel.Text = "no patient "; }
         }
 
 
@@ -643,6 +643,8 @@ namespace Mockup2
            
            
         }
+
+     
 
 
 

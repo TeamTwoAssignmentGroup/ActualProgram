@@ -33,9 +33,10 @@ namespace Mockup2.Support
 
         public void initSet()
         {
-           
+
                 
                 sort = select.GetAppointmentsByDate(DateTime.Now);
+              
                
             
             

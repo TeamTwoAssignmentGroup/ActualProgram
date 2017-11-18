@@ -58,6 +58,7 @@
             this.listBox2 = new System.Windows.Forms.ListBox();
             this.allow = new System.Windows.Forms.Button();
             this.decline = new System.Windows.Forms.Button();
+            this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // exitButton
@@ -284,7 +285,7 @@
             // timer1
             // 
             this.timer1.Enabled = true;
-            this.timer1.Interval = 998;
+            this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // TimeLabel
@@ -351,6 +352,11 @@
             this.decline.Text = "Decline";
             this.decline.UseVisualStyleBackColor = true;
             this.decline.Click += new System.EventHandler(this.decline_Click);
+            // 
+            // timer2
+            // 
+            this.timer2.Interval = 2000;
+            this.timer2.Tick += new System.EventHandler(this.timer2_Tick_1);
             // 
             // GPNurse
             // 
@@ -422,5 +428,6 @@
         private System.Windows.Forms.ListBox listBox2;
         private System.Windows.Forms.Button allow;
         private System.Windows.Forms.Button decline;
+        private System.Windows.Forms.Timer timer2;
     }
 }

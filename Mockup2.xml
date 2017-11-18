@@ -561,6 +561,7 @@
             </summary>
             <param name="mn">The MedicalNotes object to pull data from.</param>
         </member>
+        <!-- Badly formed XML comment ignored for member "M:Mockup2.Factories.MedicationFactory.md(Mockup2.DatabaseClasses.QueryBuilder)" -->
         <member name="T:Mockup2.Factories.PrescriptionFactory">
             <summary>
             Convenience method to handle returning, updating, and inserting Prescription objects into the database.
@@ -597,6 +598,16 @@
             Gets the last available prescription id currently in the database.
             </summary>
             <returns>The last available prescription id.</returns>
+        </member>
+        <member name="M:Mockup2.Factories.PrescriptionFactory.InsertPrescription(Mockup2.DatabaseClasses.Prescription)">
+            <summary>
+            Inserts the supplied Prescription into the database. It's important to note that
+            the Prescription must have a valid id, obtained using the
+            <code>GetNextAvailableID()</code> method in this class. Any Prescriptions
+            that have MedicationInstances linked to them will need to be inserted before
+            the MedicationInstances are to avoid foreign key constraint problems.
+            </summary>
+            <param name="p">The Prescription object to insert.</param>
         </member>
         <member name="T:Mockup2.Factories.StaffFactory">
             <summary>
@@ -827,7 +838,7 @@
             Initialised a clock on the form
             
         </member>
-        <member name="M:Mockup2.GPNurse.timer2_Tick(System.Object,System.EventArgs)">
+        <member name="M:Mockup2.GPNurse.timer2_Tick_1(System.Object,System.EventArgs)">
             Timer is running ad refreshing the form (checks for patient when time passes)
             
         </member>

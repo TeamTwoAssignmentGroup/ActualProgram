@@ -14,6 +14,7 @@ namespace Mockup2
         PrescriptionFactory managePrescription;
         Prescription currentPrescription = new Prescription();
         MedicineInFactory getMedications;
+        MedicationFactory medFact;
         Patient patient;
         DBConnection dbCon;
         List<Medication> medications = new List<Medication>();
@@ -28,7 +29,7 @@ namespace Mockup2
             this.dbCon = connection;
             getMedications = new MedicineInFactory(dbCon);
             managePrescription = new PrescriptionFactory(dbCon);
-           
+            medFact = new MedicationFactory(dbCon);
             InitializeComponent();
             showMedications();
 
@@ -74,17 +75,16 @@ namespace Mockup2
             if (result == System.Windows.Forms.DialogResult.Yes)
             {
 
-                createNewPrescription();
-                managePrescription.addPrescription(currentPrescription);
-                getMedications.addmedicationInstance(medicationAndPrescription);
-              
-                currentPrescription = null;
+
+                createNewPrescription(medications[index].ScientificName.ToString());
+                this.Hide();
+
+               
 
 
             }
             if (result == System.Windows.Forms.DialogResult.No)
             {
-                currentPrescription = null;
             }
         }
 
@@ -94,29 +94,37 @@ namespace Mockup2
             index= listBox1.Items.IndexOf(listBox1.Text);
             name = listBox1.SelectedItem.ToString();
             selectedTextBox.Text = medications[index].CommercialName.ToString();
+
+            
         }
 
 
 
-        private void createNewPrescription()
+        private void createNewPrescription(string name)
         {
 
 
-            currentPrescription.StaffId = 12;
+            currentPrescription.StaffId = 2;
             currentPrescription.PatientId = patient.ID;
             currentPrescription.IsRepeatable = ticked;
             currentPrescription.RepeatRequested = false;
             currentPrescription.IssueDate = DateTime.Now;
+            managePrescription.InsertPrescription(currentPrescription);
+
+
+
             medicationAndPrescription.Instruction = instructionTextBox.Text;
-            int id = managePrescription.GetNextAvailablePrescriptionID();
+            medicationAndPrescription.MedicationId =medFact.getMedicationID(name);
+            int id = managePrescription.returnLastPrescriptionID();
             medicationAndPrescription.PrescriptionId = id;
-            medicationAndPrescription.MedicationId = medications[index].ID;
-                
-               
-                
+            getMedications.addmedicationInstance(medicationAndPrescription);
            
 
-           
+
+
+
+
+
 
 
 

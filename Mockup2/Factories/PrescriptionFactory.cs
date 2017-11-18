@@ -174,7 +174,57 @@ namespace Mockup2.Factories
 
 
 
-        
+        public int returnLastPrescriptionID()
+        {
+
+            int i = 0;
+
+
+            MySqlCommand cmd = new MySqlCommand(
+                "Select id From Prescription ORDER BY id DESC LIMIT 1;"
+                , dbCon.GetConnection());
+
+            i= GetPrescription(cmd);
+
+            return i;
+
+
+
+        }
+
+
+
+
+        public int GetPrescription(MySqlCommand cmd)
+        {
+            Prescription p = new Prescription();
+            MySqlCommand query =cmd;
+            MySqlDataReader reader = query.ExecuteReader();
+
+            while (reader.Read())
+            {
+              
+                    Prescription a = new Prescription();
+                    PrescriptionTable pt = Tables.PRESCRIPTION_TABLE;
+                    a.Id = GetInt(reader[pt.ID.Name]);               
+                    p.Id = a.Id;
+               
+
+
+
+            }
+            reader.Close();
+            reader.Dispose();
+            return p.Id;
+        }
+
+
+
+
+
+
+
+
 
     }
 }
