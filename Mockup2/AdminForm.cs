@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Mockup2.Factories;
 using Mockup2.DatabaseClasses;
+using Mockup2.AdminForms;
 
 namespace Mockup2
 {
@@ -152,6 +153,11 @@ namespace Mockup2
         private void button5_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void reportBug_Click(object sender, EventArgs e)
+        {
+            new ReportBugForm().ShowDialog();
         }
     }
 }

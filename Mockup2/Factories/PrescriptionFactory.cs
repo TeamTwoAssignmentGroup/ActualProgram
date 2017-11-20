@@ -36,7 +36,7 @@ namespace Mockup2.Factories
         /// Gets a list of Prescriptions from the database based on search critera provided by the QueryBuilder.
         /// </summary>
         /// <param name="b">QueryBuilder containing the SQL code.</param>
-        /// <returns>A list of Prescriptions.</returns>
+        /// <returns>A list of <see cref="Mockup2.DatabaseClasses.Prescription"/>s.</returns>
         public List<Prescription> GetPrescriptions(QueryBuilder b)
         {
             List<Prescription> result = new List<Prescription>();
@@ -63,7 +63,7 @@ namespace Mockup2.Factories
         /// <summary>
         /// Convenience method to get all prescriptions.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>A list of all <see cref="Mockup2.DatabaseClasses.Prescription"/>s</returns>
         public List<Prescription> GetPrescriptions()
         {
             QueryBuilder b = new QueryBuilder();
@@ -75,7 +75,7 @@ namespace Mockup2.Factories
         /// Convenience method to get all prescriptions based on the patient id they belong to.
         /// </summary>
         /// <param name="patientID">ID of the patient to find prescriptions for.</param>
-        /// <returns>A list of Prescriptions.</returns>
+        /// <returns>A list of <see cref="Mockup2.DatabaseClasses.Prescription"/>s.</returns>
         public List<Prescription> GetPrescriptions(int patientID)
         {
             QueryBuilder b = new QueryBuilder();
@@ -101,7 +101,7 @@ namespace Mockup2.Factories
         /// that have MedicationInstances linked to them will need to be inserted before
         /// the MedicationInstances are to avoid foreign key constraint problems.
         /// </summary>
-        /// <param name="p">The Prescription object to insert.</param>
+        /// <param name="p">The <see cref="Mockup2.DatabaseClasses.Prescription"/> object to insert.</param>
         public void InsertPrescription(Prescription p)
         {
             QueryBuilder b = new QueryBuilder();
