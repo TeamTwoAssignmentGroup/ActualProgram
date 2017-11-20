@@ -4,6 +4,23 @@
         <name>Mockup2</name>
     </assembly>
     <members>
+        <member name="F:Mockup2.AddPrescription.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Mockup2.AddPrescription.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Mockup2.AddPrescription.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
         <member name="F:Mockup2.AdminForm.components">
             <summary>
             Required designer variable.
@@ -570,6 +587,7 @@
             </summary>
             <param name="mn">The MedicalNotes object to pull data from.</param>
         </member>
+        <!-- Badly formed XML comment ignored for member "M:Mockup2.Factories.MedicationFactory.md(Mockup2.DatabaseClasses.QueryBuilder)" -->
         <member name="T:Mockup2.Factories.PrescriptionFactory">
             <summary>
             Convenience method to handle returning, updating, and inserting Prescription objects into the database.
@@ -735,13 +753,53 @@
             Executes query in the database to return details to getAPatient() method
             
         </member>
+        <member name="F:Mockup2.GPNurse.dbCon">
+            Objects and variables used on the page
+        </member>
+        <member name="M:Mockup2.GPNurse.Init(Mockup2.DatabaseClasses.DBConnection)">
+            initialises constructor 
+            include time,database components
+            
+        </member>
+        <member name="M:Mockup2.GPNurse.#ctor(Mockup2.DatabaseClasses.DBConnection)">
+            Form 
+            Initialises a next patient and database components
+            
+        </member>
         <member name="M:Mockup2.GPNurse.OK_Click(System.Object,System.EventArgs)">
             This button returns one patient from the database as an object
             can be by name or nhs number
             
         </member>
+        <member name="M:Mockup2.GPNurse.cleanAll">
+            This method is created to clear the from from data
+            
+        </member>
         <member name="M:Mockup2.GPNurse.loadCurrentPatient">
             This button (Viev this patient details) loads in selected patient details on the page
+            
+        </member>
+        <member name="M:Mockup2.GPNurse.getPrescriptionNameIssueDate">
+            This function returns all prescription details that belongs to the current patient
+            
+        </member>
+        <member name="M:Mockup2.GPNurse.getPrescriptions">
+            This function returns prescription object that is currently loaded with current patient
+            this function is specific and return a specific value
+            
+        </member>
+        <member name="M:Mockup2.GPNurse.getTestresults">
+            This function reads the testresults from the object list and returns it as a string
+            This function is not global but specified to test name and testdate
+            
+        </member>
+        <member name="M:Mockup2.GPNurse.foundPatientObject">
+            This function initialises current patient to the patient who has been searched and selecet in the searchbox
+            
+        </member>
+        <member name="M:Mockup2.GPNurse.swapPatient(Mockup2.DatabaseClasses.Patient)">
+            This function swaps the current patient to the next patient
+            from next or from search
             
         </member>
         <member name="M:Mockup2.GPNurse.textBoxWriter(System.Collections.Generic.List{System.String},System.Windows.Forms.RichTextBox)">
@@ -750,6 +808,10 @@
         </member>
         <member name="M:Mockup2.GPNurse.ListBoxWriter(System.Collections.Generic.List{System.String},System.Windows.Forms.ListBox)">
             Prinitg any list <string></string> data into the textbox
+            
+        </member>
+        <member name="M:Mockup2.GPNurse.getNextPatient">
+            This function initalises the next patient when an appointment is booked for the day
             
         </member>
         <member name="M:Mockup2.GPNurse.textBoxCleaner(System.Windows.Forms.RichTextBox)">
@@ -764,8 +826,59 @@
             Clears selected textbox
             
         </member>
+        <member name="M:Mockup2.GPNurse.clear_Click(System.Object,System.EventArgs,System.Windows.Forms.ListBox)">
+            This function clears all the listboxes present on this form
+            
+        </member>
+        <member name="M:Mockup2.GPNurse.addNote">
+            This method displays the note in the medical history box after added
+            
+        </member>
+        <member name="M:Mockup2.GPNurse.save_Click(System.Object,System.EventArgs)">
+            Saves the note into a string array that prepares the note to be saved in the database
+            changes only apply when the current patient changes are saved through save() method
+            
+        </member>
+        <member name="M:Mockup2.GPNurse.undo_Click(System.Object,System.EventArgs)">
+            This is the removes modified changes from the medical history that has been added currently
+            
+        </member>
         <member name="M:Mockup2.GPNurse.saveChanges">
-            prompting the user to save their work
+            prompting the user to save their work (curently loaded patient)
+            
+        </member>
+        <member name="M:Mockup2.GPNurse.nextButton_Click(System.Object,System.EventArgs)">
+            Loads the next patient who has been labeled by this button 
+            this button also saves the currently loaded patient before the next patient loaded onto the form
+            
+        </member>
+        <member name="M:Mockup2.GPNurse.exitButton_Click(System.Object,System.EventArgs)">
+            The exit button leaves the form and asks to save a patient who currently loaded onto the form
+            
+        </member>
+        <member name="M:Mockup2.GPNurse.timeNow">
+            gets the date and time now but only shows current time of the system
+            
+        </member>
+        <member name="M:Mockup2.GPNurse.TimeLabel_Click(System.Object,System.EventArgs)">
+            Initialised a clock on the form
+            
+        </member>
+        <member name="M:Mockup2.GPNurse.timer2_Tick_1(System.Object,System.EventArgs)">
+            Timer is running ad refreshing the form (checks for patient when time passes)
+            
+        </member>
+        <member name="M:Mockup2.GPNurse.timer1_Tick(System.Object,System.EventArgs)">
+            Timer action 
+            
+        </member>
+        <member name="M:Mockup2.GPNurse.searchBox_MouseDoubleClick(System.Object,System.Windows.Forms.MouseEventArgs)">
+            Allows double clik on the patient who has been searched from the database
+            when double clik action occurs then the patient will be loaded onto the form
+            
+        </member>
+        <member name="M:Mockup2.GPNurse.listBox2_DoubleClick(System.Object,System.EventArgs)">
+            
             
         </member>
         <member name="F:Mockup2.GPNurse.components">
@@ -882,57 +995,6 @@
             <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         </member>
         <member name="M:Mockup2.PatientForms.ViewTestHistoryForm.InitializeComponent">
-            <summary>
-            Required method for Designer support - do not modify
-            the contents of this method with the code editor.
-            </summary>
-        </member>
-        <member name="F:Mockup2.PrescriptionForms.AmendPrescriptionForm.components">
-            <summary>
-            Required designer variable.
-            </summary>
-        </member>
-        <member name="M:Mockup2.PrescriptionForms.AmendPrescriptionForm.Dispose(System.Boolean)">
-            <summary>
-            Clean up any resources being used.
-            </summary>
-            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        </member>
-        <member name="M:Mockup2.PrescriptionForms.AmendPrescriptionForm.InitializeComponent">
-            <summary>
-            Required method for Designer support - do not modify
-            the contents of this method with the code editor.
-            </summary>
-        </member>
-        <member name="F:Mockup2.PrescriptionForms.IssuePrescriptionForm.components">
-            <summary>
-            Required designer variable.
-            </summary>
-        </member>
-        <member name="M:Mockup2.PrescriptionForms.IssuePrescriptionForm.Dispose(System.Boolean)">
-            <summary>
-            Clean up any resources being used.
-            </summary>
-            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        </member>
-        <member name="M:Mockup2.PrescriptionForms.IssuePrescriptionForm.InitializeComponent">
-            <summary>
-            Required method for Designer support - do not modify
-            the contents of this method with the code editor.
-            </summary>
-        </member>
-        <member name="F:Mockup2.PrescriptionForms.ViewPrescription.components">
-            <summary>
-            Required designer variable.
-            </summary>
-        </member>
-        <member name="M:Mockup2.PrescriptionForms.ViewPrescription.Dispose(System.Boolean)">
-            <summary>
-            Clean up any resources being used.
-            </summary>
-            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        </member>
-        <member name="M:Mockup2.PrescriptionForms.ViewPrescription.InitializeComponent">
             <summary>
             Required method for Designer support - do not modify
             the contents of this method with the code editor.

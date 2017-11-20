@@ -71,6 +71,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddPrescription.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddPrescription.Designer.cs">
+      <DependentUpon>AddPrescription.cs</DependentUpon>
+    </Compile>
     <Compile Include="AdminForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -111,6 +117,7 @@
     <Compile Include="Factories\AppointmentFactory.cs" />
     <Compile Include="Factories\CustomTableFactory.cs" />
     <Compile Include="Factories\MedicalNoteFactory.cs" />
+    <Compile Include="Factories\MedicationFactory.cs" />
     <Compile Include="Factories\MedicineInFactory.cs" />
     <Compile Include="Factories\PrescriptionFactory.cs" />
     <Compile Include="Factories\StaffFactory.cs" />
@@ -162,24 +169,6 @@
       <DependentUpon>ViewTestHistoryForm.cs</DependentUpon>
     </Compile>
     <Compile Include="DatabaseClasses\Prescription.cs" />
-    <Compile Include="PrescriptionForms\AmendPrescriptionForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PrescriptionForms\AmendPrescriptionForm.Designer.cs">
-      <DependentUpon>AmendPrescriptionForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PrescriptionForms\IssuePrescriptionForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PrescriptionForms\IssuePrescriptionForm.Designer.cs">
-      <DependentUpon>IssuePrescriptionForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PrescriptionForms\ViewPrescription.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PrescriptionForms\ViewPrescription.Designer.cs">
-      <DependentUpon>ViewPrescription.cs</DependentUpon>
-    </Compile>
     <Compile Include="DatabaseClasses\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DatabaseClasses\QueryBuilder.cs" />
@@ -213,6 +202,9 @@
     <Compile Include="UpdateStaff.Designer.cs">
       <DependentUpon>UpdateStaff.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AddPrescription.resx">
+      <DependentUpon>AddPrescription.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AdminForm.resx">
       <DependentUpon>AdminForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -249,15 +241,6 @@
     <EmbeddedResource Include="PatientForms\ViewTestHistoryForm.resx">
       <DependentUpon>ViewTestHistoryForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PrescriptionForms\AmendPrescriptionForm.resx">
-      <DependentUpon>AmendPrescriptionForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PrescriptionForms\IssuePrescriptionForm.resx">
-      <DependentUpon>IssuePrescriptionForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PrescriptionForms\ViewPrescription.resx">
-      <DependentUpon>ViewPrescription.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -282,6 +265,7 @@
     </EmbeddedResource>
     <None Include="ClassDiagram1.cd" />
     <None Include="ClassDiagram2.cd" />
+    <None Include="ClassDiagram3.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

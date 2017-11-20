@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Mockup2.DatabaseClasses.Tables;
 
 namespace Mockup2.Factories
 {
@@ -70,14 +71,51 @@ namespace Mockup2.Factories
 
             while (reader.Read())
             {
+                    
+                
+                    Tables.MedicationTable pt = Tables.MEDICATION_TABLE;
+                    a.ID = GetInt(reader[pt.ID.Name]);
+                    a.CommercialName = GetString(reader[pt.CommercialName.Name]);
+                    a.Manufacturer = GetString(reader[pt.Manufacturer.Name]);
+                    a.ScientificName = GetString(reader[pt.ScientificName.Name]);
+                    result.Add(a);
+              
+            }
+
+            reader.Close();
+            reader.Dispose();
+            return result;
+
+        }
 
 
+
+        public List<Medication>  getAllMedication()
+        {
+
+            QueryBuilder qb = new QueryBuilder();
+            qb.Select(Tables.ALL).From(Tables.MEDICATION_TABLE);
+            return GetAllMedicationAvailable(qb);
+        }
+
+
+        public List<Medication> GetAllMedicationAvailable(QueryBuilder b)
+        {
+            Medication a = new Medication();
+            List<Medication> result = new List<Medication>();
+            MySqlCommand query = new MySqlCommand(b.ToString(), dbCon.GetConnection());
+            MySqlDataReader reader = query.ExecuteReader();
+
+            while (reader.Read())
+            {
+
+                Medication med = new Medication();
                 Tables.MedicationTable pt = Tables.MEDICATION_TABLE;
-                a.ID = GetInt(reader[pt.ID.Name]);
-                a.CommercialName = GetString(reader[pt.CommercialName.Name]);
-                a.Manufacturer = GetString(reader[pt.Manufacturer.Name]);
-                a.ScientificName = GetString(reader[pt.ScientificName.Name]);
-                result.Add(a);
+                med.ID = GetInt(reader[pt.ID.Name]);
+                med.CommercialName = GetString(reader[pt.CommercialName.Name]);
+                med.Manufacturer = GetString(reader[pt.Manufacturer.Name]);
+                med.ScientificName = GetString(reader[pt.ScientificName.Name]);
+                result.Add(med);
 
             }
 
@@ -86,6 +124,29 @@ namespace Mockup2.Factories
             return result;
 
         }
+
+
+
+        public void addmedicationInstance(MedicationInstance instance)
+        {
+          
+
+
+            QueryBuilder b = new QueryBuilder();
+            b.Insert(Tables.MEDICATIONINSTANCE_TABLE).Values
+                (
+                null,
+                instance.PrescriptionId,
+                instance.MedicationId,               
+                instance.Instruction
+                
+                );
+
+                MySqlCommand cmd = new MySqlCommand(b.ToString(), dbCon.GetConnection());
+                cmd.ExecuteNonQuery();
+        }
+
+
 
 
 
