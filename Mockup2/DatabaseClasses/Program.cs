@@ -18,13 +18,15 @@ namespace Mockup2.DatabaseClasses
         public static readonly bool ENFORCE_LOGIN = false;
         public static readonly bool SEND_TEXTS = false;
         public static readonly bool SEND_EMAILS = true;
-        public static readonly string AUTH_TOKEN= "821b44cbb0b72c06e97bca25f0d399d2d9a869fb";
+        public static string AUTH_TOKEN= "";
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        static void Main(string[] args)
         {
+            AUTH_TOKEN = args[0];
+            Console.WriteLine(AUTH_TOKEN);
             DBConnection dbCon = new DBConnection();
             Console.WriteLine(new PrescriptionFactory(dbCon).GetNextAvailablePrescriptionID());
             System.Windows.Forms.Application.EnableVisualStyles();

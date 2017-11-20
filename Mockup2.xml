@@ -113,7 +113,7 @@
             <param name="appointmentDate">The date of the <see cref="T:Mockup2.DatabaseClasses.Appointment"/>Appointment.</param>
             <param name="appointmentTime">The time of the <see cref="T:Mockup2.DatabaseClasses.Appointment"/>Appointment.</param>
         </member>
-        <member name="M:Mockup2.DatabaseClasses.Program.Main">
+        <member name="M:Mockup2.DatabaseClasses.Program.Main(System.String[])">
             <summary>
             The main entry point for the application.
             </summary>

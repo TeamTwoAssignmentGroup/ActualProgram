@@ -35,7 +35,7 @@ namespace Mockup2.AdminForms
         private void sendReportButton_Click(object sender, EventArgs e)
         {
             EmailBug(reportDate.Value, reportTime.Value, reportSubject.Text, reportMessage.Text);
-            CreateBug(reportSubject.Text, reportMessage.Text);
+            CreateBug(reportDate.Value, reportTime.Value, reportSubject.Text, reportMessage.Text);
             this.Close();
             this.Dispose();
         }
@@ -62,7 +62,7 @@ namespace Mockup2.AdminForms
             
         }
 
-        private async void CreateBug(string subject, string message)
+        private async void CreateBug(DateTime date, DateTime time, string subject, string message)
         {
             try
             {
@@ -70,7 +70,7 @@ namespace Mockup2.AdminForms
                 GitHubClient gh = new GitHubClient(new ProductHeaderValue("OverSurgery"));
                 gh.Credentials = credentials;
                 NewIssue issue = new NewIssue(subject);
-                issue.Body = "[Auto sent from OverSurgery application] "+System.Environment.NewLine+message;
+                issue.Body = "[Auto sent from OverSurgery application] "+System.Environment.NewLine+"[Date: "+date.ToShortDateString()+" Time: "+time.ToShortTimeString()+" ]"+System.Environment.NewLine+message;
                 Issue sentIssue = await gh.Issue.Create("TeamTwoAssignmentGroup", "ActualProgram", issue);
             }
             catch (Exception e)
