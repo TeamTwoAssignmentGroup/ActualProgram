@@ -34,6 +34,7 @@ namespace Mockup2
         private List<string> notes = new List<string>();
         private List<Prescription> prescriptionList = new List<Prescription>();
         private List<TestResult> testresultsList = new List<TestResult>();
+        private bool isDoctor;
 
 
 
@@ -63,8 +64,10 @@ namespace Mockup2
          * Form 
          * Initialises a next patient and database components
          * */
-        public GPNurse(DBConnection dbCon)
+        public GPNurse(DBConnection dbCon,bool isDoctor)
         {
+            this.isDoctor = isDoctor;
+
             //database compontent
             Init(dbCon);
 

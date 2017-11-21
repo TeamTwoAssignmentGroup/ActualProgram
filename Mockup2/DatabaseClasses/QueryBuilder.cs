@@ -168,6 +168,7 @@ namespace Mockup2.DatabaseClasses
             query += ")";
             return this;
         }
+
         /// <summary>
         /// Adds a Set statement to the current SQL query. A word of warning for the parameters:
         /// to satisfy SQL, they must be pairs of Column and value. However, there is no way to enforce

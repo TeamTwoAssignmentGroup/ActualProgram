@@ -185,6 +185,12 @@
       <DependentUpon>ResetPasswordForm.cs</DependentUpon>
     </Compile>
     <Compile Include="DatabaseClasses\Rota.cs" />
+    <Compile Include="RotaForms\SeeStaffRotaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RotaForms\SeeStaffRotaForm.Designer.cs">
+      <DependentUpon>SeeStaffRotaForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="SeeStaffListForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -256,6 +262,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ResetPasswordForm.resx">
       <DependentUpon>ResetPasswordForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RotaForms\SeeStaffRotaForm.resx">
+      <DependentUpon>SeeStaffRotaForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SeeStaffListForm.resx">
       <DependentUpon>SeeStaffListForm.cs</DependentUpon>
