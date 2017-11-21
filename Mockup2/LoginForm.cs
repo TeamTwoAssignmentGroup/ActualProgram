@@ -72,22 +72,22 @@ namespace Mockup2
             {
                 case "Admin":AdminForm af = new AdminForm(dbCon);
                     af.WindowState = FormWindowState.Maximized;
-                    af.Show();
+                    af.ShowDialog();
                     break;
 
                 case "Doctor": GPNurse gpnf = new GPNurse(dbCon,true);
                     gpnf.WindowState = FormWindowState.Maximized;
-                    gpnf.Show();
+                    gpnf.ShowDialog();
                     break;
 
                 case "Nurse": GPNurse gpnf2= new GPNurse(dbCon,false);
                     gpnf2.WindowState = FormWindowState.Maximized;
-                    gpnf2.Show();
+                    gpnf2.ShowDialog();
                     break;
 
                 case "Receptionist": ReceptionistForm rf = new ReceptionistForm(dbCon);
                     rf.WindowState = FormWindowState.Maximized;
-                    rf.Show();
+                    rf.ShowDialog();
                     break;
             }
         }
