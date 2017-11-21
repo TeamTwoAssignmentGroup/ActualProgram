@@ -36,6 +36,7 @@ namespace Mockup2
         private List<string> notes = new List<string>();
         private List<Prescription> prescriptionList = new List<Prescription>();
         private List<TestResult> testresultsList = new List<TestResult>();
+        private bool isDoctor;
 
 
 
@@ -65,8 +66,10 @@ namespace Mockup2
          * Form 
          * Initialises a next patient and database components
          * */
-        public GPNurse(DBConnection dbCon)
+        public GPNurse(DBConnection dbCon,bool isDocTor)
         {
+            //check for privilege
+            isDoctor=isDocTor;
 
             //database compontent
             Init(dbCon);
@@ -147,11 +150,15 @@ namespace Mockup2
                 history = convert.HistoryData();
                 prescriptions = convert.PrescriptionData();
                 prescriptionList = convert.GetPrescription();
-                testresultsList = convert.getTestResults();
-                testresults = convert.TestResults();
-                ListBoxWriter(prescriptions,prescriptiptionsListBox);
+                if (isDoctor == true)
+                {
+                    testresultsList = convert.getTestResults();
+                    testresults = convert.TestResults();
+                    ListBoxWriter(testresults, testResultsListBox);
+                }
+                ListBoxWriter(prescriptions, prescriptiptionsListBox);
                 textBoxWriter(history, historyBox);
-                ListBoxWriter(testresults, testResultsListBox);
+                
                 detailsBox.Text = currentPatient.FirstName + " " + currentPatient.LastName + " " + currentPatient.DOB + "\nGender: " + currentPatient.Gender + "\nNext of kin: " + currentPatient.NextOfKin + "\nAddress " + currentPatient.Address;
                 PrescriptonForm.initCurrentPatient(currentPatient);
 
