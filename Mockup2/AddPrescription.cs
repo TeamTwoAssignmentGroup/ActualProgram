@@ -119,17 +119,18 @@ namespace Mockup2
             medicationAndPrescription.PrescriptionId = id;
             getMedications.addmedicationInstance(medicationAndPrescription);
            
-
-
-
-
-
-
-
-
-
         }
 
+
+
+
+
+        public void modified(List<Prescription> pre)
+        {
+
+            managePrescription.InsertEditedPrescription(pre);
+
+        }
 
     }
 }

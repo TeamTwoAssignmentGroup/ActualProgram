@@ -116,32 +116,23 @@ namespace Mockup2.Factories
 
         public void InsertEditedPrescription(List<Prescription> pre)
         {
+            QueryBuilder b = new QueryBuilder();
             
-            
-            QueryBuilder qb = new QueryBuilder();
 
-
-
-
-           
-
-            for (int i = 0; i < pre.Count; i++)
+            foreach (Prescription p in pre)
             {
-
-                qb.Insert(Tables.PRESCRIPTION_TABLE).Where(qb.IsEqual(Tables.PRESCRIPTION_TABLE.ID, pre[i].Id)).Values
-                (
-                pre[i].IsRepeatable,
-                pre[i].StaffId,
-                DateTime.Now.ToString("yyyy-mm-dd"),
-                pre[i].IsRepeatable,
-                pre[i].RepeatRequested
-                );
-
-
-
-                MySqlCommand cmd = new MySqlCommand(qb.ToString(), dbCon.GetConnection());
+               b.Update(Tables.PRESCRIPTION_TABLE).Set(
+               Tables.PRESCRIPTION_TABLE.ID, p.Id,
+               Tables.PRESCRIPTION_TABLE.PatientID, p.PatientId,
+               Tables.PRESCRIPTION_TABLE.IssuingStaffID,p.StaffId,
+               Tables.PRESCRIPTION_TABLE.IsRepeatable,p.IsRepeatable,
+               Tables.PRESCRIPTION_TABLE.IssueDate,DateTime.Now.ToString("yyyy-MM-dd"),
+               Tables.PRESCRIPTION_TABLE.RepeatRequested,p.RepeatRequested
+               
+               ).Where(b.IsEqual(Tables.PRESCRIPTION_TABLE.ID, p.Id));      
+                MySqlCommand cmd = new MySqlCommand(b.ToString(), dbCon.GetConnection());
                 cmd.ExecuteNonQuery();
-                }
+            }
             
         }
 

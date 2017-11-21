@@ -614,6 +614,8 @@ namespace Mockup2
         {   
 
             if (allow.Visible = true) { allow.Visible = false; decline.Visible = false; }
+            prescriptionList[editIndex].IsRepeatable = true;
+            saveModifiedPrescription();
             //change list
             //send it to db when saved
         }
@@ -624,8 +626,15 @@ namespace Mockup2
         {
 
             if (decline.Visible = true) { decline.Visible = false; allow.Visible = false; }
-            //change list
-            //send it to db when saved
+            prescriptionList[editIndex].IsRepeatable = false;
+            saveModifiedPrescription();
+
+        }
+
+        private void saveModifiedPrescription()
+        {
+
+            PrescriptonForm.modified(prescriptionList);
 
         }
 
@@ -644,9 +653,9 @@ namespace Mockup2
            
         }
 
-     
 
 
+        // to commit  created updatefunc into prescription, insert into medicationinstance, merged with Saun, finished basic functionality on form...
 
 
 
