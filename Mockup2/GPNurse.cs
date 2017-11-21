@@ -8,6 +8,8 @@ using Mockup2.DatabaseClasses;
 
 namespace Mockup2
 {
+
+
     public partial class GPNurse : Form
     {
 
@@ -64,9 +66,10 @@ namespace Mockup2
          * Form 
          * Initialises a next patient and database components
          * */
-        public GPNurse(DBConnection dbCon,bool isDoctor)
+        public GPNurse(DBConnection dbCon,bool isDocTor)
         {
-            this.isDoctor = isDoctor;
+            //check for privilege
+            isDoctor=isDocTor;
 
             //database compontent
             Init(dbCon);
@@ -80,8 +83,7 @@ namespace Mockup2
 
             allow.Visible = false;
             decline.Visible = false;
-
-        
+      
         }
 
 
@@ -131,7 +133,7 @@ namespace Mockup2
 
 
         /**
-         * This button (Viev this patient details) loads in selected patient details on the page
+         * This button (View this patient details) loads in selected patient details on the page
          * */
         private void loadCurrentPatient()
         {
@@ -148,11 +150,15 @@ namespace Mockup2
                 history = convert.HistoryData();
                 prescriptions = convert.PrescriptionData();
                 prescriptionList = convert.GetPrescription();
-                testresultsList = convert.getTestResults();
-                testresults = convert.TestResults();
-                ListBoxWriter(prescriptions,prescriptiptionsListBox);
+                if (isDoctor == true)
+                {
+                    testresultsList = convert.getTestResults();
+                    testresults = convert.TestResults();
+                    ListBoxWriter(testresults, testResultsListBox);
+                }
+                ListBoxWriter(prescriptions, prescriptiptionsListBox);
                 textBoxWriter(history, historyBox);
-                ListBoxWriter(testresults, testResultsListBox);
+                
                 detailsBox.Text = currentPatient.FirstName + " " + currentPatient.LastName + " " + currentPatient.DOB + "\nGender: " + currentPatient.Gender + "\nNext of kin: " + currentPatient.NextOfKin + "\nAddress " + currentPatient.Address;
                 PrescriptonForm.initCurrentPatient(currentPatient);
 

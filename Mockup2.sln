@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.15
+VisualStudioVersion = 15.0.26403.7
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mockup2", "Mockup2\Mockup2.csproj", "{BD340830-9BE6-4E6B-836B-D002E69CBDB9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9F3D2F11-077B-4939-8972-52032A322092}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShaunsTests", "Mockup2\UnitTests\ShaunsTests\ShaunsTests.csproj", "{8482DA59-5F71-4379-9FD8-207A0E99880F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RolandsTest", "RolandsTest\RolandsTest.csproj", "{08F9FCB1-94D3-410A-940D-979B9A27E6C4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,6 +25,10 @@ Global
 		{8482DA59-5F71-4379-9FD8-207A0E99880F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8482DA59-5F71-4379-9FD8-207A0E99880F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8482DA59-5F71-4379-9FD8-207A0E99880F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08F9FCB1-94D3-410A-940D-979B9A27E6C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08F9FCB1-94D3-410A-940D-979B9A27E6C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08F9FCB1-94D3-410A-940D-979B9A27E6C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08F9FCB1-94D3-410A-940D-979B9A27E6C4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

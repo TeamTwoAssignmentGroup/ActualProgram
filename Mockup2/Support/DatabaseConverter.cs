@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Mockup2.Support
 {
-    class DatabaseConverter
+    public class DatabaseConverter
     {
 
         /**
@@ -76,6 +76,7 @@ namespace Mockup2.Support
         /// <returns>patient prescriptions as string</returns>
         public List<Prescription> getPrescription()
         {
+
             return prescription;
 
         }
@@ -299,6 +300,7 @@ namespace Mockup2.Support
         /// <param name="pre"></param>
         public void removePrescription(Prescription pre)
         {
+
             prescriptionFactory.DeletePrescription(pre);
 
         }

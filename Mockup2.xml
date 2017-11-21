@@ -4,6 +4,33 @@
         <name>Mockup2</name>
     </assembly>
     <members>
+        <member name="M:Mockup2.AddPrescription.prescribeButton_Click(System.Object,System.EventArgs)">
+            <summary>
+            savescreate and save a prescription into the database
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Mockup2.AddPrescription.medicationsListBox_MouseClick(System.Object,System.Windows.Forms.MouseEventArgs)">
+            <summary>
+            This method selects the selected medication and prepares a medication to be saves
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Mockup2.AddPrescription.createNewPrescription(System.String)">
+            <summary>
+            Creates a new prescription and medication object
+            Medication instance and prescription
+            </summary>
+            <param name="name"></param>
+        </member>
+        <member name="M:Mockup2.AddPrescription.modified(System.Collections.Generic.List{Mockup2.DatabaseClasses.Prescription})">
+            <summary>
+            saves the prescription into the database
+            </summary>
+            <param name="pre"></param>
+        </member>
         <member name="F:Mockup2.AddPrescription.components">
             <summary>
             Required designer variable.
@@ -871,7 +898,7 @@
             
         </member>
         <member name="M:Mockup2.GPNurse.loadCurrentPatient">
-            This button (Viev this patient details) loads in selected patient details on the page
+            This button (View this patient details) loads in selected patient details on the page
             
         </member>
         <member name="M:Mockup2.GPNurse.getPrescriptionNameIssueDate">

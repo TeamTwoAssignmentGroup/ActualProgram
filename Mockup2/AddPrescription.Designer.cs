@@ -50,7 +50,7 @@
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(832, 529);
             this.listBox1.TabIndex = 0;
-            this.listBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listBox1_MouseClick);
+            this.listBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.medicationsListBox_MouseClick);
             // 
             // staffID
             // 
@@ -117,7 +117,7 @@
             this.button1.TabIndex = 7;
             this.button1.Text = "Prescribe";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.prescribeButton_Click);
             // 
             // label4
             // 
