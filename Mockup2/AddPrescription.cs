@@ -11,18 +11,19 @@ namespace Mockup2
     public partial class AddPrescription : Form
     {
 
-        PrescriptionFactory managePrescription;
-        Prescription currentPrescription = new Prescription();
-        MedicineInFactory getMedications;
-        MedicationFactory medFact;
-        Patient patient;
-        DBConnection dbCon;
-        List<Medication> medications = new List<Medication>();
-        MedicationInstance medicationAndPrescription = new MedicationInstance();
-        
-        int index;
+        private PrescriptionFactory managePrescription;
+        private Prescription currentPrescription = new Prescription();
+        private MedicineInFactory getMedications;
+        private MedicationFactory medFact;
+        private Patient patient;
+        private DBConnection dbCon;
+        private List<Medication> medications = new List<Medication>();
+        private MedicationInstance medicationAndPrescription = new MedicationInstance();
+        private int index;
+        private bool ticked;
 
-        bool ticked;
+
+
 
         public AddPrescription(DBConnection connection)
         {
@@ -61,7 +62,14 @@ namespace Mockup2
         }
 
 
-        private void button1_Click(object sender, EventArgs e)
+
+
+        /// <summary>
+        /// savescreate and save a prescription into the database
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void prescribeButton_Click(object sender, EventArgs e)
         {
 
             
@@ -79,16 +87,22 @@ namespace Mockup2
                 createNewPrescription(medications[index].ScientificName.ToString());
                 this.Hide();
 
-               
-
-
             }
+
             if (result == System.Windows.Forms.DialogResult.No)
             {
             }
         }
 
-        private void listBox1_MouseClick(object sender, MouseEventArgs e)
+
+
+
+        /// <summary>
+        /// This method selects the selected medication and prepares a medication to be saves
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void medicationsListBox_MouseClick(object sender, MouseEventArgs e)
         {
             string name = "";
             index= listBox1.Items.IndexOf(listBox1.Text);
@@ -100,6 +114,12 @@ namespace Mockup2
 
 
 
+
+        /// <summary>
+        /// Creates a new prescription and medication object
+        /// Medication instance and prescription
+        /// </summary>
+        /// <param name="name"></param>
         private void createNewPrescription(string name)
         {
 
@@ -124,13 +144,20 @@ namespace Mockup2
 
 
 
-
+        /// <summary>
+        /// saves the prescription into the database
+        /// </summary>
+        /// <param name="pre"></param>
         public void modified(List<Prescription> pre)
         {
 
             managePrescription.InsertEditedPrescription(pre);
 
         }
+
+
+
+
 
     }
 }

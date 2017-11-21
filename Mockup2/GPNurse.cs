@@ -8,6 +8,8 @@ using Mockup2.DatabaseClasses;
 
 namespace Mockup2
 {
+
+
     public partial class GPNurse : Form
     {
 
@@ -65,6 +67,7 @@ namespace Mockup2
          * */
         public GPNurse(DBConnection dbCon)
         {
+
             //database compontent
             Init(dbCon);
 
@@ -77,8 +80,7 @@ namespace Mockup2
 
             allow.Visible = false;
             decline.Visible = false;
-
-        
+      
         }
 
 
@@ -128,7 +130,7 @@ namespace Mockup2
 
 
         /**
-         * This button (Viev this patient details) loads in selected patient details on the page
+         * This button (View this patient details) loads in selected patient details on the page
          * */
         private void loadCurrentPatient()
         {
