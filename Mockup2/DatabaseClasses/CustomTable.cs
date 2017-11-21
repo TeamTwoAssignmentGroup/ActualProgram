@@ -26,6 +26,12 @@ namespace Mockup2.DatabaseClasses
             return columnData;
         }
 
+
+
+        /// <summary>
+        /// Converts to string
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             string result = "";

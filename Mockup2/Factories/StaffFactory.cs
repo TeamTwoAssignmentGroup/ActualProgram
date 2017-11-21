@@ -9,14 +9,22 @@ using static Mockup2.DatabaseClasses.Tables;
 
 namespace Mockup2.Factories
 {
+
+
     /// <summary>
     /// Convenience class to handle returning, updating, and inserting Staff objects into the database.
     /// </summary>
     public class StaffFactory : AbstractFactory
     {
+
+
         public StaffFactory(DBConnection dbCon) : base(dbCon)
         {
         }
+
+
+
+
 
         /// <summary>
         /// Gets a list of Staff by their ID number. This method should only return a list of size one, but
@@ -30,6 +38,10 @@ namespace Mockup2.Factories
             b.Select(Tables.ALL).From(Tables.STAFF_TABLE).Where(b.IsEqual(Tables.STAFF_TABLE.ID,id));
             return GetStaff(b);
         }
+
+
+
+
 
         /// <summary>
         /// Returns a list of Staff objects based on search critera given the QueryBuilder.
@@ -58,6 +70,10 @@ namespace Mockup2.Factories
             return result;
         }
 
+
+
+
+
         /// <summary>
         /// Return a list of Staff members by their first and last name.
         /// </summary>
@@ -71,6 +87,9 @@ namespace Mockup2.Factories
             return GetStaff(b);
         }
 
+
+
+
         /// <summary>
         /// Convenience method to get all Staff members from the database.
         /// </summary>
@@ -81,5 +100,10 @@ namespace Mockup2.Factories
             b.Select(Tables.ALL).From(Tables.STAFF_TABLE);
             return GetStaff(b);
         }
+
+
+
+
     }
 }
+//end               //end               //end               //end

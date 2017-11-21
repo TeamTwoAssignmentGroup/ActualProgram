@@ -96,11 +96,12 @@ namespace Mockup2
             }
         }
 
-        private Tuple<object[], object[], int> DataSet(int rowNumber)
+        private Tuple<object[], object[], int, string> DataSet(int rowNumber)
         {
             object[] pass = new object[14];
             object[] staffName = new object[2];
             int staffID = Convert.ToInt32(dataGridView1[0, rowNumber].Value);
+            string staffJob = Convert.ToString(dataGridView1[3, rowNumber].Value);
             staffName[0] = Convert.ToString(dataGridView1[1, rowNumber].Value);
             staffName[1] = Convert.ToString(dataGridView1[2, rowNumber].Value);
             pass[0] = Tables.ROTA_TABLE.Mon;
@@ -117,7 +118,7 @@ namespace Mockup2
             pass[11] = Convert.ToInt32(dataGridView1[8, rowNumber].Value);
             pass[12] = Tables.ROTA_TABLE.Sun;
             pass[13] = Convert.ToInt32(dataGridView1[9, rowNumber].Value);
-            Tuple<object[], object[], int> rotaData = new Tuple<object[], object[], int>(pass, staffName, staffID);
+            Tuple<object[], object[], int, string> rotaData = new Tuple<object[], object[], int, string>(pass, staffName, staffID, staffJob);
             return rotaData;
         }
 
@@ -126,7 +127,7 @@ namespace Mockup2
             dataGridView1.Rows.Clear();
             CustomTableFactory ctf = new CustomTableFactory(dbCon);
             b = new QueryBuilder();
-            b.Select(Tables.ROTA_TABLE.StaffID, Tables.STAFF_TABLE.FirstName, Tables.STAFF_TABLE.LastName, Tables.ROTA_TABLE.Mon, Tables.ROTA_TABLE.Tue, Tables.ROTA_TABLE.Wed,
+            b.Select(Tables.ROTA_TABLE.StaffID, Tables.STAFF_TABLE.FirstName, Tables.STAFF_TABLE.LastName, Tables.STAFF_TABLE.JobRole,Tables.ROTA_TABLE.Mon, Tables.ROTA_TABLE.Tue, Tables.ROTA_TABLE.Wed,
                 Tables.ROTA_TABLE.Thur, Tables.ROTA_TABLE.Fri, Tables.ROTA_TABLE.Sat, Tables.ROTA_TABLE.Sun).From(Tables.ROTA_TABLE, Tables.STAFF_TABLE).Where(b.IsEqual(Tables.STAFF_TABLE.ID, Tables.ROTA_TABLE.StaffID));
             CustomTable ct = ctf.GetCustomTable(b);
             foreach (var row in ct.GetRows())

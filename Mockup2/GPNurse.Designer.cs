@@ -36,7 +36,7 @@
             this.AddNoteButton = new System.Windows.Forms.Button();
             this.OkButton = new System.Windows.Forms.Button();
             this.editButton = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.addButton = new System.Windows.Forms.Button();
             this.remove = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -54,8 +54,8 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.TimeLabel = new System.Windows.Forms.Label();
             this.nextLabel = new System.Windows.Forms.Label();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.listBox2 = new System.Windows.Forms.ListBox();
+            this.prescriptiptionsListBox = new System.Windows.Forms.ListBox();
+            this.testResultsListBox = new System.Windows.Forms.ListBox();
             this.allow = new System.Windows.Forms.Button();
             this.decline = new System.Windows.Forms.Button();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
@@ -134,16 +134,16 @@
             this.editButton.UseVisualStyleBackColor = true;
             this.editButton.Click += new System.EventHandler(this.editButton_Click_1);
             // 
-            // button3
+            // addButton
             // 
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(253, 475);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(117, 35);
-            this.button3.TabIndex = 41;
-            this.button3.Text = "ADD";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.addButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addButton.Location = new System.Drawing.Point(253, 475);
+            this.addButton.Name = "addButton";
+            this.addButton.Size = new System.Drawing.Size(117, 35);
+            this.addButton.TabIndex = 41;
+            this.addButton.Text = "ADD";
+            this.addButton.UseVisualStyleBackColor = true;
+            this.addButton.Click += new System.EventHandler(this.button3_Click);
             // 
             // remove
             // 
@@ -309,27 +309,27 @@
             this.nextLabel.TabIndex = 76;
             this.nextLabel.Text = "no patient";
             // 
-            // listBox1
+            // prescriptiptionsListBox
             // 
-            this.listBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 20;
-            this.listBox1.Location = new System.Drawing.Point(12, 217);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(403, 244);
-            this.listBox1.TabIndex = 77;
-            this.listBox1.DoubleClick += new System.EventHandler(this.listBox1_DoubleClick);
+            this.prescriptiptionsListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.prescriptiptionsListBox.FormattingEnabled = true;
+            this.prescriptiptionsListBox.ItemHeight = 20;
+            this.prescriptiptionsListBox.Location = new System.Drawing.Point(12, 217);
+            this.prescriptiptionsListBox.Name = "prescriptiptionsListBox";
+            this.prescriptiptionsListBox.Size = new System.Drawing.Size(403, 244);
+            this.prescriptiptionsListBox.TabIndex = 77;
+            this.prescriptiptionsListBox.DoubleClick += new System.EventHandler(this.prescriptionsListBox_DoubleClick);
             // 
-            // listBox2
+            // testResultsListBox
             // 
-            this.listBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listBox2.FormattingEnabled = true;
-            this.listBox2.ItemHeight = 25;
-            this.listBox2.Location = new System.Drawing.Point(17, 597);
-            this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(499, 229);
-            this.listBox2.TabIndex = 78;
-            this.listBox2.DoubleClick += new System.EventHandler(this.listBox2_DoubleClick);
+            this.testResultsListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.testResultsListBox.FormattingEnabled = true;
+            this.testResultsListBox.ItemHeight = 25;
+            this.testResultsListBox.Location = new System.Drawing.Point(17, 597);
+            this.testResultsListBox.Name = "testResultsListBox";
+            this.testResultsListBox.Size = new System.Drawing.Size(499, 279);
+            this.testResultsListBox.TabIndex = 78;
+            this.testResultsListBox.DoubleClick += new System.EventHandler(this.testResultsListBox_DoubleClick);
             // 
             // allow
             // 
@@ -365,8 +365,8 @@
             this.ClientSize = new System.Drawing.Size(1821, 975);
             this.Controls.Add(this.decline);
             this.Controls.Add(this.allow);
-            this.Controls.Add(this.listBox2);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.testResultsListBox);
+            this.Controls.Add(this.prescriptiptionsListBox);
             this.Controls.Add(this.nextLabel);
             this.Controls.Add(this.TimeLabel);
             this.Controls.Add(this.nxtPatient);
@@ -382,7 +382,7 @@
             this.Controls.Add(this.AddNoteButton);
             this.Controls.Add(this.OkButton);
             this.Controls.Add(this.editButton);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.addButton);
             this.Controls.Add(this.remove);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
@@ -406,7 +406,7 @@
         private System.Windows.Forms.Button AddNoteButton;
         private System.Windows.Forms.Button OkButton;
         private System.Windows.Forms.Button editButton;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button addButton;
         private System.Windows.Forms.Button remove;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
@@ -424,8 +424,8 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label TimeLabel;
         private System.Windows.Forms.Label nextLabel;
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.ListBox listBox2;
+        private System.Windows.Forms.ListBox prescriptiptionsListBox;
+        private System.Windows.Forms.ListBox testResultsListBox;
         private System.Windows.Forms.Button allow;
         private System.Windows.Forms.Button decline;
         private System.Windows.Forms.Timer timer2;

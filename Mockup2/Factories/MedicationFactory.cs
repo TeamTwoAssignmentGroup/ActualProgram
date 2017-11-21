@@ -10,12 +10,21 @@ using static Mockup2.DatabaseClasses.Tables;
 
 namespace Mockup2.Factories
 {
+
+
+
+
     class MedicationFactory:AbstractFactory
     {
 
-
+        /// <summary>
+        /// Constructor inherits from Abstarct factory
+        /// </summary>
+        /// <param name="dbCon"></param>
         public MedicationFactory(DBConnection dbCon) : base(dbCon)
         {
+
+
         }
 
 
@@ -24,7 +33,7 @@ namespace Mockup2.Factories
 
 
         /// <summary>
-        /// returns a medication id from the database by name
+        /// Returns a medication id from the database by name
         /// </summary>
         /// <param name = "scientificName" ></ param >
         /// < returns ></ returns >
@@ -51,10 +60,16 @@ namespace Mockup2.Factories
             reader.Dispose();
 
             return i;
-
-
         }
 
+
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="scientificName"></param>
+        /// <returns></returns>
         public int getMedicationID(string scientificName)
         {
             QueryBuilder qb = new QueryBuilder();
@@ -64,5 +79,10 @@ namespace Mockup2.Factories
         }
 
 
+
+
     }
 }
+
+//end               //end               //end               //end               //end               //end               //end       
+

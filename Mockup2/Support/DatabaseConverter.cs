@@ -11,36 +11,41 @@ namespace Mockup2.Support
     class DatabaseConverter
     {
 
-        DBConnection dbCon;
-        PatientFactory infoFac;
-        Patient currentPatient;
-        Patient nextPatientret;
-        PrescriptionFactory prescriptionFactory;
-        MedicalNoteFactory medicalNote;
-        MedicineInFactory medicationFactory;
-        TestResultFactory test;
-        Appointment appointment = new Appointment();
-        AppointmentSort appointmentClass;
-        List<MedicalNotes> history;
-        List<Prescription> prescription;
-        List<TestResult> testresults;
-        List<MedicationInstance> medicationList;
-        List<Medication> medication;
-        List<Prescription> prescriptionList = new List<Prescription>();
-        List<TestResult> testresult = new List<TestResult>();
+        /**
+         * Objecst and datasets used in this class
+         * */
+        private DBConnection dbCon;
+        private PatientFactory infoFac;
+        private Patient currentPatient;
+        private Patient nextPatientret;
+        private PrescriptionFactory prescriptionFactory;
+        private MedicalNoteFactory medicalNote;
+        private MedicineInFactory medicationFactory;
+        private TestResultFactory test;
+        private Appointment appointment = new Appointment();
+        private AppointmentSort appointmentClass;
 
-
-
-
-        List<string> listPrescription = new List<string>();
-        List<string> listHistory = new List<string>();
-        List<string> listTestResults = new List<string>();
+        private List<MedicalNotes> history;
+        private List<Prescription> prescription;
+        private List<TestResult> testresults;
+        private List<MedicationInstance> medicationList;
+        private List<Medication> medication;
+        private List<Prescription> prescriptionList = new List<Prescription>();
+        private List<TestResult> testresult = new List<TestResult>();
+        private List<string> listPrescription = new List<string>();
+        private List<string> listHistory = new List<string>();
+        private List<string> listTestResults = new List<string>();
 
 
        
 
 
-
+        /// <summary>
+        /// Constructor takes a database and a patient object
+        /// loads the patient object onto the GPNurse form
+        /// </summary>
+        /// <param name="dbCon"></param>
+        /// <param name="patientObject"></param>
         public DatabaseConverter(DBConnection dbCon, Patient patientObject)
         {
 
@@ -52,7 +57,11 @@ namespace Mockup2.Support
 
 
 
-
+        /// <summary>
+        /// Constructor
+        /// Constructor takes a database connection (manage class without stating a patient)
+        /// </summary>
+        /// <param name="dbCon"></param>
         public DatabaseConverter(DBConnection dbCon)
         {
             InitClass(dbCon);
@@ -62,13 +71,34 @@ namespace Mockup2.Support
 
 
 
-
+        /// <summary>
+        /// </summary>
+        /// <returns>patient prescriptions as string</returns>
         public List<Prescription> getPrescription()
         {
             return prescription;
 
         }
 
+
+
+        /// <summary>
+        /// Returns prescriptions for the current patient as object(managable)
+        /// </summary>
+        /// <returns></returns>
+        public List<Prescription> GetPrescription()
+        {
+            return prescriptionList;
+
+        }
+
+
+
+
+        /// <summary>
+        /// patient test results as an object (managable)
+        /// </summary>
+        /// <returns></returns>
         public List<TestResult> getTestResults()
         {
 
@@ -79,13 +109,23 @@ namespace Mockup2.Support
 
 
 
+        /// <summary>
+        /// </summary>
+        /// <returns>medical history for the current patient</returns>
+        public List<string> HistoryData()
+        {
+
+            return listHistory;
+
+        }
 
 
 
 
-
-
-
+        /// <summary>
+        /// This function initialises this class(important)
+        /// </summary>
+        /// <param name="dbCon"></param>
         public void InitClass(DBConnection dbCon)
         {
 
@@ -97,13 +137,42 @@ namespace Mockup2.Support
             medicationFactory = new MedicineInFactory(dbCon);
             appointmentClass = new AppointmentSort(dbCon);
 
+        }
 
+
+
+
+        /// <summary>
+        /// </summary>
+        /// <returns> returns prescription data for current patient as string</returns>
+        public List<string> PrescriptionData()
+        {
+
+            return listPrescription;
+
+        }
+
+
+
+        /// <summary>
+        /// </summary>
+        /// <returns>patient test results as string </returns>
+        public List<string> TestResults()
+        {
+
+            return listTestResults;
         }
 
 
 
 
 
+        /// <summary>
+        /// Takes two arguements to return a patient object by first and last name
+        /// </summary>
+        /// <param name="s1"></param>
+        /// <param name="s2"></param>
+        /// <returns></returns>
         public Patient findPatientByName(string s1, string s2)
         {
 
@@ -113,6 +182,12 @@ namespace Mockup2.Support
 
         }
 
+
+
+
+        /// <summary>
+        /// removes an appointment from the currrent list until next update, NOT FROM THE DATABASE
+        /// </summary>
         public void removeAppointment()
         {
 
@@ -125,6 +200,10 @@ namespace Mockup2.Support
 
 
 
+        /// <summary>
+        /// loads medical history, prescriptions and test results for the current patient
+        /// (Current patient is who has been initialised by load(Patient o))
+        /// </summary>
         public void loadList()
         {
 
@@ -135,13 +214,15 @@ namespace Mockup2.Support
           
         }
 
-        public List<Prescription> GetPrescription()
-        {
-            return prescriptionList;
 
-        }
+      
 
 
+        /// <summary>
+        /// This method fills up datasets for a selected patient 
+        /// therefore lists can return recent updates as current patient
+        /// </summary>
+        /// <param name="o"></param>
         public void load(Patient o)
         {
             try
@@ -182,47 +263,11 @@ namespace Mockup2.Support
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-        public List<string> HistoryData()
-        {
-
-            return listHistory;
-
-        }
-
-
-
-
-
-        public List<string> PrescriptionData()
-        {
-
-            return listPrescription;
-
-        }
-
-
-
-
-
-        public List<string> TestResults()
-        {
-
-            return listTestResults;
-        }
-
-
-
+        /// <summary>
+        /// this function allows patinet notes to be modified
+        /// </summary>
+        /// <param name="p"></param>
+        /// <param name="newNotes"></param>
         public void insertPatientNote(Patient p,List<string>newNotes)
         {
 
@@ -232,6 +277,11 @@ namespace Mockup2.Support
 
 
 
+
+        /// <summary>
+        /// This function allows a prescription to be override
+        /// </summary>
+        /// <param name="pre"></param>
         public void editPrescription(List<Prescription> pre)
         {
 
@@ -239,12 +289,27 @@ namespace Mockup2.Support
 
         }
 
+
+
+
+
+        /// <summary>
+        /// This function allows a prescription removal from the database
+        /// </summary>
+        /// <param name="pre"></param>
         public void removePrescription(Prescription pre)
         {
             prescriptionFactory.DeletePrescription(pre);
 
         }
 
+
+
+
+        /// <summary>
+        /// This function adds a new prescription to the database
+        /// </summary>
+        /// <param name="pre"></param>
         public void addPrescription(Prescription pre)
         {
             prescriptionFactory.addPrescription(pre);
@@ -252,6 +317,11 @@ namespace Mockup2.Support
 
        
 
+
+        /// <summary>
+        /// This method prepares the next patient object from the appointment
+        /// </summary>
+        /// <returns></returns>
         public  Patient InitNextPatient()
         {
           
@@ -262,6 +332,13 @@ namespace Mockup2.Support
 
         }
 
+
+
+
+        /// <summary>
+        /// This method returns next appintment
+        /// </summary>
+        /// <returns></returns>
         public Appointment nextPatientAppointment()
         {
             
@@ -271,6 +348,10 @@ namespace Mockup2.Support
         }
 
 
-    }
-    
+
+
+
+
+    }  
 }
+//end               //end               //end               //end               //end                  //end
