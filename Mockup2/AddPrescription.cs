@@ -27,13 +27,13 @@ namespace Mockup2
 
         public AddPrescription(DBConnection connection)
         {
+
             this.dbCon = connection;
             getMedications = new MedicineInFactory(dbCon);
             managePrescription = new PrescriptionFactory(dbCon);
             medFact = new MedicationFactory(dbCon);
             InitializeComponent();
             showMedications();
-
 
         }
 

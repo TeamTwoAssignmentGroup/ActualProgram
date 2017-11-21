@@ -19,6 +19,10 @@ namespace Mockup2.DatabaseClasses
         string password;
         string connectionString;
         MySqlConnection con;
+
+
+
+
         /// <summary>
         /// Creates the underlying MySQLConnection based on the input parameters, and then attempts to open the connection.
         /// Failure outputs the exception to Console.
