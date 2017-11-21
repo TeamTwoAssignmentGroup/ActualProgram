@@ -19,9 +19,9 @@ namespace Mockup2.Factories
         }
 
         /// <summary>
-        /// Inserts the given Patient information into the database.
+        /// Inserts the given <see cref="Mockup2.DatabaseClasses.Patient"/> information into the database.
         /// </summary>
-        /// <param name="p">The Patient to pull information from.</param>
+        /// <param name="p">The <see cref="Mockup2.DatabaseClasses.Patient"/> to pull information from.</param>
         public void InsertPatient(Patient p)
         {
             QueryBuilder b = new QueryBuilder();
@@ -31,9 +31,9 @@ namespace Mockup2.Factories
         }
 
         /// <summary>
-        /// Updates the given Patient information in the database.
+        /// Updates the given <see cref="Mockup2.DatabaseClasses.Patient"/> information in the database.
         /// </summary>
-        /// <param name="p">The Patient to get updated information from.</param>
+        /// <param name="p">The <see cref="Mockup2.DatabaseClasses.Patient"/> to get updated information from.</param>
         public void UpdatePatient(Patient p)
         {
             QueryBuilder b = new QueryBuilder();
@@ -54,13 +54,13 @@ namespace Mockup2.Factories
             cmd.ExecuteNonQuery();
 
         }
-       
+
         /// <summary>
-        /// Returns a list of Patients based on certain search criteria, provided
+        /// Returns a list of <see cref="Mockup2.DatabaseClasses.Patient"/>s based on certain search criteria, provided
         /// by the QueryBuilder SQL code.
         /// </summary>
         /// <param name="b">QueryBuilder containing the SQL query to run.</param>
-        /// <returns>A list of Patient objects.</returns>
+        /// <returns>A list of <see cref="Mockup2.DatabaseClasses.Patient"/> objects.</returns>
         public List<Patient> GetPatients(QueryBuilder b)
         {
 
@@ -97,9 +97,9 @@ namespace Mockup2.Factories
 
         /// <summary>
         /// Delete an entry from the Patient table in the database,
-        /// based on information given by the Patient object.
+        /// based on information given by the <see cref="Mockup2.DatabaseClasses.Patient"/> object.
         /// </summary>
-        /// <param name="p">Patient representation of information to delete.</param>
+        /// <param name="p"><see cref="Mockup2.DatabaseClasses.Patient"/> representation of information to delete.</param>
         public void DeletePatient(Patient p)
         {
             QueryBuilder b = new QueryBuilder();
@@ -110,15 +110,15 @@ namespace Mockup2.Factories
 
 
         /// <summary>
-        /// Conveience method to get all patients by their first and last name.
+        /// Conveience method to get all <see cref="Mockup2.DatabaseClasses.Patient"/>s by their first and last name.
         /// Most of the time, this method is expected to return a list containing
         /// only one value. However, this cannot be guranteed as name collisions
         /// cannot be prevented. Similarly, it shouln't be assumed this method will
         /// always return at least one entry - sometimes it doesn't, if the patient cannot be found.
         /// </summary>
         /// <param name="firstName">Patient's first name.</param>
-        /// <param name="lastName">Patients's last name.</param>
-        /// <returns>A list of Patients that have the first and last name provided. Size of the list may be more than 1, or 0.</returns>
+        /// <param name="lastName">Patient's last name.</param>
+        /// <returns>A list of <see cref="Mockup2.DatabaseClasses.Patient"/>s that have the first and last name provided. Size of the list may be more than 1, or 0.</returns>
         public List<Patient> GetPatientsByName(string firstName,string lastName)
         {
             QueryBuilder b = new QueryBuilder();
@@ -127,10 +127,10 @@ namespace Mockup2.Factories
         }
 
         /// <summary>
-        /// Returns a patient by their Id number.
+        /// Returns a <see cref="Mockup2.DatabaseClasses.Patient"/> by their Id number.
         /// </summary>
-        /// <param name="ID">The Patient corresponding to the given ID.</param>
-        /// <returns>A list of patients that match the ID. Should have a size of 1 almost always, but is a list just in case.</returns>
+        /// <param name="ID">The ID to search for.</param>
+        /// <returns>A list of <see cref="Mockup2.DatabaseClasses.Patient"/>s that match the ID. Should have a size of 1 almost always, but is a list just in case.</returns>
         public List<Patient> GetPatientsByID(int ID)
         {
             QueryBuilder b = new QueryBuilder();
@@ -198,12 +198,12 @@ namespace Mockup2.Factories
                 return result;
 
             }
-        
+
 
         /// <summary>
-        /// Convenience method to return all Patients currently stored in the database.
+        /// Convenience method to return all <see cref="Mockup2.DatabaseClasses.Patient"/>s currently stored in the database.
         /// </summary>
-        /// <returns>A list of all Patients.</returns>
+        /// <returns>A list of all <see cref="Mockup2.DatabaseClasses.Patient"/>s.</returns>
         public List<Patient> GetPatients()
         {
             QueryBuilder b = new QueryBuilder();

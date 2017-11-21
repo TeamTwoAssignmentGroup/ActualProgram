@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static Mockup2.DatabaseClasses.Tables;
 
 namespace Mockup2.AppointmentForms
 {
@@ -25,8 +26,9 @@ namespace Mockup2.AppointmentForms
         CustomTableFactory ctf;
         List<Patient> patients;
         List<Staff> staff;
+        bool editMode;
 
-        public AddAppointmentForm(DBConnection dbCon,int staffID,int patientID,Appointment app,ReceptionistForm parent)
+        public AddAppointmentForm(DBConnection dbCon,int staffID,int patientID,Appointment app,ReceptionistForm parent,bool editMode)
         {
             InitializeComponent();
             this.dbCon = dbCon;
@@ -38,20 +40,24 @@ namespace Mockup2.AppointmentForms
             this.app = app;
             this.parent = parent;
             this.KeyUp += AddAppointmentForm_KeyUp;
+            this.editMode = editMode;
 
             QueryBuilder b = new QueryBuilder();
             b.Select(Tables.ALL).From(Tables.STAFF_TABLE).Where(b.IsEqual(Tables.STAFF_TABLE.JobRole,"Doctor"),b.Or(),b.IsEqual(Tables.STAFF_TABLE.JobRole,"Nurse"));
             patients = pf.GetPatients();
             staff = sf.GetStaff(b);
 
-            if (staffID >0)
+            if (editMode)
             {
                 staff = sf.GetStaffByID(staffID);
-            }
-
-            if (patientID > 0)
-            {
                 patients = pf.GetPatientsByID(patientID);
+                firstnametextBox1.Visible = false;
+                lastnametextBox2.Visible = false;
+                findPatientButton.Visible = false;
+            }
+            else
+            {
+                this.statusComboBox.Enabled = false;
             }
 
             ctf = new CustomTableFactory(dbCon);
@@ -70,23 +76,66 @@ namespace Mockup2.AppointmentForms
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
+            PopulateStaffComboBox();
             staffcomboBox1.Enabled = true;
+            staffcomboBox1.SelectedIndex = 0;
+        }
+
+        private void PopulateStaffComboBox()
+        {
+            staff.Clear();
+            staffcomboBox1.Items.Clear();
+            // Get day from the DateTime picker
+            Column dayColumn = null;
+            switch (dateTimePicker1.Value.DayOfWeek)
+            {
+                case DayOfWeek.Monday:dayColumn = Tables.ROTA_TABLE.Mon;break;
+                case DayOfWeek.Tuesday: dayColumn = Tables.ROTA_TABLE.Tue; break;
+                case DayOfWeek.Wednesday: dayColumn = Tables.ROTA_TABLE.Wed; break;
+                case DayOfWeek.Thursday: dayColumn = Tables.ROTA_TABLE.Thur; break;
+                case DayOfWeek.Friday: dayColumn = Tables.ROTA_TABLE.Fri; break;
+                case DayOfWeek.Saturday: dayColumn = Tables.ROTA_TABLE.Sat; break;
+                case DayOfWeek.Sunday: dayColumn = Tables.ROTA_TABLE.Sun; break;
+            }
+            QueryBuilder b = new QueryBuilder();
+            b.Select(Tables.STAFF_TABLE.ID, Tables.STAFF_TABLE.FirstName, Tables.STAFF_TABLE.LastName, Tables.STAFF_TABLE.JobRole)
+                .From(Tables.STAFF_TABLE, Tables.ROTA_TABLE)
+                .Where(
+                b.IsEqual(Tables.STAFF_TABLE.ID,Tables.ROTA_TABLE.StaffID), 
+                b.And(), 
+                b.IsEqual(dayColumn,1));
+
+            CustomTableFactory ctf = new CustomTableFactory(dbCon);
+            CustomTable ct = ctf.GetCustomTable(b);
+            foreach(var row in ct.GetRows())
+            {
+                Staff s = new Staff();
+                s.ID = int.Parse(row[Tables.STAFF_TABLE.ID].ToString());
+                s.FirstName = row[Tables.STAFF_TABLE.FirstName].ToString();
+                s.LastName = row[Tables.STAFF_TABLE.LastName].ToString();
+                s.JobRole = row[Tables.STAFF_TABLE.JobRole].ToString();
+
+                if (s.JobRole == "Doctor" || s.JobRole == "Nurse")
+                {
+                    staff.Add(s);
+                }
+            }
+
+            foreach(Staff s in staff)
+            {
+                staffcomboBox1.Items.Add(string.Format("{0} {1}, {2}",s.FirstName,s.LastName,s.JobRole));
+            }
+           
         }
 
         private void PopulateComboBoxes()
         {
             patientcomboBox2.Items.Clear();
-            staffcomboBox1.Items.Clear();
             foreach(Patient p in patients)
             {
                 this.patientcomboBox2.Items.Add(string.Format("{0} {1}, {2}",p.FirstName,p.LastName,p.DOB.ToShortDateString()));
             }
-            foreach(Staff s in staff)
-            {
-                this.staffcomboBox1.Items.Add(string.Format("{0} {1}, {2}",s.FirstName,s.LastName,s.JobRole));
-            }
             patientcomboBox2.SelectedIndex = 0;
-            staffcomboBox1.SelectedIndex = 0;
         }
 
         public void ValidateTimeslots()
@@ -133,7 +182,7 @@ namespace Mockup2.AppointmentForms
             }
             else
             {
-                app.StaffId = staffID;
+                app.StaffId = staff[staffcomboBox1.SelectedIndex].ID;
                 app.PatientId = patientID;
                 app.AppointmentDate = dateTimePicker1.Value;
                 if (timeslotcomboBox1.SelectedItem != null)

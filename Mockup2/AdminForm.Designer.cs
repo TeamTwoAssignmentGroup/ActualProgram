@@ -34,6 +34,16 @@
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Rota_StaffID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Rota_FirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Rota_LastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Monday = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Tuesday = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Wednesday = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Thursday = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Friday = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Saturday = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Sunday = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.staffTab = new System.Windows.Forms.TabPage();
             this.button5 = new System.Windows.Forms.Button();
             this.removeStaffButton = new System.Windows.Forms.Button();
@@ -51,16 +61,7 @@
             this.button6 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.Rota_StaffID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Rota_FirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Rota_LastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Monday = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Tuesday = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Wednesday = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Thursday = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Friday = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Saturday = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Sunday = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.reportBug = new System.Windows.Forms.Button();
             this.adminTabs.SuspendLayout();
             this.rotaTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -148,6 +149,77 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(994, 609);
             this.dataGridView1.TabIndex = 0;
+            // 
+            // Rota_StaffID
+            // 
+            this.Rota_StaffID.HeaderText = "Staff ID";
+            this.Rota_StaffID.Name = "Rota_StaffID";
+            this.Rota_StaffID.ReadOnly = true;
+            this.Rota_StaffID.Visible = false;
+            this.Rota_StaffID.Width = 136;
+            // 
+            // Rota_FirstName
+            // 
+            this.Rota_FirstName.HeaderText = "First Name";
+            this.Rota_FirstName.Name = "Rota_FirstName";
+            this.Rota_FirstName.ReadOnly = true;
+            this.Rota_FirstName.Width = 184;
+            // 
+            // Rota_LastName
+            // 
+            this.Rota_LastName.HeaderText = "Last Name";
+            this.Rota_LastName.Name = "Rota_LastName";
+            this.Rota_LastName.ReadOnly = true;
+            this.Rota_LastName.Width = 181;
+            // 
+            // Monday
+            // 
+            this.Monday.HeaderText = "Monday";
+            this.Monday.Name = "Monday";
+            this.Monday.ReadOnly = true;
+            this.Monday.Width = 143;
+            // 
+            // Tuesday
+            // 
+            this.Tuesday.HeaderText = "Tuesday";
+            this.Tuesday.Name = "Tuesday";
+            this.Tuesday.ReadOnly = true;
+            this.Tuesday.Width = 152;
+            // 
+            // Wednesday
+            // 
+            this.Wednesday.HeaderText = "Wednesday";
+            this.Wednesday.Name = "Wednesday";
+            this.Wednesday.ReadOnly = true;
+            this.Wednesday.Width = 193;
+            // 
+            // Thursday
+            // 
+            this.Thursday.HeaderText = "Thursday";
+            this.Thursday.Name = "Thursday";
+            this.Thursday.ReadOnly = true;
+            this.Thursday.Width = 162;
+            // 
+            // Friday
+            // 
+            this.Friday.HeaderText = "Friday";
+            this.Friday.Name = "Friday";
+            this.Friday.ReadOnly = true;
+            this.Friday.Width = 122;
+            // 
+            // Saturday
+            // 
+            this.Saturday.HeaderText = "Saturday";
+            this.Saturday.Name = "Saturday";
+            this.Saturday.ReadOnly = true;
+            this.Saturday.Width = 156;
+            // 
+            // Sunday
+            // 
+            this.Sunday.HeaderText = "Sunday";
+            this.Sunday.Name = "Sunday";
+            this.Sunday.ReadOnly = true;
+            this.Sunday.Width = 138;
             // 
             // staffTab
             // 
@@ -284,6 +356,7 @@
             // 
             // systemTab
             // 
+            this.systemTab.Controls.Add(this.reportBug);
             this.systemTab.Controls.Add(this.button6);
             this.systemTab.Controls.Add(this.button2);
             this.systemTab.Controls.Add(this.button1);
@@ -308,7 +381,7 @@
             // button2
             // 
             this.button2.AutoSize = true;
-            this.button2.Location = new System.Drawing.Point(326, 4);
+            this.button2.Location = new System.Drawing.Point(330, 4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(320, 52);
             this.button2.TabIndex = 1;
@@ -321,82 +394,21 @@
             this.button1.AutoSize = true;
             this.button1.Location = new System.Drawing.Point(4, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(307, 52);
+            this.button1.Size = new System.Drawing.Size(320, 52);
             this.button1.TabIndex = 0;
             this.button1.Text = "Message Patient";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // Rota_StaffID
+            // reportBug
             // 
-            this.Rota_StaffID.HeaderText = "Staff ID";
-            this.Rota_StaffID.Name = "Rota_StaffID";
-            this.Rota_StaffID.ReadOnly = true;
-            this.Rota_StaffID.Visible = false;
-            this.Rota_StaffID.Width = 136;
-            // 
-            // Rota_FirstName
-            // 
-            this.Rota_FirstName.HeaderText = "First Name";
-            this.Rota_FirstName.Name = "Rota_FirstName";
-            this.Rota_FirstName.ReadOnly = true;
-            this.Rota_FirstName.Width = 184;
-            // 
-            // Rota_LastName
-            // 
-            this.Rota_LastName.HeaderText = "Last Name";
-            this.Rota_LastName.Name = "Rota_LastName";
-            this.Rota_LastName.ReadOnly = true;
-            this.Rota_LastName.Width = 181;
-            // 
-            // Monday
-            // 
-            this.Monday.HeaderText = "Monday";
-            this.Monday.Name = "Monday";
-            this.Monday.ReadOnly = true;
-            this.Monday.Width = 143;
-            // 
-            // Tuesday
-            // 
-            this.Tuesday.HeaderText = "Tuesday";
-            this.Tuesday.Name = "Tuesday";
-            this.Tuesday.ReadOnly = true;
-            this.Tuesday.Width = 152;
-            // 
-            // Wednesday
-            // 
-            this.Wednesday.HeaderText = "Wednesday";
-            this.Wednesday.Name = "Wednesday";
-            this.Wednesday.ReadOnly = true;
-            this.Wednesday.Width = 193;
-            // 
-            // Thursday
-            // 
-            this.Thursday.HeaderText = "Thursday";
-            this.Thursday.Name = "Thursday";
-            this.Thursday.ReadOnly = true;
-            this.Thursday.Width = 162;
-            // 
-            // Friday
-            // 
-            this.Friday.HeaderText = "Friday";
-            this.Friday.Name = "Friday";
-            this.Friday.ReadOnly = true;
-            this.Friday.Width = 122;
-            // 
-            // Saturday
-            // 
-            this.Saturday.HeaderText = "Saturday";
-            this.Saturday.Name = "Saturday";
-            this.Saturday.ReadOnly = true;
-            this.Saturday.Width = 156;
-            // 
-            // Sunday
-            // 
-            this.Sunday.HeaderText = "Sunday";
-            this.Sunday.Name = "Sunday";
-            this.Sunday.ReadOnly = true;
-            this.Sunday.Width = 138;
+            this.reportBug.Location = new System.Drawing.Point(4, 62);
+            this.reportBug.Name = "reportBug";
+            this.reportBug.Size = new System.Drawing.Size(320, 52);
+            this.reportBug.TabIndex = 4;
+            this.reportBug.Text = "Report Bug";
+            this.reportBug.UseVisualStyleBackColor = true;
+            this.reportBug.Click += new System.EventHandler(this.reportBug_Click);
             // 
             // AdminForm
             // 
@@ -435,16 +447,6 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn StaffID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn FirstName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn LastName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn JobTitle;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Email;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Address;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PostCode;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Rota_StaffID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Rota_FirstName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Rota_LastName;
@@ -455,5 +457,16 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Friday;
         private System.Windows.Forms.DataGridViewTextBoxColumn Saturday;
         private System.Windows.Forms.DataGridViewTextBoxColumn Sunday;
+        private System.Windows.Forms.DataGridViewTextBoxColumn StaffID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FirstName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn LastName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn JobTitle;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Email;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Address;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PostCode;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button reportBug;
     }
 }

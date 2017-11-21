@@ -4,6 +4,23 @@
         <name>Mockup2</name>
     </assembly>
     <members>
+        <member name="F:Mockup2.AddPrescription.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Mockup2.AddPrescription.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Mockup2.AddPrescription.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
         <member name="F:Mockup2.AdminForm.components">
             <summary>
             Required designer variable.
@@ -16,6 +33,23 @@
             <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         </member>
         <member name="M:Mockup2.AdminForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:Mockup2.AdminForms.ReportBugForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Mockup2.AdminForms.ReportBugForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Mockup2.AdminForms.ReportBugForm.InitializeComponent">
             <summary>
             Required method for Designer support - do not modify
             the contents of this method with the code editor.
@@ -58,7 +92,28 @@
             </summary>
             <returns>The underlying MySQL connection.</returns>
         </member>
-        <member name="M:Mockup2.DatabaseClasses.Program.Main">
+        <member name="T:Mockup2.DatabaseClasses.Texter">
+            <summary>
+            Helper class to send text message confirmation of appointments.
+            </summary>
+        </member>
+        <member name="M:Mockup2.DatabaseClasses.Texter.SendAppointmentText(System.String,Mockup2.DatabaseClasses.Staff,System.DateTime,System.DateTime)">
+            <summary>
+            Sends a text confirmation of an appointment to the supplied number, utilising the
+            <a href="https://www.nuget.org/packages/Twilio/">Twilio NuGet package</a> and <a href="https://www.twilio.com/">Web API backend</a>. The message includes appointment date and time,
+            as well as the name and job role of the medical staff being seen.
+            This method expects the mobile number to be properly formatted and have the
+            leading +44 intact; this is a requirement of the Twilio backend.
+            
+            (It should be noted that at current, all texts are received by one phone number - mine. This
+            is a restriction in Twilio's free trial service.)
+            </summary>
+            <param name="number">The mobile phone number to send texts to.</param>
+            <param name="staff">The member of <see cref="T:Mockup2.DatabaseClasses.Staff"/>Staff being seen.</param>
+            <param name="appointmentDate">The date of the <see cref="T:Mockup2.DatabaseClasses.Appointment"/>Appointment.</param>
+            <param name="appointmentTime">The time of the <see cref="T:Mockup2.DatabaseClasses.Appointment"/>Appointment.</param>
+        </member>
+        <member name="M:Mockup2.DatabaseClasses.Program.Main(System.String[])">
             <summary>
             The main entry point for the application.
             </summary>
@@ -336,14 +391,23 @@
             One was created specifically for this project.
             </summary>
         </member>
-        <member name="M:Mockup2.Classes.Emailer.SendEmail(System.String,System.String,System.String,System.String[])">
+        <member name="M:Mockup2.Classes.Emailer.SendEmailWithAttachments(System.String,System.String,System.String,System.Net.Mail.Attachment[])">
             <summary>
             Sends an email message to the supplied email address, using the supplied subject and message.
             </summary>
             <param name="email">Email address of the recipient.</param>
             <param name="subject">Subject of the email message.</param>
             <param name="message">The email message itself.</param>
-            <param name="fileNamesToAttach">File names as strings to attach to this email, if any.</param>
+            <param name="attachments">A variable list of <see cref="T:System.Net.Mail.Attachment"/>s to send along with the email.</param>
+        </member>
+        <member name="M:Mockup2.Classes.Emailer.SendEmail(System.String,System.String,System.String,System.String[])">
+            <summary>
+            Convenience method to send email using strings of local file names as attachments.
+            </summary>
+            <param name="email">Email address to send email to.</param>
+            <param name="subject">Subject of the email.</param>
+            <param name="message">Message body of the email.</param>
+            <param name="fileNamesToAttach">A fixed length array of strings representing local file names to be used as attachments.</param>
         </member>
         <member name="M:Mockup2.Classes.Emailer.SendAppointmentEmail(System.String,Mockup2.DatabaseClasses.Staff,System.DateTime,System.DateTime)">
             <summary>
@@ -523,6 +587,7 @@
             </summary>
             <param name="mn">The MedicalNotes object to pull data from.</param>
         </member>
+        <!-- Badly formed XML comment ignored for member "M:Mockup2.Factories.MedicationFactory.md(Mockup2.DatabaseClasses.QueryBuilder)" -->
         <member name="T:Mockup2.Factories.PrescriptionFactory">
             <summary>
             Convenience method to handle returning, updating, and inserting Prescription objects into the database.
@@ -539,26 +604,36 @@
             Gets a list of Prescriptions from the database based on search critera provided by the QueryBuilder.
             </summary>
             <param name="b">QueryBuilder containing the SQL code.</param>
-            <returns>A list of Prescriptions.</returns>
+            <returns>A list of <see cref="T:Mockup2.DatabaseClasses.Prescription"/>s.</returns>
         </member>
         <member name="M:Mockup2.Factories.PrescriptionFactory.GetPrescriptions">
             <summary>
             Convenience method to get all prescriptions.
             </summary>
-            <returns></returns>
+            <returns>A list of all <see cref="T:Mockup2.DatabaseClasses.Prescription"/>s</returns>
         </member>
         <member name="M:Mockup2.Factories.PrescriptionFactory.GetPrescriptions(System.Int32)">
             <summary>
             Convenience method to get all prescriptions based on the patient id they belong to.
             </summary>
             <param name="patientID">ID of the patient to find prescriptions for.</param>
-            <returns>A list of Prescriptions.</returns>
+            <returns>A list of <see cref="T:Mockup2.DatabaseClasses.Prescription"/>s.</returns>
         </member>
         <member name="M:Mockup2.Factories.PrescriptionFactory.GetLastPrescriptionID">
             <summary>
             Gets the last available prescription id currently in the database.
             </summary>
             <returns>The last available prescription id.</returns>
+        </member>
+        <member name="M:Mockup2.Factories.PrescriptionFactory.InsertPrescription(Mockup2.DatabaseClasses.Prescription)">
+            <summary>
+            Inserts the supplied Prescription into the database. It's important to note that
+            the Prescription must have a valid id, obtained using the
+            <code>GetNextAvailableID()</code> method in this class. Any Prescriptions
+            that have MedicationInstances linked to them will need to be inserted before
+            the MedicationInstances are to avoid foreign key constraint problems.
+            </summary>
+            <param name="p">The <see cref="T:Mockup2.DatabaseClasses.Prescription"/> object to insert.</param>
         </member>
         <member name="T:Mockup2.Factories.StaffFactory">
             <summary>
@@ -620,55 +695,55 @@
         </member>
         <member name="M:Mockup2.Factories.PatientFactory.InsertPatient(Mockup2.DatabaseClasses.Patient)">
             <summary>
-            Inserts the given Patient information into the database.
+            Inserts the given <see cref="T:Mockup2.DatabaseClasses.Patient"/> information into the database.
             </summary>
-            <param name="p">The Patient to pull information from.</param>
+            <param name="p">The <see cref="T:Mockup2.DatabaseClasses.Patient"/> to pull information from.</param>
         </member>
         <member name="M:Mockup2.Factories.PatientFactory.UpdatePatient(Mockup2.DatabaseClasses.Patient)">
             <summary>
-            Updates the given Patient information in the database.
+            Updates the given <see cref="T:Mockup2.DatabaseClasses.Patient"/> information in the database.
             </summary>
-            <param name="p">The Patient to get updated information from.</param>
+            <param name="p">The <see cref="T:Mockup2.DatabaseClasses.Patient"/> to get updated information from.</param>
         </member>
         <member name="M:Mockup2.Factories.PatientFactory.GetPatients(Mockup2.DatabaseClasses.QueryBuilder)">
             <summary>
-            Returns a list of Patients based on certain search criteria, provided
+            Returns a list of <see cref="T:Mockup2.DatabaseClasses.Patient"/>s based on certain search criteria, provided
             by the QueryBuilder SQL code.
             </summary>
             <param name="b">QueryBuilder containing the SQL query to run.</param>
-            <returns>A list of Patient objects.</returns>
+            <returns>A list of <see cref="T:Mockup2.DatabaseClasses.Patient"/> objects.</returns>
         </member>
         <member name="M:Mockup2.Factories.PatientFactory.DeletePatient(Mockup2.DatabaseClasses.Patient)">
             <summary>
             Delete an entry from the Patient table in the database,
-            based on information given by the Patient object.
+            based on information given by the <see cref="T:Mockup2.DatabaseClasses.Patient"/> object.
             </summary>
-            <param name="p">Patient representation of information to delete.</param>
+            <param name="p"><see cref="T:Mockup2.DatabaseClasses.Patient"/> representation of information to delete.</param>
         </member>
         <member name="M:Mockup2.Factories.PatientFactory.GetPatientsByName(System.String,System.String)">
             <summary>
-            Conveience method to get all patients by their first and last name.
+            Conveience method to get all <see cref="T:Mockup2.DatabaseClasses.Patient"/>s by their first and last name.
             Most of the time, this method is expected to return a list containing
             only one value. However, this cannot be guranteed as name collisions
             cannot be prevented. Similarly, it shouln't be assumed this method will
             always return at least one entry - sometimes it doesn't, if the patient cannot be found.
             </summary>
             <param name="firstName">Patient's first name.</param>
-            <param name="lastName">Patients's last name.</param>
-            <returns>A list of Patients that have the first and last name provided. Size of the list may be more than 1, or 0.</returns>
+            <param name="lastName">Patient's last name.</param>
+            <returns>A list of <see cref="T:Mockup2.DatabaseClasses.Patient"/>s that have the first and last name provided. Size of the list may be more than 1, or 0.</returns>
         </member>
         <member name="M:Mockup2.Factories.PatientFactory.GetPatientsByID(System.Int32)">
             <summary>
-            Returns a patient by their Id number.
+            Returns a <see cref="T:Mockup2.DatabaseClasses.Patient"/> by their Id number.
             </summary>
-            <param name="ID">The Patient corresponding to the given ID.</param>
-            <returns>A list of patients that match the ID. Should have a size of 1 almost always, but is a list just in case.</returns>
+            <param name="ID">The ID to search for.</param>
+            <returns>A list of <see cref="T:Mockup2.DatabaseClasses.Patient"/>s that match the ID. Should have a size of 1 almost always, but is a list just in case.</returns>
         </member>
         <member name="M:Mockup2.Factories.PatientFactory.GetPatients">
             <summary>
-            Convenience method to return all Patients currently stored in the database.
+            Convenience method to return all <see cref="T:Mockup2.DatabaseClasses.Patient"/>s currently stored in the database.
             </summary>
-            <returns>A list of all Patients.</returns>
+            <returns>A list of all <see cref="T:Mockup2.DatabaseClasses.Patient"/>s.</returns>
         </member>
         <member name="M:Mockup2.Factories.PatientFactory.getAPatient(System.String,System.String)">
             returns a patient object by finding it in the database by first and last name
@@ -678,13 +753,53 @@
             Executes query in the database to return details to getAPatient() method
             
         </member>
+        <member name="F:Mockup2.GPNurse.dbCon">
+            Objects and variables used on the page
+        </member>
+        <member name="M:Mockup2.GPNurse.Init(Mockup2.DatabaseClasses.DBConnection)">
+            initialises constructor 
+            include time,database components
+            
+        </member>
+        <member name="M:Mockup2.GPNurse.#ctor(Mockup2.DatabaseClasses.DBConnection)">
+            Form 
+            Initialises a next patient and database components
+            
+        </member>
         <member name="M:Mockup2.GPNurse.OK_Click(System.Object,System.EventArgs)">
             This button returns one patient from the database as an object
             can be by name or nhs number
             
         </member>
+        <member name="M:Mockup2.GPNurse.cleanAll">
+            This method is created to clear the from from data
+            
+        </member>
         <member name="M:Mockup2.GPNurse.loadCurrentPatient">
             This button (Viev this patient details) loads in selected patient details on the page
+            
+        </member>
+        <member name="M:Mockup2.GPNurse.getPrescriptionNameIssueDate">
+            This function returns all prescription details that belongs to the current patient
+            
+        </member>
+        <member name="M:Mockup2.GPNurse.getPrescriptions">
+            This function returns prescription object that is currently loaded with current patient
+            this function is specific and return a specific value
+            
+        </member>
+        <member name="M:Mockup2.GPNurse.getTestresults">
+            This function reads the testresults from the object list and returns it as a string
+            This function is not global but specified to test name and testdate
+            
+        </member>
+        <member name="M:Mockup2.GPNurse.foundPatientObject">
+            This function initialises current patient to the patient who has been searched and selecet in the searchbox
+            
+        </member>
+        <member name="M:Mockup2.GPNurse.swapPatient(Mockup2.DatabaseClasses.Patient)">
+            This function swaps the current patient to the next patient
+            from next or from search
             
         </member>
         <member name="M:Mockup2.GPNurse.textBoxWriter(System.Collections.Generic.List{System.String},System.Windows.Forms.RichTextBox)">
@@ -693,6 +808,10 @@
         </member>
         <member name="M:Mockup2.GPNurse.ListBoxWriter(System.Collections.Generic.List{System.String},System.Windows.Forms.ListBox)">
             Prinitg any list <string></string> data into the textbox
+            
+        </member>
+        <member name="M:Mockup2.GPNurse.getNextPatient">
+            This function initalises the next patient when an appointment is booked for the day
             
         </member>
         <member name="M:Mockup2.GPNurse.textBoxCleaner(System.Windows.Forms.RichTextBox)">
@@ -707,8 +826,59 @@
             Clears selected textbox
             
         </member>
+        <member name="M:Mockup2.GPNurse.clear_Click(System.Object,System.EventArgs,System.Windows.Forms.ListBox)">
+            This function clears all the listboxes present on this form
+            
+        </member>
+        <member name="M:Mockup2.GPNurse.addNote">
+            This method displays the note in the medical history box after added
+            
+        </member>
+        <member name="M:Mockup2.GPNurse.save_Click(System.Object,System.EventArgs)">
+            Saves the note into a string array that prepares the note to be saved in the database
+            changes only apply when the current patient changes are saved through save() method
+            
+        </member>
+        <member name="M:Mockup2.GPNurse.undo_Click(System.Object,System.EventArgs)">
+            This is the removes modified changes from the medical history that has been added currently
+            
+        </member>
         <member name="M:Mockup2.GPNurse.saveChanges">
-            prompting the user to save their work
+            prompting the user to save their work (curently loaded patient)
+            
+        </member>
+        <member name="M:Mockup2.GPNurse.nextButton_Click(System.Object,System.EventArgs)">
+            Loads the next patient who has been labeled by this button 
+            this button also saves the currently loaded patient before the next patient loaded onto the form
+            
+        </member>
+        <member name="M:Mockup2.GPNurse.exitButton_Click(System.Object,System.EventArgs)">
+            The exit button leaves the form and asks to save a patient who currently loaded onto the form
+            
+        </member>
+        <member name="M:Mockup2.GPNurse.timeNow">
+            gets the date and time now but only shows current time of the system
+            
+        </member>
+        <member name="M:Mockup2.GPNurse.TimeLabel_Click(System.Object,System.EventArgs)">
+            Initialised a clock on the form
+            
+        </member>
+        <member name="M:Mockup2.GPNurse.timer2_Tick_1(System.Object,System.EventArgs)">
+            Timer is running ad refreshing the form (checks for patient when time passes)
+            
+        </member>
+        <member name="M:Mockup2.GPNurse.timer1_Tick(System.Object,System.EventArgs)">
+            Timer action 
+            
+        </member>
+        <member name="M:Mockup2.GPNurse.searchBox_MouseDoubleClick(System.Object,System.Windows.Forms.MouseEventArgs)">
+            Allows double clik on the patient who has been searched from the database
+            when double clik action occurs then the patient will be loaded onto the form
+            
+        </member>
+        <member name="M:Mockup2.GPNurse.listBox2_DoubleClick(System.Object,System.EventArgs)">
+            
             
         </member>
         <member name="F:Mockup2.GPNurse.components">
@@ -825,57 +995,6 @@
             <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         </member>
         <member name="M:Mockup2.PatientForms.ViewTestHistoryForm.InitializeComponent">
-            <summary>
-            Required method for Designer support - do not modify
-            the contents of this method with the code editor.
-            </summary>
-        </member>
-        <member name="F:Mockup2.PrescriptionForms.AmendPrescriptionForm.components">
-            <summary>
-            Required designer variable.
-            </summary>
-        </member>
-        <member name="M:Mockup2.PrescriptionForms.AmendPrescriptionForm.Dispose(System.Boolean)">
-            <summary>
-            Clean up any resources being used.
-            </summary>
-            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        </member>
-        <member name="M:Mockup2.PrescriptionForms.AmendPrescriptionForm.InitializeComponent">
-            <summary>
-            Required method for Designer support - do not modify
-            the contents of this method with the code editor.
-            </summary>
-        </member>
-        <member name="F:Mockup2.PrescriptionForms.IssuePrescriptionForm.components">
-            <summary>
-            Required designer variable.
-            </summary>
-        </member>
-        <member name="M:Mockup2.PrescriptionForms.IssuePrescriptionForm.Dispose(System.Boolean)">
-            <summary>
-            Clean up any resources being used.
-            </summary>
-            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        </member>
-        <member name="M:Mockup2.PrescriptionForms.IssuePrescriptionForm.InitializeComponent">
-            <summary>
-            Required method for Designer support - do not modify
-            the contents of this method with the code editor.
-            </summary>
-        </member>
-        <member name="F:Mockup2.PrescriptionForms.ViewPrescription.components">
-            <summary>
-            Required designer variable.
-            </summary>
-        </member>
-        <member name="M:Mockup2.PrescriptionForms.ViewPrescription.Dispose(System.Boolean)">
-            <summary>
-            Clean up any resources being used.
-            </summary>
-            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        </member>
-        <member name="M:Mockup2.PrescriptionForms.ViewPrescription.InitializeComponent">
             <summary>
             Required method for Designer support - do not modify
             the contents of this method with the code editor.

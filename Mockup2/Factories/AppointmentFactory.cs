@@ -218,8 +218,10 @@ namespace Mockup2.Factories
             DateTime date = a.AppointmentDate;
             DateTime time = a.AppointmentTime;
             string email = pf.GetPatientsByID(a.PatientId)[0].Email;
+            string phone = pf.GetPatientsByID(a.PatientId)[0].Phone;
 
             Emailer.SendAppointmentEmail(email, staff, date, time);
+            Texter.SendAppointmentText(phone, staff, date, time);
         }
 
 
