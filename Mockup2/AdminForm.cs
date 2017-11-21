@@ -24,14 +24,9 @@ namespace Mockup2
             this.button3.Click += button3_Click;
         }
 
-        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private void addStaffButton_Click(object sender, EventArgs e)
         {
-            new EditStaffForm().Show();
+            new EditStaffForm(dbCon).Show();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -41,13 +36,25 @@ namespace Mockup2
 
         private void button2_Click(object sender, EventArgs e)
         {
-            new ResetPasswordForm().Show();
+            new ResetPasswordForm(dbCon).Show();
         }
 
-        private void editStaffButton_Click(object sender, EventArgs e)
-        {
-            new EditStaffForm().Show();
-        }
+        //private void editStaffButton_Click(object sender, EventArgs e)
+        //{
+        //    if (dataGridView2.SelectedRows.Count > 1)
+        //    {
+        //        //validate
+        //    }
+        //    int rowNumber = Convert.ToInt32(dataGridView2.SelectedRows[0].Index);
+        //    object[] pass = DataSet(rowNumber).Item1;
+        //    object[] staffName = DataSet(rowNumber).Item2;
+        //    int staffID = DataSet(rowNumber).Item3;
+
+        //    Console.WriteLine(rowNumber + "\t" + staffID);
+
+        //    new EditStaffForm(dbCon).ShowDialog();
+        //    PopulateAdminFormStaff();
+        //}
 
         private void button3_Click(object sender, EventArgs e)
         {
@@ -105,19 +112,19 @@ namespace Mockup2
             staffName[0] = Convert.ToString(dataGridView1[1, rowNumber].Value);
             staffName[1] = Convert.ToString(dataGridView1[2, rowNumber].Value);
             pass[0] = Tables.ROTA_TABLE.Mon;
-            pass[1] = Convert.ToInt32(dataGridView1[3, rowNumber].Value);
+            pass[1] = Convert.ToInt32(dataGridView1[4, rowNumber].Value);
             pass[2] = Tables.ROTA_TABLE.Tue;
-            pass[3] = Convert.ToInt32(dataGridView1[4, rowNumber].Value);
+            pass[3] = Convert.ToInt32(dataGridView1[5, rowNumber].Value);
             pass[4] = Tables.ROTA_TABLE.Wed;
-            pass[5] = Convert.ToInt32(dataGridView1[5, rowNumber].Value);
+            pass[5] = Convert.ToInt32(dataGridView1[6, rowNumber].Value);
             pass[6] = Tables.ROTA_TABLE.Thur;
-            pass[7] = Convert.ToInt32(dataGridView1[6, rowNumber].Value);
+            pass[7] = Convert.ToInt32(dataGridView1[7, rowNumber].Value);
             pass[8] = Tables.ROTA_TABLE.Fri;
-            pass[9] = Convert.ToInt32(dataGridView1[7, rowNumber].Value);
+            pass[9] = Convert.ToInt32(dataGridView1[8, rowNumber].Value);
             pass[10] = Tables.ROTA_TABLE.Sat;
-            pass[11] = Convert.ToInt32(dataGridView1[8, rowNumber].Value);
+            pass[11] = Convert.ToInt32(dataGridView1[9, rowNumber].Value);
             pass[12] = Tables.ROTA_TABLE.Sun;
-            pass[13] = Convert.ToInt32(dataGridView1[9, rowNumber].Value);
+            pass[13] = Convert.ToInt32(dataGridView1[10, rowNumber].Value);
             Tuple<object[], object[], int, string> rotaData = new Tuple<object[], object[], int, string>(pass, staffName, staffID, staffJob);
             return rotaData;
         }

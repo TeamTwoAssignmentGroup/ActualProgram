@@ -7,19 +7,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Mockup2.Factories;
+using Mockup2.DatabaseClasses;
 
 namespace Mockup2
 {
     public partial class EditStaffForm : Form
     {
-        public EditStaffForm()
+        DBConnection dbCon;
+        QueryBuilder b;
+
+        public EditStaffForm(DBConnection dbCon)
         {
             InitializeComponent();
+            this.dbCon = dbCon;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            this.Close();
+            
         }
 
         private void EditStaffForm_Load(object sender, EventArgs e)
@@ -27,6 +33,11 @@ namespace Mockup2
             this.WindowState = FormWindowState.Maximized;
             this.MinimumSize = this.Size;
             this.MaximumSize = this.Size;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

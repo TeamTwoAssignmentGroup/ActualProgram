@@ -856,7 +856,7 @@
             include time,database components
             
         </member>
-        <member name="M:Mockup2.GPNurse.#ctor(Mockup2.DatabaseClasses.DBConnection)">
+        <member name="M:Mockup2.GPNurse.#ctor(Mockup2.DatabaseClasses.DBConnection,System.Boolean)">
             Form 
             Initialises a next patient and database components
             

@@ -197,7 +197,6 @@
             this.editStaffButton.TabIndex = 2;
             this.editStaffButton.Text = "Edit Staff";
             this.editStaffButton.UseVisualStyleBackColor = true;
-            this.editStaffButton.Click += new System.EventHandler(this.editStaffButton_Click);
             // 
             // addStaffButton
             // 
@@ -233,7 +232,6 @@
             this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView2.Size = new System.Drawing.Size(994, 581);
             this.dataGridView2.TabIndex = 0;
-            this.dataGridView2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
             // 
             // StaffID
             // 
