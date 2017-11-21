@@ -26,6 +26,9 @@ namespace Mockup2
             this.staffPasswordtextBox2.KeyUp += StaffPasswordtextBox2_KeyUp;
         }
 
+
+
+
         private void StaffPasswordtextBox2_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -50,6 +53,7 @@ namespace Mockup2
                     if (s[0].Password == hashedPassword)
                     {
                         cbi = s[0].JobRole;
+                        read();
                     }
                     else
                     {
@@ -108,5 +112,14 @@ namespace Mockup2
         {
             Process.Start("http://kiralee.ddns.net/TTAG");
         }
+
+
+        public void read()
+        {
+
+            MessageBox.Show(staffPasswordtextBox2.Text);
+
+        }
+
     }
 }
