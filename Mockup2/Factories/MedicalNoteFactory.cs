@@ -9,14 +9,22 @@ using static Mockup2.DatabaseClasses.Tables;
 
 namespace Mockup2.Factories
 {
+
+
     /// <summary>
     /// Helper class to pull whole MedicalNote objects from the database based on various critera.
     /// </summary>
     public class MedicalNoteFactory : AbstractFactory
     { 
+
+
         public MedicalNoteFactory(DBConnection dbCon) : base(dbCon)
         {
         }
+
+
+
+
 
         /// <summary>
         /// Gets all MedicalNote objects that match the given SQL query criteria contained in the QueryBuilder.
@@ -46,6 +54,9 @@ namespace Mockup2.Factories
 
         }
 
+
+
+
         /// <summary>
         /// Convenience method to get all MedicalNotes for a particular patient, keyed by their id.
         /// </summary>
@@ -58,6 +69,10 @@ namespace Mockup2.Factories
             return GetMedicalNotes(b);
         }
 
+
+
+
+
         /// <summary>
         /// Convenience method to get all the MedicalNotes in the database.
         /// </summary>
@@ -68,6 +83,10 @@ namespace Mockup2.Factories
             b.Select(Tables.ALL).From(Tables.MEDICALNOTES_TABLE);
             return GetMedicalNotes(b);
         }
+
+
+
+
 
         /// <summary>
         /// Convenience method to insert a new MedicalNotes object into the database.

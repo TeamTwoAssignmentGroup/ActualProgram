@@ -9,13 +9,32 @@ using static Mockup2.DatabaseClasses.Tables;
 
 namespace Mockup2.Factories
 {
+
+
     public class MedicineInFactory :AbstractFactory
     {
-        DBConnection con;
+
+         DBConnection con;
+
+
+
+            /// <summary>
+            /// Class inherits from the Abstract Factory class
+            /// </summary>
+            /// <param name="dbCon"></param>
             public MedicineInFactory(DBConnection dbCon) : base(dbCon)
             {
             
-        }
+            }
+
+
+
+            /// <summary>
+            /// This method returns a list of medications from the database
+            /// Takes a querybuilder as arguement
+            /// </summary>
+            /// <param name="b"></param>
+            /// <returns></returns>
             public List<MedicationInstance> GetMedicationID(QueryBuilder b)
             {
                 MedicationInstance a = new MedicationInstance();
@@ -34,8 +53,7 @@ namespace Mockup2.Factories
                     a.Instruction = GetString(reader[pt.Instructions.Name]);
                     result.Add(a);
 
-                }
-              
+                }             
                 reader.Close();
                 reader.Dispose();
                 return result;
@@ -43,7 +61,14 @@ namespace Mockup2.Factories
             }
 
 
-        //prescription
+
+
+            /// <summary>
+            /// This function returns a list of medication instances that belongs to a prescription
+            /// This function only relevant from database connection and to assign a new prescription
+            /// </summary>
+            /// <param name="prescriptionId"></param>
+            /// <returns></returns>
             public List<MedicationInstance> GetMedicineIdByPrescription(int prescriptionId)
             {
                 QueryBuilder b = new QueryBuilder();
@@ -53,6 +78,12 @@ namespace Mockup2.Factories
 
 
 
+
+        /// <summary>
+        /// This method returns a list of medications when medication id entered
+        /// </summary>
+        /// <param name="medicineId"></param>
+        /// <returns></returns>
         public List<Medication> GetMedicneNameById(int medicineId)
         {
             QueryBuilder b = new QueryBuilder();
@@ -62,6 +93,12 @@ namespace Mockup2.Factories
 
 
 
+
+        /// <summary>
+        /// This method returns a medication list based on the query executed
+        /// </summary>
+        /// <param name="b"></param>
+        /// <returns></returns>
         public List<Medication> GetMedicationName(QueryBuilder b)
         {
             Medication a = new Medication();
@@ -90,6 +127,11 @@ namespace Mockup2.Factories
 
 
 
+
+        /// <summary>
+        /// This method returns all the medications which are available in the database
+        /// </summary>
+        /// <returns></returns>
         public List<Medication>  getAllMedication()
         {
 
@@ -99,6 +141,13 @@ namespace Mockup2.Factories
         }
 
 
+
+        //DELETE DELETE DELETE DELETE DELETE DELETE DELETE DELETE DELETE
+        /// <summary>
+        /// This methos returns a list of medications 
+        /// </summary>
+        /// <param name="b"></param>
+        /// <returns></returns>
         public List<Medication> GetAllMedicationAvailable(QueryBuilder b)
         {
             Medication a = new Medication();
@@ -127,11 +176,14 @@ namespace Mockup2.Factories
 
 
 
+
+        /// <summary>
+        /// This mehtod creates a connection in the database between two tables by entering medication instance table data
+        /// </summary>
+        /// <param name="instance"></param>
         public void addmedicationInstance(MedicationInstance instance)
         {
-          
-
-
+ 
             QueryBuilder b = new QueryBuilder();
             b.Insert(Tables.MEDICATIONINSTANCE_TABLE).Values
                 (
@@ -144,6 +196,7 @@ namespace Mockup2.Factories
 
                 MySqlCommand cmd = new MySqlCommand(b.ToString(), dbCon.GetConnection());
                 cmd.ExecuteNonQuery();
+
         }
 
 
@@ -153,4 +206,5 @@ namespace Mockup2.Factories
 
 
     }
-    }
+}
+//end               //end               //end               //end               //end

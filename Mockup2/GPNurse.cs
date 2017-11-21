@@ -115,10 +115,10 @@ namespace Mockup2
 
             textBoxCleaner(detailsBox);
             textBoxCleaner(historyBox);
-            ListBoxCleaner(listBox1);
+            ListBoxCleaner(prescriptiptionsListBox);
             ListBoxCleaner(searchBox);
-            ListBoxCleaner(listBox2);
-            ListBoxCleaner(listBox1);
+            ListBoxCleaner(testResultsListBox);
+            ListBoxCleaner(prescriptiptionsListBox);
             textBoxCleaner(firstText);
             textBoxCleaner(lastText);
 
@@ -147,9 +147,9 @@ namespace Mockup2
                 prescriptionList = convert.GetPrescription();
                 testresultsList = convert.getTestResults();
                 testresults = convert.TestResults();
-                ListBoxWriter(prescriptions,listBox1);
+                ListBoxWriter(prescriptions,prescriptiptionsListBox);
                 textBoxWriter(history, historyBox);
-                ListBoxWriter(testresults, listBox2);
+                ListBoxWriter(testresults, testResultsListBox);
                 detailsBox.Text = currentPatient.FirstName + " " + currentPatient.LastName + " " + currentPatient.DOB + "\nGender: " + currentPatient.Gender + "\nNext of kin: " + currentPatient.NextOfKin + "\nAddress " + currentPatient.Address;
                 PrescriptonForm.initCurrentPatient(currentPatient);
 
@@ -437,9 +437,8 @@ namespace Mockup2
 
                     manager.insertPatientNote(currentPatient, notes);
 
-
-
                 }
+
                 if (result == System.Windows.Forms.DialogResult.No)
                 {
 
@@ -525,6 +524,7 @@ namespace Mockup2
 
         /**
       * Timer action 
+      * update time and next patient
       * */
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -558,70 +558,83 @@ namespace Mockup2
 
 
         /**
-         * 
+         * Double click on the testresults box allows to read a prescription object with more detail
          * */
-        private void listBox2_DoubleClick(object sender, EventArgs e)
+        private void testResultsListBox_DoubleClick(object sender, EventArgs e)
         {
             if (TestresultController == false)
             {
                 string name = "";
-                int index = listBox2.Items.IndexOf(listBox2.Text);
-                name = listBox2.SelectedItem.ToString();
-                listBox2.Items.Clear();
-                listBox2.Items.Add(name);
-                listBox2.Items.Add(testresultsList[index].TestName);
-                listBox2.Items.Add (testresultsList[index].TestName);
-                listBox2.Items.Add (testresultsList[index].StaffID);
+                int index = testResultsListBox.Items.IndexOf(testResultsListBox.Text);
+                name = testResultsListBox.SelectedItem.ToString();
+                testResultsListBox.Items.Clear();
+                testResultsListBox.Items.Add(name);
+                testResultsListBox.Items.Add(testresultsList[index].TestName);
+                testResultsListBox.Items.Add (testresultsList[index].TestName);
+                testResultsListBox.Items.Add (testresultsList[index].StaffID);
                 TestresultController = true;
             }
             else
             {
-                listBox2.Items.Clear();
+                testResultsListBox.Items.Clear();
                 TestresultController = false;
-                ListBoxWriter(testresults, listBox2);
+                ListBoxWriter(testresults, testResultsListBox);
             }
         }
 
-        private void listBox1_DoubleClick(object sender, EventArgs e)
+
+
+
+        /**
+         * allows prescription management
+         * double click to read object
+         * */
+        private void prescriptionsListBox_DoubleClick(object sender, EventArgs e)
         {
             
             if (PrescriptionListController == false)
             {
                 string name = "";
-                int index = listBox1.Items.IndexOf(listBox1.Text);
+                int index = prescriptiptionsListBox.Items.IndexOf(prescriptiptionsListBox.Text);
                 editIndex = index;
-                name = listBox1.SelectedItem.ToString();
-                listBox1.Items.Clear();
-                listBox1.Items.Add(name);
-                listBox1.Items.Add(prescriptionList[index].IsRepeatable);
-                listBox1.Items.Add(prescriptionList[index].RepeatRequested);
-                listBox1.Items.Add(prescriptionList[index].StaffId);
+                name = prescriptiptionsListBox.SelectedItem.ToString();
+                prescriptiptionsListBox.Items.Clear();
+                prescriptiptionsListBox.Items.Add(name);
+                prescriptiptionsListBox.Items.Add(prescriptionList[index].IsRepeatable);
+                prescriptiptionsListBox.Items.Add(prescriptionList[index].RepeatRequested);
+                prescriptiptionsListBox.Items.Add(prescriptionList[index].StaffId);
                 PrescriptionListController = true;
             }
             else
             {
-                listBox1.Items.Clear();
+                prescriptiptionsListBox.Items.Clear();
                 PrescriptionListController = false;
-                ListBoxWriter(prescriptions, listBox1);
+                ListBoxWriter(prescriptions, prescriptiptionsListBox);
             }
         }
 
 
     
        
-
+        /**
+         * Allow prescription in the prescrioption list to be repeated
+         * */
         private void allow_Click(object sender, EventArgs e)
         {   
 
             if (allow.Visible = true) { allow.Visible = false; decline.Visible = false; }
             prescriptionList[editIndex].IsRepeatable = true;
             saveModifiedPrescription();
-            //change list
-            //send it to db when saved
+           
         }
 
        
 
+
+        /**
+         * Changes the is repeateable to false
+         * repeate not allowed
+         * */
         private void decline_Click(object sender, EventArgs e)
         {
 
@@ -631,6 +644,12 @@ namespace Mockup2
 
         }
 
+
+
+
+        /**
+         * saves the modified prescrioption
+         * */
         private void saveModifiedPrescription()
         {
 
@@ -640,22 +659,31 @@ namespace Mockup2
 
 
 
+        /**
+         * Changes the true or false where the prescription is repeatable
+         * */
         private void editButton_Click_1(object sender, EventArgs e)
         {
             allow.Visible = true;
             decline.Visible = true;
         }
 
+
+
+
+        /**
+         * AddButton
+         * calls the prescription form to create a new prescirption
+         * */
         private void button3_Click(object sender, EventArgs e)
         {
             PrescriptonForm.Show();
-           
-           
+   
         }
 
 
 
-        // to commit  created updatefunc into prescription, insert into medicationinstance, merged with Saun, finished basic functionality on form...
+      
 
 
 

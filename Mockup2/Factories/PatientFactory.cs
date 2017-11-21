@@ -18,6 +18,10 @@ namespace Mockup2.Factories
         {
         }
 
+
+
+
+
         /// <summary>
         /// Inserts the given <see cref="Mockup2.DatabaseClasses.Patient"/> information into the database.
         /// </summary>
@@ -29,6 +33,10 @@ namespace Mockup2.Factories
             MySqlCommand cmd = new MySqlCommand(b.ToString(), dbCon.GetConnection());
             cmd.ExecuteNonQuery();
         }
+
+
+
+
 
         /// <summary>
         /// Updates the given <see cref="Mockup2.DatabaseClasses.Patient"/> information in the database.
@@ -54,6 +62,9 @@ namespace Mockup2.Factories
             cmd.ExecuteNonQuery();
 
         }
+
+
+
 
         /// <summary>
         /// Returns a list of <see cref="Mockup2.DatabaseClasses.Patient"/>s based on certain search criteria, provided
@@ -95,6 +106,10 @@ namespace Mockup2.Factories
 
         }
 
+
+
+
+
         /// <summary>
         /// Delete an entry from the Patient table in the database,
         /// based on information given by the <see cref="Mockup2.DatabaseClasses.Patient"/> object.
@@ -107,6 +122,8 @@ namespace Mockup2.Factories
             MySqlCommand cmd = new MySqlCommand(b.ToString(), dbCon.GetConnection());
             cmd.ExecuteNonQuery();
         }
+
+
 
 
         /// <summary>
@@ -126,6 +143,9 @@ namespace Mockup2.Factories
             return GetPatients(b);
         }
 
+
+
+
         /// <summary>
         /// Returns a <see cref="Mockup2.DatabaseClasses.Patient"/> by their Id number.
         /// </summary>
@@ -142,7 +162,11 @@ namespace Mockup2.Factories
 
 
 
-
+        /// <summary>
+        /// This method returns a singel patient object from the database by ID
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <returns></returns>
         public Patient GetAPatientByID(int ID)
         {
             QueryBuilder b = new QueryBuilder();
@@ -154,8 +178,12 @@ namespace Mockup2.Factories
 
 
 
-
-
+        /// <summary>
+        /// This method returns a single patient from the database
+        /// Takes a querybuilder
+        /// </summary>
+        /// <param name="q"></param>
+        /// <returns></returns>
         public Patient GetPatientByIdNumber(QueryBuilder q)
         {
             
@@ -171,9 +199,9 @@ namespace Mockup2.Factories
                 {
 
                     Prescription a = new Prescription();
-
                     Patient p = new Patient();
                     PatientTable pt = Tables.PATIENT_TABLE;
+
                     p.ID = GetInt(reader[pt.ID.Name]);
                     p.NHSNumber = GetString(reader[pt.NHSNumber.Name]);
                     p.FirstName = GetString(reader[pt.FirstName.Name]);
@@ -191,13 +219,14 @@ namespace Mockup2.Factories
 
                     result = p;
 
-
                 }
                 reader.Close();
                 reader.Dispose();
                 return result;
 
             }
+
+
 
 
         /// <summary>
@@ -212,6 +241,8 @@ namespace Mockup2.Factories
         }
 
 
+
+
         /**
          * returns a patient object by finding it in the database by first and last name
          * */
@@ -222,6 +253,7 @@ namespace Mockup2.Factories
 
             return getPatient(firstName,lastName,q);
         }
+
 
 
 
@@ -260,8 +292,7 @@ namespace Mockup2.Factories
                     p.Phone = GetString(reader[pt.Phone.Name]);
 
                     result = p;                 
-                  
-             
+                           
             }
             reader.Close();
             reader.Dispose();
@@ -273,3 +304,4 @@ namespace Mockup2.Factories
 
     }
 }
+//end           //end               //end               //end

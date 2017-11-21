@@ -9,14 +9,23 @@ using static Mockup2.DatabaseClasses.Tables;
 
 namespace Mockup2.Factories
 {
+
+
     /// <summary>
     /// Convenience class to handle returning, updating, and inserting TestResult objects into the database.
     /// </summary>
     public class TestResultFactory : AbstractFactory
     {
+
+
         public TestResultFactory(DBConnection dbCon) : base(dbCon)
         {
+
+
         }
+
+
+
 
         /// <summary>
         /// Get a list of TestResult objects based on search criteria given the QueryBuilder.
@@ -45,7 +54,6 @@ namespace Mockup2.Factories
                     a.Results = GetString(reader[pt.Results.Name]);
                     result.Add(a);
 
-
                  }
 
                 reader.Close();
@@ -54,6 +62,10 @@ namespace Mockup2.Factories
 
 
         }
+
+
+
+
 
         /// <summary>
         /// Convenience method to get all 
@@ -66,6 +78,13 @@ namespace Mockup2.Factories
             b.Select(Tables.ALL).From(Tables.TESTRESULT_TABLE).Where(b.IsEqual(Tables.TESTRESULT_TABLE.PatientID,patientID));
             return GetTestResults(b);
         }
+
+
+
+        /// <summary>
+        /// Returns a list of test results from the database by using query builder
+        /// </summary>
+        /// <returns></returns>
         public List<TestResult> GetTestResults()
         {
             QueryBuilder b = new QueryBuilder();
