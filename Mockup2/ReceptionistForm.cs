@@ -2,6 +2,7 @@
 using Mockup2.DatabaseClasses;
 using Mockup2.Factories;
 using Mockup2.PatientForms;
+using Mockup2.RotaForms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -346,6 +347,11 @@ namespace Mockup2
         {
             this.Close();
             this.Dispose();
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            new SeeStaffRotaForm(seeRotaFirstName.Text,seeRotaLastName.Text,dbCon).ShowDialog();
         }
     }
 }

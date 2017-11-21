@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReceptionistForm));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.Exit = new System.Windows.Forms.Button();
             this.findAppointmentButton = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
@@ -45,6 +46,7 @@
             this.AppointmentStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.appointmentCause = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.button9 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.button8 = new System.Windows.Forms.Button();
@@ -67,11 +69,14 @@
             this.email = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.phone = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.button11 = new System.Windows.Forms.Button();
+            this.seeRotaLastName = new System.Windows.Forms.TextBox();
+            this.seeRotaFirstName = new System.Windows.Forms.TextBox();
+            this.button10 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.seerotadateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.Exit = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
-            this.button10 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.appointmentDataGridView)).BeginInit();
@@ -108,6 +113,16 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Appointments";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // Exit
+            // 
+            this.Exit.Location = new System.Drawing.Point(711, 625);
+            this.Exit.Name = "Exit";
+            this.Exit.Size = new System.Drawing.Size(364, 52);
+            this.Exit.TabIndex = 100;
+            this.Exit.Text = "Exit";
+            this.Exit.UseVisualStyleBackColor = true;
+            this.Exit.Click += new System.EventHandler(this.Exit_Click);
             // 
             // findAppointmentButton
             // 
@@ -253,6 +268,16 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Patients";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // button9
+            // 
+            this.button9.Location = new System.Drawing.Point(711, 625);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(364, 52);
+            this.button9.TabIndex = 101;
+            this.button9.Text = "Exit";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click_1);
             // 
             // label2
             // 
@@ -444,6 +469,11 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.label4);
+            this.tabPage3.Controls.Add(this.label3);
+            this.tabPage3.Controls.Add(this.button11);
+            this.tabPage3.Controls.Add(this.seeRotaLastName);
+            this.tabPage3.Controls.Add(this.seeRotaFirstName);
             this.tabPage3.Controls.Add(this.button10);
             this.tabPage3.Controls.Add(this.button1);
             this.tabPage3.Controls.Add(this.seerotadateTimePicker1);
@@ -456,43 +486,47 @@
             this.tabPage3.UseVisualStyleBackColor = true;
             this.tabPage3.Click += new System.EventHandler(this.tabPage3_Click);
             // 
-            // button1
+            // label4
             // 
-            this.button1.AutoSize = true;
-            this.button1.Location = new System.Drawing.Point(8, 53);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(249, 52);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "See Staff List";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(275, 58);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(223, 33);
+            this.label4.TabIndex = 106;
+            this.label4.Text = "Staff Last Name";
             // 
-            // seerotadateTimePicker1
+            // label3
             // 
-            this.seerotadateTimePicker1.Location = new System.Drawing.Point(7, 7);
-            this.seerotadateTimePicker1.Name = "seerotadateTimePicker1";
-            this.seerotadateTimePicker1.Size = new System.Drawing.Size(200, 40);
-            this.seerotadateTimePicker1.TabIndex = 0;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(272, 12);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(226, 33);
+            this.label3.TabIndex = 105;
+            this.label3.Text = "Staff First Name";
             // 
-            // Exit
+            // button11
             // 
-            this.Exit.Location = new System.Drawing.Point(711, 625);
-            this.Exit.Name = "Exit";
-            this.Exit.Size = new System.Drawing.Size(364, 52);
-            this.Exit.TabIndex = 100;
-            this.Exit.Text = "Exit";
-            this.Exit.UseVisualStyleBackColor = true;
-            this.Exit.Click += new System.EventHandler(this.Exit_Click);
+            this.button11.Location = new System.Drawing.Point(504, 98);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(249, 52);
+            this.button11.TabIndex = 104;
+            this.button11.Text = "See Rota";
+            this.button11.UseVisualStyleBackColor = true;
+            this.button11.Click += new System.EventHandler(this.button11_Click);
             // 
-            // button9
+            // seeRotaLastName
             // 
-            this.button9.Location = new System.Drawing.Point(711, 625);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(364, 52);
-            this.button9.TabIndex = 101;
-            this.button9.Text = "Exit";
-            this.button9.UseVisualStyleBackColor = true;
-            this.button9.Click += new System.EventHandler(this.button9_Click_1);
+            this.seeRotaLastName.Location = new System.Drawing.Point(504, 52);
+            this.seeRotaLastName.Name = "seeRotaLastName";
+            this.seeRotaLastName.Size = new System.Drawing.Size(249, 40);
+            this.seeRotaLastName.TabIndex = 103;
+            // 
+            // seeRotaFirstName
+            // 
+            this.seeRotaFirstName.Location = new System.Drawing.Point(504, 6);
+            this.seeRotaFirstName.Name = "seeRotaFirstName";
+            this.seeRotaFirstName.Size = new System.Drawing.Size(249, 40);
+            this.seeRotaFirstName.TabIndex = 102;
             // 
             // button10
             // 
@@ -503,6 +537,24 @@
             this.button10.Text = "Exit";
             this.button10.UseVisualStyleBackColor = true;
             this.button10.Click += new System.EventHandler(this.button10_Click);
+            // 
+            // button1
+            // 
+            this.button1.AutoSize = true;
+            this.button1.Location = new System.Drawing.Point(8, 52);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(249, 52);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "See Staff List";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // seerotadateTimePicker1
+            // 
+            this.seerotadateTimePicker1.Location = new System.Drawing.Point(8, 6);
+            this.seerotadateTimePicker1.Name = "seerotadateTimePicker1";
+            this.seerotadateTimePicker1.Size = new System.Drawing.Size(250, 40);
+            this.seerotadateTimePicker1.TabIndex = 0;
             // 
             // ReceptionistForm
             // 
@@ -571,5 +623,10 @@
         private System.Windows.Forms.Button Exit;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button button11;
+        private System.Windows.Forms.TextBox seeRotaLastName;
+        private System.Windows.Forms.TextBox seeRotaFirstName;
     }
 }
