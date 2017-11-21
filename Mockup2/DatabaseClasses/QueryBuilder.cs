@@ -55,6 +55,16 @@ namespace Mockup2.DatabaseClasses
             pastQueries[q]++;
         }
 
+        public static List<String> GetPastQueriesLog()
+        {
+            List<String> result = new List<string>();
+            foreach(KeyValuePair<string,int> kvp in pastQueries)
+            {
+                result.Add(string.Format("[{0}] : {1}", kvp.Value, kvp.Key));
+            }
+            return result;
+        }
+
         /// <summary>
         /// Adds an Order By statement to the current SQL query. Can choose whether to be
         /// ascending or descending.

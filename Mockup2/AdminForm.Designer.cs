@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminForm));
             this.adminTabs = new System.Windows.Forms.TabControl();
             this.rotaTab = new System.Windows.Forms.TabPage();
+            this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Rota_StaffID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -44,6 +45,7 @@
             this.Saturday = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Sunday = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.staffTab = new System.Windows.Forms.TabPage();
+            this.button5 = new System.Windows.Forms.Button();
             this.removeStaffButton = new System.Windows.Forms.Button();
             this.editStaffButton = new System.Windows.Forms.Button();
             this.addStaffButton = new System.Windows.Forms.Button();
@@ -56,11 +58,10 @@
             this.Address = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PostCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.systemTab = new System.Windows.Forms.TabPage();
+            this.button6 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
+            this.reportBug = new System.Windows.Forms.Button();
             this.adminTabs.SuspendLayout();
             this.rotaTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -95,6 +96,17 @@
             this.rotaTab.TabIndex = 0;
             this.rotaTab.Text = "Rota";
             this.rotaTab.UseVisualStyleBackColor = true;
+            // 
+            // button4
+            // 
+            this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button4.Location = new System.Drawing.Point(839, 623);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(153, 52);
+            this.button4.TabIndex = 2;
+            this.button4.Text = "Exit";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button3
             // 
@@ -224,6 +236,17 @@
             this.staffTab.Text = "Staff";
             this.staffTab.UseVisualStyleBackColor = true;
             // 
+            // button5
+            // 
+            this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button5.Location = new System.Drawing.Point(839, 618);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(153, 52);
+            this.button5.TabIndex = 4;
+            this.button5.Text = "Exit";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
             // removeStaffButton
             // 
             this.removeStaffButton.AutoSize = true;
@@ -333,6 +356,7 @@
             // 
             // systemTab
             // 
+            this.systemTab.Controls.Add(this.reportBug);
             this.systemTab.Controls.Add(this.button6);
             this.systemTab.Controls.Add(this.button2);
             this.systemTab.Controls.Add(this.button1);
@@ -343,10 +367,21 @@
             this.systemTab.Text = "System";
             this.systemTab.UseVisualStyleBackColor = true;
             // 
+            // button6
+            // 
+            this.button6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button6.Location = new System.Drawing.Point(824, 604);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(153, 52);
+            this.button6.TabIndex = 3;
+            this.button6.Text = "Exit";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
             // button2
             // 
             this.button2.AutoSize = true;
-            this.button2.Location = new System.Drawing.Point(326, 4);
+            this.button2.Location = new System.Drawing.Point(330, 4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(320, 52);
             this.button2.TabIndex = 1;
@@ -359,44 +394,21 @@
             this.button1.AutoSize = true;
             this.button1.Location = new System.Drawing.Point(4, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(307, 52);
+            this.button1.Size = new System.Drawing.Size(320, 52);
             this.button1.TabIndex = 0;
             this.button1.Text = "Message Patient";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button4
+            // reportBug
             // 
-            this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button4.Location = new System.Drawing.Point(839, 623);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(153, 52);
-            this.button4.TabIndex = 2;
-            this.button4.Text = "Exit";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
-            // button5
-            // 
-            this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button5.Location = new System.Drawing.Point(839, 618);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(153, 52);
-            this.button5.TabIndex = 4;
-            this.button5.Text = "Exit";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
-            // 
-            // button6
-            // 
-            this.button6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button6.Location = new System.Drawing.Point(824, 604);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(153, 52);
-            this.button6.TabIndex = 3;
-            this.button6.Text = "Exit";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
+            this.reportBug.Location = new System.Drawing.Point(4, 62);
+            this.reportBug.Name = "reportBug";
+            this.reportBug.Size = new System.Drawing.Size(320, 52);
+            this.reportBug.TabIndex = 4;
+            this.reportBug.Text = "Report Bug";
+            this.reportBug.UseVisualStyleBackColor = true;
+            this.reportBug.Click += new System.EventHandler(this.reportBug_Click);
             // 
             // AdminForm
             // 
@@ -455,5 +467,6 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button reportBug;
     }
 }

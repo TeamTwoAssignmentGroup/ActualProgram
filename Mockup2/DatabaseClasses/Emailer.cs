@@ -27,8 +27,8 @@ namespace Mockup2.Classes
         /// <param name="email">Email address of the recipient.</param>
         /// <param name="subject">Subject of the email message.</param>
         /// <param name="message">The email message itself.</param>
-        /// <param name="fileNamesToAttach">File names as strings to attach to this email, if any.</param>
-        public static void SendEmail(string email, string subject, string message, params string[] fileNamesToAttach)
+        /// <param name="attachments">A variable list of <see cref="System.Net.Mail.Attachment"/>s to send along with the email.</param>
+        public static void SendEmailWithAttachments(string email, string subject, string message, params Attachment[] attachments)
         {
             if (!Program.SEND_EMAILS)
             {
@@ -49,13 +49,33 @@ namespace Mockup2.Classes
                 mail.Subject = subject;
                 mail.Body = message;
                 mail.IsBodyHtml = true;
-                foreach(string s in fileNamesToAttach)
+                foreach(Attachment a in attachments)
                 {
-                    mail.Attachments.Add(new Attachment(s));
+                    mail.Attachments.Add(a);
                 }
                 client.Send(mail);
             }).Start();
             
+        }
+
+        /// <summary>
+        /// Convenience method to send email using strings of local file names as attachments.
+        /// </summary>
+        /// <param name="email">Email address to send email to.</param>
+        /// <param name="subject">Subject of the email.</param>
+        /// <param name="message">Message body of the email.</param>
+        /// <param name="fileNamesToAttach">A fixed length array of strings representing local file names to be used as attachments.</param>
+        public static void SendEmail(string email, string subject, string message, params string[] fileNamesToAttach)
+        {
+            List<Attachment> attachments = new List<Attachment>();
+            if (fileNamesToAttach != null)
+            {
+                foreach (string s in fileNamesToAttach)
+                {
+                    attachments.Add(new Attachment(s));
+                }
+            }
+            Emailer.SendEmailWithAttachments(email, subject, message, attachments.ToArray());
         }
 
         /// <summary>

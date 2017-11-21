@@ -38,6 +38,23 @@
             the contents of this method with the code editor.
             </summary>
         </member>
+        <member name="F:Mockup2.AdminForms.ReportBugForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Mockup2.AdminForms.ReportBugForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Mockup2.AdminForms.ReportBugForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
         <member name="T:Mockup2.DatabaseClasses.CustomTable">
             <summary>
             OUT OF ORDER 
@@ -96,7 +113,7 @@
             <param name="appointmentDate">The date of the <see cref="T:Mockup2.DatabaseClasses.Appointment"/>Appointment.</param>
             <param name="appointmentTime">The time of the <see cref="T:Mockup2.DatabaseClasses.Appointment"/>Appointment.</param>
         </member>
-        <member name="M:Mockup2.DatabaseClasses.Program.Main">
+        <member name="M:Mockup2.DatabaseClasses.Program.Main(System.String[])">
             <summary>
             The main entry point for the application.
             </summary>
@@ -374,14 +391,23 @@
             One was created specifically for this project.
             </summary>
         </member>
-        <member name="M:Mockup2.Classes.Emailer.SendEmail(System.String,System.String,System.String,System.String[])">
+        <member name="M:Mockup2.Classes.Emailer.SendEmailWithAttachments(System.String,System.String,System.String,System.Net.Mail.Attachment[])">
             <summary>
             Sends an email message to the supplied email address, using the supplied subject and message.
             </summary>
             <param name="email">Email address of the recipient.</param>
             <param name="subject">Subject of the email message.</param>
             <param name="message">The email message itself.</param>
-            <param name="fileNamesToAttach">File names as strings to attach to this email, if any.</param>
+            <param name="attachments">A variable list of <see cref="T:System.Net.Mail.Attachment"/>s to send along with the email.</param>
+        </member>
+        <member name="M:Mockup2.Classes.Emailer.SendEmail(System.String,System.String,System.String,System.String[])">
+            <summary>
+            Convenience method to send email using strings of local file names as attachments.
+            </summary>
+            <param name="email">Email address to send email to.</param>
+            <param name="subject">Subject of the email.</param>
+            <param name="message">Message body of the email.</param>
+            <param name="fileNamesToAttach">A fixed length array of strings representing local file names to be used as attachments.</param>
         </member>
         <member name="M:Mockup2.Classes.Emailer.SendAppointmentEmail(System.String,Mockup2.DatabaseClasses.Staff,System.DateTime,System.DateTime)">
             <summary>
@@ -578,20 +604,20 @@
             Gets a list of Prescriptions from the database based on search critera provided by the QueryBuilder.
             </summary>
             <param name="b">QueryBuilder containing the SQL code.</param>
-            <returns>A list of Prescriptions.</returns>
+            <returns>A list of <see cref="T:Mockup2.DatabaseClasses.Prescription"/>s.</returns>
         </member>
         <member name="M:Mockup2.Factories.PrescriptionFactory.GetPrescriptions">
             <summary>
             Convenience method to get all prescriptions.
             </summary>
-            <returns></returns>
+            <returns>A list of all <see cref="T:Mockup2.DatabaseClasses.Prescription"/>s</returns>
         </member>
         <member name="M:Mockup2.Factories.PrescriptionFactory.GetPrescriptions(System.Int32)">
             <summary>
             Convenience method to get all prescriptions based on the patient id they belong to.
             </summary>
             <param name="patientID">ID of the patient to find prescriptions for.</param>
-            <returns>A list of Prescriptions.</returns>
+            <returns>A list of <see cref="T:Mockup2.DatabaseClasses.Prescription"/>s.</returns>
         </member>
         <member name="M:Mockup2.Factories.PrescriptionFactory.GetLastPrescriptionID">
             <summary>
@@ -607,7 +633,7 @@
             that have MedicationInstances linked to them will need to be inserted before
             the MedicationInstances are to avoid foreign key constraint problems.
             </summary>
-            <param name="p">The Prescription object to insert.</param>
+            <param name="p">The <see cref="T:Mockup2.DatabaseClasses.Prescription"/> object to insert.</param>
         </member>
         <member name="T:Mockup2.Factories.StaffFactory">
             <summary>
@@ -669,55 +695,55 @@
         </member>
         <member name="M:Mockup2.Factories.PatientFactory.InsertPatient(Mockup2.DatabaseClasses.Patient)">
             <summary>
-            Inserts the given Patient information into the database.
+            Inserts the given <see cref="T:Mockup2.DatabaseClasses.Patient"/> information into the database.
             </summary>
-            <param name="p">The Patient to pull information from.</param>
+            <param name="p">The <see cref="T:Mockup2.DatabaseClasses.Patient"/> to pull information from.</param>
         </member>
         <member name="M:Mockup2.Factories.PatientFactory.UpdatePatient(Mockup2.DatabaseClasses.Patient)">
             <summary>
-            Updates the given Patient information in the database.
+            Updates the given <see cref="T:Mockup2.DatabaseClasses.Patient"/> information in the database.
             </summary>
-            <param name="p">The Patient to get updated information from.</param>
+            <param name="p">The <see cref="T:Mockup2.DatabaseClasses.Patient"/> to get updated information from.</param>
         </member>
         <member name="M:Mockup2.Factories.PatientFactory.GetPatients(Mockup2.DatabaseClasses.QueryBuilder)">
             <summary>
-            Returns a list of Patients based on certain search criteria, provided
+            Returns a list of <see cref="T:Mockup2.DatabaseClasses.Patient"/>s based on certain search criteria, provided
             by the QueryBuilder SQL code.
             </summary>
             <param name="b">QueryBuilder containing the SQL query to run.</param>
-            <returns>A list of Patient objects.</returns>
+            <returns>A list of <see cref="T:Mockup2.DatabaseClasses.Patient"/> objects.</returns>
         </member>
         <member name="M:Mockup2.Factories.PatientFactory.DeletePatient(Mockup2.DatabaseClasses.Patient)">
             <summary>
             Delete an entry from the Patient table in the database,
-            based on information given by the Patient object.
+            based on information given by the <see cref="T:Mockup2.DatabaseClasses.Patient"/> object.
             </summary>
-            <param name="p">Patient representation of information to delete.</param>
+            <param name="p"><see cref="T:Mockup2.DatabaseClasses.Patient"/> representation of information to delete.</param>
         </member>
         <member name="M:Mockup2.Factories.PatientFactory.GetPatientsByName(System.String,System.String)">
             <summary>
-            Conveience method to get all patients by their first and last name.
+            Conveience method to get all <see cref="T:Mockup2.DatabaseClasses.Patient"/>s by their first and last name.
             Most of the time, this method is expected to return a list containing
             only one value. However, this cannot be guranteed as name collisions
             cannot be prevented. Similarly, it shouln't be assumed this method will
             always return at least one entry - sometimes it doesn't, if the patient cannot be found.
             </summary>
             <param name="firstName">Patient's first name.</param>
-            <param name="lastName">Patients's last name.</param>
-            <returns>A list of Patients that have the first and last name provided. Size of the list may be more than 1, or 0.</returns>
+            <param name="lastName">Patient's last name.</param>
+            <returns>A list of <see cref="T:Mockup2.DatabaseClasses.Patient"/>s that have the first and last name provided. Size of the list may be more than 1, or 0.</returns>
         </member>
         <member name="M:Mockup2.Factories.PatientFactory.GetPatientsByID(System.Int32)">
             <summary>
-            Returns a patient by their Id number.
+            Returns a <see cref="T:Mockup2.DatabaseClasses.Patient"/> by their Id number.
             </summary>
-            <param name="ID">The Patient corresponding to the given ID.</param>
-            <returns>A list of patients that match the ID. Should have a size of 1 almost always, but is a list just in case.</returns>
+            <param name="ID">The ID to search for.</param>
+            <returns>A list of <see cref="T:Mockup2.DatabaseClasses.Patient"/>s that match the ID. Should have a size of 1 almost always, but is a list just in case.</returns>
         </member>
         <member name="M:Mockup2.Factories.PatientFactory.GetPatients">
             <summary>
-            Convenience method to return all Patients currently stored in the database.
+            Convenience method to return all <see cref="T:Mockup2.DatabaseClasses.Patient"/>s currently stored in the database.
             </summary>
-            <returns>A list of all Patients.</returns>
+            <returns>A list of all <see cref="T:Mockup2.DatabaseClasses.Patient"/>s.</returns>
         </member>
         <member name="M:Mockup2.Factories.PatientFactory.getAPatient(System.String,System.String)">
             returns a patient object by finding it in the database by first and last name
