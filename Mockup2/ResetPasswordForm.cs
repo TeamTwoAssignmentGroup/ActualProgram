@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Mockup2.Factories;
 using Mockup2.DatabaseClasses;
+using MySql.Data.MySqlClient;
 
 namespace Mockup2
 {
@@ -33,9 +34,12 @@ namespace Mockup2
         {
             int staffID = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
             string password = textBox2.Text;
-            //password
+            password = Program.GetHashedString(password);
             b = new QueryBuilder();
             b.Update(Tables.STAFF_TABLE).Set(Tables.STAFF_TABLE.Password,password).Where(b.IsEqual(Tables.STAFF_TABLE.ID,staffID));
+            MySqlCommand command = new MySqlCommand(b.ToString(),dbCon.GetConnection());
+            command.ExecuteNonQuery();
+            this.Close();
         }
 
         private void PopulatePassword()
