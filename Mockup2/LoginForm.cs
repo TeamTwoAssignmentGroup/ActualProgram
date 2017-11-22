@@ -127,7 +127,7 @@ namespace Mockup2
         public void read()
         {
 
-            MessageBox.Show("NO one puts baby in the corner");
+            MessageBox.Show("No one fixes the sink on my watch.");
 
         }
 
