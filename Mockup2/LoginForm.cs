@@ -64,6 +64,7 @@ namespace Mockup2
                     else
                     {
                         MessageBox.Show("Password is not correct. Please contact an Admin if you need a password reset.");
+                        read();
                         return;
                     }
                 }
@@ -126,7 +127,7 @@ namespace Mockup2
         public void read()
         {
 
-            //MessageBox.Show(staffPasswordtextBox2.Text);
+            MessageBox.Show("NO one puts baby in the corner");
 
         }
 
