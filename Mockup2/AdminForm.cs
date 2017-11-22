@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Mockup2.Factories;
 using Mockup2.DatabaseClasses;
 using Mockup2.AdminForms;
+using Mockup2.TestCode;
 
 namespace Mockup2
 {
@@ -166,6 +167,12 @@ namespace Mockup2
         private void reportBug_Click(object sender, EventArgs e)
         {
             new ReportBugForm().ShowDialog();
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            ClsPrint printer = new ClsPrint(dataGridView1,"Staff Rota");
+            printer.PrintForm();
         }
     }
 }

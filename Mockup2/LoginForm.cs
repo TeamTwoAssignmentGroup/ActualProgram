@@ -44,12 +44,18 @@ namespace Mockup2
             {
                 int staffID = int.Parse(staffIDtextBox1.Text);
                 string password = staffPasswordtextBox2.Text;
+
+                // After grabbing the password we have to hash it
                 string hashedPassword = Program.GetHashedString(password);
                 Console.WriteLine("Searching for ID:{0} Password:{1}",staffID,password);
+
                 StaffFactory sf = new StaffFactory(dbCon);
                 List<Staff> s = sf.GetStaffByID(staffID);
+
+                // If count is more than 1 we have found a person
                 if (s.Count > 0)
                 {
+                    // If the passwords match, we set their job role
                     if (s[0].Password == hashedPassword)
                     {
                         cbi = s[0].JobRole;
@@ -68,6 +74,8 @@ namespace Mockup2
                 }
             }
             Console.Out.WriteLine("Object: " + cbi);
+
+            // Depending on which job role was returned, we create the appropriate form
             switch (cbi)
             {
                 case "Admin":AdminForm af = new AdminForm(dbCon);
@@ -94,6 +102,7 @@ namespace Mockup2
 
         private void loginForm_Load(object sender, EventArgs e)
         {
+            // These controls are for debug. So we hide them for the presentation
             staffJobLabel.Visible = !Program.ENFORCE_LOGIN;
             staffJobComboBox.Visible = !Program.ENFORCE_LOGIN;
         }
@@ -117,7 +126,7 @@ namespace Mockup2
         public void read()
         {
 
-            MessageBox.Show(staffPasswordtextBox2.Text);
+            //MessageBox.Show(staffPasswordtextBox2.Text);
 
         }
 

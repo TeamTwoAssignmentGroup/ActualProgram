@@ -34,6 +34,17 @@
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Rota_StaffID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Rota_FirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Rota_LastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Staff_JobRole = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Monday = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Tuesday = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Wednesday = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Thursday = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Friday = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Saturday = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Sunday = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.staffTab = new System.Windows.Forms.TabPage();
             this.button5 = new System.Windows.Forms.Button();
             this.removeStaffButton = new System.Windows.Forms.Button();
@@ -52,17 +63,7 @@
             this.button6 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.Rota_StaffID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Rota_FirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Rota_LastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Staff_JobRole = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Monday = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Tuesday = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Wednesday = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Thursday = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Friday = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Saturday = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Sunday = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.button7 = new System.Windows.Forms.Button();
             this.adminTabs.SuspendLayout();
             this.rotaTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -87,6 +88,7 @@
             // 
             // rotaTab
             // 
+            this.rotaTab.Controls.Add(this.button7);
             this.rotaTab.Controls.Add(this.button4);
             this.rotaTab.Controls.Add(this.button3);
             this.rotaTab.Controls.Add(this.dataGridView1);
@@ -151,6 +153,84 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(994, 609);
             this.dataGridView1.TabIndex = 0;
+            // 
+            // Rota_StaffID
+            // 
+            this.Rota_StaffID.HeaderText = "Staff ID";
+            this.Rota_StaffID.Name = "Rota_StaffID";
+            this.Rota_StaffID.ReadOnly = true;
+            this.Rota_StaffID.Visible = false;
+            this.Rota_StaffID.Width = 136;
+            // 
+            // Rota_FirstName
+            // 
+            this.Rota_FirstName.HeaderText = "First Name";
+            this.Rota_FirstName.Name = "Rota_FirstName";
+            this.Rota_FirstName.ReadOnly = true;
+            this.Rota_FirstName.Width = 184;
+            // 
+            // Rota_LastName
+            // 
+            this.Rota_LastName.HeaderText = "Last Name";
+            this.Rota_LastName.Name = "Rota_LastName";
+            this.Rota_LastName.ReadOnly = true;
+            this.Rota_LastName.Width = 181;
+            // 
+            // Staff_JobRole
+            // 
+            this.Staff_JobRole.HeaderText = "Job ";
+            this.Staff_JobRole.Name = "Staff_JobRole";
+            this.Staff_JobRole.ReadOnly = true;
+            this.Staff_JobRole.Width = 87;
+            // 
+            // Monday
+            // 
+            this.Monday.HeaderText = "Monday";
+            this.Monday.Name = "Monday";
+            this.Monday.ReadOnly = true;
+            this.Monday.Width = 143;
+            // 
+            // Tuesday
+            // 
+            this.Tuesday.HeaderText = "Tuesday";
+            this.Tuesday.Name = "Tuesday";
+            this.Tuesday.ReadOnly = true;
+            this.Tuesday.Width = 152;
+            // 
+            // Wednesday
+            // 
+            this.Wednesday.HeaderText = "Wednesday";
+            this.Wednesday.Name = "Wednesday";
+            this.Wednesday.ReadOnly = true;
+            this.Wednesday.Width = 193;
+            // 
+            // Thursday
+            // 
+            this.Thursday.HeaderText = "Thursday";
+            this.Thursday.Name = "Thursday";
+            this.Thursday.ReadOnly = true;
+            this.Thursday.Width = 162;
+            // 
+            // Friday
+            // 
+            this.Friday.HeaderText = "Friday";
+            this.Friday.Name = "Friday";
+            this.Friday.ReadOnly = true;
+            this.Friday.Width = 122;
+            // 
+            // Saturday
+            // 
+            this.Saturday.HeaderText = "Saturday";
+            this.Saturday.Name = "Saturday";
+            this.Saturday.ReadOnly = true;
+            this.Saturday.Width = 156;
+            // 
+            // Sunday
+            // 
+            this.Sunday.HeaderText = "Sunday";
+            this.Sunday.Name = "Sunday";
+            this.Sunday.ReadOnly = true;
+            this.Sunday.Width = 138;
             // 
             // staffTab
             // 
@@ -339,83 +419,15 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // Rota_StaffID
+            // button7
             // 
-            this.Rota_StaffID.HeaderText = "Staff ID";
-            this.Rota_StaffID.Name = "Rota_StaffID";
-            this.Rota_StaffID.ReadOnly = true;
-            this.Rota_StaffID.Visible = false;
-            this.Rota_StaffID.Width = 136;
-            // 
-            // Rota_FirstName
-            // 
-            this.Rota_FirstName.HeaderText = "First Name";
-            this.Rota_FirstName.Name = "Rota_FirstName";
-            this.Rota_FirstName.ReadOnly = true;
-            this.Rota_FirstName.Width = 184;
-            // 
-            // Rota_LastName
-            // 
-            this.Rota_LastName.HeaderText = "Last Name";
-            this.Rota_LastName.Name = "Rota_LastName";
-            this.Rota_LastName.ReadOnly = true;
-            this.Rota_LastName.Width = 181;
-            // 
-            // Staff_JobRole
-            // 
-            this.Staff_JobRole.HeaderText = "Job ";
-            this.Staff_JobRole.Name = "Staff_JobRole";
-            this.Staff_JobRole.ReadOnly = true;
-            this.Staff_JobRole.Width = 87;
-            // 
-            // Monday
-            // 
-            this.Monday.HeaderText = "Monday";
-            this.Monday.Name = "Monday";
-            this.Monday.ReadOnly = true;
-            this.Monday.Width = 143;
-            // 
-            // Tuesday
-            // 
-            this.Tuesday.HeaderText = "Tuesday";
-            this.Tuesday.Name = "Tuesday";
-            this.Tuesday.ReadOnly = true;
-            this.Tuesday.Width = 152;
-            // 
-            // Wednesday
-            // 
-            this.Wednesday.HeaderText = "Wednesday";
-            this.Wednesday.Name = "Wednesday";
-            this.Wednesday.ReadOnly = true;
-            this.Wednesday.Width = 193;
-            // 
-            // Thursday
-            // 
-            this.Thursday.HeaderText = "Thursday";
-            this.Thursday.Name = "Thursday";
-            this.Thursday.ReadOnly = true;
-            this.Thursday.Width = 162;
-            // 
-            // Friday
-            // 
-            this.Friday.HeaderText = "Friday";
-            this.Friday.Name = "Friday";
-            this.Friday.ReadOnly = true;
-            this.Friday.Width = 122;
-            // 
-            // Saturday
-            // 
-            this.Saturday.HeaderText = "Saturday";
-            this.Saturday.Name = "Saturday";
-            this.Saturday.ReadOnly = true;
-            this.Saturday.Width = 156;
-            // 
-            // Sunday
-            // 
-            this.Sunday.HeaderText = "Sunday";
-            this.Sunday.Name = "Sunday";
-            this.Sunday.ReadOnly = true;
-            this.Sunday.Width = 138;
+            this.button7.Location = new System.Drawing.Point(163, 623);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(149, 52);
+            this.button7.TabIndex = 3;
+            this.button7.Text = "Print";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // AdminForm
             // 
@@ -476,5 +488,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Friday;
         private System.Windows.Forms.DataGridViewTextBoxColumn Saturday;
         private System.Windows.Forms.DataGridViewTextBoxColumn Sunday;
+        private System.Windows.Forms.Button button7;
     }
 }

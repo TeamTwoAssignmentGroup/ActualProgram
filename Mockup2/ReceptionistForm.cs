@@ -8,13 +8,19 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static Mockup2.DatabaseClasses.Tables;
 
 namespace Mockup2
 {
+    /// <summary>
+    /// Main parent form that oversees all Receptionist related use cases. Spawns
+    /// child forms when necessary.
+    /// </summary>
     public partial class ReceptionistForm : Form
     {
         DBConnection dbCon;
@@ -91,6 +97,11 @@ namespace Mockup2
             PopulateAppointments(DateTime.Today,DateTime.Today);
         }
 
+        /// <summary>
+        /// Populates the appointment <see cref="System.Windows.Forms.DataGridView"/> 
+        /// </summary>
+        /// <param name="d1"></param>
+        /// <param name="d2"></param>
         public void PopulateAppointments(DateTime d1, DateTime d2)
         {
             appointmentDataGridView.Rows.Clear();
@@ -353,5 +364,107 @@ namespace Mockup2
         {
             new SeeStaffRotaForm(seeRotaFirstName.Text,seeRotaLastName.Text,dbCon).ShowDialog();
         }
+
+        // TODO: Remove this test stuff
+        //List<List<string>> rotaValues;
+        //Font printFont;
+        //private void button12_Click(object sender, EventArgs e)
+        //{
+        //    QueryBuilder b = new QueryBuilder();
+        //    b.Select(Tables.STAFF_TABLE.FirstName, Tables.STAFF_TABLE.LastName, Tables.STAFF_TABLE.JobRole, Tables.ROTA_TABLE.Mon, Tables.ROTA_TABLE.Tue, Tables.ROTA_TABLE.Wed, Tables.ROTA_TABLE.Thur, Tables.ROTA_TABLE.Fri, Tables.ROTA_TABLE.Sat, Tables.ROTA_TABLE.Sun)
+        //        .From(Tables.STAFF_TABLE, Tables.ROTA_TABLE).Where(b.IsEqual(Tables.STAFF_TABLE.ID, Tables.ROTA_TABLE.StaffID));
+        //    CustomTableFactory ctf = new CustomTableFactory(dbCon);
+        //    CustomTable ct = ctf.GetCustomTable(b);
+
+        //    List<List<string>> info = new List<List<string>>();
+        //    List<string> headers = new List<string>();
+        //    foreach(Column c in b.GetSelectedColumns())
+        //    {
+        //        headers.Add(c.ToString());
+        //    }
+        //    info.Add(headers);
+        //    foreach(var row in ct.GetRows())
+        //    {
+        //        List<string> values = new List<string>();
+        //        foreach (object o in row.Values)
+        //        {
+        //            try
+        //            {
+        //                int i = int.Parse(o.ToString());
+        //                values.Add((i == 1) ? "On" : "Off");
+        //            }
+        //            catch
+        //            {
+        //                values.Add(o.ToString());
+        //            }
+        //        }
+        //        info.Add(values);
+        //    }
+        //    rotaValues = info;
+        //    try
+        //    {
+                
+
+        //        printFont = new Font("Arial", 12);
+        //        PrintDocument pd = new PrintDocument();
+        //        pd.PrintPage += Pd_PrintPage;
+
+        //        // Show print dialog to user
+        //        PrintDialog pdialog = new PrintDialog();
+        //        pdialog.AllowPrintToFile = true;
+        //        pdialog.Document = pd;
+        //        pd.DefaultPageSettings.Landscape = true;
+
+        //        if (pdialog.ShowDialog() == DialogResult.OK)
+        //        {
+        //            pd.Print();
+        //        }
+        //    }catch(Exception ex)
+        //    {
+        //        Console.WriteLine(ex);
+        //    }
+        //}
+
+        //private void Pd_PrintPage(object sender, PrintPageEventArgs ev)
+        //{
+        //    float linesPerPage = 0;
+        //    float yPos = 0;
+        //    int count = 0;
+        //    float leftMargin = ev.MarginBounds.Left;
+        //    float topMargin = ev.MarginBounds.Top;
+        //    string line = null;
+
+        //    // Calculate the number of lines per page.
+        //    linesPerPage = ev.MarginBounds.Height /
+        //       printFont.GetHeight(ev.Graphics);
+
+        //    Console.WriteLine("[Print Debug Output]");
+        //    for(int i =0; i < rotaValues.Count; i++)
+        //    {
+        //        foreach(string s in rotaValues[i])
+        //        {
+        //            Console.Write(s + " | ");
+        //        }
+        //        Console.WriteLine();
+        //    }
+
+        //    // Print each line of the file.
+        //    while (count < linesPerPage && count<rotaValues.Count)
+        //    {
+        //        line = "";
+        //        foreach(string s in rotaValues[count])
+        //        {
+        //            line += s + " | ";
+        //        }
+        //        yPos = topMargin + (count *
+        //           printFont.GetHeight(ev.Graphics));
+        //        ev.Graphics.DrawString(line, printFont, Brushes.Black,
+        //           leftMargin, yPos, new StringFormat());
+        //        count++;
+        //    }
+
+        //    // If more lines exist, print another page.
+        //    ev.HasMorePages = false;
+        //}
     }
 }

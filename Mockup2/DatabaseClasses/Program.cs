@@ -29,7 +29,6 @@ namespace Mockup2.DatabaseClasses
             AUTH_TOKEN = args[0];
             Console.WriteLine(AUTH_TOKEN);
             DBConnection dbCon = new DBConnection();
-            Console.WriteLine(new PrescriptionFactory(dbCon).GetNextAvailablePrescriptionID());
             System.Windows.Forms.Application.EnableVisualStyles();
             System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
             System.Windows.Forms.Application.Run(new loginForm(dbCon));
@@ -38,6 +37,12 @@ namespace Mockup2.DatabaseClasses
             Console.ReadLine();
         }  
         
+        /// <summary>
+        /// Helper method to reliable generate hashed strings in an easily reproducably manner.
+        /// Uses <see cref="System.Security.Cryptography.SHA256CryptoServiceProvider"/> for hashing.
+        /// </summary>
+        /// <param name="input">The string to be hashed.</param>
+        /// <returns>The SHA256 hash value of the given string.</returns>
         public static string GetHashedString(string input)
         {
             SHA256 hashProvider = new SHA256CryptoServiceProvider();
