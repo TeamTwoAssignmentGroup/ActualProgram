@@ -26,7 +26,7 @@ namespace Mockup2
 
         private void addStaffButton_Click(object sender, EventArgs e)
         {
-            new EditStaffForm(dbCon).Show();
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -166,6 +166,12 @@ namespace Mockup2
         private void reportBug_Click(object sender, EventArgs e)
         {
             new ReportBugForm().ShowDialog();
+        }
+
+        private void editStaffButton_Click(object sender, EventArgs e)
+        {
+            int staffID = 1; // StaffID.ValueFromGrid
+            new EditStaffForm(dbCon, staffID).ShowDialog();
         }
     }
 }
