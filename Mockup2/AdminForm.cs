@@ -27,7 +27,7 @@ namespace Mockup2
 
         private void addStaffButton_Click(object sender, EventArgs e)
         {
-            new EditStaffForm(dbCon).Show();
+            //new EditStaffForm(dbCon).Show();
         }
 
         private void button1_Click(object sender, EventArgs e)

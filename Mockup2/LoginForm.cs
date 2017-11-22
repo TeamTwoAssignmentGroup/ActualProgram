@@ -9,6 +9,7 @@ using System.Drawing;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -126,8 +127,18 @@ namespace Mockup2
 
         public void read()
         {
-
-            MessageBox.Show("NO one puts baby in the corner");
+            int i = 0;
+            MessageBox.Show("THIS !");
+            Thread.Sleep(1000);
+            MessageBox.Show("IS!");
+            Thread.Sleep(2000);
+            MessageBox.Show("SPARTA!!!!");
+            do
+            {
+                i++;
+                Thread.Sleep(100);
+                MessageBox.Show("SPARTA!!!!");
+            }while (i!= 3) ;
 
         }
 

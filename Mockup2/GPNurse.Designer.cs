@@ -143,7 +143,7 @@
             this.addButton.TabIndex = 41;
             this.addButton.Text = "ADD";
             this.addButton.UseVisualStyleBackColor = true;
-            this.addButton.Click += new System.EventHandler(this.button3_Click);
+            this.addButton.Click += new System.EventHandler(this.addPrescription_Click);
             // 
             // remove
             // 
