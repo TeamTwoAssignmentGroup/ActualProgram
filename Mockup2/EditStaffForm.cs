@@ -41,7 +41,7 @@ namespace Mockup2
         {
             //Query
 
-            //textBox2.Text;
+            textBox2.Text = "lel";
         }
 
         private void button1_Click(object sender, EventArgs e)

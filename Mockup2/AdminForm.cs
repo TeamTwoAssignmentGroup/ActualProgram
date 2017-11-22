@@ -40,22 +40,22 @@ namespace Mockup2
             new ResetPasswordForm(dbCon).Show();
         }
 
-        //private void editStaffButton_Click(object sender, EventArgs e)
-        //{
-        //    if (dataGridView2.SelectedRows.Count > 1)
-        //    {
-        //        //validate
-        //    }
-        //    int rowNumber = Convert.ToInt32(dataGridView2.SelectedRows[0].Index);
-        //    object[] pass = DataSet(rowNumber).Item1;
-        //    object[] staffName = DataSet(rowNumber).Item2;
-        //    int staffID = DataSet(rowNumber).Item3;
+        private void editStaffButton_Click(object sender, EventArgs e)
+        {
+            //if (dataGridView2.SelectedRows.Count > 1)
+            //{
+            //    //validate
+            //}
+            //int rowNumber = Convert.ToInt32(dataGridView2.SelectedRows[0].Index);
+            //object[] pass = DataSet(rowNumber).Item1;
+            //object[] staffName = DataSet(rowNumber).Item2;
+            //int staffID = DataSet(rowNumber).Item3;
 
-        //    Console.WriteLine(rowNumber + "\t" + staffID);
+            //Console.WriteLine(rowNumber + "\t" + staffID);
 
-        //    new EditStaffForm(dbCon).ShowDialog();
-        //    PopulateAdminFormStaff();
-        //}
+            //new EditStaffForm(dbCon).ShowDialog();
+            //PopulateAdminFormStaff();
+        }
 
         private void button3_Click(object sender, EventArgs e)
         {
