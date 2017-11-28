@@ -63,6 +63,8 @@ namespace Mockup2.Factories
                 p.JobRole = GetString(reader[pt.JobRole.Name]);
                 p.Password = GetString(reader[pt.Password.Name]);
                 p.Email = GetString(reader[pt.Email.Name]);
+                p.Address = GetString(reader[pt.Address.Name]);
+                p.Postcode = GetString(reader[pt.Postcode.Name]);
                 result.Add(p);
             }
             reader.Close();

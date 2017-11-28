@@ -94,7 +94,7 @@
             this.rotaTab.Controls.Add(this.dataGridView1);
             this.rotaTab.Location = new System.Drawing.Point(4, 42);
             this.rotaTab.Name = "rotaTab";
-            this.rotaTab.Padding = new System.Windows.Forms.Padding(3);
+            this.rotaTab.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.rotaTab.Size = new System.Drawing.Size(1000, 683);
             this.rotaTab.TabIndex = 0;
             this.rotaTab.Text = "Rota";
@@ -241,7 +241,7 @@
             this.staffTab.Controls.Add(this.dataGridView2);
             this.staffTab.Location = new System.Drawing.Point(4, 42);
             this.staffTab.Name = "staffTab";
-            this.staffTab.Padding = new System.Windows.Forms.Padding(3);
+            this.staffTab.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.staffTab.Size = new System.Drawing.Size(1000, 683);
             this.staffTab.TabIndex = 1;
             this.staffTab.Text = "Staff";
@@ -277,6 +277,7 @@
             this.editStaffButton.TabIndex = 2;
             this.editStaffButton.Text = "Edit Staff";
             this.editStaffButton.UseVisualStyleBackColor = true;
+            this.editStaffButton.Click += new System.EventHandler(this.editStaffButton_Click);
             // 
             // addStaffButton
             // 
@@ -291,6 +292,8 @@
             // 
             // dataGridView2
             // 
+            this.dataGridView2.AllowUserToAddRows = false;
+            this.dataGridView2.AllowUserToDeleteRows = false;
             this.dataGridView2.AllowUserToResizeColumns = false;
             this.dataGridView2.AllowUserToResizeRows = false;
             this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
@@ -309,6 +312,7 @@
             this.dataGridView2.Location = new System.Drawing.Point(3, 3);
             this.dataGridView2.MultiSelect = false;
             this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.ReadOnly = true;
             this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView2.Size = new System.Drawing.Size(994, 581);
             this.dataGridView2.TabIndex = 0;
@@ -318,6 +322,7 @@
             this.StaffID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.StaffID.HeaderText = "Staff ID";
             this.StaffID.Name = "StaffID";
+            this.StaffID.ReadOnly = true;
             this.StaffID.Width = 136;
             // 
             // FirstName
@@ -325,6 +330,7 @@
             this.FirstName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.FirstName.HeaderText = "First Name";
             this.FirstName.Name = "FirstName";
+            this.FirstName.ReadOnly = true;
             this.FirstName.Width = 184;
             // 
             // LastName
@@ -332,6 +338,7 @@
             this.LastName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.LastName.HeaderText = "Last Name";
             this.LastName.Name = "LastName";
+            this.LastName.ReadOnly = true;
             this.LastName.Width = 181;
             // 
             // JobTitle
@@ -339,6 +346,7 @@
             this.JobTitle.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.JobTitle.HeaderText = "Job Title";
             this.JobTitle.Name = "JobTitle";
+            this.JobTitle.ReadOnly = true;
             this.JobTitle.Width = 151;
             // 
             // Email
@@ -353,6 +361,7 @@
             this.Address.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.Address.HeaderText = "Address";
             this.Address.Name = "Address";
+            this.Address.ReadOnly = true;
             this.Address.Width = 147;
             // 
             // PostCode
@@ -421,6 +430,7 @@
             // 
             // button7
             // 
+            this.button7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button7.Location = new System.Drawing.Point(163, 623);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(149, 52);

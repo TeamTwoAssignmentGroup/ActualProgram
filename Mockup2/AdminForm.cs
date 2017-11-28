@@ -10,7 +10,6 @@ using System.Windows.Forms;
 using Mockup2.Factories;
 using Mockup2.DatabaseClasses;
 using Mockup2.AdminForms;
-using Mockup2.TestCode;
 
 namespace Mockup2
 {
@@ -27,35 +26,42 @@ namespace Mockup2
 
         private void addStaffButton_Click(object sender, EventArgs e)
         {
-            //new EditStaffForm(dbCon).Show();
+            int staffID = 0;
+            this.Hide();
+            new EditStaffForm(dbCon, staffID).ShowDialog();
+            this.Show();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            new MessagePatientForm(dbCon).Show();
+            this.Hide();
+            new MessagePatientForm(dbCon).ShowDialog();
+            this.Show();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            new ResetPasswordForm(dbCon).Show();
+            this.Hide();
+            new ResetPasswordForm(dbCon).ShowDialog();
+            this.Show();
         }
 
-        private void editStaffButton_Click(object sender, EventArgs e)
-        {
-            //if (dataGridView2.SelectedRows.Count > 1)
-            //{
-            //    //validate
-            //}
-            //int rowNumber = Convert.ToInt32(dataGridView2.SelectedRows[0].Index);
-            //object[] pass = DataSet(rowNumber).Item1;
-            //object[] staffName = DataSet(rowNumber).Item2;
-            //int staffID = DataSet(rowNumber).Item3;
+        //private void editStaffButton_Click(object sender, EventArgs e)
+        //{
+        //    if (dataGridView2.SelectedRows.Count > 1)
+        //    {
+        //        //validate
+        //    }
+        //    int rowNumber = Convert.ToInt32(dataGridView2.SelectedRows[0].Index);
+        //    object[] pass = DataSet(rowNumber).Item1;
+        //    object[] staffName = DataSet(rowNumber).Item2;
+        //    int staffID = DataSet(rowNumber).Item3;
 
-            //Console.WriteLine(rowNumber + "\t" + staffID);
+        //    Console.WriteLine(rowNumber + "\t" + staffID);
 
-            //new EditStaffForm(dbCon).ShowDialog();
-            //PopulateAdminFormStaff();
-        }
+        //    new EditStaffForm(dbCon).ShowDialog();
+        //    PopulateAdminFormStaff();
+        //}
 
         private void button3_Click(object sender, EventArgs e)
         {
@@ -70,8 +76,12 @@ namespace Mockup2
 
             Console.WriteLine(rowNumber + "\t" + staffID);
 
+            this.Hide();
             new UpdateStaff(dbCon, pass, staffName, staffID).ShowDialog();
+            dataGridView1.Rows.Clear();
+            dataGridView1.Refresh();
             PopulateAdminFormRota();
+            this.Show();
         }
 
         private void AdminForm_Load(object sender, EventArgs e)
@@ -168,11 +178,22 @@ namespace Mockup2
         {
             new ReportBugForm().ShowDialog();
         }
+        private void editStaffButton_Click(object sender, EventArgs e)
+        {
+            int staffID = Convert.ToInt32(dataGridView2.SelectedRows[0].Cells[0].Value);
+            // StaffID.ValueFromGrid
+            this.Hide();
+            new EditStaffForm(dbCon, staffID).ShowDialog();
+            dataGridView2.Rows.Clear();
+            dataGridView2.Refresh();
+            PopulateAdminFormStaff();
+            this.Show();
+        }
 
         private void button7_Click(object sender, EventArgs e)
         {
-            ClsPrint printer = new ClsPrint(dataGridView1,"Staff Rota");
-            printer.PrintForm();
+            RotaPrinter rp = new RotaPrinter(dataGridView1, "Staff Rota");
+            rp.PrintForm();
         }
     }
 }

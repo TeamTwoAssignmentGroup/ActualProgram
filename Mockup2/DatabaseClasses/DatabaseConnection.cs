@@ -44,6 +44,7 @@ namespace Mockup2.DatabaseClasses
                 con.Open();
             }catch(Exception e){
                 Console.WriteLine(e);
+                throw e;
             }
         }
 

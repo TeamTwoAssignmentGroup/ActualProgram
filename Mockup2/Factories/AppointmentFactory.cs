@@ -109,7 +109,7 @@ namespace Mockup2.Factories
             List<Appointment> result = new List<Appointment>();
             MySqlCommand query = new MySqlCommand(b.ToString(), dbCon.GetConnection());
             MySqlDataReader reader = query.ExecuteReader();
-
+            MySql.Data.MySqlClient.MySqlHelper.EscapeString("ds");
             while (reader.Read())
             {
                 Appointment a = new Appointment();

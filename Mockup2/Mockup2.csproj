@@ -202,7 +202,7 @@
     <Compile Include="DatabaseClasses\TestResults.cs" />
     <Compile Include="Support\AppointmentSort.cs" />
     <Compile Include="Support\DatabaseConverter.cs" />
-    <Compile Include="TestCode\ClsPrint.cs" />
+    <Compile Include="AdminForms\RotaPrinter.cs" />
     <Compile Include="UpdateStaff.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -294,6 +294,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="apple_touch_icon_180x180_uYa_12.ico" />
+    <None Include="Resources\printer_icon.gif" />
     <None Include="Resources\logo1.png" />
     <None Include="Resources\logo.png" />
     <None Include="Resources\favicon.png" />
