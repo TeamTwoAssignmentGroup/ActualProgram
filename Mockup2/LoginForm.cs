@@ -37,6 +37,10 @@ namespace Mockup2
 
         public void DumpIncorrectLogins()
         {
+            if (incorrectLoginAttempts.Count == 0)
+            {
+                return;
+            }
             Console.WriteLine("Incorrect login attempts:");
             foreach(KeyValuePair<string,int> kvp in incorrectLoginAttempts)
             {

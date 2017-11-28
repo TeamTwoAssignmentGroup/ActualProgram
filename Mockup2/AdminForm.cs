@@ -189,5 +189,11 @@ namespace Mockup2
             PopulateAdminFormStaff();
             this.Show();
         }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            RotaPrinter rp = new RotaPrinter(dataGridView1, "Staff Rota");
+            rp.PrintForm();
+        }
     }
 }

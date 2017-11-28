@@ -85,6 +85,7 @@ namespace Mockup2
                     valuesToInput[3] = comboBox1.Text;
                     //Password
                     valuesToInput[4] = textBox7.Text;
+                    valuesToInput[4] = Program.GetHashedString(valuesToInput[4]);
                     //Email
                     valuesToInput[5] = textBox5.Text;
                     //Address
