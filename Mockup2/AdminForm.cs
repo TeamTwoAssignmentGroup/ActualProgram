@@ -26,17 +26,24 @@ namespace Mockup2
 
         private void addStaffButton_Click(object sender, EventArgs e)
         {
-            //new EditStaffForm(dbCon).Show();
+            int staffID = 0;
+            this.Hide();
+            new EditStaffForm(dbCon, staffID).ShowDialog();
+            this.Show();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            new MessagePatientForm(dbCon).Show();
+            this.Hide();
+            new MessagePatientForm(dbCon).ShowDialog();
+            this.Show();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            new ResetPasswordForm(dbCon).Show();
+            this.Hide();
+            new ResetPasswordForm(dbCon).ShowDialog();
+            this.Show();
         }
 
         //private void editStaffButton_Click(object sender, EventArgs e)
@@ -69,8 +76,12 @@ namespace Mockup2
 
             Console.WriteLine(rowNumber + "\t" + staffID);
 
+            this.Hide();
             new UpdateStaff(dbCon, pass, staffName, staffID).ShowDialog();
+            dataGridView1.Rows.Clear();
+            dataGridView1.Refresh();
             PopulateAdminFormRota();
+            this.Show();
         }
 
         private void AdminForm_Load(object sender, EventArgs e)
@@ -167,11 +178,16 @@ namespace Mockup2
         {
             new ReportBugForm().ShowDialog();
         }
-
-        private void button7_Click(object sender, EventArgs e)
+        private void editStaffButton_Click(object sender, EventArgs e)
         {
-            RotaPrinter printer = new RotaPrinter(dataGridView1,"Staff Rota");
-            printer.PrintForm();
+            int staffID = Convert.ToInt32(dataGridView2.SelectedRows[0].Cells[0].Value);
+            // StaffID.ValueFromGrid
+            this.Hide();
+            new EditStaffForm(dbCon, staffID).ShowDialog();
+            dataGridView2.Rows.Clear();
+            dataGridView2.Refresh();
+            PopulateAdminFormStaff();
+            this.Show();
         }
     }
 }

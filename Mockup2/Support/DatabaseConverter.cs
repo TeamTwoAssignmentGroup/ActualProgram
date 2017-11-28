@@ -103,7 +103,6 @@ namespace Mockup2.Support
         public List<TestResult> getTestResults()
         {
 
-
             return testresult;
 
         }
@@ -231,7 +230,7 @@ namespace Mockup2.Support
                 currentPatient = o;
                 loadList();
 
-                foreach (MedicalNotes m in history) { listHistory.Add(m.ID + " " + m.PatientID + " " + m.Notes + " " + m.WrittenDate + "\n"); }
+                foreach (MedicalNotes m in history) { listHistory.Add(m.ID + " " + m.PatientID + " " + m.Notes + " " + m.WrittenDate.ToShortDateString() + "\n"); }
 
                 foreach (Prescription p in prescription)
                 {
@@ -246,7 +245,7 @@ namespace Mockup2.Support
                         foreach (Medication me in medication)
                         {
 
-                            listPrescription.Add(me.ScientificName + " " + p.IssueDate);
+                            listPrescription.Add(me.ScientificName + " " + p.IssueDate.ToShortDateString());
 
                         }
                     }

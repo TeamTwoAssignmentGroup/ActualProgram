@@ -1085,7 +1085,7 @@
             Changes the true or false where the prescription is repeatable
             
         </member>
-        <member name="M:Mockup2.GPNurse.button3_Click(System.Object,System.EventArgs)">
+        <member name="M:Mockup2.GPNurse.addPrescription_Click(System.Object,System.EventArgs)">
             AddButton
             calls the prescription form to create a new prescirption
             
