@@ -159,7 +159,7 @@ namespace Mockup2
                 ListBoxWriter(prescriptions, prescriptiptionsListBox);
                 textBoxWriter(history, historyBox);
                 
-                detailsBox.Text = currentPatient.FirstName + " " + currentPatient.LastName + " " + currentPatient.DOB + "\nGender: " + currentPatient.Gender + "\nNext of kin: " + currentPatient.NextOfKin + "\nAddress " + currentPatient.Address;
+                detailsBox.Text = currentPatient.FirstName + " " + currentPatient.LastName + " " + currentPatient.DOB.ToShortDateString() + "\nGender: " + currentPatient.Gender + "\nNext of kin: " + currentPatient.NextOfKin + "\nAddress " + currentPatient.Address;
                 PrescriptonForm.initCurrentPatient(currentPatient);
 
             }
@@ -632,9 +632,12 @@ namespace Mockup2
         {   
 
             if (allow.Visible = true) { allow.Visible = false; decline.Visible = false; }
-            prescriptionList[editIndex].IsRepeatable = true;
-            saveModifiedPrescription();
-           
+            
+                prescriptionList[editIndex].IsRepeatable = true;
+                saveModifiedPrescription();
+                ListBoxCleaner(prescriptiptionsListBox);
+                ListBoxWriter(prescriptions, prescriptiptionsListBox);
+
         }
 
        
@@ -650,6 +653,9 @@ namespace Mockup2
             if (decline.Visible = true) { decline.Visible = false; allow.Visible = false; }
             prescriptionList[editIndex].IsRepeatable = false;
             saveModifiedPrescription();
+            ListBoxCleaner(prescriptiptionsListBox);
+            ListBoxWriter(prescriptions, prescriptiptionsListBox);
+
 
         }
 
@@ -673,8 +679,17 @@ namespace Mockup2
          * */
         private void editButton_Click_1(object sender, EventArgs e)
         {
-            allow.Visible = true;
-            decline.Visible = true;
+            if (currentPatient != null)
+            {
+                allow.Visible = true;
+                decline.Visible = true;
+            }
+            else
+            {
+
+                prescriptiptionsListBox.Items.Add("Please select a patient");
+
+            }
         }
 
 
@@ -684,16 +699,22 @@ namespace Mockup2
          * AddButton
          * calls the prescription form to create a new prescirption
          * */
-        private void button3_Click(object sender, EventArgs e)
+        private void addPrescription_Click(object sender, EventArgs e)
         {
-            PrescriptonForm.Show();
-   
+            if (currentPatient != null)
+            {
+                PrescriptonForm.Show();
+            }
+            else
+            {
+                MessageBox.Show("Please select patient");
+            }
         }
 
 
 
       
-
+        
 
 
 

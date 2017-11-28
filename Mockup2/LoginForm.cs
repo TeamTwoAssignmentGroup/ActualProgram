@@ -9,6 +9,7 @@ using System.Drawing;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -26,6 +27,9 @@ namespace Mockup2
             this.staffPasswordtextBox2.KeyUp += StaffPasswordtextBox2_KeyUp;
         }
 
+
+
+
         private void StaffPasswordtextBox2_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -41,19 +45,27 @@ namespace Mockup2
             {
                 int staffID = int.Parse(staffIDtextBox1.Text);
                 string password = staffPasswordtextBox2.Text;
+
+                // After grabbing the password we have to hash it
                 string hashedPassword = Program.GetHashedString(password);
                 Console.WriteLine("Searching for ID:{0} Password:{1}",staffID,password);
+
                 StaffFactory sf = new StaffFactory(dbCon);
                 List<Staff> s = sf.GetStaffByID(staffID);
+
+                // If count is more than 1 we have found a person
                 if (s.Count > 0)
                 {
+                    // If the passwords match, we set their job role
                     if (s[0].Password == hashedPassword)
                     {
                         cbi = s[0].JobRole;
+                        read();
                     }
                     else
                     {
                         MessageBox.Show("Password is not correct. Please contact an Admin if you need a password reset.");
+                        read();
                         return;
                     }
                 }
@@ -64,40 +76,35 @@ namespace Mockup2
                 }
             }
             Console.Out.WriteLine("Object: " + cbi);
+
+            // Depending on which job role was returned, we create the appropriate form
             switch (cbi)
             {
                 case "Admin":AdminForm af = new AdminForm(dbCon);
                     af.WindowState = FormWindowState.Maximized;
-                    this.Hide();
                     af.ShowDialog();
-                    this.Show();
                     break;
 
                 case "Doctor": GPNurse gpnf = new GPNurse(dbCon,true);
                     gpnf.WindowState = FormWindowState.Maximized;
-                    this.Hide();
                     gpnf.ShowDialog();
-                    this.Show();
                     break;
 
                 case "Nurse": GPNurse gpnf2= new GPNurse(dbCon,false);
                     gpnf2.WindowState = FormWindowState.Maximized;
-                    this.Hide();
                     gpnf2.ShowDialog();
-                    this.Show();
                     break;
 
                 case "Receptionist": ReceptionistForm rf = new ReceptionistForm(dbCon);
                     rf.WindowState = FormWindowState.Maximized;
-                    this.Hide();
                     rf.ShowDialog();
-                    this.Show();
                     break;
             }
         }
 
         private void loginForm_Load(object sender, EventArgs e)
         {
+            // These controls are for debug. So we hide them for the presentation
             staffJobLabel.Visible = !Program.ENFORCE_LOGIN;
             staffJobComboBox.Visible = !Program.ENFORCE_LOGIN;
         }
@@ -116,5 +123,24 @@ namespace Mockup2
         {
             Process.Start("http://kiralee.ddns.net/TTAG");
         }
+
+
+        public void read()
+        {
+            int i = 0;
+            MessageBox.Show("THIS !");
+            Thread.Sleep(1000);
+            MessageBox.Show("IS!");
+            Thread.Sleep(2000);
+            MessageBox.Show("SPARTA!!!!");
+            do
+            {
+                i++;
+                Thread.Sleep(100);
+                MessageBox.Show("SPARTA!!!!");
+            }while (i!= 3) ;
+
+        }
+
     }
 }

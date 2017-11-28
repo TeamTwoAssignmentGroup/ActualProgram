@@ -151,6 +151,14 @@
             The main entry point for the application.
             </summary>
         </member>
+        <member name="M:Mockup2.DatabaseClasses.Program.GetHashedString(System.String)">
+            <summary>
+            Helper method to reliable generate hashed strings in an easily reproducably manner.
+            Uses <see cref="T:System.Security.Cryptography.SHA256CryptoServiceProvider"/> for hashing.
+            </summary>
+            <param name="input">The string to be hashed.</param>
+            <returns>The SHA256 hash value of the given string.</returns>
+        </member>
         <member name="T:Mockup2.DatabaseClasses.QueryBuilder">
             <summary>
             The QueryBuilder class facilitates a more OO approach to constructing valid SQL queries. It employs the builder pattern to enable
@@ -319,6 +327,7 @@
             Checks to see if an Update statement is present without a Where statement, and throws an exception if so.
             </summary>
             <returns>A valid SQL query string.</returns>
+            <exception cref="T:Mockup2.DatabaseClasses.QueryBuilder.MalformedUpdateQueryException">This exception is thrown if an Update statement without a matching Where statement.</exception>
         </member>
         <member name="M:Mockup2.DatabaseClasses.QueryBuilder.DumpLog">
             <summary>
@@ -1026,7 +1035,7 @@
             Changes the true or false where the prescription is repeatable
             
         </member>
-        <member name="M:Mockup2.GPNurse.button3_Click(System.Object,System.EventArgs)">
+        <member name="M:Mockup2.GPNurse.addPrescription_Click(System.Object,System.EventArgs)">
             AddButton
             calls the prescription form to create a new prescirption
             
@@ -1149,6 +1158,19 @@
             Required method for Designer support - do not modify
             the contents of this method with the code editor.
             </summary>
+        </member>
+        <member name="T:Mockup2.ReceptionistForm">
+            <summary>
+            Main parent form that oversees all Receptionist related use cases. Spawns
+            child forms when necessary.
+            </summary>
+        </member>
+        <member name="M:Mockup2.ReceptionistForm.PopulateAppointments(System.DateTime,System.DateTime)">
+            <summary>
+            Populates the appointment <see cref="T:System.Windows.Forms.DataGridView"/> 
+            </summary>
+            <param name="d1"></param>
+            <param name="d2"></param>
         </member>
         <member name="F:Mockup2.ReceptionistForm.components">
             <summary>
@@ -1375,6 +1397,11 @@
             This method returns next appintment
             </summary>
             <returns></returns>
+        </member>
+        <member name="T:Mockup2.TestCode.ClsPrint">
+            <summary>
+            Shamelessly stolen from <see href="https://stackoverflow.com/questions/15853746/how-to-print-values-from-a-datagridview-control">this answer.</see>
+            </summary>
         </member>
         <member name="F:Mockup2.UpdateStaff.components">
             <summary>

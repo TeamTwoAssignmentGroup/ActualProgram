@@ -393,6 +393,7 @@ namespace Mockup2.DatabaseClasses
         /// Checks to see if an Update statement is present without a Where statement, and throws an exception if so.
         /// </summary>
         /// <returns>A valid SQL query string.</returns>
+        /// <exception cref="Mockup2.DatabaseClasses.QueryBuilder.MalformedUpdateQueryException">This exception is thrown if an Update statement without a matching Where statement.</exception>
         public override string ToString()
         {
             if (query.Contains("UPDATE") && !query.Contains("WHERE"))
