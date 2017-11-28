@@ -29,6 +29,7 @@ namespace Mockup2
         private int editIndex;
         private string timeIs;
         private string name;
+        private string selectedPrescirption;
         private List<string> history = new List<string>();
         private List<string> prescriptions = new List<string>();
         private List<string> testresults = new List<string>();
@@ -46,17 +47,17 @@ namespace Mockup2
          * initialises constructor 
          * include time,database components
          * */
-        public void Init(DBConnection dbCon)
+        public void Init ( DBConnection dbCon )
 
         {
 
             this.dbCon = dbCon;
-            infoFac = new PatientFactory(dbCon);
+            infoFac = new PatientFactory ( dbCon );
             Timer timer1 = new Timer();
-            timer1.Start();
-         
-            converter = new DatabaseConverter(dbCon);
-            PrescriptonForm= new AddPrescription(dbCon);
+            timer1.Start ( );
+
+            converter = new DatabaseConverter ( dbCon );
+            PrescriptonForm = new AddPrescription ( dbCon );
         }
 
 
@@ -66,24 +67,24 @@ namespace Mockup2
          * Form 
          * Initialises a next patient and database components
          * */
-        public GPNurse(DBConnection dbCon,bool isDocTor)
+        public GPNurse ( DBConnection dbCon , bool isDocTor )
         {
             //check for privilege
-            isDoctor=isDocTor;
+            isDoctor = isDocTor;
 
             //database compontent
-            Init(dbCon);
+            Init ( dbCon );
 
             //default
-            InitializeComponent();
+            InitializeComponent ( );
 
             //nextpatient who is colsest to current time
-            getNextPatient();
+            getNextPatient ( );
 
 
             allow.Visible = false;
             decline.Visible = false;
-      
+
         }
 
 
@@ -93,19 +94,30 @@ namespace Mockup2
          * This button returns one patient from the database as an object
          * can be by name or nhs number
          * */
-        private void OK_Click(object sender, EventArgs e)
+        private void OK_Click ( object sender , EventArgs e )
         {
             //local string
             string firstName = firstText.Text;
             string lastName = lastText.Text;
 
-            //get patient from the database (find method)
-            found = converter.findPatientByName(firstName, lastName);
 
-            //add patient details to the search box
-            searchBox.Items.Add(found.FirstName + " " + found.LastName);
-            textBoxCleaner(firstText);
-            textBoxCleaner(lastText);
+                
+            if (!firstName.Equals("") && !lastName.Equals(""))
+            {
+                //get patient from the database (find method)
+                found = converter.findPatientByName ( firstName , lastName );
+
+                //add patient details to the search box
+                searchBox.Items.Add ( found.FirstName + " " + found.LastName );
+                textBoxCleaner ( firstText );
+                textBoxCleaner ( lastText );
+            }
+            else
+            {
+
+                MessageBox.Show ( "Please enter patient name" );
+
+            }
 
         }
 
@@ -115,17 +127,17 @@ namespace Mockup2
         /**
          * This method is created to clear the from from data
          * */
-        public void cleanAll()
+        public void cleanAll ( )
         {
 
-            textBoxCleaner(detailsBox);
-            textBoxCleaner(historyBox);
-            ListBoxCleaner(prescriptiptionsListBox);
-            ListBoxCleaner(searchBox);
-            ListBoxCleaner(testResultsListBox);
-            ListBoxCleaner(prescriptiptionsListBox);
-            textBoxCleaner(firstText);
-            textBoxCleaner(lastText);
+            textBoxCleaner ( detailsBox );
+            textBoxCleaner ( historyBox );
+            ListBoxCleaner ( prescriptiptionsListBox );
+            ListBoxCleaner ( searchBox );
+            ListBoxCleaner ( testResultsListBox );
+            ListBoxCleaner ( prescriptiptionsListBox );
+            textBoxCleaner ( firstText );
+            textBoxCleaner ( lastText );
 
         }
 
@@ -135,38 +147,38 @@ namespace Mockup2
         /**
          * This button (View this patient details) loads in selected patient details on the page
          * */
-        private void loadCurrentPatient()
+        private void loadCurrentPatient ( )
         {
 
-            cleanAll();
+            cleanAll ( );
 
 
-            if (currentPatient != null)
+            if ( currentPatient != null )
             {
 
                 DatabaseConverter convert = new DatabaseConverter(dbCon, currentPatient);
 
-                convert.loadList();
-                history = convert.HistoryData();
-                prescriptions = convert.PrescriptionData();
-                prescriptionList = convert.GetPrescription();
-                if (isDoctor == true)
+                convert.loadList ( );
+                history = convert.HistoryData ( );
+                prescriptions = convert.PrescriptionData ( );
+                prescriptionList = convert.GetPrescription ( );
+                if ( isDoctor == true )
                 {
-                    testresultsList = convert.getTestResults();
-                    testresults = convert.TestResults();
-                    ListBoxWriter(testresults, testResultsListBox);
+                    testresultsList = convert.getTestResults ( );
+                    testresults = convert.TestResults ( );
+                    ListBoxWriter ( testresults , testResultsListBox );
                 }
-                ListBoxWriter(prescriptions, prescriptiptionsListBox);
-                textBoxWriter(history, historyBox);
-                
-                detailsBox.Text = currentPatient.FirstName + " " + currentPatient.LastName + " " + currentPatient.DOB.ToShortDateString() + "\nGender: " + currentPatient.Gender + "\nNext of kin: " + currentPatient.NextOfKin + "\nAddress " + currentPatient.Address;
-                PrescriptonForm.initCurrentPatient(currentPatient);
+                ListBoxWriter ( prescriptions , prescriptiptionsListBox );
+                textBoxWriter ( history , historyBox );
+
+                detailsBox.Text = currentPatient.FirstName + " " + currentPatient.LastName + " " + currentPatient.DOB.ToShortDateString ( ) + "\nGender: " + currentPatient.Gender + "\nNext of kin: " + currentPatient.NextOfKin + "\nAddress " + currentPatient.Address;
+                PrescriptonForm.initCurrentPatient ( currentPatient );
 
             }
             else
             {
 
-                MessageBox.Show("Select patient");
+                MessageBox.Show ( "Select patient" );
 
             }
 
@@ -178,9 +190,9 @@ namespace Mockup2
         /**
          * This function returns all prescription details that belongs to the current patient
          * */
-        public string getPrescriptionNameIssueDate()
-        {   
-            foreach (string s in prescriptions) { return s; }
+        public string getPrescriptionNameIssueDate ( )
+        {
+            foreach ( string s in prescriptions ) { return s; }
             return "";
 
         }
@@ -192,31 +204,38 @@ namespace Mockup2
          * This function returns prescription object that is currently loaded with current patient
          * this function is specific and return a specific value
          * */
-        public string getPrescriptions()
+        public string getPrescriptions ( )
         {
 
-            foreach (Prescription p in prescriptionList) { return p.IssueDate.ToString(); }
+            foreach ( Prescription p in prescriptionList ) { return p.IssueDate.ToString ( ); }
 
             return "";
         }
 
 
-        public List<string> getPrescriptionsAsString()
+
+        /**
+         * This method returns a prescription list as a string therefore its useable in the listbox
+         * */
+        public List<string> getPrescriptionsAsString ( )
         {
             List<string> prescriptionString = new List<string>();
-            foreach (Prescription p in prescriptionList) { prescriptionString.Add(p.IssueDate.ToString()); }
+            foreach ( Prescription p in prescriptionList ) { prescriptionString.Add ( p.IssueDate.ToString ( ) ); }
 
             return prescriptionString;
         }
+
+
+
 
         /**
          * This function reads the testresults from the object list and returns it as a string
          * This function is not global but specified to test name and testdate
          * */
-        public string getTestresults()
+        public string getTestresults ( )
         {
-           
-            foreach (TestResult p in testresultsList) { return p.TestName.ToString() + " " + p.TestDate.ToString(); }
+
+            foreach ( TestResult p in testresultsList ) { return p.TestName.ToString ( ) + " " + p.TestDate.ToString ( ); }
 
             return "";
         }
@@ -227,7 +246,7 @@ namespace Mockup2
         /**
          * This function initialises current patient to the patient who has been searched and selecet in the searchbox
          * */
-        public void foundPatientObject()
+        public void foundPatientObject ( )
         {
 
             currentPatient = found;
@@ -241,7 +260,7 @@ namespace Mockup2
          * This function swaps the current patient to the next patient
          * from next or from search
          * */
-        public void swapPatient(Patient o)
+        public void swapPatient ( Patient o )
         {
             currentPatient = o;
 
@@ -253,17 +272,16 @@ namespace Mockup2
         /**
          * Prinitg any list <string></string> data into the textbox
          * */
-        public void textBoxWriter(List<string> s, RichTextBox r)
+        public void textBoxWriter ( List<string> s , RichTextBox r )
         {
 
-            for (int i = 0; i < s.Count(); i++)
+            for ( int i = 0 ; i < s.Count ( ) ; i++ )
             {
 
 
-                r.AppendText("\n" + s[i]);
+                r.AppendText ( "\n" + s [ i ] );
 
             }
-
 
         }
 
@@ -273,18 +291,17 @@ namespace Mockup2
         /**
         * Prinitg any list <string></string> data into the textbox
         * */
-        public void ListBoxWriter(List<string> s, ListBox lb)
+        public void ListBoxWriter ( List<string> s , ListBox lb )
         {
 
-            for (int i = 0; i < s.Count(); i++)
+            for ( int i = 0 ; i < s.Count ( ) ; i++ )
             {
 
                 string bd = s[i];
 
-                lb.Items.Add(bd);
+                lb.Items.Add ( bd );
 
             }
-
 
         }
 
@@ -294,11 +311,11 @@ namespace Mockup2
         /**
          * This function initalises the next patient when an appointment is booked for the day
          * */
-        public void getNextPatient()
+        public void getNextPatient ( )
         {
 
-            nextPatient = converter.InitNextPatient();
-            converter.removeAppointment();
+            nextPatient = converter.InitNextPatient ( );
+            converter.removeAppointment ( );
             string appointment = converter.nextPatientAppointment().AppointmentTime.ToString();
             name = nextPatient.FirstName + " " + nextPatient.LastName + "\n" + appointment;
 
@@ -310,12 +327,13 @@ namespace Mockup2
         /**
          * Clears selected textbox
          * */
-        public void textBoxCleaner(RichTextBox r)
+        public void textBoxCleaner ( RichTextBox r )
         {
 
-            r.Clear();
+            r.Clear ( );
 
         }
+
 
 
 
@@ -323,10 +341,10 @@ namespace Mockup2
         /**
          * Clears selected textbox
          * */
-        public void textBoxCleaner(TextBox t)
+        public void textBoxCleaner ( TextBox t )
         {
 
-            t.Clear();
+            t.Clear ( );
 
         }
 
@@ -336,10 +354,10 @@ namespace Mockup2
         /**
         * Clears selected textbox
         * */
-        public void ListBoxCleaner(ListBox l)
+        public void ListBoxCleaner ( ListBox l )
         {
 
-            l.Items.Clear();
+            l.Items.Clear ( );
 
         }
 
@@ -349,9 +367,9 @@ namespace Mockup2
         /**
          * This function clears all the listboxes present on this form
          * */
-        private void clear_Click(object sender, EventArgs e, ListBox o)
+        private void clear_Click ( object sender , EventArgs e , ListBox o )
         {
-            ListBoxCleaner(o);
+            ListBoxCleaner ( o );
         }
 
 
@@ -360,21 +378,21 @@ namespace Mockup2
         /**
          * This method displays the note in the medical history box after added
          * */
-        public void addNote()
+        public void addNote ( )
         {
-            textBoxCleaner(historyBox);
-            textBoxWriter(history, historyBox);
+            textBoxCleaner ( historyBox );
+            textBoxWriter ( history , historyBox );
 
             string s = "";
             s = noteBox.Text;
-            if (!s.Equals(""))
+            if ( !s.Equals ( "" ) )
             {
-                notes.Add(s);
-                textBoxWriter(notes, historyBox);
+                notes.Add ( s );
+                textBoxWriter ( notes , historyBox );
             }
             else
             {
-                MessageBox.Show("Please write a note!");
+                MessageBox.Show ( "Please write a note!" );
             }
 
         }
@@ -386,12 +404,12 @@ namespace Mockup2
          * Saves the note into a string array that prepares the note to be saved in the database
          * changes only apply when the current patient changes are saved through save() method
          * */
-        private void save_Click(object sender, EventArgs e)
+        private void save_Click ( object sender , EventArgs e )
         {
 
 
-            addNote();
-            textBoxCleaner(noteBox);
+            addNote ( );
+            textBoxCleaner ( noteBox );
         }
 
 
@@ -400,25 +418,25 @@ namespace Mockup2
         /**
          * This is the removes modified changes from the medical history that has been added currently
          * */
-        private void undo_Click(object sender, EventArgs e)
+        private void undo_Click ( object sender , EventArgs e )
         {
+
             try
             {
                 int i = notes.Count();
                 i = i - 1;
-                notes.RemoveAt(i);
+                notes.RemoveAt ( i );
             }
-            catch (ArgumentOutOfRangeException r)
+            catch ( ArgumentOutOfRangeException r )
             {
-                MessageBox.Show("No history!\n" + r);
+                MessageBox.Show ( "No history!\n" + r );
             }
 
-            textBoxCleaner(noteBox);
-            textBoxCleaner(historyBox);
+            textBoxCleaner ( noteBox );
+            textBoxCleaner ( historyBox );
 
-            textBoxWriter(history, historyBox);
-            textBoxWriter(notes, historyBox);
-
+            textBoxWriter ( history , historyBox );
+            textBoxWriter ( notes , historyBox );
 
         }
 
@@ -428,31 +446,31 @@ namespace Mockup2
         /**
          * prompting the user to save their work (curently loaded patient)
          * */
-        public void saveChanges()
+        public void saveChanges ( )
         {
 
-            if (currentPatient != null)
+            if ( currentPatient != null )
             {
 
 
                 DatabaseConverter manager = new DatabaseConverter(dbCon);
                 DialogResult result;
 
-                result = MessageBox.Show("Save changes for current patient?", "",
-                MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                result = MessageBox.Show ( "Save changes for current patient?" , "" ,
+                MessageBoxButtons.YesNo , MessageBoxIcon.Question );
 
-                if (result == System.Windows.Forms.DialogResult.Yes)
+                if ( result == System.Windows.Forms.DialogResult.Yes )
                 {
 
-                    manager.insertPatientNote(currentPatient, notes);
+                    manager.insertPatientNote ( currentPatient , notes );
 
                 }
 
-                if (result == System.Windows.Forms.DialogResult.No)
+                if ( result == System.Windows.Forms.DialogResult.No )
                 {
 
                 }
-                notes.Clear();
+                notes.Clear ( );
             }
 
 
@@ -467,14 +485,14 @@ namespace Mockup2
          * Loads the next patient who has been labeled by this button 
          * this button also saves the currently loaded patient before the next patient loaded onto the form
          * */
-        private void nextButton_Click(object sender, EventArgs e)
+        private void nextButton_Click ( object sender , EventArgs e )
         {
 
 
-            saveChanges();
-            swapPatient(nextPatient);
-            getNextPatient();
-            loadCurrentPatient();
+            saveChanges ( );
+            swapPatient ( nextPatient );
+            getNextPatient ( );
+            loadCurrentPatient ( );
 
 
         }
@@ -485,10 +503,10 @@ namespace Mockup2
         /**
          * The exit button leaves the form and asks to save a patient who currently loaded onto the form
          * */
-        private void exitButton_Click(object sender, EventArgs e)
+        private void exitButton_Click ( object sender , EventArgs e )
         {
-            saveChanges();
-            this.Close();
+            saveChanges ( );
+            this.Close ( );
         }
 
 
@@ -497,10 +515,10 @@ namespace Mockup2
         /**
          * gets the date and time now but only shows current time of the system
          * */
-        public string timeNow()
+        public string timeNow ( )
         {
 
-            timeIs = DateTime.Now.ToString("hh:mm");
+            timeIs = DateTime.Now.ToString ( "hh:mm" );
             return timeIs;
 
         }
@@ -511,7 +529,7 @@ namespace Mockup2
         /**
          * Initialised a clock on the form
          * */
-        private void TimeLabel_Click(object sender, EventArgs e)
+        private void TimeLabel_Click ( object sender , EventArgs e )
         {
             TimeLabel.BackColor = System.Drawing.Color.Transparent;
         }
@@ -522,10 +540,10 @@ namespace Mockup2
         /**
          * Timer is running ad refreshing the form (checks for patient when time passes)
          * */
-        private void timer2_Tick_1(object sender, EventArgs e)
+        private void timer2_Tick_1 ( object sender , EventArgs e )
         {
-            getNextPatient();
-       
+            getNextPatient ( );
+
         }
 
 
@@ -535,16 +553,16 @@ namespace Mockup2
       * Timer action 
       * update time and next patient
       * */
-        private void timer1_Tick(object sender, EventArgs e)
+        private void timer1_Tick ( object sender , EventArgs e )
         {
-            timeNow();
+            timeNow ( );
             try
             {
-                
+
                 TimeLabel.Text = timeIs;
                 nextLabel.Text = name;
             }
-            catch (NullReferenceException ex) { nextLabel.Text = "no patient "; }
+            catch ( NullReferenceException ex ) { nextLabel.Text = "no patient "; }
         }
 
 
@@ -554,13 +572,21 @@ namespace Mockup2
          * Allows double clik on the patient who has been searched from the database
          * when double clik action occurs then the patient will be loaded onto the form
          * */
-        private void searchBox_MouseDoubleClick(object sender, MouseEventArgs e)
+        private void searchBox_MouseDoubleClick ( object sender , MouseEventArgs e )
         {
-            //swap patient to load in if secected
-            foundPatientObject();
+            
+                //swap patient to load in if secected
+                foundPatientObject ( );
+            if (currentPatient!=null) { 
 
-            //show this patient information
-            loadCurrentPatient();
+                //show this patient information
+                loadCurrentPatient ( );
+            }
+            else
+            {
+                MessageBox.Show ( "Please search for a person" );
+
+            }
         }
 
 
@@ -569,26 +595,66 @@ namespace Mockup2
         /**
          * Double click on the testresults box allows to read a prescription object with more detail
          * */
-        private void testResultsListBox_DoubleClick(object sender, EventArgs e)
+        private void testResultsListBox_DoubleClick ( object sender , EventArgs e )
         {
-            if (TestresultController == false)
+            if ( testResultsListBox.SelectedIndex >= 0 )
             {
-                string name = "";
-                int index = testResultsListBox.Items.IndexOf(testResultsListBox.Text);
-                name = testResultsListBox.SelectedItem.ToString();
-                testResultsListBox.Items.Clear();
-                testResultsListBox.Items.Add(name);
-                testResultsListBox.Items.Add(testresultsList[index].TestName);
-                testResultsListBox.Items.Add (testresultsList[index].TestName);
-                testResultsListBox.Items.Add (testresultsList[index].StaffID);
-                TestresultController = true;
+
+                if ( TestresultController == false )
+                {
+                    string name = "";
+                    int index = testResultsListBox.Items.IndexOf(testResultsListBox.Text);
+                    name = testResultsListBox.SelectedItem.ToString ( );
+                    testResultsListBox.Items.Clear ( );
+                    testResultsListBox.Items.Add ( name );
+                    testResultsListBox.Items.Add ( testresultsList [ index ].TestName );
+                    testResultsListBox.Items.Add ( testresultsList [ index ].TestName );
+                    testResultsListBox.Items.Add ( testresultsList [ index ].StaffID );
+                    TestresultController = true;
+                }
+                else
+                {
+                    testResultsListBox.Items.Clear ( );
+                    TestresultController = false;
+                    ListBoxWriter ( testresults , testResultsListBox );
+                }
             }
             else
             {
-                testResultsListBox.Items.Clear();
-                TestresultController = false;
-                ListBoxWriter(testresults, testResultsListBox);
+                testResultsListBox.Items.Clear ( );
+                ListBoxWriter ( testresults , testResultsListBox );
             }
+
+        }
+
+
+
+
+        /**
+         * Fills up the listbox from the prescription list and displays it in the prescription listbox
+         * editIndex and selected prescriptions variables are global and changing whenever the user selects a valid index from the listbox
+         * */
+        public void readInstanceOfMedicine ( )
+        {
+            string name =selectedPrescirption;
+
+            prescriptiptionsListBox.Items.Clear ( );
+            prescriptiptionsListBox.Items.Add ( name );
+            prescriptiptionsListBox.Items.Add ( prescriptionList [ editIndex ].IsRepeatable );
+            prescriptiptionsListBox.Items.Add ( prescriptionList [ editIndex ].RepeatRequested );
+            prescriptiptionsListBox.Items.Add ( prescriptionList [ editIndex ].StaffId );
+            PrescriptionListController = true;
+        }
+
+
+
+        /**
+         * Translates a validated index to and adds it as a the currently used item
+         * */
+        public void selectedItemPrescription ( )
+        {
+
+            selectedPrescirption = prescriptiptionsListBox.SelectedItem.ToString ( );
         }
 
 
@@ -598,63 +664,80 @@ namespace Mockup2
          * allows prescription management
          * double click to read object
          * */
-        private void prescriptionsListBox_DoubleClick(object sender, EventArgs e)
+        private void prescriptionsListBox_DoubleClick ( object sender , EventArgs e )
         {
-            
-            if (PrescriptionListController == false)
+            if ( prescriptiptionsListBox.SelectedIndex >= 0 )
             {
-                string name = "";
                 int index = prescriptiptionsListBox.Items.IndexOf(prescriptiptionsListBox.Text);
                 editIndex = index;
-                name = prescriptiptionsListBox.SelectedItem.ToString();
-                prescriptiptionsListBox.Items.Clear();
-                prescriptiptionsListBox.Items.Add(name);
-                prescriptiptionsListBox.Items.Add(prescriptionList[index].IsRepeatable);
-                prescriptiptionsListBox.Items.Add(prescriptionList[index].RepeatRequested);
-                prescriptiptionsListBox.Items.Add(prescriptionList[index].StaffId);
-                PrescriptionListController = true;
+                selectedPrescirption = prescriptiptionsListBox.SelectedItem.ToString ( );
+
+                if ( PrescriptionListController == false )
+                {
+                    PrescriptionListController = true;
+
+                    readInstanceOfMedicine ( );
+                }
+                else
+                {
+
+                    PrescriptionListController = false;
+                    refreshPrescriptionList ( );
+
+                }
             }
             else
             {
-                prescriptiptionsListBox.Items.Clear();
-                PrescriptionListController = false;
-                ListBoxWriter(prescriptions, prescriptiptionsListBox);
+                refreshPrescriptionList ( );
             }
         }
 
 
-    
-       
+
+        /**
+         * Updtas modified data in the prescription list
+         * */
+        public void refreshPrescriptionList ( )
+        {
+            ListBoxCleaner ( prescriptiptionsListBox );
+            ListBoxWriter ( prescriptions , prescriptiptionsListBox );
+        }
+
+
+
+
         /**
          * Allow prescription in the prescrioption list to be repeated
          * */
-        private void allow_Click(object sender, EventArgs e)
-        {   
+        private void allow_Click ( object sender , EventArgs e )
+        {
 
-            if (allow.Visible = true) { allow.Visible = false; decline.Visible = false; }
-            
-                prescriptionList[editIndex].IsRepeatable = true;
-                saveModifiedPrescription();
-                ListBoxCleaner(prescriptiptionsListBox);
-                ListBoxWriter(prescriptions, prescriptiptionsListBox);
+            if ( allow.Visible = true ) { allow.Visible = false; decline.Visible = false; }
+
+            prescriptionList [ editIndex ].IsRepeatable = true;
+            saveModifiedPrescription ( );
+            readInstanceOfMedicine ( );
+
 
         }
 
-       
+
 
 
         /**
          * Changes the is repeateable to false
          * repeate not allowed
          * */
-        private void decline_Click(object sender, EventArgs e)
+        private void decline_Click ( object sender , EventArgs e )
         {
 
-            if (decline.Visible = true) { decline.Visible = false; allow.Visible = false; }
-            prescriptionList[editIndex].IsRepeatable = false;
-            saveModifiedPrescription();
-            ListBoxCleaner(prescriptiptionsListBox);
-            ListBoxWriter(prescriptions, prescriptiptionsListBox);
+
+            if ( decline.Visible = true ) { decline.Visible = false; allow.Visible = false; }
+            prescriptionList [ editIndex ].IsRepeatable = false;
+            saveModifiedPrescription ( );
+            readInstanceOfMedicine ( );
+
+
 
 
         }
@@ -665,29 +748,32 @@ namespace Mockup2
         /**
          * saves the modified prescrioption
          * */
-        private void saveModifiedPrescription()
+        private void saveModifiedPrescription ( )
         {
 
-            PrescriptonForm.modified(prescriptionList);
+            PrescriptonForm.modified ( prescriptionList );
 
         }
+
 
 
 
         /**
          * Changes the true or false where the prescription is repeatable
          * */
-        private void editButton_Click_1(object sender, EventArgs e)
+        private void editButton_Click_1 ( object sender , EventArgs e )
         {
-            if (currentPatient != null)
+            if ( currentPatient != null )
             {
+
                 allow.Visible = true;
                 decline.Visible = true;
+
             }
             else
             {
 
-                prescriptiptionsListBox.Items.Add("Please select a patient");
+                prescriptiptionsListBox.Items.Add ( "Please select a patient" );
 
             }
         }
@@ -699,22 +785,22 @@ namespace Mockup2
          * AddButton
          * calls the prescription form to create a new prescirption
          * */
-        private void addPrescription_Click(object sender, EventArgs e)
+        private void addPrescription_Click ( object sender , EventArgs e )
         {
-            if (currentPatient != null)
+            if ( currentPatient != null )
             {
-                PrescriptonForm.Show();
+                PrescriptonForm.Show ( );
             }
             else
             {
-                MessageBox.Show("Please select patient");
+                MessageBox.Show ( "Please select patient" );
             }
         }
 
 
 
-      
-        
+
+
 
 
 

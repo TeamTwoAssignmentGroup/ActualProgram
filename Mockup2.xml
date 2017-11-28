@@ -989,6 +989,10 @@
             this function is specific and return a specific value
             
         </member>
+        <member name="M:Mockup2.GPNurse.getPrescriptionsAsString">
+            This method returns a prescription list as a string therefore its useable in the listbox
+            
+        </member>
         <member name="M:Mockup2.GPNurse.getTestresults">
             This function reads the testresults from the object list and returns it as a string
             This function is not global but specified to test name and testdate
@@ -1083,9 +1087,22 @@
             Double click on the testresults box allows to read a prescription object with more detail
             
         </member>
+        <member name="M:Mockup2.GPNurse.readInstanceOfMedicine">
+            Fills up the listbox from the prescription list and displays it in the prescription listbox
+            editIndex and selected prescriptions variables are global and changing whenever the user selects a valid index from the listbox
+            
+        </member>
+        <member name="M:Mockup2.GPNurse.selectedItemPrescription">
+            Translates a validated index to and adds it as a the currently used item
+            
+        </member>
         <member name="M:Mockup2.GPNurse.prescriptionsListBox_DoubleClick(System.Object,System.EventArgs)">
             allows prescription management
             double click to read object
+            
+        </member>
+        <member name="M:Mockup2.GPNurse.refreshPrescriptionList">
+            Updtas modified data in the prescription list
             
         </member>
         <member name="M:Mockup2.GPNurse.allow_Click(System.Object,System.EventArgs)">
