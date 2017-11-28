@@ -100,13 +100,24 @@ namespace Mockup2
             string firstName = firstText.Text;
             string lastName = lastText.Text;
 
-            //get patient from the database (find method)
-            found = converter.findPatientByName ( firstName , lastName );
 
-            //add patient details to the search box
-            searchBox.Items.Add ( found.FirstName + " " + found.LastName );
-            textBoxCleaner ( firstText );
-            textBoxCleaner ( lastText );
+                
+            if (!firstName.Equals("") && !lastName.Equals(""))
+            {
+                //get patient from the database (find method)
+                found = converter.findPatientByName ( firstName , lastName );
+
+                //add patient details to the search box
+                searchBox.Items.Add ( found.FirstName + " " + found.LastName );
+                textBoxCleaner ( firstText );
+                textBoxCleaner ( lastText );
+            }
+            else
+            {
+
+                MessageBox.Show ( "Please enter patient name" );
+
+            }
 
         }
 
@@ -563,11 +574,19 @@ namespace Mockup2
          * */
         private void searchBox_MouseDoubleClick ( object sender , MouseEventArgs e )
         {
-            //swap patient to load in if secected
-            foundPatientObject ( );
+            
+                //swap patient to load in if secected
+                foundPatientObject ( );
+            if (currentPatient!=null) { 
 
-            //show this patient information
-            loadCurrentPatient ( );
+                //show this patient information
+                loadCurrentPatient ( );
+            }
+            else
+            {
+                MessageBox.Show ( "Please search for a person" );
+
+            }
         }
 
 
