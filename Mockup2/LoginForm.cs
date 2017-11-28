@@ -60,12 +60,12 @@ namespace Mockup2
                     if (s[0].Password == hashedPassword)
                     {
                         cbi = s[0].JobRole;
-                        read();
+                      
                     }
                     else
                     {
                         MessageBox.Show("Password is not correct. Please contact an Admin if you need a password reset.");
-                        read();
+                      
                         return;
                     }
                 }
@@ -125,22 +125,6 @@ namespace Mockup2
         }
 
 
-        public void read()
-        {
-            int i = 0;
-            MessageBox.Show("THIS !");
-            Thread.Sleep(1000);
-            MessageBox.Show("IS!");
-            Thread.Sleep(2000);
-            MessageBox.Show("SPARTA!!!!");
-            do
-            {
-                i++;
-                Thread.Sleep(100);
-                MessageBox.Show("SPARTA!!!!");
-            }while (i!= 3) ;
-
-        }
-
+       
     }
 }
