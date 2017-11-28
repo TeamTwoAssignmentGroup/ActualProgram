@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{BD340830-9BE6-4E6B-836B-D002E69CBDB9}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <RootNamespace>Mockup2</RootNamespace>
     <AssemblyName>Mockup2</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
@@ -120,6 +120,7 @@
     <Compile Include="Factories\MedicationFactory.cs" />
     <Compile Include="Factories\MedicineInFactory.cs" />
     <Compile Include="Factories\PrescriptionFactory.cs" />
+    <Compile Include="Factories\RotaFactory.cs" />
     <Compile Include="Factories\StaffFactory.cs" />
     <Compile Include="Factories\TestResultFactory.cs" />
     <Compile Include="GPNurse.cs">

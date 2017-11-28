@@ -9,20 +9,44 @@ using static Mockup2.DatabaseClasses.Tables;
 
 namespace Mockup2.Factories
 {
-
-
     /// <summary>
     /// Convenience class to handle returning, updating, and inserting Staff objects into the database.
     /// </summary>
     public class StaffFactory : AbstractFactory
     {
-
-
+        private static int nextAvailableStaffID = 0;
         public StaffFactory(DBConnection dbCon) : base(dbCon)
         {
+            GetLatestStaffID();
         }
 
+        /// <summary>
+        /// Sets the next available staff ID.
+        /// </summary>
+        private void GetLatestStaffID()
+        {
+            QueryBuilder b = new QueryBuilder();
+            b.Select(Tables.STAFF_TABLE.ID).From(Tables.STAFF_TABLE).OrderBy(true, Tables.STAFF_TABLE.ID).Limit(1);
+            CustomTableFactory ctf = new CustomTableFactory(dbCon);
+            CustomTable ct = ctf.GetCustomTable(b);
+            int id = GetInt(ct.GetRows()[0][Tables.STAFF_TABLE.ID]);
+            if (id > nextAvailableStaffID)
+            {
+                nextAvailableStaffID = id;
+            }
+        }
 
+        /// <summary>
+        /// Gets the next available staff ID. Useful when you need to know the staff ID before pushing
+        /// the staff object into the database, for example when you are adding a new staff member to both the
+        /// staff table and the rota table. Otherwise, you would have to push the staff member
+        /// into the staff table, then pull them out again to see which ID the database assigned them.
+        /// </summary>
+        /// <returns>An integer automatically set to be a valid staff ID that doesn't clash.</returns>
+        public int GetNextAvailableStaffID()
+        {
+            return ++nextAvailableStaffID;
+        }
 
 
 

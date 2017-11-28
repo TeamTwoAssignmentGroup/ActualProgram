@@ -23,7 +23,11 @@ namespace Mockup2.RotaForms
             this.dbCon = dbCon;
             this.firstName = firstName;
             this.lastName = lastName;
+            this.Load += SeeStaffRotaForm_Load;
+        }
 
+        private void SeeStaffRotaForm_Load(object sender, EventArgs e)
+        {
             PopulateDataGrid();
         }
 
@@ -37,6 +41,15 @@ namespace Mockup2.RotaForms
                 b.IsEqual(Tables.STAFF_TABLE.FirstName,firstName),b.And(),b.IsEqual(Tables.STAFF_TABLE.LastName,lastName));
             CustomTableFactory ctf = new CustomTableFactory(dbCon);
             CustomTable ct = ctf.GetCustomTable(b);
+
+            if (ct.GetRows().Count == 0)
+            {
+                MessageBox.Show("No staff member found using those names.", "No Staff Member");
+                this.Close();
+                this.Dispose();
+                return;
+            }
+
             Dictionary<Tables.Column, object> row = ct.GetRows()[0];
 
             List<string> resultRow = new List<string>();

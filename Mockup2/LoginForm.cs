@@ -54,6 +54,12 @@ namespace Mockup2
             object cbi = this.staffJobComboBox.SelectedItem;
             if (Program.ENFORCE_LOGIN)
             {
+                if(staffIDtextBox1.Text=="" || staffPasswordtextBox2.Text == "")
+                {
+                    MessageBox.Show("Please enter both your ID and password.");
+                    return;
+                }
+
                 int staffID = int.Parse(staffIDtextBox1.Text);
                 string password = staffPasswordtextBox2.Text;
 
