@@ -113,8 +113,8 @@ namespace Mockup2
                     valuesToInsert[9] = textBox6.Text;
                     valuesToInsert[10] = Tables.STAFF_TABLE.JobRole;
                     valuesToInsert[11] = comboBox1.Text;
-                    valuesToInsert[12] = Tables.STAFF_TABLE.Password;
-                    valuesToInsert[13] = textBox7.Text;
+                    //valuesToInsert[12] = Tables.STAFF_TABLE.Password;
+                    //valuesToInsert[13] = textBox7.Text;
                     b.Update(Tables.STAFF_TABLE).Set(valuesToInsert).Where(b.IsEqual(Tables.STAFF_TABLE.ID, StaffID));
                     MySqlCommand cmdEdit = new MySqlCommand(b.ToString(), dbCon.GetConnection());
                     cmdEdit.ExecuteNonQuery();
