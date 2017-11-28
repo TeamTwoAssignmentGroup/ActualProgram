@@ -82,6 +82,56 @@
             the contents of this method with the code editor.
             </summary>
         </member>
+        <member name="T:Mockup2.AdminForms.RotaPrinter">
+            <summary>
+            Shamelessly stolen from <see href="https://stackoverflow.com/questions/15853746/how-to-print-values-from-a-datagridview-control">this answer</see>, although it has been heavily modified.
+            </summary>
+        </member>
+        <member name="M:Mockup2.AdminForms.RotaPrinter.Clone(System.Windows.Forms.DataGridView)">
+            <summary>
+            Performs a clone of the suppled DataGridView, as it has to be edited for printing
+            and this was changing the Form view of it too.
+            </summary>
+            <param name="dg">The <see cref="T:System.Windows.Forms.DataGridView"/>to create a clone of.</param>
+            <returns>A new <see cref="T:System.Windows.Forms.DataGridView"/> that is a clone of the old that can be edited freely.</returns>
+        </member>
+        <member name="M:Mockup2.AdminForms.RotaPrinter.AlterPrintDialog">
+            <summary>
+            Required to get the <see cref="T:System.Windows.Forms.PrintPreviewDialog"/> to display a <see cref="T:System.Windows.Forms.PrintDialog"/> when the Print icon is clicked.
+            </summary>
+        </member>
+        <member name="M:Mockup2.AdminForms.RotaPrinter.printPreview_PrintClick(System.Object,System.EventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Mockup2.AdminForms.RotaPrinter.SetMaxWidth(System.Drawing.Graphics)">
+            <summary>
+            Sets the maximum width that any cell content will be. This is to ensure the grid lines up correctly.
+            </summary>
+            <param name="g">The <see cref="T:System.Drawing.Graphics"/> object to use for drawing the rota.</param>
+        </member>
+        <member name="M:Mockup2.AdminForms.RotaPrinter.PrintForm">
+            <summary>
+            Starts the printing process.
+            </summary>
+        </member>
+        <member name="M:Mockup2.AdminForms.RotaPrinter._printDocument_PrintPage(System.Object,System.Drawing.Printing.PrintPageEventArgs)">
+            <summary>
+            Called everytime another page is set to print. Handles the layout and drawing of the rota.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Mockup2.AdminForms.RotaPrinter._printDocument_BeginPrint(System.Object,System.Drawing.Printing.PrintEventArgs)">
+            <summary>
+            Not hugely sure what this does or where it is called. Maybe it isn't?
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
         <member name="T:Mockup2.DatabaseClasses.CustomTable">
             <summary>
             OUT OF ORDER 
@@ -1398,11 +1448,6 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="T:Mockup2.TestCode.ClsPrint">
-            <summary>
-            Shamelessly stolen from <see href="https://stackoverflow.com/questions/15853746/how-to-print-values-from-a-datagridview-control">this answer.</see>
-            </summary>
-        </member>
         <member name="F:Mockup2.UpdateStaff.components">
             <summary>
             Required designer variable.
@@ -1496,6 +1541,11 @@
             </summary>
         </member>
         <member name="P:Mockup2.Properties.Resources.okok">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Mockup2.Properties.Resources.printer_icon">
             <summary>
               Looks up a localized resource of type System.Drawing.Bitmap.
             </summary>

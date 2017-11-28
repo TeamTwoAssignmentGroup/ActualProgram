@@ -10,7 +10,6 @@ using System.Windows.Forms;
 using Mockup2.Factories;
 using Mockup2.DatabaseClasses;
 using Mockup2.AdminForms;
-using Mockup2.TestCode;
 
 namespace Mockup2
 {
@@ -27,7 +26,7 @@ namespace Mockup2
 
         private void addStaffButton_Click(object sender, EventArgs e)
         {
-            new EditStaffForm(dbCon).Show();
+            //new EditStaffForm(dbCon).Show();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -171,7 +170,7 @@ namespace Mockup2
 
         private void button7_Click(object sender, EventArgs e)
         {
-            ClsPrint printer = new ClsPrint(dataGridView1,"Staff Rota");
+            RotaPrinter printer = new RotaPrinter(dataGridView1,"Staff Rota");
             printer.PrintForm();
         }
     }

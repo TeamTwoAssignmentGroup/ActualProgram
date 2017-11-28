@@ -62,5 +62,24 @@ namespace UnitTests
                 b.ToString();
             });
         }
+
+        /// <summary>
+        /// Tests that <see cref="Mockup2.DatabaseClasses.DBConnection"/> correctly throws exceptions when given incorrect login information.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof (MySql.Data.MySqlClient.MySqlException),"Connection details were invalid")]
+        public void TestDBConnection()
+        {
+            DBConnection dbCon = new DBConnection("localhost","wrongDB","nouser","nullpassword");
+        }
+
+        /// <summary>
+        /// Tests that the default constructor of <see cref="DBConnection"/> does not throw an exception.
+        /// </summary>
+        [TestMethod]
+        public void TestDBConnection2()
+        {
+            DBConnection dbCon = new DBConnection();
+        }
     }
 }

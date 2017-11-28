@@ -8,12 +8,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Mockup2.TestCode
+namespace Mockup2.AdminForms
 {
     /// <summary>
-    /// Shamelessly stolen from <see href="https://stackoverflow.com/questions/15853746/how-to-print-values-from-a-datagridview-control">this answer.</see>
+    /// Shamelessly stolen from <see href="https://stackoverflow.com/questions/15853746/how-to-print-values-from-a-datagridview-control">this answer</see>, although it has been heavily modified.
     /// </summary>
-    class ClsPrint
+    class RotaPrinter
     {
         #region Variables
 
@@ -29,35 +29,161 @@ namespace Mockup2.TestCode
         private PrintDocument _printDocument = new PrintDocument();
         private DataGridView gw = new DataGridView();
         private string _ReportHeader;
-        float maxCellWidth = 0;
+        float[] maxCellWidth =new float[10];
+        float maxColumnWidth = 0;
+        int numColumns = 10;
+        PrintPreviewDialog printPreviewDialog1;
+        PrintDialog printDialog1;
+        int currentPage = 1;
+        bool isPreview = true;
 
         #endregion
 
-        public ClsPrint(DataGridView gridview, string ReportHeader)
+        public RotaPrinter(DataGridView gridview, string ReportHeader)
         {
+            printDialog1 = new PrintDialog();
             _printDocument.PrintPage += new PrintPageEventHandler(_printDocument_PrintPage);
             _printDocument.BeginPrint += new PrintEventHandler(_printDocument_BeginPrint);
-            gw = gridview;
+            gw = Clone(gridview);
             _ReportHeader = ReportHeader;
 
-            
+            gw.Columns[1].HeaderText = "Name";
+            gw.Columns[2].HeaderText = "Surname";
+
+            gw.Columns[4].HeaderText = "Mon";
+            gw.Columns[5].HeaderText = "Tue";
+            gw.Columns[6].HeaderText = "Wed";
+            gw.Columns[7].HeaderText = "Thu";
+            gw.Columns[8].HeaderText = "Fri";
+            gw.Columns[9].HeaderText = "Sat";
+            gw.Columns[10].HeaderText = "Sun";
         }
 
-        public void SetMaxWidth(Graphics g)
+        /// <summary>
+        /// Performs a clone of the suppled DataGridView, as it has to be edited for printing
+        /// and this was changing the Form view of it too.
+        /// </summary>
+        /// <param name="dg">The <see cref="System.Windows.Forms.DataGridView"/>to create a clone of.</param>
+        /// <returns>A new <see cref="DataGridView"/> that is a clone of the old that can be edited freely.</returns>
+        private DataGridView Clone(DataGridView dg)
         {
+            DataGridView result = new DataGridView();
+            foreach (DataGridViewColumn column in dg.Columns)
+            {
+                result.Columns.Add(column.Name, column.HeaderText);
+
+            }
+            foreach (DataGridViewRow row in dg.Rows)
+            {
+                DataGridViewRow newRow = (DataGridViewRow)row.Clone();
+                for (int i = 0; i < row.Cells.Count; i++)
+                {
+                    newRow.Cells[i].Value = row.Cells[i].Value;
+                }
+                result.Rows.Add(newRow);
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// Required to get the <see cref="PrintPreviewDialog"/> to display a <see cref="PrintDialog"/> when the Print icon is clicked.
+        /// </summary>
+        private void AlterPrintDialog()
+        {
+            
+            printPreviewDialog1 = new PrintPreviewDialog();
+            printPreviewDialog1.Document = _printDocument;
+
+            //printDialog1.AllowSomePages = true;
+            //printDialog1.AllowCurrentPage = true;
+            //printDialog1.AllowSelection = true;
+
+            ToolStripButton b = new ToolStripButton();
+            b.Image = Properties.Resources.printer_icon;
+            b.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            b.Click += printPreview_PrintClick;
+            ((ToolStrip)(printPreviewDialog1.Controls[1])).Items.RemoveAt(0);
+            ((ToolStrip)(printPreviewDialog1.Controls[1])).Items.Insert(0, b);
+            printPreviewDialog1.ShowDialog();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void printPreview_PrintClick(object sender, EventArgs e)
+        {
+            try
+            {
+                printDialog1.Document = _printDocument;
+                if (printDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    _printDocument.Print();
+                    printPreviewDialog1.Close();
+                    printPreviewDialog1.Dispose();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                MessageBox.Show(ex.Message, ToString());
+            }
+        }
+
+        /// <summary>
+        /// Sets the maximum width that any cell content will be. This is to ensure the grid lines up correctly.
+        /// </summary>
+        /// <param name="g">The <see cref="Graphics"/> object to use for drawing the rota.</param>
+        private void SetMaxWidth(Graphics g)
+        {
+            foreach (DataGridViewColumn column in gw.Columns)
+            {
+                column.DefaultCellStyle.Font = new Font("Arial", 12, FontStyle.Bold);
+            }
+            for(int i = 1; i< gw.Columns.Count; i++)
+            {
+                float cw = g.MeasureString(gw.Columns[i].HeaderText.ToString(), gw.Columns[i].DefaultCellStyle.Font).Width;
+                Console.WriteLine("String: " + gw.Columns[i].HeaderText.ToString() + " Has length: " + cw);
+                if (cw > maxColumnWidth)
+                {
+                    maxColumnWidth = cw;
+                }
+            }
             foreach (DataGridViewRow row in gw.Rows)
             {
-                foreach (DataGridViewCell cell in row.Cells)
+                for(int i =1; i<row.Cells.Count;i++)
                 {
-                    float width = g.MeasureString(cell.FormattedValue.ToString(), cell.InheritedStyle.Font).Width;
-                    if (width > maxCellWidth)
+                    row.Cells[i].Style.Font = new Font("Arial", 10,FontStyle.Regular);
+                    float width = 0;
+                    if (i > 3)
                     {
-                        maxCellWidth = width;
+                        width = g.MeasureString("Off12", row.Cells[i].InheritedStyle.Font).Width;
                     }
+                    else
+                    {
+                        width = g.MeasureString(row.Cells[i].FormattedValue.ToString(), row.Cells[i].InheritedStyle.Font).Width;
+                    }
+                    if (width > maxCellWidth[i-1])
+                    {
+                        maxCellWidth[i-1] = width;
+                    }
+                }
+            }
+
+            for(int i = 0; i < maxCellWidth.Count(); i++)
+            {
+                Console.WriteLine($"Max column width: {maxColumnWidth} and current max cell width: {maxCellWidth[i]}");
+                if (maxColumnWidth > maxCellWidth[i])
+                {
+                    maxCellWidth[i] = maxColumnWidth;
                 }
             }
         }
 
+        /// <summary>
+        /// Starts the printing process.
+        /// </summary>
         public void PrintForm()
         {
             ////Open the print dialog
@@ -73,14 +199,24 @@ namespace Mockup2.TestCode
             //}
 
             //Open the print preview dialog
-            PrintPreviewDialog objPPdialog = new PrintPreviewDialog();
-            objPPdialog.Document = _printDocument;
+            
+            //PrintPreviewDialog objPPdialog = new PrintPreviewDialog();
+            //objPPdialog.Document = _printDocument;
             _printDocument.DefaultPageSettings.Landscape = true;
-            objPPdialog.ShowDialog();
+            AlterPrintDialog();
+            //objPPdialog.ShowDialog();
+            //printPreviewDialog1.ShowDialog();
         }
 
+        /// <summary>
+        /// Called everytime another page is set to print. Handles the layout and drawing of the rota.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void _printDocument_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
+            Console.WriteLine($"From Page: {e.PageSettings.PrinterSettings.FromPage} To Page: {e.PageSettings.PrinterSettings.ToPage}");
+            SetMaxWidth(e.Graphics);
             //try
             //{
             //Set the left margin
@@ -158,25 +294,28 @@ namespace Mockup2.TestCode
                         {
                             _GridCol[colcount++] = GridCol;
                         }
+                        float headerOffset = e.MarginBounds.Left;
                         for (int i = 1;i<_GridCol.Count();i++)
                         {
                             e.Graphics.FillRectangle(new SolidBrush(Color.LightGray),
-                                new Rectangle((int)arrColumnLefts[iCount], iTopMargin,
-                                (int)arrColumnWidths[iCount], iHeaderHeight));
+                                new Rectangle((int)headerOffset, iTopMargin,
+                                (int)maxCellWidth[i-1], iHeaderHeight));
 
                             e.Graphics.DrawRectangle(Pens.Black,
-                                new Rectangle((int)arrColumnLefts[iCount], iTopMargin,
-                                (int)arrColumnWidths[iCount], iHeaderHeight));
+                                new Rectangle((int)headerOffset, iTopMargin,
+                                (int)maxCellWidth[i-1], iHeaderHeight));
 
                             e.Graphics.DrawString(_GridCol[i].HeaderText,
-                                _GridCol[i].InheritedStyle.Font,
+                                _GridCol[i].DefaultCellStyle.Font,
                                 new SolidBrush(_GridCol[i].InheritedStyle.ForeColor),
-                                new RectangleF((int)arrColumnLefts[iCount], iTopMargin,
-                                (int)arrColumnWidths[iCount], iHeaderHeight), strFormat);
+                                new RectangleF((int)headerOffset, iTopMargin,
+                                (int)maxCellWidth[i-1], iHeaderHeight), strFormat);
                             iCount++;
+                            headerOffset += maxCellWidth[i - 1];
                         }
                         bNewPage = false;
                         iTopMargin += iHeaderHeight;
+                        
                     }
                     iCount = 0;
                     DataGridViewCell[] _GridCell = new DataGridViewCell[GridRow.Cells.Count];
@@ -186,9 +325,11 @@ namespace Mockup2.TestCode
                     {
                         _GridCell[cellcount++] = Cel;
                     }
-                    //Draw Columns Contents                
+                    //Draw Columns Contents    
+                    float offset = e.MarginBounds.Left;
                     for (int i = 1;i<_GridCell.Count();i++)
                     {
+                        
                         if (_GridCell[i].Value != null)
                         {
                             try
@@ -205,18 +346,19 @@ namespace Mockup2.TestCode
                             //    (int)arrColumnWidths[iCount], (float)iCellHeight),
                             //    strFormat);
                             e.Graphics.DrawString(_GridCell[i].FormattedValue.ToString(),
-                                _GridCell[i].InheritedStyle.Font,
+                                _GridCell[i].Style.Font,
                                 new SolidBrush(_GridCell[i].InheritedStyle.ForeColor),
-                                new RectangleF((int)arrColumnLefts[iCount],
+                                new RectangleF(offset,
                                 (float)iTopMargin,
-                                maxCellWidth, (float)iCellHeight),
+                                maxCellWidth[i-1], (float)iCellHeight),
                                 strFormat);
                         }
                         //Drawing Cells Borders 
                         e.Graphics.DrawRectangle(Pens.Black,
-                            new Rectangle((int)arrColumnLefts[iCount], iTopMargin,
-                            (int)arrColumnWidths[iCount], iCellHeight));
+                            new Rectangle((int)offset, iTopMargin,
+                            (int)maxCellWidth[i-1], iCellHeight));
                         iCount++;
+                        offset += maxCellWidth[i-1];
                     }
                 }
                 iRow++;
@@ -233,8 +375,14 @@ namespace Mockup2.TestCode
             //    MessageBox.Show(exc.Message, "Error", MessageBoxButtons.OK,
             //       MessageBoxIcon.Error);
             //}
+            currentPage++;
         }
 
+        /// <summary>
+        /// Not hugely sure what this does or where it is called. Maybe it isn't?
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void _printDocument_BeginPrint(object sender, System.Drawing.Printing.PrintEventArgs e)
         {
             try

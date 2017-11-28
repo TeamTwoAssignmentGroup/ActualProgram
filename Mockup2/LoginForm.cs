@@ -17,17 +17,14 @@ namespace Mockup2
     public partial class loginForm : Form
     {
         DBConnection dbCon;
-        private Dictionary<int, int> incorrectLoginAttempts;
+        private Dictionary<string, int> incorrectLoginAttempts;
         public loginForm(DBConnection dbCon)
         {
             InitializeComponent();
             this.dbCon = dbCon;
-            this.incorrectLoginAttempts = new Dictionary<int, int>();
+            this.incorrectLoginAttempts = new Dictionary<string, int>();
             this.staffPasswordtextBox2.KeyUp += StaffPasswordtextBox2_KeyUp;
         }
-
-
-
 
         private void StaffPasswordtextBox2_KeyUp(object sender, KeyEventArgs e)
         {
@@ -35,6 +32,16 @@ namespace Mockup2
             {
                 button1_Click(sender, e);
             }
+        }
+
+        public void DumpIncorrectLogins()
+        {
+            Console.WriteLine("Incorrect login attempts:");
+            foreach(KeyValuePair<string,int> kvp in incorrectLoginAttempts)
+            {
+                Console.WriteLine($"[{kvp.Key}] : [{kvp.Value}]");
+            }
+            Console.WriteLine("This could be an attempt to break into the system!");
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -64,6 +71,12 @@ namespace Mockup2
                     else
                     {
                         MessageBox.Show("Password is not correct. Please contact an Admin if you need a password reset.");
+                        string key = s[0].FirstName + " " + s[0].LastName;
+                        if (!incorrectLoginAttempts.ContainsKey(key))
+                        {
+                            incorrectLoginAttempts.Add(key, 0);
+                        }
+                        incorrectLoginAttempts[key]++;
                         read();
                         return;
                     }
@@ -110,7 +123,8 @@ namespace Mockup2
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Environment.Exit(Environment.ExitCode);
+            this.Close();
+            this.Dispose();
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -127,7 +141,7 @@ namespace Mockup2
         public void read()
         {
 
-            MessageBox.Show("NO one puts baby in the corner");
+           // MessageBox.Show("NO one puts baby in the corner");
 
         }
 
