@@ -142,7 +142,6 @@ namespace Mockup2.Factories
 
 
 
-        //DELETE DELETE DELETE DELETE DELETE DELETE DELETE DELETE DELETE
         /// <summary>
         /// This methos returns a list of medications 
         /// </summary>
