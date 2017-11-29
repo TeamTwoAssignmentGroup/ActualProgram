@@ -34,6 +34,10 @@ namespace Mockup2
             this.Hide();
             new EditStaffForm(dbCon, staffID).ShowDialog();
             this.Show();
+            dataGridView1.Rows.Clear();
+            dataGridView1.Refresh();
+            PopulateAdminFormRota();
+            PopulateAdminFormStaff();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -191,6 +195,7 @@ namespace Mockup2
             dataGridView2.Rows.Clear();
             dataGridView2.Refresh();
             PopulateAdminFormStaff();
+            PopulateAdminFormRota();
             this.Show();
         }
 
@@ -198,6 +203,11 @@ namespace Mockup2
         {
             RotaPrinter rp = new RotaPrinter(dataGridView1, "Staff Rota");
             rp.PrintForm();
+        }
+
+        private void removeStaffButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

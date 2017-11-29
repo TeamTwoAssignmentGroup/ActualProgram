@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminForm));
             this.adminTabs = new System.Windows.Forms.TabControl();
             this.rotaTab = new System.Windows.Forms.TabPage();
+            this.button7 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -63,7 +64,6 @@
             this.button6 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
             this.adminTabs.SuspendLayout();
             this.rotaTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -94,11 +94,22 @@
             this.rotaTab.Controls.Add(this.dataGridView1);
             this.rotaTab.Location = new System.Drawing.Point(4, 42);
             this.rotaTab.Name = "rotaTab";
-            this.rotaTab.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.rotaTab.Padding = new System.Windows.Forms.Padding(3);
             this.rotaTab.Size = new System.Drawing.Size(1000, 683);
             this.rotaTab.TabIndex = 0;
             this.rotaTab.Text = "Rota";
             this.rotaTab.UseVisualStyleBackColor = true;
+            // 
+            // button7
+            // 
+            this.button7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button7.Location = new System.Drawing.Point(163, 623);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(149, 52);
+            this.button7.TabIndex = 3;
+            this.button7.Text = "Print";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // button4
             // 
@@ -241,7 +252,7 @@
             this.staffTab.Controls.Add(this.dataGridView2);
             this.staffTab.Location = new System.Drawing.Point(4, 42);
             this.staffTab.Name = "staffTab";
-            this.staffTab.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.staffTab.Padding = new System.Windows.Forms.Padding(3);
             this.staffTab.Size = new System.Drawing.Size(1000, 683);
             this.staffTab.TabIndex = 1;
             this.staffTab.Text = "Staff";
@@ -267,6 +278,7 @@
             this.removeStaffButton.TabIndex = 3;
             this.removeStaffButton.Text = "Remove Staff";
             this.removeStaffButton.UseVisualStyleBackColor = true;
+            this.removeStaffButton.Click += new System.EventHandler(this.removeStaffButton_Click);
             // 
             // editStaffButton
             // 
@@ -427,17 +439,6 @@
             this.button1.Text = "Message Patient";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // button7
-            // 
-            this.button7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button7.Location = new System.Drawing.Point(163, 623);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(149, 52);
-            this.button7.TabIndex = 3;
-            this.button7.Text = "Print";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // AdminForm
             // 

@@ -50,8 +50,7 @@
         </member>
         <member name="T:Mockup2.AdminForm">
             <summary>
-            Main parent form that oversees all Receptionist related use cases. Spawns
-            child forms when necessary.
+            Main parent form that oversees all Admin related use cases. Spawns child forms when necessary.
             </summary>
         </member>
         <member name="F:Mockup2.AdminForm.components">
