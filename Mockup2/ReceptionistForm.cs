@@ -45,10 +45,6 @@ namespace Mockup2
             this.Load += ReceptionistForm_Load;
             this.selectedAppointments = new List<Appointment>();
             af = new AppointmentFactory(dbCon);
-            foreach(string s in af.GetTimeslots())
-            {
-                Console.WriteLine(s);
-            }
             sf = new StaffFactory(dbCon);
             this.firstNameTextbox.KeyUp += FirstNameTextbox_KeyUp;
             this.lastNameTextbox.KeyUp += FirstNameTextbox_KeyUp;
@@ -98,10 +94,11 @@ namespace Mockup2
         }
 
         /// <summary>
-        /// Populates the appointment <see cref="System.Windows.Forms.DataGridView"/> 
+        /// Populates the appointment <see cref="System.Windows.Forms.DataGridView"/> pulling appointments
+        /// that are between the two given dates.
         /// </summary>
-        /// <param name="d1"></param>
-        /// <param name="d2"></param>
+        /// <param name="d1">The 'from' date.</param>
+        /// <param name="d2">The 'to' date.</param>
         public void PopulateAppointments(DateTime d1, DateTime d2)
         {
             appointmentDataGridView.Rows.Clear();
@@ -238,7 +235,19 @@ namespace Mockup2
         {
             string firstName = firstNameTextbox.Text;
             string lastName = lastNameTextbox.Text;
+
+            if (firstName == "" || lastName == "")
+            {
+                MessageBox.Show("Please enter both a first and last name.","Incorrect Details");
+                return;
+            }
             List<Patient> patient = infoFac.GetPatientsByName(firstName,lastName);
+
+            if (patient.Count == 0)
+            {
+                MessageBox.Show("No patient found matching those details.", "No Matches");
+            }
+
             patients = patient;
             dataGridView1.Rows.Clear();
             foreach(Patient p in patient)
@@ -362,6 +371,11 @@ namespace Mockup2
 
         private void button11_Click(object sender, EventArgs e)
         {
+            if(seeRotaFirstName.Text=="" || seeRotaLastName.Text == "")
+            {
+                MessageBox.Show("Please enter both a first and last name.", "Incorrect Details");
+                return;
+            }
             new SeeStaffRotaForm(seeRotaFirstName.Text,seeRotaLastName.Text,dbCon).ShowDialog();
         }
 

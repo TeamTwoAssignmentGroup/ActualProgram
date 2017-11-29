@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.StaffFirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StaffLastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -47,8 +49,19 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.StaffFirstName,
@@ -61,76 +74,87 @@
             this.Fri,
             this.Sat,
             this.Sun});
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.Location = new System.Drawing.Point(13, 13);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(785, 150);
+            this.dataGridView1.Size = new System.Drawing.Size(785, 185);
             this.dataGridView1.TabIndex = 0;
             // 
             // StaffFirstName
             // 
             this.StaffFirstName.HeaderText = "First Name";
             this.StaffFirstName.Name = "StaffFirstName";
-            this.StaffFirstName.Width = 82;
+            this.StaffFirstName.Width = 184;
             // 
             // StaffLastName
             // 
             this.StaffLastName.HeaderText = "Last Name";
             this.StaffLastName.Name = "StaffLastName";
-            this.StaffLastName.Width = 83;
+            this.StaffLastName.Width = 181;
             // 
             // StaffJobRole
             // 
             this.StaffJobRole.HeaderText = "Job Role";
             this.StaffJobRole.Name = "StaffJobRole";
-            this.StaffJobRole.Width = 74;
+            this.StaffJobRole.Width = 155;
             // 
             // Mon
             // 
             this.Mon.HeaderText = "Monday";
             this.Mon.Name = "Mon";
-            this.Mon.Width = 70;
+            this.Mon.Width = 143;
             // 
             // Tue
             // 
             this.Tue.HeaderText = "Tuesday";
             this.Tue.Name = "Tue";
-            this.Tue.Width = 73;
+            this.Tue.Width = 152;
             // 
             // Wed
             // 
             this.Wed.HeaderText = "Wednesday";
             this.Wed.Name = "Wed";
-            this.Wed.Width = 89;
+            this.Wed.Width = 193;
             // 
             // Thu
             // 
             this.Thu.HeaderText = "Thursday";
             this.Thu.Name = "Thu";
-            this.Thu.Width = 76;
+            this.Thu.Width = 162;
             // 
             // Fri
             // 
             this.Fri.HeaderText = "Friday";
             this.Fri.Name = "Fri";
-            this.Fri.Width = 60;
+            this.Fri.Width = 122;
             // 
             // Sat
             // 
             this.Sat.HeaderText = "Saturday";
             this.Sat.Name = "Sat";
-            this.Sat.Width = 74;
+            this.Sat.Width = 156;
             // 
             // Sun
             // 
             this.Sun.HeaderText = "Sunday";
             this.Sun.Name = "Sun";
-            this.Sun.Width = 68;
+            this.Sun.Width = 138;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(13, 226);
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button1.AutoSize = true;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(13, 204);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(146, 45);
             this.button1.TabIndex = 1;
             this.button1.Text = "OK";
             this.button1.UseVisualStyleBackColor = true;
@@ -147,6 +171,7 @@
             this.Text = "SeeStaffRotaForm";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 

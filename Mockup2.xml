@@ -801,10 +801,30 @@
             </summary>
             <param name="p">The <see cref="T:Mockup2.DatabaseClasses.Prescription"/> object to insert.</param>
         </member>
+        <member name="M:Mockup2.Factories.RotaFactory.InsertStaff(Mockup2.DatabaseClasses.Staff)">
+            <summary>
+            Inserts the <see cref="T:Mockup2.DatabaseClasses.Staff"/> member into the Rota table, defaulting all days to 0 (entire week off).
+            </summary>
+            <param name="staff">The <see cref="T:Mockup2.DatabaseClasses.Staff"/> member to insert.</param>
+        </member>
         <member name="T:Mockup2.Factories.StaffFactory">
             <summary>
             Convenience class to handle returning, updating, and inserting Staff objects into the database.
             </summary>
+        </member>
+        <member name="M:Mockup2.Factories.StaffFactory.GetLatestStaffID">
+            <summary>
+            Sets the next available staff ID.
+            </summary>
+        </member>
+        <member name="M:Mockup2.Factories.StaffFactory.GetNextAvailableStaffID">
+            <summary>
+            Gets the next available staff ID. Useful when you need to know the staff ID before pushing
+            the staff object into the database, for example when you are adding a new staff member to both the
+            staff table and the rota table. Otherwise, you would have to push the staff member
+            into the staff table, then pull them out again to see which ID the database assigned them.
+            </summary>
+            <returns>An integer automatically set to be a valid staff ID that doesn't clash.</returns>
         </member>
         <member name="M:Mockup2.Factories.StaffFactory.GetStaffByID(System.Int32)">
             <summary>
@@ -975,6 +995,10 @@
             this function is specific and return a specific value
             
         </member>
+        <member name="M:Mockup2.GPNurse.getPrescriptionsAsString">
+            This method returns a prescription list as a string therefore its useable in the listbox
+            
+        </member>
         <member name="M:Mockup2.GPNurse.getTestresults">
             This function reads the testresults from the object list and returns it as a string
             This function is not global but specified to test name and testdate
@@ -1069,9 +1093,22 @@
             Double click on the testresults box allows to read a prescription object with more detail
             
         </member>
+        <member name="M:Mockup2.GPNurse.readInstanceOfMedicine">
+            Fills up the listbox from the prescription list and displays it in the prescription listbox
+            editIndex and selected prescriptions variables are global and changing whenever the user selects a valid index from the listbox
+            
+        </member>
+        <member name="M:Mockup2.GPNurse.selectedItemPrescription">
+            Translates a validated index to and adds it as a the currently used item
+            
+        </member>
         <member name="M:Mockup2.GPNurse.prescriptionsListBox_DoubleClick(System.Object,System.EventArgs)">
             allows prescription management
             double click to read object
+            
+        </member>
+        <member name="M:Mockup2.GPNurse.refreshPrescriptionList">
+            Updtas modified data in the prescription list
             
         </member>
         <member name="M:Mockup2.GPNurse.allow_Click(System.Object,System.EventArgs)">
@@ -1223,10 +1260,11 @@
         </member>
         <member name="M:Mockup2.ReceptionistForm.PopulateAppointments(System.DateTime,System.DateTime)">
             <summary>
-            Populates the appointment <see cref="T:System.Windows.Forms.DataGridView"/> 
+            Populates the appointment <see cref="T:System.Windows.Forms.DataGridView"/> pulling appointments
+            that are between the two given dates.
             </summary>
-            <param name="d1"></param>
-            <param name="d2"></param>
+            <param name="d1">The 'from' date.</param>
+            <param name="d2">The 'to' date.</param>
         </member>
         <member name="F:Mockup2.ReceptionistForm.components">
             <summary>

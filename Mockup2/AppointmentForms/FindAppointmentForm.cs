@@ -60,6 +60,11 @@ namespace Mockup2.AppointmentForms
         {
             if (nameRadioButton.Checked)
             {
+                if (firstNameTextBox.Text == "" || lastNameTextBox.Text == "")
+                {
+                    MessageBox.Show("Please enter both a first and last name.", "Incorrect Details");
+                    return;
+                }
                 parent.PopulateAppointments(firstNameTextBox.Text, lastNameTextBox.Text);
                 parent.searchByName = true;
                 parent.fName = firstNameTextBox.Text;
@@ -68,6 +73,10 @@ namespace Mockup2.AppointmentForms
             }
             if (dateRadioButton.Checked)
             {
+                if (dateTimePicker1.Value == null || dateTimePicker2.Value == null)
+                {
+                    MessageBox.Show("Please choose two dates to see appointments between.", "Incorrect Details");
+                }
                 parent.PopulateAppointments(dateTimePicker1.Value, dateTimePicker2.Value);
                 parent.searchByName = false;
                 parent.d1 = dateTimePicker1.Value;

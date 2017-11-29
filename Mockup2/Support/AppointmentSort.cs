@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Mockup2.Support
 {
-    class AppointmentSort
+    public class AppointmentSort
     {
         /**
          * Dataset and factory for the appointments
@@ -118,6 +118,7 @@ namespace Mockup2.Support
             
             return next;
         }
+
 
 
 
