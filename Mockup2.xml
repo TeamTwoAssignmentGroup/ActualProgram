@@ -50,8 +50,7 @@
         </member>
         <member name="T:Mockup2.AdminForm">
             <summary>
-            Main parent form that oversees all Receptionist related use cases. Spawns
-            child forms when necessary.
+            Main parent form that oversees all Admin related use cases. Spawns child forms when necessary.
             </summary>
         </member>
         <member name="F:Mockup2.AdminForm.components">
@@ -811,6 +810,12 @@
             <summary>
             Convenience class to handle returning, updating, and inserting Staff objects into the database.
             </summary>
+        </member>
+        <member name="M:Mockup2.Factories.StaffFactory.RemoveStaffByID(System.Int32)">
+            <summary>
+            Removes the <see cref="T:Mockup2.DatabaseClasses.Staff"/> member associated with the given Staff ID.
+            </summary>
+            <param name="id">An integer ID of the staff member to remove.</param>
         </member>
         <member name="M:Mockup2.Factories.StaffFactory.GetLatestStaffID">
             <summary>

@@ -143,9 +143,19 @@ namespace Mockup2
 
         public void PopulateAppointments(string firstName,string lastName)
         {
-            appointmentDataGridView.Rows.Clear();
-            int patientID = infoFac.GetPatientsByName(firstName, lastName)[0].ID;
+
+            if (infoFac.GetPatientsByName(firstName, lastName).Count==0)
+            {
+                MessageBox.Show("There are no patients matching that name. Please make sure your spelling is correct.", "No Patients Found");
+                return;
+            }
+
+            Patient p = infoFac.GetPatientsByName(firstName, lastName)[0];
+            int patientID = p.ID;
+           
+
             selectedAppointments.Clear();
+            appointmentDataGridView.Rows.Clear();
             QueryBuilder b2 = new QueryBuilder();
             b2.Select(Tables.ALL).From(Tables.APPOINTMENT_TABLE).Where(b2.IsEqual(Tables.APPOINTMENT_TABLE.PatientID, patientID));
             selectedAppointments = af.GetAppointments(b2);
@@ -163,10 +173,10 @@ namespace Mockup2
                 foreach (var value in row.Values)
                 {
 
-                    Console.Write(value + " | ");
+                    //Console.Write(value + " | ");
                 }
                 appointmentDataGridView.Rows.Add(row.Values.ToArray());
-                Console.WriteLine();
+                //Console.WriteLine();
             }
         }
 
@@ -298,6 +308,11 @@ namespace Mockup2
 
         private void button7_Click(object sender, EventArgs e)
         {
+            if (MessageBox.Show("Are you sure you want to remove this appointment?", "Confirm Remove Appointment",
+                MessageBoxButtons.YesNo) == DialogResult.No)
+            {
+                return;
+            }
             if (appointmentDataGridView.SelectedRows.Count > 0)
             {
                 int num = appointmentDataGridView.CurrentCell.RowIndex;
@@ -337,6 +352,11 @@ namespace Mockup2
 
         private void button4_Click(object sender, EventArgs e)
         {
+            if (MessageBox.Show("Are you sure you want to remove this patient?", "Confirm Remove Patient",
+                    MessageBoxButtons.YesNo) == DialogResult.No)
+            {
+                return;
+            }
             if (dataGridView1.SelectedRows.Count > 0)
             {
                 int num = dataGridView1.CurrentCell.RowIndex;

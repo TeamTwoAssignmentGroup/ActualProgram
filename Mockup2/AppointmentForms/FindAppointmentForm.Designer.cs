@@ -193,7 +193,8 @@
             this.Controls.Add(this.nameGroupBox);
             this.Controls.Add(this.radioButtonGroupBox);
             this.Name = "FindAppointmentForm";
-            this.Text = "FindAppointmentForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "Find Appointments";
             this.radioButtonGroupBox.ResumeLayout(false);
             this.radioButtonGroupBox.PerformLayout();
             this.nameGroupBox.ResumeLayout(false);

@@ -236,7 +236,7 @@
             this.Controls.Add(this.causeTextBox);
             this.Controls.Add(this.dateTimePicker1);
             this.Name = "AddAppointmentForm";
-            this.Text = "AddAppointmentForm";
+            this.Text = "Add Appointment";
             this.ResumeLayout(false);
             this.PerformLayout();
 
