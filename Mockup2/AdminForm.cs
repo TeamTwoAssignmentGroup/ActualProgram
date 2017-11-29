@@ -20,11 +20,13 @@ namespace Mockup2
     {
         DBConnection dbCon;
         QueryBuilder b;
+        StaffFactory sf;
 
         public AdminForm(DBConnection dbCon)
         {
             InitializeComponent();
             this.dbCon = dbCon;
+            sf = new StaffFactory(dbCon);
             this.button3.Click += button3_Click;
         }
 
@@ -34,6 +36,10 @@ namespace Mockup2
             this.Hide();
             new EditStaffForm(dbCon, staffID).ShowDialog();
             this.Show();
+            dataGridView1.Rows.Clear();
+            dataGridView1.Refresh();
+            PopulateAdminFormRota();
+            PopulateAdminFormStaff();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -49,23 +55,6 @@ namespace Mockup2
             new ResetPasswordForm(dbCon).ShowDialog();
             this.Show();
         }
-
-        //private void editStaffButton_Click(object sender, EventArgs e)
-        //{
-        //    if (dataGridView2.SelectedRows.Count > 1)
-        //    {
-        //        //validate
-        //    }
-        //    int rowNumber = Convert.ToInt32(dataGridView2.SelectedRows[0].Index);
-        //    object[] pass = DataSet(rowNumber).Item1;
-        //    object[] staffName = DataSet(rowNumber).Item2;
-        //    int staffID = DataSet(rowNumber).Item3;
-
-        //    Console.WriteLine(rowNumber + "\t" + staffID);
-
-        //    new EditStaffForm(dbCon).ShowDialog();
-        //    PopulateAdminFormStaff();
-        //}
 
         private void button3_Click(object sender, EventArgs e)
         {
@@ -99,6 +88,7 @@ namespace Mockup2
 
         private void PopulateAdminFormStaff()
         {
+            dataGridView2.Rows.Clear();
             CustomTableFactory ctf = new CustomTableFactory(dbCon);
             b = new QueryBuilder();
             b.Select(Tables.STAFF_TABLE.ID, Tables.STAFF_TABLE.FirstName, Tables.STAFF_TABLE.LastName, Tables.STAFF_TABLE.JobRole, 
@@ -149,8 +139,10 @@ namespace Mockup2
             dataGridView1.Rows.Clear();
             CustomTableFactory ctf = new CustomTableFactory(dbCon);
             b = new QueryBuilder();
-            b.Select(Tables.ROTA_TABLE.StaffID, Tables.STAFF_TABLE.FirstName, Tables.STAFF_TABLE.LastName, Tables.STAFF_TABLE.JobRole,Tables.ROTA_TABLE.Mon, Tables.ROTA_TABLE.Tue, Tables.ROTA_TABLE.Wed,
-                Tables.ROTA_TABLE.Thur, Tables.ROTA_TABLE.Fri, Tables.ROTA_TABLE.Sat, Tables.ROTA_TABLE.Sun).From(Tables.ROTA_TABLE, Tables.STAFF_TABLE).Where(b.IsEqual(Tables.STAFF_TABLE.ID, Tables.ROTA_TABLE.StaffID));
+            b.Select(Tables.ROTA_TABLE.StaffID, Tables.STAFF_TABLE.FirstName, Tables.STAFF_TABLE.LastName, Tables.STAFF_TABLE.JobRole,
+                Tables.ROTA_TABLE.Mon, Tables.ROTA_TABLE.Tue, Tables.ROTA_TABLE.Wed,
+                Tables.ROTA_TABLE.Thur, Tables.ROTA_TABLE.Fri, Tables.ROTA_TABLE.Sat, Tables.ROTA_TABLE.Sun)
+                .From(Tables.ROTA_TABLE, Tables.STAFF_TABLE).Where(b.IsEqual(Tables.STAFF_TABLE.ID, Tables.ROTA_TABLE.StaffID));
             CustomTable ct = ctf.GetCustomTable(b);
             foreach (var row in ct.GetRows())
             {
@@ -191,6 +183,7 @@ namespace Mockup2
             dataGridView2.Rows.Clear();
             dataGridView2.Refresh();
             PopulateAdminFormStaff();
+            PopulateAdminFormRota();
             this.Show();
         }
 
@@ -198,6 +191,14 @@ namespace Mockup2
         {
             RotaPrinter rp = new RotaPrinter(dataGridView1, "Staff Rota");
             rp.PrintForm();
+        }
+
+        private void removeStaffButton_Click(object sender, EventArgs e)
+        {
+            int staffID = Convert.ToInt32(dataGridView2.SelectedRows[0].Cells[0].Value);
+            sf.RemoveStaffByID(staffID);
+            PopulateAdminFormStaff();
+            PopulateAdminFormRota();
         }
     }
 }

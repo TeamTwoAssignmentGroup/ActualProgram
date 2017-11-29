@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminForm));
             this.adminTabs = new System.Windows.Forms.TabControl();
             this.rotaTab = new System.Windows.Forms.TabPage();
+            this.button7 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -63,7 +64,6 @@
             this.button6 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
             this.adminTabs.SuspendLayout();
             this.rotaTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -94,11 +94,22 @@
             this.rotaTab.Controls.Add(this.dataGridView1);
             this.rotaTab.Location = new System.Drawing.Point(4, 42);
             this.rotaTab.Name = "rotaTab";
-            this.rotaTab.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.rotaTab.Padding = new System.Windows.Forms.Padding(3);
             this.rotaTab.Size = new System.Drawing.Size(1000, 683);
             this.rotaTab.TabIndex = 0;
             this.rotaTab.Text = "Rota";
             this.rotaTab.UseVisualStyleBackColor = true;
+            // 
+            // button7
+            // 
+            this.button7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button7.Location = new System.Drawing.Point(163, 623);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(149, 52);
+            this.button7.TabIndex = 1;
+            this.button7.Text = "Print";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // button4
             // 
@@ -118,7 +129,7 @@
             this.button3.Location = new System.Drawing.Point(8, 623);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(149, 52);
-            this.button3.TabIndex = 1;
+            this.button3.TabIndex = 0;
             this.button3.Text = "Update";
             this.button3.UseVisualStyleBackColor = true;
             // 
@@ -241,7 +252,7 @@
             this.staffTab.Controls.Add(this.dataGridView2);
             this.staffTab.Location = new System.Drawing.Point(4, 42);
             this.staffTab.Name = "staffTab";
-            this.staffTab.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.staffTab.Padding = new System.Windows.Forms.Padding(3);
             this.staffTab.Size = new System.Drawing.Size(1000, 683);
             this.staffTab.TabIndex = 1;
             this.staffTab.Text = "Staff";
@@ -253,7 +264,7 @@
             this.button5.Location = new System.Drawing.Point(839, 618);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(153, 52);
-            this.button5.TabIndex = 4;
+            this.button5.TabIndex = 3;
             this.button5.Text = "Exit";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
@@ -264,9 +275,10 @@
             this.removeStaffButton.Location = new System.Drawing.Point(418, 618);
             this.removeStaffButton.Name = "removeStaffButton";
             this.removeStaffButton.Size = new System.Drawing.Size(253, 52);
-            this.removeStaffButton.TabIndex = 3;
+            this.removeStaffButton.TabIndex = 2;
             this.removeStaffButton.Text = "Remove Staff";
             this.removeStaffButton.UseVisualStyleBackColor = true;
+            this.removeStaffButton.Click += new System.EventHandler(this.removeStaffButton_Click);
             // 
             // editStaffButton
             // 
@@ -274,7 +286,7 @@
             this.editStaffButton.Location = new System.Drawing.Point(213, 618);
             this.editStaffButton.Name = "editStaffButton";
             this.editStaffButton.Size = new System.Drawing.Size(178, 52);
-            this.editStaffButton.TabIndex = 2;
+            this.editStaffButton.TabIndex = 1;
             this.editStaffButton.Text = "Edit Staff";
             this.editStaffButton.UseVisualStyleBackColor = true;
             this.editStaffButton.Click += new System.EventHandler(this.editStaffButton_Click);
@@ -285,7 +297,7 @@
             this.addStaffButton.Location = new System.Drawing.Point(6, 618);
             this.addStaffButton.Name = "addStaffButton";
             this.addStaffButton.Size = new System.Drawing.Size(181, 52);
-            this.addStaffButton.TabIndex = 1;
+            this.addStaffButton.TabIndex = 0;
             this.addStaffButton.Text = "Add Staff";
             this.addStaffButton.UseVisualStyleBackColor = true;
             this.addStaffButton.Click += new System.EventHandler(this.addStaffButton_Click);
@@ -390,7 +402,7 @@
             this.reportBug.Location = new System.Drawing.Point(4, 62);
             this.reportBug.Name = "reportBug";
             this.reportBug.Size = new System.Drawing.Size(320, 52);
-            this.reportBug.TabIndex = 4;
+            this.reportBug.TabIndex = 1;
             this.reportBug.Text = "Report Bug";
             this.reportBug.UseVisualStyleBackColor = true;
             this.reportBug.Click += new System.EventHandler(this.reportBug_Click);
@@ -412,7 +424,7 @@
             this.button2.Location = new System.Drawing.Point(330, 4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(320, 52);
-            this.button2.TabIndex = 1;
+            this.button2.TabIndex = 2;
             this.button2.Text = "Reset Passwords";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
@@ -427,17 +439,6 @@
             this.button1.Text = "Message Patient";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // button7
-            // 
-            this.button7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button7.Location = new System.Drawing.Point(163, 623);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(149, 52);
-            this.button7.TabIndex = 3;
-            this.button7.Text = "Print";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // AdminForm
             // 

@@ -38,6 +38,8 @@ namespace Mockup2
             StaffID = staffID;
             if (StaffID != 0)
             {
+                label8.Visible = false;
+                textBox7.Visible = false;
                 populateEditInfomation();
             }
             else
@@ -74,7 +76,7 @@ namespace Mockup2
             switch(StaffID)
             {
                 case 0:
-                    string[] valuesToInput = new string[8];
+                    object[] valuesToInput = new object[8];
                     //ID
                     valuesToInput[0] = null;
                     //first Name
@@ -85,7 +87,7 @@ namespace Mockup2
                     valuesToInput[3] = comboBox1.Text;
                     //Password
                     valuesToInput[4] = textBox7.Text;
-                    valuesToInput[4] = Program.GetHashedString(valuesToInput[4]);
+                    valuesToInput[4] = Program.GetHashedString(valuesToInput[4].ToString());
                     //Email
                     valuesToInput[5] = textBox5.Text;
                     //Address
@@ -93,15 +95,27 @@ namespace Mockup2
                     //Post Code
                     valuesToInput[7] = textBox6.Text;
 
+                    StaffFactory sf = new StaffFactory(dbCon);
+                    RotaFactory rf = new RotaFactory(dbCon);
+                    int id = sf.GetNextAvailableStaffID();
+                    valuesToInput[0] = id;
+
+                    
+
                     b.Insert(Tables.STAFF_TABLE).Values(valuesToInput);
                     MySqlCommand cmdAdd = new MySqlCommand(b.ToString(), dbCon.GetConnection());
                     cmdAdd.ExecuteNonQuery();
+
+                    Staff s = new Staff();
+                    s.ID = id;
+                    rf.InsertStaff(s);
+
                     MessageBox.Show("Staff Add Successful");
                     this.Close();
                     break;
                 default:
                     //Update Staff
-                    object[] valuesToInsert = new object[14];
+                    object[] valuesToInsert = new object[12];
                     valuesToInsert[0] = Tables.STAFF_TABLE.FirstName;
                     valuesToInsert[1] = textBox2.Text;
                     valuesToInsert[2] = Tables.STAFF_TABLE.LastName;
@@ -118,7 +132,7 @@ namespace Mockup2
                     //valuesToInsert[13] = textBox7.Text;
                     b.Update(Tables.STAFF_TABLE).Set(valuesToInsert).Where(b.IsEqual(Tables.STAFF_TABLE.ID, StaffID));
                     MySqlCommand cmdEdit = new MySqlCommand(b.ToString(), dbCon.GetConnection());
-                    cmdEdit.ExecuteNonQuery();
+                   cmdEdit.ExecuteNonQuery();
                     MessageBox.Show("Staff Edit Successful");
                     this.Close();
                     break;
