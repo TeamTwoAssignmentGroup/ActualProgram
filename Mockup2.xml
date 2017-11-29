@@ -811,6 +811,12 @@
             Convenience class to handle returning, updating, and inserting Staff objects into the database.
             </summary>
         </member>
+        <member name="M:Mockup2.Factories.StaffFactory.RemoveStaffByID(System.Int32)">
+            <summary>
+            Removes the <see cref="T:Mockup2.DatabaseClasses.Staff"/> member associated with the given Staff ID.
+            </summary>
+            
+        </member>
         <member name="M:Mockup2.Factories.StaffFactory.GetLatestStaffID">
             <summary>
             Sets the next available staff ID.

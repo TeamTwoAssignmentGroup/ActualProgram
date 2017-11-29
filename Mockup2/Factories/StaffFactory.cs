@@ -23,7 +23,7 @@ namespace Mockup2.Factories
         /// <summary>
         /// Removes the <see cref="Staff"/> member associated with the given Staff ID.
         /// </summary>
-        /// <param name="id">An integer ID of the staff member to remove.</param>
+        /// 
         public void RemoveStaffByID(int id)
         {
             QueryBuilder b = new QueryBuilder();
