@@ -21,6 +21,18 @@ namespace Mockup2.Factories
         }
 
         /// <summary>
+        /// Removes the <see cref="Staff"/> member associated with the given Staff ID.
+        /// </summary>
+        /// <param name="id">An integer ID of the staff member to remove.</param>
+        public void RemoveStaffByID(int id)
+        {
+            QueryBuilder b = new QueryBuilder();
+            b.Delete(Tables.STAFF_TABLE).Where(b.IsEqual(Tables.STAFF_TABLE.ID,id));
+            MySqlCommand cmd = new MySqlCommand(b.ToString(), dbCon.GetConnection());
+            cmd.ExecuteNonQuery();
+        }
+
+        /// <summary>
         /// Sets the next available staff ID.
         /// </summary>
         private void GetLatestStaffID()
