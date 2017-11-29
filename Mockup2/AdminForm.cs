@@ -13,10 +13,14 @@ using Mockup2.AdminForms;
 
 namespace Mockup2
 {
+    /// <summary>
+    /// Main parent form that oversees all Admin related use cases. Spawns child forms when necessary.
+    /// </summary>
     public partial class AdminForm : Form
     {
         DBConnection dbCon;
         QueryBuilder b;
+
         public AdminForm(DBConnection dbCon)
         {
             InitializeComponent();
