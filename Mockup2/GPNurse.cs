@@ -38,6 +38,7 @@ namespace Mockup2
         private List<Prescription> prescriptionList = new List<Prescription>();
         private List<TestResult> testresultsList = new List<TestResult>();
         private bool isDoctor;
+        bool anotherFormIsRunning =false;
        
 
 
@@ -58,13 +59,13 @@ namespace Mockup2
             timer1.Start ( );
 
             converter = new DatabaseConverter ( dbCon );
-            prescriptonForm = new AddPrescription ( dbCon );
+            prescriptonForm = new AddPrescription ( dbCon,this );
+
 
         }
 
 
-
-
+     
         /**
          * Form 
          * Initialises a next patient and database components
@@ -150,7 +151,7 @@ namespace Mockup2
         /**
          * This button (View this patient details) loads in selected patient details on the page
          * */
-        private void loadCurrentPatient ( )
+        public void loadCurrentPatient ( )
         {
 
             cleanAll ( );
@@ -176,7 +177,7 @@ namespace Mockup2
                 textBoxWriter ( history , historyBox );
 
                 detailsBox.Text = currentPatient.FirstName + " " + currentPatient.LastName + " " + currentPatient.DOB.ToShortDateString ( ) + "\nGender: " + currentPatient.Gender + "\nNext of kin: " + currentPatient.NextOfKin + "\nAddress " + currentPatient.Address;
-                prescriptonForm.initCurrentPatient ( currentPatient );
+                initCurrentPatientOnPrescriptionForm ( currentPatient);
                
 
             }
@@ -559,18 +560,16 @@ namespace Mockup2
       * update time and next patient
       * */
         private void timer1_Tick ( object sender , EventArgs e )
-        { bool isIt=false;
+        {
             timeNow ( );
             try
             {
 
                 TimeLabel.Text = timeIs;
                 nextLabel.Text = name;
-                isIt=prescriptonForm.PrescriptionFormRunning;
-                if ( isIt = true ) { refresPrescriptionForCurrentPatient(); }
-               
                 
-                
+
+
             }
             catch ( NullReferenceException ex ) { nextLabel.Text = "no patient "; }
         }
@@ -790,8 +789,17 @@ namespace Mockup2
             }
         }
 
+        public void initCurrentPatientOnPrescriptionForm ( Patient p )
+        {
+          
 
 
+            prescriptonForm.initCurrentPatient ( currentPatient );
+         
+
+        }
+
+      
 
         /**
          * AddButton
@@ -802,9 +810,12 @@ namespace Mockup2
           
             if ( currentPatient != null )
             {
-
-                prescriptonForm.Show ( );
                 
+                prescriptonForm.Show ( );
+
+               
+
+
             }
             else
             {
@@ -814,19 +825,6 @@ namespace Mockup2
                 
         }
 
-
-        private void refresPrescriptionForCurrentPatient ( )
-        {
-
-
-            DatabaseConverter refreshPrescriptions = new DatabaseConverter(dbCon,currentPatient);
-            prescriptionList = refreshPrescriptions.GetPrescription ( );
-            prescriptions = refreshPrescriptions.PrescriptionData ( );
-            refreshPrescriptionList ( );
-
-            
-
-        }
 
 
 
