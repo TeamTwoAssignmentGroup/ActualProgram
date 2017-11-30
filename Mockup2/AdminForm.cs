@@ -79,8 +79,10 @@ namespace Mockup2
 
         private void AdminForm_Load(object sender, EventArgs e)
         {
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MinimumSize = this.Size;
             this.MaximumSize = this.Size;
+            this.Text = "Admin Form";
 
             PopulateAdminFormStaff();
             PopulateAdminFormRota();
