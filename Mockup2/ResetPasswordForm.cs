@@ -53,6 +53,14 @@ namespace Mockup2
                 return;
             }
 
+            if(textBox1.Text=="" || textBox2.Text == "")
+            {
+                MessageBox.Show("One or both of the password fields are blank. Please fill them both in.", "Incorrect Details");
+                textBox1.Text = "";
+                textBox2.Text = "";
+                return;
+            }
+
             b = new QueryBuilder();
             b.Update(Tables.STAFF_TABLE).Set(Tables.STAFF_TABLE.Password,password).Where(b.IsEqual(Tables.STAFF_TABLE.ID,staffID));
             MySqlCommand command = new MySqlCommand(b.ToString(),dbCon.GetConnection());

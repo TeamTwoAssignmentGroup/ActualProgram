@@ -24,7 +24,13 @@ namespace Mockup2
             InitializeComponent();
             this.dbCon = dbCon;
             this.incorrectLoginAttempts = new Dictionary<string, int>();
-            this.staffPasswordtextBox2.KeyUp += StaffPasswordtextBox2_KeyUp;
+            this.staffPasswordtextBox2.KeyDown += StaffPasswordtextBox2_KeyUp;
+            this.staffPasswordtextBox2.GotFocus += StaffPasswordtextBox2_GotFocus;
+        }
+
+        private void StaffPasswordtextBox2_GotFocus(object sender, EventArgs e)
+        {
+            this.staffPasswordtextBox2.SelectAll();
         }
 
         private void StaffPasswordtextBox2_KeyUp(object sender, KeyEventArgs e)
@@ -32,6 +38,7 @@ namespace Mockup2
             if (e.KeyCode == Keys.Enter)
             {
                 button1_Click(sender, e);
+                e.Handled = true;
             }
         }
 
@@ -59,8 +66,15 @@ namespace Mockup2
                     MessageBox.Show("Please enter both your ID and password.");
                     return;
                 }
-
-                int staffID = int.Parse(staffIDtextBox1.Text);
+                int staffID;
+                try
+                {
+                    staffID = int.Parse(staffIDtextBox1.Text);
+                }catch(FormatException exc1)
+                {
+                    MessageBox.Show("Your Staff ID should be a number. Contact an Admin if you have forgotten your ID.", "Incorrect Details");
+                    return;
+                }
                 string password = staffPasswordtextBox2.Text;
 
                 // After grabbing the password we have to hash it
@@ -81,7 +95,7 @@ namespace Mockup2
                     }
                     else
                     {
-                        MessageBox.Show("Password is not correct. Please contact an Admin if you need a password reset.");
+                        MessageBox.Show("Password is not correct. Please contact an Admin if you need a password reset.","Incorrect Details");
                         string key = s[0].FirstName + " " + s[0].LastName;
                         if (!incorrectLoginAttempts.ContainsKey(key))
                         {
@@ -94,7 +108,7 @@ namespace Mockup2
                 }
                 else
                 {
-                    MessageBox.Show("ID not recognized. Contact an Admin if you have forgotten your ID.");
+                    MessageBox.Show("ID not recognized. Contact an Admin if you have forgotten your ID.","Incorrect Details");
                     return;
                 }
             }
