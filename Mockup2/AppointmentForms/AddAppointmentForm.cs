@@ -41,6 +41,10 @@ namespace Mockup2.AppointmentForms
             this.parent = parent;
             this.KeyUp += AddAppointmentForm_KeyUp;
             this.editMode = editMode;
+            if (editMode)
+            {
+                this.Text = "Edit Appointment Details";
+            }
 
             QueryBuilder b = new QueryBuilder();
             b.Select(Tables.ALL).From(Tables.STAFF_TABLE).Where(b.IsEqual(Tables.STAFF_TABLE.JobRole,"Doctor"),b.Or(),b.IsEqual(Tables.STAFF_TABLE.JobRole,"Nurse"));
@@ -161,37 +165,63 @@ namespace Mockup2.AppointmentForms
 
         private void button2_Click(object sender, EventArgs e)
         {
+            if(firstnametextBox1.Text=="" || lastnametextBox2.Text == "")
+            {
+                MessageBox.Show("Please enter both a first and last name.", "Incorrect Details");
+                return;
+            }
             string fname = firstnametextBox1.Text;
             string lname = lastnametextBox2.Text;
             patients = pf.GetPatientsByName(fname, lname);
+            if (patients.Count == 0)
+            {
+                MessageBox.Show("No patient found using those details. Please select from the dropdown box or try again.", "No Patient Found");
+                return;
+            }
             PopulateComboBoxes();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (app is null)
+            if (!editMode)
             {
-                app = new Appointment();
-                app.StaffId = staff[staffcomboBox1.SelectedIndex].ID;
-                app.PatientId = patients[patientcomboBox2.SelectedIndex].ID;
-                app.AppointmentDate = dateTimePicker1.Value;
-                app.AppointmentTime = DateTime.ParseExact(timeslotcomboBox1.SelectedItem.ToString(), "HH:mm:ss", CultureInfo.InvariantCulture);
-                app.Cause = causeTextBox.Text;
-                app.Status = statusComboBox.SelectedItem.ToString();
-                af.InsertAppointment(app);
+                try
+                {
+                    app = new Appointment();
+                    app.StaffId = staff[staffcomboBox1.SelectedIndex].ID;
+                    app.PatientId = patients[patientcomboBox2.SelectedIndex].ID;
+                    app.AppointmentDate = dateTimePicker1.Value;
+                    app.AppointmentTime = DateTime.ParseExact(timeslotcomboBox1.SelectedItem.ToString(), "HH:mm:ss", CultureInfo.InvariantCulture);
+                    app.Cause = causeTextBox.Text;
+                    app.Status = statusComboBox.SelectedItem.ToString();
+                    af.InsertAppointment(app);
+                }catch(Exception ex1)
+                {
+                    MessageBox.Show("Some input fields have been left blank.", "Please Fill All Forms");
+                    MessageBox.Show("ex1: " + ex1);
+                    return;
+                }
             }
             else
             {
-                app.StaffId = staff[staffcomboBox1.SelectedIndex].ID;
-                app.PatientId = patientID;
-                app.AppointmentDate = dateTimePicker1.Value;
-                if (timeslotcomboBox1.SelectedItem != null)
+                try
                 {
-                    app.AppointmentTime = DateTime.ParseExact(timeslotcomboBox1.SelectedItem.ToString(), "HH:mm:ss", CultureInfo.InvariantCulture);
+                    app.StaffId = staff[staffcomboBox1.SelectedIndex].ID;
+                    app.PatientId = patientID;
+                    app.AppointmentDate = dateTimePicker1.Value;
+                    if (timeslotcomboBox1.SelectedItem != null)
+                    {
+                        app.AppointmentTime = DateTime.ParseExact(timeslotcomboBox1.SelectedItem.ToString(), "HH:mm:ss", CultureInfo.InvariantCulture);
+                    }
+                    app.Cause = causeTextBox.Text;
+                    app.Status = statusComboBox.SelectedItem.ToString();
+                    af.UpdateAppointment(app);
+                }catch(Exception ex2)
+                {
+                    MessageBox.Show("Some input fields have been left blank.", "Please Fill All Forms");
+                    MessageBox.Show("ex2: " + ex2);
+                    return;
                 }
-                app.Cause = causeTextBox.Text;
-                app.Status = statusComboBox.SelectedItem.ToString();
-                af.UpdateAppointment(app);
             }
 
             if (parent.searchByName)

@@ -59,9 +59,7 @@ namespace Mockup2.Factories
         {
             return ++nextAvailableStaffID;
         }
-
-
-
+        
         /// <summary>
         /// Gets a list of Staff by their ID number. This method should only return a list of size one, but
         /// that is not guranteed.
@@ -74,11 +72,7 @@ namespace Mockup2.Factories
             b.Select(Tables.ALL).From(Tables.STAFF_TABLE).Where(b.IsEqual(Tables.STAFF_TABLE.ID,id));
             return GetStaff(b);
         }
-
-
-
-
-
+        
         /// <summary>
         /// Returns a list of Staff objects based on search critera given the QueryBuilder.
         /// </summary>
@@ -107,11 +101,7 @@ namespace Mockup2.Factories
             reader.Dispose();
             return result;
         }
-
-
-
-
-
+        
         /// <summary>
         /// Return a list of Staff members by their first and last name.
         /// </summary>
@@ -124,10 +114,7 @@ namespace Mockup2.Factories
             b.Select(Tables.ALL).From(Tables.STAFF_TABLE).Where(b.IsEqual(Tables.STAFF_TABLE.FirstName, firstName), b.And(), b.IsEqual(Tables.STAFF_TABLE.LastName, lastName));
             return GetStaff(b);
         }
-
-
-
-
+        
         /// <summary>
         /// Convenience method to get all Staff members from the database.
         /// </summary>

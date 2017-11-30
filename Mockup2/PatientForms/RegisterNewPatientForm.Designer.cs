@@ -312,7 +312,8 @@
             this.Controls.Add(this.patientLastNameTextBox);
             this.Controls.Add(this.patientFirstNameTextBox);
             this.Name = "RegisterNewPatientForm";
-            this.Text = "RegisterNewPatientForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "Register New Patient";
             this.Load += new System.EventHandler(this.RegisterNewPatientForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

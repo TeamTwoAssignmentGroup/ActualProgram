@@ -109,7 +109,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 42);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1122, 683);
+            this.tabPage1.Size = new System.Drawing.Size(1349, 683);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Appointments";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -117,7 +117,7 @@
             // Exit
             // 
             this.Exit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.Exit.Location = new System.Drawing.Point(752, 625);
+            this.Exit.Location = new System.Drawing.Point(977, 623);
             this.Exit.Name = "Exit";
             this.Exit.Size = new System.Drawing.Size(364, 52);
             this.Exit.TabIndex = 100;
@@ -197,7 +197,7 @@
             this.appointmentDataGridView.Name = "appointmentDataGridView";
             this.appointmentDataGridView.ReadOnly = true;
             this.appointmentDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.appointmentDataGridView.Size = new System.Drawing.Size(1111, 556);
+            this.appointmentDataGridView.Size = new System.Drawing.Size(1338, 556);
             this.appointmentDataGridView.TabIndex = 99;
             // 
             // StaffFirstName
@@ -279,7 +279,7 @@
             // button9
             // 
             this.button9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button9.Location = new System.Drawing.Point(979, 625);
+            this.button9.Location = new System.Drawing.Point(977, 623);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(364, 52);
             this.button9.TabIndex = 101;
@@ -498,7 +498,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 42);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(1081, 683);
+            this.tabPage3.Size = new System.Drawing.Size(1349, 683);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Rota";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -507,7 +507,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(275, 58);
+            this.label4.Location = new System.Drawing.Point(378, 55);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(223, 33);
             this.label4.TabIndex = 106;
@@ -516,7 +516,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(272, 12);
+            this.label3.Location = new System.Drawing.Point(375, 12);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(226, 33);
             this.label3.TabIndex = 105;
@@ -524,7 +524,7 @@
             // 
             // button11
             // 
-            this.button11.Location = new System.Drawing.Point(504, 98);
+            this.button11.Location = new System.Drawing.Point(607, 98);
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(249, 52);
             this.button11.TabIndex = 104;
@@ -534,14 +534,14 @@
             // 
             // seeRotaLastName
             // 
-            this.seeRotaLastName.Location = new System.Drawing.Point(504, 52);
+            this.seeRotaLastName.Location = new System.Drawing.Point(607, 52);
             this.seeRotaLastName.Name = "seeRotaLastName";
             this.seeRotaLastName.Size = new System.Drawing.Size(249, 40);
             this.seeRotaLastName.TabIndex = 103;
             // 
             // seeRotaFirstName
             // 
-            this.seeRotaFirstName.Location = new System.Drawing.Point(504, 6);
+            this.seeRotaFirstName.Location = new System.Drawing.Point(607, 6);
             this.seeRotaFirstName.Name = "seeRotaFirstName";
             this.seeRotaFirstName.Size = new System.Drawing.Size(249, 40);
             this.seeRotaFirstName.TabIndex = 102;
@@ -549,7 +549,7 @@
             // button10
             // 
             this.button10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button10.Location = new System.Drawing.Point(711, 625);
+            this.button10.Location = new System.Drawing.Point(977, 623);
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(364, 52);
             this.button10.TabIndex = 101;
@@ -562,7 +562,7 @@
             this.button1.AutoSize = true;
             this.button1.Location = new System.Drawing.Point(8, 52);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(250, 52);
+            this.button1.Size = new System.Drawing.Size(300, 52);
             this.button1.TabIndex = 1;
             this.button1.Text = "See Staff List";
             this.button1.UseVisualStyleBackColor = true;
@@ -572,7 +572,7 @@
             // 
             this.seerotadateTimePicker1.Location = new System.Drawing.Point(8, 6);
             this.seerotadateTimePicker1.Name = "seerotadateTimePicker1";
-            this.seerotadateTimePicker1.Size = new System.Drawing.Size(250, 40);
+            this.seerotadateTimePicker1.Size = new System.Drawing.Size(300, 40);
             this.seerotadateTimePicker1.TabIndex = 0;
             // 
             // ReceptionistForm
@@ -583,7 +583,8 @@
             this.Controls.Add(this.tabControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ReceptionistForm";
-            this.Text = "ReceptionistForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "Over Surgery - Receptionist";
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
@@ -614,8 +615,6 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.DataGridView appointmentDataGridView;
         private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.TextBox lastNameTextbox;
-        private System.Windows.Forms.TextBox firstNameTextbox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridViewTextBoxColumn id;
@@ -647,5 +646,7 @@
         private System.Windows.Forms.Button button11;
         private System.Windows.Forms.TextBox seeRotaLastName;
         private System.Windows.Forms.TextBox seeRotaFirstName;
+        public System.Windows.Forms.TextBox lastNameTextbox;
+        public System.Windows.Forms.TextBox firstNameTextbox;
     }
 }

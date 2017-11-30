@@ -17,6 +17,7 @@ namespace Mockup2.PatientForms
         Patient p;
         PatientFactory pf;
         ReceptionistForm parent;
+        TextBox[] compulsoryFields = new TextBox[7];
         public RegisterNewPatientForm(Patient p,PatientFactory pf,ReceptionistForm parent)
         {
             InitializeComponent();
@@ -37,14 +38,41 @@ namespace Mockup2.PatientForms
                 religiontextBox3.Text = p.Religion;
                 patientEmailTextBox.Text = p.Email;
                 patientContactNumberTextBox.Text = p.Phone;
-                
-                
+
+                this.Text = "Edit Patient Details";
+
 
             }
+
+            compulsoryFields[0] = nhsNumbertextBox1;
+            compulsoryFields[1] = patientFirstNameTextBox;
+            compulsoryFields[2] = patientLastNameTextBox;
+            compulsoryFields[3] = patientAddressTextBox;
+            compulsoryFields[4] = postcodetextBox2;
+            compulsoryFields[5] = patientNextOfKinTextBox;
+            compulsoryFields[6] = patientContactNumberTextBox;
+        }
+
+        public bool AreCompulsoryFieldsFilled()
+        {
+            foreach(TextBox tb in compulsoryFields)
+            {
+                if (tb.Text == "")
+                {
+                    return false;
+                }
+            }
+            return true;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (dateTimePicker1.Value == DateTime.Now || !AreCompulsoryFieldsFilled())
+            {
+                MessageBox.Show("All fields except religion and email are compulsory, please fill them in.",
+                    "Insufficient Details");
+                return;
+            }
             if(p is null)
             {
                 p = new Patient();
@@ -77,6 +105,9 @@ namespace Mockup2.PatientForms
                 p.Email = patientEmailTextBox.Text;
                 pf.UpdatePatient(p);
             }
+            parent.firstNameTextbox.Text = patientFirstNameTextBox.Text;
+            parent.lastNameTextbox.Text = patientLastNameTextBox.Text;
+
             parent.RefreshPatients();
             this.Close();
         }
