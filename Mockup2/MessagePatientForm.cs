@@ -37,11 +37,8 @@ namespace Mockup2
 
         private void MessagePatientForm_Load(object sender, EventArgs e)
         {
-            // Sets the size of the form upon loading
-            this.Size = new Size(1000, 800);
-            // Prevents the form from being re sized
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
-
+            this.Text = "Patient Messaging Form";
            PopulateAdminMessage();
         }
 

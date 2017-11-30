@@ -28,6 +28,16 @@ namespace Mockup2
             this.dbCon = dbCon;
             sf = new StaffFactory(dbCon);
             this.button3.Click += button3_Click;
+            this.dataGridView1.CellFormatting += DataGridView1_CellFormatting;
+        }
+
+        private void DataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.ColumnIndex > 3)
+            {
+                e.Value = (int.Parse(e.Value.ToString()) == 1) ? "On" : "Off";
+                e.FormattingApplied = true;
+            }
         }
 
         private void addStaffButton_Click(object sender, EventArgs e)
@@ -79,8 +89,10 @@ namespace Mockup2
 
         private void AdminForm_Load(object sender, EventArgs e)
         {
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MinimumSize = this.Size;
             this.MaximumSize = this.Size;
+            this.Text = "Admin Form";
 
             PopulateAdminFormStaff();
             PopulateAdminFormRota();
@@ -144,14 +156,10 @@ namespace Mockup2
                 Tables.ROTA_TABLE.Thur, Tables.ROTA_TABLE.Fri, Tables.ROTA_TABLE.Sat, Tables.ROTA_TABLE.Sun)
                 .From(Tables.ROTA_TABLE, Tables.STAFF_TABLE).Where(b.IsEqual(Tables.STAFF_TABLE.ID, Tables.ROTA_TABLE.StaffID));
             CustomTable ct = ctf.GetCustomTable(b);
+
             foreach (var row in ct.GetRows())
             {
-                foreach (var value in row.Values)
-                {
-                    Console.Write(value + " | ");
-                }
                 dataGridView1.Rows.Add(row.Values.ToArray());
-                Console.WriteLine();
             }
         }
 
@@ -176,8 +184,8 @@ namespace Mockup2
         }
         private void editStaffButton_Click(object sender, EventArgs e)
         {
-            int staffID = Convert.ToInt32(dataGridView2.SelectedRows[0].Cells[0].Value);
             // StaffID.ValueFromGrid
+            int staffID = Convert.ToInt32(dataGridView2.SelectedRows[0].Cells[0].Value);
             this.Hide();
             new EditStaffForm(dbCon, staffID).ShowDialog();
             dataGridView2.Rows.Clear();
@@ -195,10 +203,24 @@ namespace Mockup2
 
         private void removeStaffButton_Click(object sender, EventArgs e)
         {
+            if(MessageBox.Show("Are you sure you want to remove this member of staff?","Confirm Staff Removal", MessageBoxButtons.YesNo) == DialogResult.No)
+            {
+                return;
+            }
             int staffID = Convert.ToInt32(dataGridView2.SelectedRows[0].Cells[0].Value);
             sf.RemoveStaffByID(staffID);
             PopulateAdminFormStaff();
             PopulateAdminFormRota();
+        }
+
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button3_Click_2(object sender, EventArgs e)
+        {
+
         }
     }
 }

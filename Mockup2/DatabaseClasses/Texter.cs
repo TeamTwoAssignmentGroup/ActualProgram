@@ -10,7 +10,7 @@ using Twilio.Types;
 namespace Mockup2.DatabaseClasses
 {
     /// <summary>
-    /// Helper class to send text message confirmation of appointments.
+    /// Helper class to send text message confirmation of <see cref="Appointment"/>s to <see cref="Patient"/>s.
     /// </summary>
     public class Texter
     {
@@ -20,17 +20,17 @@ namespace Mockup2.DatabaseClasses
         /// <summary>
         /// Sends a text confirmation of an appointment to the supplied number, utilising the
         /// <a href="https://www.nuget.org/packages/Twilio/">Twilio NuGet package</a> and <a href="https://www.twilio.com/">Web API backend</a>. The message includes appointment date and time,
-        /// as well as the name and job role of the medical staff being seen.
+        /// as well as the name and job role of the <see cref="Staff"/> member being seen.
         /// This method expects the mobile number to be properly formatted and have the
         /// leading +44 intact; this is a requirement of the Twilio backend.
         /// 
         /// (It should be noted that at current, all texts are received by one phone number - mine. This
-        /// is a restriction in Twilio's free trial service.)
+        /// is a restriction in Twilio's free trial service. Please don't abuse my phone number :D )
         /// </summary>
         /// <param name="number">The mobile phone number to send texts to.</param>
-        /// <param name="staff">The member of <see cref="Mockup2.DatabaseClasses.Staff"/>Staff being seen.</param>
-        /// <param name="appointmentDate">The date of the <see cref="Mockup2.DatabaseClasses.Appointment"/>Appointment.</param>
-        /// <param name="appointmentTime">The time of the <see cref="Mockup2.DatabaseClasses.Appointment"/>Appointment.</param>
+        /// <param name="staff">The member of <see cref="Mockup2.DatabaseClasses.Staff"/> being seen.</param>
+        /// <param name="appointmentDate">The date of the <see cref="Mockup2.DatabaseClasses.Appointment"/>.</param>
+        /// <param name="appointmentTime">The time of the <see cref="Mockup2.DatabaseClasses.Appointment"/>.</param>
         public static void SendAppointmentText(string number, Staff staff, DateTime appointmentDate,DateTime appointmentTime)
         {
             if (!Program.SEND_TEXTS)

@@ -9,28 +9,20 @@ using static Mockup2.DatabaseClasses.Tables;
 
 namespace Mockup2.Factories
 {
-
-
     /// <summary>
     /// Helper class to pull whole MedicalNote objects from the database based on various critera.
     /// </summary>
     public class MedicalNoteFactory : AbstractFactory
-    { 
-
-
+    {
         public MedicalNoteFactory(DBConnection dbCon) : base(dbCon)
         {
         }
-
-
-
-
-
+        
         /// <summary>
-        /// Gets all MedicalNote objects that match the given SQL query criteria contained in the QueryBuilder.
+        /// Gets all <see cref="MedicalNotes"/> objects that match the given SQL query criteria contained in the <see cref="QueryBuilder"/>.
         /// </summary>
-        /// <param name="b">QueryBuilder containing the SQL query.</param>
-        /// <returns>A list of MedicalNote objects.</returns>
+        /// <param name="b"><see cref="QueryBuilder"/> containing the SQL query.</param>
+        /// <returns>A <see cref="List{MedicalNotes}"/>.</returns>
         public List<MedicalNotes> GetMedicalNotes(QueryBuilder b)
         {
 
@@ -53,15 +45,12 @@ namespace Mockup2.Factories
             return result;
 
         }
-
-
-
-
+        
         /// <summary>
-        /// Convenience method to get all MedicalNotes for a particular patient, keyed by their id.
+        /// Convenience method to get all <see cref="MedicalNotes"/> for a particular patient, keyed by their id.
         /// </summary>
-        /// <param name="patientID">ID of the patient to get MedicalNotes for.</param>
-        /// <returns>A list of MedicalNotes for the Patient given by id.</returns>
+        /// <param name="patientID">ID of the <see cref="Patient"/> to get <see cref="MedicalNotes"/> for.</param>
+        /// <returns>A <see cref="List{MedicalNotes}"/> for the <see cref="Patient"/> given by ID.</returns>
         public List<MedicalNotes> GetMedicalNotes( int patientID)
         {
             QueryBuilder b = new QueryBuilder();
@@ -69,14 +58,10 @@ namespace Mockup2.Factories
             return GetMedicalNotes(b);
         }
 
-
-
-
-
         /// <summary>
-        /// Convenience method to get all the MedicalNotes in the database.
+        /// Convenience method to get all the <see cref="MedicalNotes"/> in the database.
         /// </summary>
-        /// <returns>A list of all MedialNotes in the database.</returns>
+        /// <returns>A <see cref="List{MedicalNotes}"/> containing all <see cref="MedicalNotes"/> in the database.</returns>
         public List<MedicalNotes> GetMedicalNotes()
         { 
             QueryBuilder b = new QueryBuilder();
@@ -84,14 +69,11 @@ namespace Mockup2.Factories
             return GetMedicalNotes(b);
         }
 
-
-
-
-
         /// <summary>
-        /// Convenience method to insert a new MedicalNotes object into the database.
+        /// Convenience method to insert a new <see cref="List{MedicalNotes}"/> objects into the database, linked to a <see cref="Patient"/>.
         /// </summary>
-        /// <param name="mn">The MedicalNotes object to pull data from.</param>
+        /// <param name="o">The <see cref="Patient"/> to link the notes to.</param>
+        /// <param name="notes">A <see cref="List{string}"/> that are the notes needing to be added. </param>
         public void InsertPatientNote(Patient o, List<string>notes)
         {
             List<MedicalNotes> getID = GetMedicalNotes(o.ID);
@@ -120,9 +102,6 @@ namespace Mockup2.Factories
                 cmd.ExecuteNonQuery();
             }
         }
-
-
-
 
     }
 }

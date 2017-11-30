@@ -64,6 +64,7 @@ namespace Mockup2
             StaffName = staffName;
             StaffID = staffID;
             UpdateRotaDays();
+            this.Text = "Update Staff Details";
         }
         private void UpdateRotaDays()
         {
@@ -95,7 +96,7 @@ namespace Mockup2
                 foreach (var value in row.Values)
                 {
 
-                    Console.Write(value + " | ");
+                    //Console.Write(value + " | ");
                 }
                 dataGridView1.Rows.Add(row.Values.ToArray());
                 Console.WriteLine();

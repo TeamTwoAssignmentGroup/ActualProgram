@@ -17,7 +17,7 @@ namespace Mockup2.DatabaseClasses
     static class Program
     {
         public static readonly bool ENFORCE_LOGIN = true;
-        public static readonly bool SEND_TEXTS = false;
+        public static readonly bool SEND_TEXTS = true;
         public static readonly bool SEND_EMAILS = true;
         public static string AUTH_TOKEN= "";
 
@@ -40,9 +40,10 @@ namespace Mockup2.DatabaseClasses
             QueryBuilder.DumpLog();
             loginForm.DumpIncorrectLogins();
             Console.ReadLine();
-        }  
-        
+        }
+
         /// <summary>
+        /// (Taken from <see href="https://stackoverflow.com/a/6839784"/> but tweaked slightly)
         /// Helper method to reliable generate hashed strings in an easily reproducably manner.
         /// Uses <see cref="System.Security.Cryptography.SHA256CryptoServiceProvider"/> for hashing.
         /// </summary>

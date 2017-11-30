@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Mockup2.Factories
 {
     /// <summary>
-    /// An astract factory class for othe table factories to inherit from. Provides
+    /// An astract factory class for other table factories to inherit from. Provides
     /// some convenience methods for parsing data from the database.
     /// </summary>
     public abstract class AbstractFactory
@@ -20,31 +20,31 @@ namespace Mockup2.Factories
         }
 
         /// <summary>
-        /// Parses the given object as an int.
+        /// Parses the given <see cref="object"/> as an <see cref="int"/>.
         /// </summary>
-        /// <param name="o">Object to parse.</param>
-        /// <returns>An int from the object.</returns>
+        /// <param name="o"><see cref="object"/> to parse.</param>
+        /// <returns>An <see cref="int"/> from the <see cref="object"/>.</returns>
         internal int GetInt(object o)
         {
             return int.Parse(o + "");
         }
 
         /// <summary>
-        /// Converts the given object to a string. Simply calls
+        /// Converts the given <see cref="object"/> to a <see cref="string"/>. Simply calls
         /// <code>o.ToString()</code>
         /// </summary>
-        /// <param name="o">The object to parse.</param>
-        /// <returns>A string from the object.</returns>
+        /// <param name="o">The <see cref="object"/> to parse.</param>
+        /// <returns>A <see cref="string"/> from the object.</returns>
         internal string GetString(object o)
         {
             return o.ToString();
         }
 
         /// <summary>
-        /// Parses the object as a boolean.
+        /// Parses the <see cref="object"/> as a <see cref="bool"/>.
         /// </summary>
-        /// <param name="o">The object to parse.</param>
-        /// <returns>A boolean representation of the object.</returns>
+        /// <param name="o">The <see cref="object"/> to parse.</param>
+        /// <returns>A <see cref="bool"/> representation of the <see cref="object"/>.</returns>
         internal bool GetBool(object o)
         {
             if(o is int)
@@ -65,10 +65,10 @@ namespace Mockup2.Factories
         }
 
         /// <summary>
-        /// Parses the object as a DateTime object.
+        /// Parses the <see cref="object"/> as a <see cref="DateTime"/> object.
         /// </summary>
-        /// <param name="o">The object to parse.</param>
-        /// <returns>A DateTime representation of the object, if possible.</returns>
+        /// <param name="o">The <see cref="object"/> to parse.</param>
+        /// <returns>A <see cref="DateTime"/> representation of the <see cref="object"/>, if possible.</returns>
         internal DateTime GetDateTime(object o)
         {
             DateTime result;

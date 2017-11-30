@@ -20,13 +20,8 @@ namespace Mockup2.Factories
 
         public TestResultFactory(DBConnection dbCon) : base(dbCon)
         {
-
-
         }
-
-
-
-
+        
         /// <summary>
         /// Get a list of TestResult objects based on search criteria given the QueryBuilder.
         /// </summary>
@@ -62,11 +57,7 @@ namespace Mockup2.Factories
 
 
         }
-
-
-
-
-
+        
         /// <summary>
         /// Convenience method to get all 
         /// </summary>
@@ -78,9 +69,7 @@ namespace Mockup2.Factories
             b.Select(Tables.ALL).From(Tables.TESTRESULT_TABLE).Where(b.IsEqual(Tables.TESTRESULT_TABLE.PatientID,patientID));
             return GetTestResults(b);
         }
-
-
-
+        
         /// <summary>
         /// Returns a list of test results from the database by using query builder
         /// </summary>

@@ -9,8 +9,16 @@ using static Mockup2.DatabaseClasses.Tables;
 
 namespace Mockup2.Factories
 {
+    /// <summary>
+    /// A convenience class to handle pulling data from the database that doesn't match any one of the predefined templates (<see cref="Patient"/>, <see cref="Staff"/>, etc).
+    /// Works in conjunction with <see cref="CustomTable"/>.
+    /// </summary>
     public class CustomTableFactory : AbstractFactory
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dbCon"></param>
         public CustomTableFactory(DBConnection dbCon) : base(dbCon)
         {
         }

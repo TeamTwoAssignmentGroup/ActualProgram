@@ -17,6 +17,9 @@ namespace Mockup2
     {
         DBConnection dbCon;
         QueryBuilder b;
+        StaffFactory sf;
+        RotaFactory rf;
+        Staff s;
         int m_staffID;
 
         public int StaffID
@@ -35,6 +38,7 @@ namespace Mockup2
         {
             InitializeComponent();
             this.dbCon = dbCon;
+            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             StaffID = staffID;
             if (StaffID != 0)
             {
@@ -51,9 +55,9 @@ namespace Mockup2
         private void populateEditInfomation()
         {
             //Lable Button
-            button1.Text = "Update Staff Member";
+            this.Text = button1.Text = "Update Staff Member";
             //Query
-            StaffFactory sf = new StaffFactory(dbCon);
+            sf = new StaffFactory(dbCon);
             List<Staff> staffMember = sf.GetStaffByID(StaffID);
 
             textBox2.Text = staffMember.ElementAtOrDefault(0).FirstName;
@@ -66,19 +70,25 @@ namespace Mockup2
 
         private void AddStaff()
         {
+            //Lable Window
             //Lable Button
-            button1.Text = "Add Staff Member";
+            this.Text = button1.Text = "Add Staff Member";
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             b = new QueryBuilder();
-            switch(StaffID)
+            rf = new RotaFactory(dbCon);
+            s = new Staff();
+            bool validatePassed;
+            switch (StaffID)
             {
                 case 0:
                     object[] valuesToInput = new object[8];
                     //ID
-                    valuesToInput[0] = null;
+                    sf = new StaffFactory(dbCon);
+                    int id = sf.GetNextAvailableStaffID();
+                    valuesToInput[0] = id;
                     //first Name
                     valuesToInput[1] = textBox2.Text;
                     //Last Name
@@ -86,8 +96,7 @@ namespace Mockup2
                     //Job Role
                     valuesToInput[3] = comboBox1.Text;
                     //Password
-                    valuesToInput[4] = textBox7.Text;
-                    valuesToInput[4] = Program.GetHashedString(valuesToInput[4].ToString());
+                    valuesToInput[4] = textBox7.Text.Equals(null) ? null : Program.GetHashedString(textBox7.ToString());
                     //Email
                     valuesToInput[5] = textBox5.Text;
                     //Address
@@ -95,23 +104,23 @@ namespace Mockup2
                     //Post Code
                     valuesToInput[7] = textBox6.Text;
 
-                    StaffFactory sf = new StaffFactory(dbCon);
-                    RotaFactory rf = new RotaFactory(dbCon);
-                    int id = sf.GetNextAvailableStaffID();
-                    valuesToInput[0] = id;
+                    validatePassed = ValidateInput(valuesToInput, 1);
+                    if (validatePassed)
+                    {
+                        b.Insert(Tables.STAFF_TABLE).Values(valuesToInput);
+                        MySqlCommand cmdAdd = new MySqlCommand(b.ToString(), dbCon.GetConnection());
+                        cmdAdd.ExecuteNonQuery();
 
-                    
+                        s.ID = id;
+                        rf.InsertStaff(s);
 
-                    b.Insert(Tables.STAFF_TABLE).Values(valuesToInput);
-                    MySqlCommand cmdAdd = new MySqlCommand(b.ToString(), dbCon.GetConnection());
-                    cmdAdd.ExecuteNonQuery();
-
-                    Staff s = new Staff();
-                    s.ID = id;
-                    rf.InsertStaff(s);
-
-                    MessageBox.Show("Staff Add Successful");
-                    this.Close();
+                        MessageBox.Show("Staff Add Successful");
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("You have not entered all the data, please fill out the form to continue.");
+                    }
                     break;
                 default:
                     //Update Staff
@@ -128,22 +137,56 @@ namespace Mockup2
                     valuesToInsert[9] = textBox6.Text;
                     valuesToInsert[10] = Tables.STAFF_TABLE.JobRole;
                     valuesToInsert[11] = comboBox1.Text;
-                    //valuesToInsert[12] = Tables.STAFF_TABLE.Password;
-                    //valuesToInsert[13] = textBox7.Text;
-                    b.Update(Tables.STAFF_TABLE).Set(valuesToInsert).Where(b.IsEqual(Tables.STAFF_TABLE.ID, StaffID));
-                    MySqlCommand cmdEdit = new MySqlCommand(b.ToString(), dbCon.GetConnection());
-                   cmdEdit.ExecuteNonQuery();
-                    MessageBox.Show("Staff Edit Successful");
-                    this.Close();
+
+                    validatePassed = ValidateInput(valuesToInsert, 2);
+
+                    if (validatePassed)
+                    {
+                        b.Update(Tables.STAFF_TABLE).Set(valuesToInsert).Where(b.IsEqual(Tables.STAFF_TABLE.ID, StaffID));
+                        MySqlCommand cmdEdit = new MySqlCommand(b.ToString(), dbCon.GetConnection());
+                        cmdEdit.ExecuteNonQuery();
+                        MessageBox.Show("Staff Edit Successful");
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("You have not entered all the data, please fill out the form to continue.");
+                    }
                     break;
             }
+        }
+        private bool ValidateInput(object[] dataToValidate, int varToSwitch)
+        {
+            int step = 0, count = 0;
+            bool flg = true;
+            switch(varToSwitch)
+            {
+                case 1:
+                    // step of 1
+                    step = 0;
+                    count = 1;
+                    break;
+                case 2:
+                    //step of 2
+                    step = 1;
+                    count = 2;
+                    break;
+            }
+            // Doing Stuff
+            for (int i = step; i < dataToValidate.Length; i+= count)
+            {
+                if ((dataToValidate[i] == null) || (dataToValidate[i].ToString() == ""))
+                {
+                    flg = false;
+                }
+            }
+            return flg;
         }
 
         private void EditStaffForm_Load(object sender, EventArgs e)
         {
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.WindowState = FormWindowState.Maximized;
-            this.MinimumSize = this.Size;
-            this.MaximumSize = this.Size;
         }
 
         private void button2_Click(object sender, EventArgs e)

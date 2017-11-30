@@ -20,9 +20,10 @@ namespace Mockup2.Classes
     /// </summary>
     public static class Emailer
     {
-
         /// <summary>
         /// Sends an email message to the supplied email address, using the supplied subject and message.
+        /// Attaches the supplied <see cref="Attachment"/> objects.
+        /// This happends in a new <see cref="Thread"/> to prevent the GUI from hanging.
         /// </summary>
         /// <param name="email">Email address of the recipient.</param>
         /// <param name="subject">Subject of the email message.</param>
@@ -60,11 +61,12 @@ namespace Mockup2.Classes
 
         /// <summary>
         /// Convenience method to send email using strings of local file names as attachments.
+        /// Calls <see cref="SendEmailWithAttachments(string, string, string, Attachment[])"/>.
         /// </summary>
         /// <param name="email">Email address to send email to.</param>
         /// <param name="subject">Subject of the email.</param>
         /// <param name="message">Message body of the email.</param>
-        /// <param name="fileNamesToAttach">A fixed length array of strings representing local file names to be used as attachments.</param>
+        /// <param name="fileNamesToAttach">A <see cref="T:string[]"/> representing local file names to be used as attachments.</param>
         public static void SendEmail(string email, string subject, string message, params string[] fileNamesToAttach)
         {
             List<Attachment> attachments = new List<Attachment>();
@@ -79,11 +81,13 @@ namespace Mockup2.Classes
         }
 
         /// <summary>
-        /// Sends a preformatted HTML email to the supplied email address, which should be a Patient's, detailing their appointment date and time
-        /// as well as the member of staff they will be seeing.
+        /// Sends a preformatted HTML email to the supplied email address, which should be a <see cref="Patient"/>'s, detailing their appointment date and time
+        /// as well as the member of <see cref="Staff"/> they will be seeing.
+        /// 
+        /// On a sidenote, attaching images to emails has got to be easier than this. What a faff.
         /// </summary>
         /// <param name="email">Email address of patient.</param>
-        /// <param name="staff">The Staff object that representing the member of staff that the patient will be seeing.</param>
+        /// <param name="staff">The <see cref="Staff"/> object that representing the member of staff that the patient will be seeing.</param>
         /// <param name="date">The date of the appointment.</param>
         /// <param name="time">The time of the appointment.</param>
         public static void SendAppointmentEmail(string email, Staff staff, DateTime date,DateTime time)

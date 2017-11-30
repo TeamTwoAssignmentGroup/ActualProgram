@@ -13,11 +13,6 @@ namespace Mockup2.Factories
 
     public class MedicineInFactory :AbstractFactory
     {
-
-         DBConnection con;
-
-
-
             /// <summary>
             /// Class inherits from the Abstract Factory class
             /// </summary>
@@ -27,14 +22,12 @@ namespace Mockup2.Factories
             
             }
 
-
-
             /// <summary>
             /// This method returns a list of medications from the database
             /// Takes a querybuilder as arguement
             /// </summary>
-            /// <param name="b"></param>
-            /// <returns></returns>
+            /// <param name="b">The <see cref="QueryBuilder"/> containing code to execute.</param>
+            /// <returns>A <see cref="List{MedicationInstance}"/>.</returns>
             public List<MedicationInstance> GetMedicationID(QueryBuilder b)
             {
                 MedicationInstance a = new MedicationInstance();
@@ -60,15 +53,12 @@ namespace Mockup2.Factories
 
             }
 
-
-
-
             /// <summary>
             /// This function returns a list of medication instances that belongs to a prescription
             /// This function only relevant from database connection and to assign a new prescription
             /// </summary>
-            /// <param name="prescriptionId"></param>
-            /// <returns></returns>
+            /// <param name="prescriptionId">The ID of the <see cref="Prescription"/> to match <see cref="MedicationInstance"/>s to.</param>
+            /// <returns>A <see cref="List{MedicationInstance}"/>.</returns>
             public List<MedicationInstance> GetMedicineIdByPrescription(int prescriptionId)
             {
                 QueryBuilder b = new QueryBuilder();
@@ -76,14 +66,11 @@ namespace Mockup2.Factories
                 return GetMedicationID(b);
             }
 
-
-
-
         /// <summary>
         /// This method returns a list of medications when medication id entered
         /// </summary>
-        /// <param name="medicineId"></param>
-        /// <returns></returns>
+        /// <param name="medicineId">ID of the <see cref="Medication"/> object.</param>
+        /// <returns>A <see cref="List{Medication}"/> that have the supplied ID.</returns>
         public List<Medication> GetMedicneNameById(int medicineId)
         {
             QueryBuilder b = new QueryBuilder();
@@ -91,14 +78,11 @@ namespace Mockup2.Factories
             return GetMedicationName(b);
         }
 
-
-
-
         /// <summary>
         /// This method returns a medication list based on the query executed
         /// </summary>
-        /// <param name="b"></param>
-        /// <returns></returns>
+        /// <param name="b">The <see cref="QueryBuilder"/> containing the code to execute.</param>
+        /// <returns>A <see cref="List{Medication}"/>.</returns>
         public List<Medication> GetMedicationName(QueryBuilder b)
         {
             Medication a = new Medication();
@@ -125,13 +109,10 @@ namespace Mockup2.Factories
 
         }
 
-
-
-
         /// <summary>
         /// This method returns all the medications which are available in the database
         /// </summary>
-        /// <returns></returns>
+        /// <returns>A <see cref="List{Medication}"/> containing all <see cref="Medication"/>s available in the database.</returns>
         public List<Medication>  getAllMedication()
         {
 
@@ -140,13 +121,11 @@ namespace Mockup2.Factories
             return GetAllMedicationAvailable(qb);
         }
 
-
-
         /// <summary>
-        /// This methos returns a list of medications 
+        /// This method returns a list of medications 
         /// </summary>
-        /// <param name="b"></param>
-        /// <returns></returns>
+        /// <param name="b">The <see cref="QueryBuilder"/> containing the code to execute.</param>
+        /// <returns>A <see cref="List{Medication}"/> that match the criteria set in the <see cref="QueryBuilder"/>.</returns>
         public List<Medication> GetAllMedicationAvailable(QueryBuilder b)
         {
             Medication a = new Medication();
@@ -173,13 +152,10 @@ namespace Mockup2.Factories
 
         }
 
-
-
-
         /// <summary>
         /// This mehtod creates a connection in the database between two tables by entering medication instance table data
         /// </summary>
-        /// <param name="instance"></param>
+        /// <param name="instance">The <see cref="MedicationInstance"/> to insert into the database.</param>
         public void addmedicationInstance(MedicationInstance instance)
         {
  
@@ -197,12 +173,6 @@ namespace Mockup2.Factories
                 cmd.ExecuteNonQuery();
 
         }
-
-
-
-
-
-
 
     }
 }

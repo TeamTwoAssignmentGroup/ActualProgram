@@ -12,15 +12,13 @@ namespace Mockup2.Factories
     /// </summary>
     public class PatientFactory : AbstractFactory
     {
-        
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="con"></param>
         public PatientFactory(DBConnection con) : base(con)
         {
         }
-
-
-
-
 
         /// <summary>
         /// Inserts the given <see cref="Mockup2.DatabaseClasses.Patient"/> information into the database.
@@ -33,10 +31,6 @@ namespace Mockup2.Factories
             MySqlCommand cmd = new MySqlCommand(b.ToString(), dbCon.GetConnection());
             cmd.ExecuteNonQuery();
         }
-
-
-
-
 
         /// <summary>
         /// Updates the given <see cref="Mockup2.DatabaseClasses.Patient"/> information in the database.
@@ -62,9 +56,6 @@ namespace Mockup2.Factories
             cmd.ExecuteNonQuery();
 
         }
-
-
-
 
         /// <summary>
         /// Returns a list of <see cref="Mockup2.DatabaseClasses.Patient"/>s based on certain search criteria, provided
@@ -106,10 +97,6 @@ namespace Mockup2.Factories
 
         }
 
-
-
-
-
         /// <summary>
         /// Delete an entry from the Patient table in the database,
         /// based on information given by the <see cref="Mockup2.DatabaseClasses.Patient"/> object.
@@ -122,9 +109,6 @@ namespace Mockup2.Factories
             MySqlCommand cmd = new MySqlCommand(b.ToString(), dbCon.GetConnection());
             cmd.ExecuteNonQuery();
         }
-
-
-
 
         /// <summary>
         /// Conveience method to get all <see cref="Mockup2.DatabaseClasses.Patient"/>s by their first and last name.
@@ -143,9 +127,6 @@ namespace Mockup2.Factories
             return GetPatients(b);
         }
 
-
-
-
         /// <summary>
         /// Returns a <see cref="Mockup2.DatabaseClasses.Patient"/> by their Id number.
         /// </summary>
@@ -159,9 +140,6 @@ namespace Mockup2.Factories
 
         }
 
-
-
-
         /// <summary>
         /// This method returns a singel patient object from the database by ID
         /// </summary>
@@ -174,9 +152,6 @@ namespace Mockup2.Factories
             return GetPatientByIdNumber(b);
 
         }
-
-
-
 
         /// <summary>
         /// This method returns a single patient from the database
@@ -224,11 +199,9 @@ namespace Mockup2.Factories
                 reader.Dispose();
                 return result;
 
-            }
 
-
-
-
+        }
+        
         /// <summary>
         /// Convenience method to return all <see cref="Mockup2.DatabaseClasses.Patient"/>s currently stored in the database.
         /// </summary>
@@ -240,9 +213,6 @@ namespace Mockup2.Factories
             return GetPatients(b);
         }
 
-
-
-
         /**
          * returns a patient object by finding it in the database by first and last name
          * */
@@ -253,9 +223,6 @@ namespace Mockup2.Factories
 
             return getPatient(firstName,lastName,q);
         }
-
-
-
 
         /**
          * Executes query in the database to return details to getAPatient() method
@@ -299,8 +266,6 @@ namespace Mockup2.Factories
             return result;
 
         }
-
-
 
     }
 }

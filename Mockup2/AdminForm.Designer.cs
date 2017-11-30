@@ -118,7 +118,7 @@
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(153, 52);
             this.button4.TabIndex = 2;
-            this.button4.Text = "Exit";
+            this.button4.Text = "Logout";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
@@ -132,6 +132,7 @@
             this.button3.TabIndex = 0;
             this.button3.Text = "Update";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click_2);
             // 
             // dataGridView1
             // 
@@ -139,6 +140,9 @@
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AllowUserToResizeColumns = false;
             this.dataGridView1.AllowUserToResizeRows = false;
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -154,7 +158,6 @@
             this.Friday,
             this.Saturday,
             this.Sunday});
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Top;
             this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dataGridView1.Location = new System.Drawing.Point(3, 3);
             this.dataGridView1.MultiSelect = false;
@@ -162,7 +165,7 @@
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(994, 609);
+            this.dataGridView1.Size = new System.Drawing.Size(994, 614);
             this.dataGridView1.TabIndex = 0;
             // 
             // Rota_StaffID
@@ -261,18 +264,19 @@
             // button5
             // 
             this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button5.Location = new System.Drawing.Point(839, 618);
+            this.button5.Location = new System.Drawing.Point(839, 623);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(153, 52);
             this.button5.TabIndex = 3;
-            this.button5.Text = "Exit";
+            this.button5.Text = "Logout";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // removeStaffButton
             // 
+            this.removeStaffButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.removeStaffButton.AutoSize = true;
-            this.removeStaffButton.Location = new System.Drawing.Point(418, 618);
+            this.removeStaffButton.Location = new System.Drawing.Point(379, 623);
             this.removeStaffButton.Name = "removeStaffButton";
             this.removeStaffButton.Size = new System.Drawing.Size(253, 52);
             this.removeStaffButton.TabIndex = 2;
@@ -282,8 +286,9 @@
             // 
             // editStaffButton
             // 
+            this.editStaffButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.editStaffButton.AutoSize = true;
-            this.editStaffButton.Location = new System.Drawing.Point(213, 618);
+            this.editStaffButton.Location = new System.Drawing.Point(195, 623);
             this.editStaffButton.Name = "editStaffButton";
             this.editStaffButton.Size = new System.Drawing.Size(178, 52);
             this.editStaffButton.TabIndex = 1;
@@ -293,8 +298,9 @@
             // 
             // addStaffButton
             // 
+            this.addStaffButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.addStaffButton.AutoSize = true;
-            this.addStaffButton.Location = new System.Drawing.Point(6, 618);
+            this.addStaffButton.Location = new System.Drawing.Point(8, 623);
             this.addStaffButton.Name = "addStaffButton";
             this.addStaffButton.Size = new System.Drawing.Size(181, 52);
             this.addStaffButton.TabIndex = 0;
@@ -308,6 +314,9 @@
             this.dataGridView2.AllowUserToDeleteRows = false;
             this.dataGridView2.AllowUserToResizeColumns = false;
             this.dataGridView2.AllowUserToResizeRows = false;
+            this.dataGridView2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridView2.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -319,14 +328,13 @@
             this.Email,
             this.Address,
             this.PostCode});
-            this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Top;
             this.dataGridView2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.dataGridView2.Location = new System.Drawing.Point(3, 3);
             this.dataGridView2.MultiSelect = false;
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.ReadOnly = true;
             this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView2.Size = new System.Drawing.Size(994, 581);
+            this.dataGridView2.Size = new System.Drawing.Size(994, 614);
             this.dataGridView2.TabIndex = 0;
             // 
             // StaffID
@@ -410,11 +418,11 @@
             // button6
             // 
             this.button6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button6.Location = new System.Drawing.Point(824, 604);
+            this.button6.Location = new System.Drawing.Point(839, 623);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(153, 52);
             this.button6.TabIndex = 3;
-            this.button6.Text = "Exit";
+            this.button6.Text = "Logout";
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
