@@ -22,15 +22,7 @@ namespace Mockup2.DatabaseClasses
         string religion;
         string email;
         string phone;
-        //bool served=false;
-
-
-
-        //public bool Served
-        //{
-        //    set { served = value; }
-        //    get { return served; }
-        //}
+       
 
 
         public DateTime DOB

@@ -21,7 +21,10 @@ namespace Mockup2
         private MedicationInstance medicationAndPrescription = new MedicationInstance();
         private int index;
         private bool ticked;
+        private bool isPresent =false;
 
+        public bool PrescriptionFormRunning
+        { get { return isPresent; } }
 
 
 
@@ -34,6 +37,7 @@ namespace Mockup2
             medFact = new MedicationFactory(dbCon);
             InitializeComponent();
             showMedications();
+            
 
         }
 
@@ -59,6 +63,7 @@ namespace Mockup2
         {
 
             patient = o;
+
         }
 
 
@@ -86,12 +91,15 @@ namespace Mockup2
 
                 createNewPrescription(medications[index].ScientificName.ToString());
                 this.Hide();
+                isPresent = true;
 
             }
 
             if (result == System.Windows.Forms.DialogResult.No)
             {
             }
+
+            isPresent = false;
         }
 
 
