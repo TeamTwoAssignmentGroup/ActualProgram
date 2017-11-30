@@ -10,11 +10,10 @@ using static Mockup2.DatabaseClasses.Tables;
 
 namespace Mockup2.Factories
 {
-
-
-
-
-    class MedicationFactory:AbstractFactory
+    /// <summary>
+    /// Convenience class to help get information out of the database that concerns <see cref="Medication"/>s.
+    /// </summary>
+    public class MedicationFactory:AbstractFactory
     {
 
         /// <summary>
@@ -23,20 +22,13 @@ namespace Mockup2.Factories
         /// <param name="dbCon"></param>
         public MedicationFactory(DBConnection dbCon) : base(dbCon)
         {
-
-
         }
-
-
-
-
-
 
         /// <summary>
         /// Returns a medication id from the database by name
         /// </summary>
-        /// <param name = "scientificName" ></ param >
-        /// < returns ></ returns >
+        /// <param name="b"></param>
+        /// <returns ></returns>
        private int md(QueryBuilder b)
         {
 
@@ -61,10 +53,7 @@ namespace Mockup2.Factories
 
             return i;
         }
-
-
-
-
+        
         /// <summary>
         /// 
         /// </summary>
@@ -77,9 +66,6 @@ namespace Mockup2.Factories
 
             return md(qb);
         }
-
-
-
 
     }
 }

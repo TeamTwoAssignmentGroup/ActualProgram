@@ -148,10 +148,10 @@ namespace Mockup2
             {
                 foreach (var value in row.Values)
                 {
-                    Console.Write(value + " | ");
+                    //Console.Write(value + " | ");
                 }
                 dataGridView1.Rows.Add(row.Values.ToArray());
-                Console.WriteLine();
+                //Console.WriteLine();
             }
         }
 
@@ -195,10 +195,24 @@ namespace Mockup2
 
         private void removeStaffButton_Click(object sender, EventArgs e)
         {
+            if(MessageBox.Show("Are you sure you want to remove this member of staff?","Confirm Staff Removal", MessageBoxButtons.YesNo) == DialogResult.No)
+            {
+                return;
+            }
             int staffID = Convert.ToInt32(dataGridView2.SelectedRows[0].Cells[0].Value);
             sf.RemoveStaffByID(staffID);
             PopulateAdminFormStaff();
             PopulateAdminFormRota();
+        }
+
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button3_Click_2(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -110,7 +110,7 @@ namespace Mockup2
                     s.ID = id;
                     rf.InsertStaff(s);
 
-                    MessageBox.Show("Staff Add Successful");
+                    MessageBox.Show("Staff Add Successful","Info");
                     this.Close();
                     break;
                 default:
@@ -133,7 +133,7 @@ namespace Mockup2
                     b.Update(Tables.STAFF_TABLE).Set(valuesToInsert).Where(b.IsEqual(Tables.STAFF_TABLE.ID, StaffID));
                     MySqlCommand cmdEdit = new MySqlCommand(b.ToString(), dbCon.GetConnection());
                    cmdEdit.ExecuteNonQuery();
-                    MessageBox.Show("Staff Edit Successful");
+                    MessageBox.Show("Staff Edit Successful","Info");
                     this.Close();
                     break;
             }

@@ -21,11 +21,20 @@ namespace Mockup2
         {
             InitializeComponent();
             this.dbCon = dbCon;
+            this.textBox2.KeyUp += TextBox2_KeyUp;
+        }
+
+        private void TextBox2_KeyUp(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                button1_Click(sender, e);
+            }
         }
 
         private void ResetPasswordForm_Load(object sender, EventArgs e)
         {
-            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            //this.FormBorderStyle = FormBorderStyle.FixedSingle;
             PopulatePassword();
            
         }
@@ -35,10 +44,20 @@ namespace Mockup2
             int staffID = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
             string password = textBox2.Text;
             password = Program.GetHashedString(password);
+
+            if(textBox1.Text != textBox2.Text)
+            {
+                MessageBox.Show("Passwords do not match.", "Incorrect Details");
+                textBox1.Text = "";
+                textBox2.Text = "";
+                return;
+            }
+
             b = new QueryBuilder();
             b.Update(Tables.STAFF_TABLE).Set(Tables.STAFF_TABLE.Password,password).Where(b.IsEqual(Tables.STAFF_TABLE.ID,staffID));
             MySqlCommand command = new MySqlCommand(b.ToString(),dbCon.GetConnection());
             command.ExecuteNonQuery();
+            MessageBox.Show("Password changed successfully.", "Password Change");
             this.Close();
         }
 

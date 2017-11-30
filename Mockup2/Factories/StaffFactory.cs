@@ -15,6 +15,11 @@ namespace Mockup2.Factories
     public class StaffFactory : AbstractFactory
     {
         private static int nextAvailableStaffID = 0;
+
+        /// <summary>
+        /// Calls <code>GetLatestStaffID()</code> to ensure <see cref="Staff"/> objects are created witha valid ID.
+        /// </summary>
+        /// <param name="dbCon">The instance of <see cref="DBConnection"/> we are using.</param>
         public StaffFactory(DBConnection dbCon) : base(dbCon)
         {
             GetLatestStaffID();
@@ -125,9 +130,6 @@ namespace Mockup2.Factories
             b.Select(Tables.ALL).From(Tables.STAFF_TABLE);
             return GetStaff(b);
         }
-
-
-
 
     }
 }

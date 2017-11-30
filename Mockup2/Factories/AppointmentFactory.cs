@@ -10,19 +10,21 @@ using static Mockup2.DatabaseClasses.Tables;
 
 namespace Mockup2.Factories
 {
+    /// <summary>
+    /// Convenience class to help with the inserting, selecting, and updating of <see cref="Appointment"/> objects in the database.
+    /// </summary>
     public class AppointmentFactory : AbstractFactory
     {
         private static int nextAvailableAppointmentID;
 
+        /// <summary>
+        /// Sets the next availalbe appointment ID to ensure that appointments can be inserted with an ID that is suitable.
+        /// </summary>
+        /// <param name="dbCon"></param>
         public AppointmentFactory(DBConnection dbCon) : base(dbCon)
         {
             SetNextAvailableAppointmentID();
         }
-
-
-
-
-
 
         /// <summary>
         /// Returns the next available appointment id. 
@@ -33,14 +35,9 @@ namespace Mockup2.Factories
             return ++nextAvailableAppointmentID;
         }
 
-
-
-
-
-
         /// <summary>
         /// Sets the next available appointment id by pulling the last listed
-        /// Appointment from the database. Should only be called once.
+        /// <see cref="Appointment"/> from the database. Should only be called once.
         /// </summary>
         private void SetNextAvailableAppointmentID()
         {
@@ -52,15 +49,11 @@ namespace Mockup2.Factories
             }
         }
 
-
-
-
-
         /// <summary>
-        /// Returns a list of formatted strings to be used as timeslots when booking an appointment.
+        /// Returns a list of formatted <see cref="string"/> to be used as timeslots when booking an appointment.
         /// Timeslot increment is given as 10 minutes.
         /// </summary>
-        /// <returns>A list of strings formatted in the following way: hh:mm:ss, for example: 09:40:00</returns>
+        /// <returns>A <see cref="List{String}"/> formatted in the following way: hh:mm:ss, for example: 09:40:00</returns>
         public List<string> GetTimeslots()
         {
             List<string> result = new List<string>();
@@ -92,18 +85,14 @@ namespace Mockup2.Factories
             return result;
         }
 
-
-
-
-
         /// <summary>
         /// Returns a list of Appointments that match the critera given by the QueryBuilder.
         /// In order to get sensible results, the first part of the query should be:
         /// SELECT * FROM Appointment
         /// with only the Where changing.
         /// </summary>
-        /// <param name="b">The QueryBuilder to use as the SQL query.</param>
-        /// <returns>A list of Appointments that match the SQL query.</returns>
+        /// <param name="b">The <see cref="QueryBuilder"/> to use as the SQL query.</param>
+        /// <returns>A <see cref="List{Appointment}"/> matching the SQL query.</returns>
         public List<Appointment> GetAppointments(QueryBuilder b)
         {
             List<Appointment> result = new List<Appointment>();
@@ -128,14 +117,10 @@ namespace Mockup2.Factories
             return result;
         }
 
-
-
-
-
         /// <summary>
         /// Convenience method to return all appointments, with no matching criteria, ie everything.
         /// </summary>
-        /// <returns>Every appointment in the database.</returns>
+        /// <returns>A <see cref="List{Appointment}"/> containing every appointment in the database.</returns>
         public List<Appointment> GetAppointments()
         {
             QueryBuilder b = new QueryBuilder();
@@ -143,31 +128,23 @@ namespace Mockup2.Factories
             return GetAppointments(b);
         }
 
-
-
-
-
         /// <summary>
-        /// Conveience method that gets all appointments on a given date.
+        /// Conveience method that gets all <see cref="Appointment"/>s on a given <see cref="DateTime"/>.
         /// </summary>
-        /// <param name="date">The date to match appointments to.</param>
-        /// <returns>A list of appointments booked for the date given.</returns>
+        /// <param name="date">The <see cref="DateTime"/> to match <see cref="Appointment"/>s to.</param>
+        /// <returns>A <see cref="List{Appointment}"/> booked for the <see cref="DateTime"/> given.</returns>
         public List<Appointment> GetAppointmentsByDate(DateTime date)
         {
             DateTime date2 = date.AddDays(1);
             return GetAppointmentsByDateRange(date, date2);
         }
 
-
-
-
-
         /// <summary>
-        /// Convenience method that gets all appointments booked between the given dates.
+        /// Convenience method that gets all <see cref="Appointment"/>s booked between the given <see cref="DateTime"/>s.
         /// </summary>
-        /// <param name="date1">The minimum bound date to look for.</param>
-        /// <param name="date2">The maximum bound date to look for.</param>
-        /// <returns>A list of appointments that fall between the given dates.</returns>
+        /// <param name="date1">The minimum bound <see cref="DateTime"/> to look for.</param>
+        /// <param name="date2">The maximum bound <see cref="DateTime"/> to look for.</param>
+        /// <returns>A <see cref="List{Appointment}"/> that fall between the given <see cref="DateTime"/>s.</returns>
         public List<Appointment> GetAppointmentsByDateRange(DateTime date1, DateTime date2)
         {
             QueryBuilder b = new QueryBuilder();
@@ -177,15 +154,11 @@ namespace Mockup2.Factories
             return GetAppointments(b);
         }
 
-
-
-
-
         /// <summary>
-        /// Updates an existing appointment in the database, based on the information provided
-        /// in the Appointment object.
+        /// Updates an existing <see cref="Appointment"/> in the database, based on the information provided
+        /// in the <see cref="Appointment"/> object.
         /// </summary>
-        /// <param name="a">The Appointment to pull data from.</param>
+        /// <param name="a">The <see cref="Appointment"/> to pull data from.</param>
         public void UpdateAppointment(Appointment a)
         {
             QueryBuilder b = new QueryBuilder();
@@ -202,14 +175,10 @@ namespace Mockup2.Factories
             SendConfirmationEmail(a);
         }
 
-
-
-
-
         /// <summary>
-        /// Sends a confirmation email to the patient linked to the appointment given.
+        /// Sends a confirmation email to the <see cref="Patient"/> linked to the <see cref="Appointment"/> given.
         /// </summary>
-        /// <param name="a">The appointment to notify the patient abour.</param>
+        /// <param name="a">The <see cref="Appointment"/> to notify the <see cref="Appointment"/> about.</param>
         private void SendConfirmationEmail(Appointment a)
         {
             StaffFactory sf = new StaffFactory(dbCon);
@@ -224,16 +193,10 @@ namespace Mockup2.Factories
             Texter.SendAppointmentText(phone, staff, date, time);
         }
 
-
-
-
-
-
         /// <summary>
-        /// Inserts a new appointment into the database, using information pulled from the given Appointment object.
-        /// 
+        /// Inserts a new appointment into the database, using information pulled from the given <see cref="Appointment"/> object.
         /// </summary>
-        /// <param name="a">The appointment object to pull data from.</param>
+        /// <param name="a">The <see cref="Appointment"/> object to pull data from.</param>
         public void InsertAppointment(Appointment a)
         {
             a.Id = GetNextAvailableAppointmentID();
@@ -244,14 +207,10 @@ namespace Mockup2.Factories
             SendConfirmationEmail(a);
         }
 
-
-
-
-
         /// <summary>
-        /// Deletes an appointment from the database based on information given in the supplied Appointment.
+        /// Deletes an appointment from the database based on information given in the supplied <see cref="Appointment"/> object.
         /// </summary>
-        /// <param name="a">The appointment object to delete.</param>
+        /// <param name="a">The <see cref="Appointment"/> object to delete.</param>
         public void DeleteAppointment(Appointment a)
         {
             QueryBuilder b = new QueryBuilder();
@@ -259,13 +218,6 @@ namespace Mockup2.Factories
             MySqlCommand cmd = new MySqlCommand(b.ToString(), dbCon.GetConnection());
             cmd.ExecuteNonQuery();
         }
-
-
-
-
-
-
-
 
     }
 }
