@@ -64,6 +64,7 @@ namespace Mockup2
             StaffName = staffName;
             StaffID = staffID;
             UpdateRotaDays();
+            this.Text = "Update Staff Details";
         }
         private void UpdateRotaDays()
         {

@@ -186,8 +186,8 @@ namespace Mockup2
         }
         private void editStaffButton_Click(object sender, EventArgs e)
         {
-            int staffID = Convert.ToInt32(dataGridView2.SelectedRows[0].Cells[0].Value);
             // StaffID.ValueFromGrid
+            int staffID = Convert.ToInt32(dataGridView2.SelectedRows[0].Cells[0].Value);
             this.Hide();
             new EditStaffForm(dbCon, staffID).ShowDialog();
             dataGridView2.Rows.Clear();

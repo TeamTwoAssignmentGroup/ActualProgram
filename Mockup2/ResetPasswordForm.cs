@@ -28,6 +28,7 @@ namespace Mockup2
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.WindowState = FormWindowState.Maximized;
             PopulatePassword();
+            this.Text = "Reset Password";
            
         }
 
