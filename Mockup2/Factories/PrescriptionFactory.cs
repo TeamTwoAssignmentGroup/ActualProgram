@@ -15,6 +15,11 @@ namespace Mockup2.Factories
     public class PrescriptionFactory : AbstractFactory
     {
         private static int nextAvailablePrescriptionID;
+
+        /// <summary>
+        /// Sets the next available prescription ID, to ensure that subsequent insertions have a valid ID to use.
+        /// </summary>
+        /// <param name="dbCon">The instance of <see cref="DBConnection"/> we are using.</param>
         public PrescriptionFactory(DBConnection dbCon) : base(dbCon)
         {
             if (nextAvailablePrescriptionID <=0)
@@ -114,6 +119,10 @@ namespace Mockup2.Factories
             cmd.ExecuteNonQuery();
         }
 
+        /// <summary>
+        /// Inserts a list of <see cref="Prescription"/> objects back into the database.
+        /// </summary>
+        /// <param name="pre">The <see cref="List{Prescription}"/> to insert.</param>
         public void InsertEditedPrescription(List<Prescription> pre)
         {
             QueryBuilder b = new QueryBuilder();
@@ -136,7 +145,10 @@ namespace Mockup2.Factories
             
         }
 
-
+        /// <summary>
+        /// Deletes the supplied <see cref="Prescription"/> from the database.
+        /// </summary>
+        /// <param name="pre">The <see cref="Prescription"/> to delete.</param>
         public void DeletePrescription(Prescription pre)
         {
             QueryBuilder b = new QueryBuilder();
@@ -145,7 +157,10 @@ namespace Mockup2.Factories
             cmd.ExecuteNonQuery();
         }
 
-
+        /// <summary>
+        /// Adds a <see cref="Prescription"/> to the database.
+        /// </summary>
+        /// <param name="p">The <see cref="Prescription"/> to add.</param>
         public void addPrescription(Prescription p)
         {
             QueryBuilder b = new QueryBuilder();
@@ -162,9 +177,7 @@ namespace Mockup2.Factories
             MySqlCommand cmd = new MySqlCommand(b.ToString(), dbCon.GetConnection());
             cmd.ExecuteNonQuery();
         }
-
-
-
+        
         public int returnLastPrescriptionID()
         {
 
@@ -182,10 +195,7 @@ namespace Mockup2.Factories
 
 
         }
-
-
-
-
+        
         public int GetPrescription(MySqlCommand cmd)
         {
             Prescription p = new Prescription();
@@ -208,14 +218,6 @@ namespace Mockup2.Factories
             reader.Dispose();
             return p.Id;
         }
-
-
-
-
-
-
-
-
-
+        
     }
 }

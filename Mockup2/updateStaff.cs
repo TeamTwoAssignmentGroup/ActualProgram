@@ -96,7 +96,7 @@ namespace Mockup2
                 foreach (var value in row.Values)
                 {
 
-                    Console.Write(value + " | ");
+                    //Console.Write(value + " | ");
                 }
                 dataGridView1.Rows.Add(row.Values.ToArray());
                 Console.WriteLine();

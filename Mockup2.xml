@@ -139,8 +139,21 @@
         </member>
         <member name="T:Mockup2.DatabaseClasses.CustomTable">
             <summary>
-            OUT OF ORDER 
+            A helper class to better encapsulate data returned from the database when using the <see cref="T:Mockup2.Factories.CustomTableFactory"/> class.
+            Probably a bit superfluous, but may become more useful as time goes on.
             </summary>
+        </member>
+        <member name="M:Mockup2.DatabaseClasses.CustomTable.#ctor(System.Collections.Generic.List{System.Collections.Generic.Dictionary{Mockup2.DatabaseClasses.Tables.Column,System.Object}})">
+            <summary>
+            
+            </summary>
+            <param name="columnData">The data that makes up this table.</param>
+        </member>
+        <member name="M:Mockup2.DatabaseClasses.CustomTable.GetRows">
+            <summary>
+            Gets the underling data that makes up this table.
+            </summary>
+            <returns>A <see cref="T:System.Collections.Generic.List`1"/> that represents the underlying database data. Each <see cref="T:System.Collections.Generic.Dictionary`2"/> is considered a row.</returns>
         </member>
         <member name="M:Mockup2.DatabaseClasses.CustomTable.ToString">
             <summary>
@@ -150,13 +163,14 @@
         </member>
         <member name="T:Mockup2.DatabaseClasses.DBConnection">
             <summary>
-            A helper class for wrapping a MySQLConnection
+            A helper class for wrapping a <see cref="T:MySql.Data.MySqlClient.MySqlConnection"/>, providing a default constructor that automatically
+            connects to our OverSurgery database.
             </summary>
         </member>
         <member name="M:Mockup2.DatabaseClasses.DBConnection.#ctor(System.String,System.String,System.String,System.String)">
             <summary>
-            Creates the underlying MySQLConnection based on the input parameters, and then attempts to open the connection.
-            Failure outputs the exception to Console.
+            Creates the underlying <see cref="T:MySql.Data.MySqlClient.MySqlConnection"/> based on the input parameters, and then attempts to open the connection.
+            Failure outputs the exception to Console and rethrows it for testing purposes.
             </summary>
             <param name="server">Server hostname.</param>
             <param name="database">Database to use once connected.</param>
@@ -166,40 +180,41 @@
         <member name="M:Mockup2.DatabaseClasses.DBConnection.Close">
             <summary>
             Ensures the connection is closed cleanly to prevent memory leaks.
-            Closes and disposes the underlying MySQLConnection.
+            Closes and disposes the underlying <see cref="T:MySql.Data.MySqlClient.MySqlConnection"/>.
             </summary>
         </member>
         <member name="M:Mockup2.DatabaseClasses.DBConnection.#ctor">
             <summary>
-            Overloaded constructor for convenience of connecting to a particular database.
+            Overloaded constructor for convenience of connecting to a particular database,
+            our database.
             </summary>
         </member>
         <member name="M:Mockup2.DatabaseClasses.DBConnection.GetConnection">
             <summary>
-            Gets the underlying MySQL connection for processes that require it.
+            Gets the underlying <see cref="T:MySql.Data.MySqlClient.MySqlConnection"/> for processes that require it.
             </summary>
-            <returns>The underlying MySQL connection.</returns>
+            <returns>The underlying <see cref="T:MySql.Data.MySqlClient.MySqlConnection"/>.</returns>
         </member>
         <member name="T:Mockup2.DatabaseClasses.Texter">
             <summary>
-            Helper class to send text message confirmation of appointments.
+            Helper class to send text message confirmation of <see cref="T:Mockup2.DatabaseClasses.Appointment"/>s to <see cref="T:Mockup2.DatabaseClasses.Patient"/>s.
             </summary>
         </member>
         <member name="M:Mockup2.DatabaseClasses.Texter.SendAppointmentText(System.String,Mockup2.DatabaseClasses.Staff,System.DateTime,System.DateTime)">
             <summary>
             Sends a text confirmation of an appointment to the supplied number, utilising the
             <a href="https://www.nuget.org/packages/Twilio/">Twilio NuGet package</a> and <a href="https://www.twilio.com/">Web API backend</a>. The message includes appointment date and time,
-            as well as the name and job role of the medical staff being seen.
+            as well as the name and job role of the <see cref="T:Mockup2.DatabaseClasses.Staff"/> member being seen.
             This method expects the mobile number to be properly formatted and have the
             leading +44 intact; this is a requirement of the Twilio backend.
             
             (It should be noted that at current, all texts are received by one phone number - mine. This
-            is a restriction in Twilio's free trial service.)
+            is a restriction in Twilio's free trial service. Please don't abuse my phone number :D )
             </summary>
             <param name="number">The mobile phone number to send texts to.</param>
-            <param name="staff">The member of <see cref="T:Mockup2.DatabaseClasses.Staff"/>Staff being seen.</param>
-            <param name="appointmentDate">The date of the <see cref="T:Mockup2.DatabaseClasses.Appointment"/>Appointment.</param>
-            <param name="appointmentTime">The time of the <see cref="T:Mockup2.DatabaseClasses.Appointment"/>Appointment.</param>
+            <param name="staff">The member of <see cref="T:Mockup2.DatabaseClasses.Staff"/> being seen.</param>
+            <param name="appointmentDate">The date of the <see cref="T:Mockup2.DatabaseClasses.Appointment"/>.</param>
+            <param name="appointmentTime">The time of the <see cref="T:Mockup2.DatabaseClasses.Appointment"/>.</param>
         </member>
         <member name="M:Mockup2.DatabaseClasses.Program.Main(System.String[])">
             <summary>
@@ -208,6 +223,7 @@
         </member>
         <member name="M:Mockup2.DatabaseClasses.Program.GetHashedString(System.String)">
             <summary>
+            (Taken from <see href="https://stackoverflow.com/a/6839784"/> but tweaked slightly)
             Helper method to reliable generate hashed strings in an easily reproducably manner.
             Uses <see cref="T:System.Security.Cryptography.SHA256CryptoServiceProvider"/> for hashing.
             </summary>
@@ -238,7 +254,7 @@
             for debug purposes. This will be useful in troubleshooting slow database queries; for example, somebody
             may have accidentally been creating and running queries in a loop.
             It should be noted that this class does not perform any form of error or sanity checking and will allow you to create nonsensical SQL queries
-            provided you use valid Column and Table names, except in the case where the SQL query contains an Update statement.
+            provided you use valid Column and Table names, EXCEPT in the case where the SQL query contains an Update statement.
             If an Update statement is present without a Where statement, an exception is thrown. This is due to the fact that
             updating an SQL table without specifying a Where clause will overwrite every row, causing irreperable data loss.
             </summary>
@@ -250,45 +266,52 @@
             </summary>
             <param name="q">The query to add.</param>
         </member>
+        <member name="M:Mockup2.DatabaseClasses.QueryBuilder.GetPastQueriesLog">
+            <summary>
+            Returns a <see cref="T:System.Collections.Generic.List`1"/> that contain all queries, as well as how many times they have been called, formatted like so:
+            <code>[number_of_calls] : query_called</code>
+            </summary>
+            <returns>A <see cref="T:System.Collections.Generic.List`1"/> that is the query log.</returns>
+        </member>
         <member name="M:Mockup2.DatabaseClasses.QueryBuilder.OrderBy(System.Boolean,Mockup2.DatabaseClasses.Tables.Column[])">
             <summary>
             Adds an Order By statement to the current SQL query. Can choose whether to be
             ascending or descending.
             </summary>
             <param name="desc">Whether ordering should be descending or not.</param>
-            <param name="columns">The Columns to order by.</param>
-            <returns>This instance of QueryBuilder.</returns>
+            <param name="columns">The <see cref="T:Mockup2.DatabaseClasses.Tables.Column"/>s to order by.</param>
+            <returns>This instance of <see cref="T:Mockup2.DatabaseClasses.QueryBuilder"/> for method chaining.</returns>
         </member>
         <member name="M:Mockup2.DatabaseClasses.QueryBuilder.Limit(System.Int32)">
             <summary>
              Adds a Limit statement to the current SQL query. Allows results to be limited.
             </summary>
             <param name="num">Number of results to limit query to.</param>
-            <returns>This instance of QueryBuilder.</returns>
+            <returns>This instance of <see cref="T:Mockup2.DatabaseClasses.QueryBuilder"/> for method chaining.</returns>
         </member>
         <member name="M:Mockup2.DatabaseClasses.QueryBuilder.Delete(Mockup2.DatabaseClasses.Tables.Table)">
             <summary>
             Adds a Delete From statement to the current SQL query.
             </summary>
             <param name="table">The Table to be deleting from.</param>
-            <returns>This instance of QueryBuilder.</returns>
+            <returns>This instance of <see cref="T:Mockup2.DatabaseClasses.QueryBuilder"/> for method chaining.</returns>
         </member>
         <member name="M:Mockup2.DatabaseClasses.QueryBuilder.Update(Mockup2.DatabaseClasses.Tables.Table)">
             <summary>
             Adds an Update statement to the current SQL query. Only supports updating
             one table at present. This can be easily changed later, if need be.
             This method MUST be paired with a Where method,
-            else QueryBuilder will throw an exception. See the class description for more details.
+            else <see cref="T:Mockup2.DatabaseClasses.QueryBuilder"/> will throw an <see cref="T:Mockup2.DatabaseClasses.QueryBuilder.MalformedUpdateQueryException"/> exception. See the class summary for more details.
             </summary>
             <param name="table">The Table to be updated.</param>
-            <returns>This instance of QueryBuilder.</returns>
+            <returns>This instance of <see cref="T:Mockup2.DatabaseClasses.QueryBuilder"/> for method chaining.</returns>
         </member>
         <member name="M:Mockup2.DatabaseClasses.QueryBuilder.Insert(Mockup2.DatabaseClasses.Tables.Table)">
             <summary>
             Adds an Insert statement to the current SQL query.
             </summary>
             <param name="table">The Table to be inserted into.</param>
-            <returns>This instance of QueryBuilder.</returns>
+            <returns>This instance of <see cref="T:Mockup2.DatabaseClasses.QueryBuilder"/> for method chaining.</returns>
         </member>
         <member name="M:Mockup2.DatabaseClasses.QueryBuilder.Values(System.Object[])">
             <summary>
@@ -299,96 +322,134 @@
             This method uses the latter, so ensure you supply ALL values for the given Table, and that they are the
             correct data type.
             </summary>
-            <param name="values">The objects that will be used as values to insert into Table.</param>
-            <returns>This instance of QueryBuilder.</returns>
+            <param name="values">The <see cref="T:System.Object"/>s that will be used as values to insert into Table.</param>
+            <returns>This instance of <see cref="T:Mockup2.DatabaseClasses.QueryBuilder"/> for method chaining.</returns>
         </member>
         <member name="M:Mockup2.DatabaseClasses.QueryBuilder.Set(System.Object[])">
             <summary>
             Adds a Set statement to the current SQL query. A word of warning for the parameters:
-            to satisfy SQL, they must be pairs of Column and value. However, there is no way to enforce
-            this and still have the amount supplied be variable (without creating a Tuple, or something similar),
-            so please ensure you supply a Column and a value.
+            to satisfy SQL, they must be pairs of <see cref="T:Mockup2.DatabaseClasses.Tables.Column"/> and value. However, there is no way to enforce
+            this and still have the amount supplied be variable (without creating a <see cref="T:System.Tuple"/>, or something similar),
+            so please ensure you supply a <see cref="T:Mockup2.DatabaseClasses.Tables.Column"/> and a value.
             </summary>
-            <param name="o">Objects that correspond to pairs of Columns and values to be inserted into said Column.</param>
-            <returns>This instance of QueryBuilder.</returns>
+            <param name="o">A variable length object array (<see cref="T:object[]"/>) that correspond to pairs of <see cref="T:Mockup2.DatabaseClasses.Tables.Column"/> and values to be inserted into said column in the database.</param>
+            <returns>This instance of <see cref="T:Mockup2.DatabaseClasses.QueryBuilder"/> for method chaining.</returns>
         </member>
         <member name="M:Mockup2.DatabaseClasses.QueryBuilder.GetSelectedColumns">
             <summary>
-            Returns the list of Columns that have been used in a Select method.
+            Returns the <see cref="T:System.Collections.Generic.List`1"/> that have been used in a Select method.
             </summary>
-            <returns>A list of Columns.</returns>
+            <returns>A <see cref="T:System.Collections.Generic.List`1"/>.</returns>
         </member>
         <member name="M:Mockup2.DatabaseClasses.QueryBuilder.Select(Mockup2.DatabaseClasses.Tables.Column[])">
             <summary>
             Adds a Select statement to the current SQL query.
             </summary>
-            <param name="columns">The Columns to be selected from the Tables.</param>
-            <returns>This instance of QueryBuilder.</returns>
+            <param name="columns">A <see cref="T:Column[]"/> to be selected from the database tables.</param>
+            <returns>This instance of <see cref="T:Mockup2.DatabaseClasses.QueryBuilder"/> for method chaining.</returns>
         </member>
         <member name="M:Mockup2.DatabaseClasses.QueryBuilder.TrimQuery(System.Int32)">
             <summary>
             Convenience method to quickly trim the query string down by a specified amount of characters.
             Used to remove trailing characters such as commas from the ends of statements.
             </summary>
-            <param name="amount">The amount of characters to trim from the end of the string.</param>
+            <param name="amount">The amount of characters to trim from the end of the query string.</param>
         </member>
         <member name="M:Mockup2.DatabaseClasses.QueryBuilder.From(Mockup2.DatabaseClasses.Tables.Table[])">
             <summary>
             Adds a From statement to the current SQL query.
             </summary>
             <param name="tables">The tables to be used in the From statement.</param>
-            <returns>This instance of QueryBuilder.</returns>
+            <returns>This instance of <see cref="T:Mockup2.DatabaseClasses.QueryBuilder"/> for method chaining.</returns>
         </member>
         <member name="M:Mockup2.DatabaseClasses.QueryBuilder.Where(Mockup2.DatabaseClasses.QueryBuilder.WhereClass[])">
             <summary>
             Adds a Where statement to the current SQL query. This method takes a list of WhereClass instances as it's parameter.
             </summary>
-            <param name="clauses">The WhereClass instances to add to this query.</param>
-            <returns>This instance of QueryBuilder.</returns>
+            <param name="clauses">The <see cref="T:Mockup2.DatabaseClasses.QueryBuilder.WhereClass"/> instances to add to this query.</param>
+            <returns>This instance of <see cref="T:Mockup2.DatabaseClasses.QueryBuilder"/> for method chaining.</returns>
         </member>
         <member name="M:Mockup2.DatabaseClasses.QueryBuilder.And">
             <summary>
-            A WhereClass for an SQL And statement. To be used in conjunction with a Where method.
+            A <see cref="T:Mockup2.DatabaseClasses.QueryBuilder.WhereClass"/> for an SQL And statement. To be used in conjunction with a Where method.
             </summary>
-            <returns>A WhereClass representing the SQL And statement.</returns>
+            <returns>A <see cref="T:Mockup2.DatabaseClasses.QueryBuilder.WhereClass"/> representing the SQL And statement.</returns>
         </member>
         <member name="M:Mockup2.DatabaseClasses.QueryBuilder.Or">
             <summary>
-            A WhereClass for an SQL Or statement. To be used in conjunction with a Where method.
+            A <see cref="T:Mockup2.DatabaseClasses.QueryBuilder.WhereClass"/> for an SQL Or statement. To be used in conjunction with a Where method.
             </summary>
-            <returns>A WhereClass representing the SQL Or statement.</returns>
+            <returns>A <see cref="T:Mockup2.DatabaseClasses.QueryBuilder.WhereClass"/> representing the SQL Or statement.</returns>
         </member>
         <member name="M:Mockup2.DatabaseClasses.QueryBuilder.IsEqual(Mockup2.DatabaseClasses.Tables.Column,System.Object)">
             <summary>
-            A WhereClass for an SQL equals check. To be used in conjunction with a Where method.
-            Takes a Column and an object.
+            A <see cref="T:Mockup2.DatabaseClasses.QueryBuilder.WhereClass"/> for an SQL equals check. To be used in conjunction with a Where method.
+            Takes a <see cref="T:Mockup2.DatabaseClasses.Tables.Column"/> and an <see cref="T:System.Object"/>.
             </summary>
-            <param name="column1">The Column to be checked.</param>
-            <param name="o">The object to be checked.</param>
-            <returns>A WhereClass that represents the equality check in SQL.</returns>
+            <param name="column1">The <see cref="T:Mockup2.DatabaseClasses.Tables.Column"/> to be checked.</param>
+            <param name="o">The <see cref="T:System.Object"/> to be checked.</param>
+            <returns>A <see cref="T:Mockup2.DatabaseClasses.QueryBuilder.WhereClass"/> that represents the equality check in SQL.</returns>
         </member>
         <member name="M:Mockup2.DatabaseClasses.QueryBuilder.IsLessThan(Mockup2.DatabaseClasses.Tables.Column,System.Object)">
             <summary>
-            A WhereClass for an SQL less than check. To be used in conjunction with a Where method.
-            Takes a Column and an object.
+            A <see cref="T:Mockup2.DatabaseClasses.QueryBuilder.WhereClass"/> for an SQL less than check. To be used in conjunction with a Where method.
+            Takes a <see cref="T:Mockup2.DatabaseClasses.Tables.Column"/> and an <see cref="T:System.Object"/>.
             </summary>
-            <param name="column1">The Column to be checked.</param>
-            <param name="o">The object to be checked.</param>
-            <returns>A WhereClass that represents the less than statement in SQL.</returns>
+            <param name="column1">The <see cref="T:Mockup2.DatabaseClasses.Tables.Column"/> to be checked.</param>
+            <param name="o">The <see cref="T:System.Object"/> to be checked.</param>
+            <returns>A <see cref="T:Mockup2.DatabaseClasses.QueryBuilder.WhereClass"/> that represents the less than statement in SQL.</returns>
+        </member>
+        <member name="M:Mockup2.DatabaseClasses.QueryBuilder.IsLessThanEqual(Mockup2.DatabaseClasses.Tables.Column,System.Object)">
+            <summary>
+            A <see cref="T:Mockup2.DatabaseClasses.QueryBuilder.WhereClass"/> for an SQL less than or equal check. To be used in conjunction with a Where method.
+            Takes a <see cref="T:Mockup2.DatabaseClasses.Tables.Column"/> and an <see cref="T:System.Object"/>.
+            </summary>
+            <param name="column1">The <see cref="T:Mockup2.DatabaseClasses.Tables.Column"/> to be checked.</param>
+            <param name="o">The <see cref="T:System.Object"/> to be checked.</param>
+            <returns>A <see cref="T:Mockup2.DatabaseClasses.QueryBuilder.WhereClass"/> that represents the less than or equal statement in SQL.</returns>
+        </member>
+        <member name="M:Mockup2.DatabaseClasses.QueryBuilder.IsMoreThan(Mockup2.DatabaseClasses.Tables.Column,System.Object)">
+            <summary>
+            A <see cref="T:Mockup2.DatabaseClasses.QueryBuilder.WhereClass"/> for an SQL more than check. To be used in conjunction with a Where method.
+            Takes a <see cref="T:Mockup2.DatabaseClasses.Tables.Column"/> and an <see cref="T:System.Object"/>.
+            </summary>
+            <param name="column1">The <see cref="T:Mockup2.DatabaseClasses.Tables.Column"/> to be checked.</param>
+            <param name="o">The <see cref="T:System.Object"/> to be checked.</param>
+            <returns>A <see cref="T:Mockup2.DatabaseClasses.QueryBuilder.WhereClass"/> that represents the more than statement in SQL.</returns>
+        </member>
+        <member name="M:Mockup2.DatabaseClasses.QueryBuilder.IsMoreThanEqual(Mockup2.DatabaseClasses.Tables.Column,System.Object)">
+            <summary>
+            A <see cref="T:Mockup2.DatabaseClasses.QueryBuilder.WhereClass"/> for an SQL more than or equal to check. To be used in conjunction with a Where method.
+            Takes a <see cref="T:Mockup2.DatabaseClasses.Tables.Column"/> and an <see cref="T:System.Object"/>.
+            </summary>
+            <param name="column1">The <see cref="T:Mockup2.DatabaseClasses.Tables.Column"/> to be checked.</param>
+            <param name="o">The <see cref="T:System.Object"/> to be checked.</param>
+            <returns>A <see cref="T:Mockup2.DatabaseClasses.QueryBuilder.WhereClass"/> that represents the more than or equal to statement in SQL.</returns>
         </member>
         <member name="M:Mockup2.DatabaseClasses.QueryBuilder.ToString">
             <summary>
             Adds a semicolon to the finished query, and adds the query to the running list of queries performed.
-            Checks to see if an Update statement is present without a Where statement, and throws an exception if so.
+            Checks to see if an Update statement is present without a Where statement, and throws a <see cref="T:Mockup2.DatabaseClasses.QueryBuilder.MalformedUpdateQueryException"/> if so.
             </summary>
             <returns>A valid SQL query string.</returns>
             <exception cref="T:Mockup2.DatabaseClasses.QueryBuilder.MalformedUpdateQueryException">This exception is thrown if an Update statement without a matching Where statement.</exception>
+        </member>
+        <member name="T:Mockup2.DatabaseClasses.QueryBuilder.WhereClass">
+            <summary>
+            Simple class to be used as the parameters of the <see cref="M:Mockup2.DatabaseClasses.QueryBuilder.Where(Mockup2.DatabaseClasses.QueryBuilder.WhereClass[])"/> method, to ensure
+            that at no point are we creating queries purely using <see cref="T:System.String"/>s.
+            </summary>
+        </member>
+        <member name="T:Mockup2.DatabaseClasses.QueryBuilder.MalformedUpdateQueryException">
+            <summary>
+            Exception that is thrown if an Update statement is found without a matching Where statement.
+            </summary>
         </member>
         <member name="M:Mockup2.DatabaseClasses.QueryBuilder.DumpLog">
             <summary>
             Dumps the stored queries that have been requested over the program lifetime,
             and how many times they have been requested.
-            Outputs this information to standard output and a text file named querylog.txt
+            Outputs this information to <see cref="T:System.Console"/> and a text file named querylog.txt
             in the same folder as the exe.
             </summary>
         </member>
@@ -491,6 +552,8 @@
         <member name="M:Mockup2.Classes.Emailer.SendEmailWithAttachments(System.String,System.String,System.String,System.Net.Mail.Attachment[])">
             <summary>
             Sends an email message to the supplied email address, using the supplied subject and message.
+            Attaches the supplied <see cref="T:System.Net.Mail.Attachment"/> objects.
+            This happends in a new <see cref="T:System.Threading.Thread"/> to prevent the GUI from hanging.
             </summary>
             <param name="email">Email address of the recipient.</param>
             <param name="subject">Subject of the email message.</param>
@@ -500,19 +563,22 @@
         <member name="M:Mockup2.Classes.Emailer.SendEmail(System.String,System.String,System.String,System.String[])">
             <summary>
             Convenience method to send email using strings of local file names as attachments.
+            Calls <see cref="M:Mockup2.Classes.Emailer.SendEmailWithAttachments(System.String,System.String,System.String,System.Net.Mail.Attachment[])"/>.
             </summary>
             <param name="email">Email address to send email to.</param>
             <param name="subject">Subject of the email.</param>
             <param name="message">Message body of the email.</param>
-            <param name="fileNamesToAttach">A fixed length array of strings representing local file names to be used as attachments.</param>
+            <param name="fileNamesToAttach">A <see cref="T:string[]"/> representing local file names to be used as attachments.</param>
         </member>
         <member name="M:Mockup2.Classes.Emailer.SendAppointmentEmail(System.String,Mockup2.DatabaseClasses.Staff,System.DateTime,System.DateTime)">
             <summary>
-            Sends a preformatted HTML email to the supplied email address, which should be a Patient's, detailing their appointment date and time
-            as well as the member of staff they will be seeing.
+            Sends a preformatted HTML email to the supplied email address, which should be a <see cref="T:Mockup2.DatabaseClasses.Patient"/>'s, detailing their appointment date and time
+            as well as the member of <see cref="T:Mockup2.DatabaseClasses.Staff"/> they will be seeing.
+            
+            On a sidenote, attaching images to emails has got to be easier than this. What a faff.
             </summary>
             <param name="email">Email address of patient.</param>
-            <param name="staff">The Staff object that representing the member of staff that the patient will be seeing.</param>
+            <param name="staff">The <see cref="T:Mockup2.DatabaseClasses.Staff"/> object that representing the member of staff that the patient will be seeing.</param>
             <param name="date">The date of the appointment.</param>
             <param name="time">The time of the appointment.</param>
         </member>
@@ -535,38 +601,49 @@
         </member>
         <member name="T:Mockup2.Factories.AbstractFactory">
             <summary>
-            An astract factory class for othe table factories to inherit from. Provides
+            An astract factory class for other table factories to inherit from. Provides
             some convenience methods for parsing data from the database.
             </summary>
         </member>
         <member name="M:Mockup2.Factories.AbstractFactory.GetInt(System.Object)">
             <summary>
-            Parses the given object as an int.
+            Parses the given <see cref="T:System.Object"/> as an <see cref="T:System.Int32"/>.
             </summary>
-            <param name="o">Object to parse.</param>
-            <returns>An int from the object.</returns>
+            <param name="o"><see cref="T:System.Object"/> to parse.</param>
+            <returns>An <see cref="T:System.Int32"/> from the <see cref="T:System.Object"/>.</returns>
         </member>
         <member name="M:Mockup2.Factories.AbstractFactory.GetString(System.Object)">
             <summary>
-            Converts the given object to a string. Simply calls
+            Converts the given <see cref="T:System.Object"/> to a <see cref="T:System.String"/>. Simply calls
             <code>o.ToString()</code>
             </summary>
-            <param name="o">The object to parse.</param>
-            <returns>A string from the object.</returns>
+            <param name="o">The <see cref="T:System.Object"/> to parse.</param>
+            <returns>A <see cref="T:System.String"/> from the object.</returns>
         </member>
         <member name="M:Mockup2.Factories.AbstractFactory.GetBool(System.Object)">
             <summary>
-            Parses the object as a boolean.
+            Parses the <see cref="T:System.Object"/> as a <see cref="T:System.Boolean"/>.
             </summary>
-            <param name="o">The object to parse.</param>
-            <returns>A boolean representation of the object.</returns>
+            <param name="o">The <see cref="T:System.Object"/> to parse.</param>
+            <returns>A <see cref="T:System.Boolean"/> representation of the <see cref="T:System.Object"/>.</returns>
         </member>
         <member name="M:Mockup2.Factories.AbstractFactory.GetDateTime(System.Object)">
             <summary>
-            Parses the object as a DateTime object.
+            Parses the <see cref="T:System.Object"/> as a <see cref="T:System.DateTime"/> object.
             </summary>
-            <param name="o">The object to parse.</param>
-            <returns>A DateTime representation of the object, if possible.</returns>
+            <param name="o">The <see cref="T:System.Object"/> to parse.</param>
+            <returns>A <see cref="T:System.DateTime"/> representation of the <see cref="T:System.Object"/>, if possible.</returns>
+        </member>
+        <member name="T:Mockup2.Factories.AppointmentFactory">
+            <summary>
+            Convenience class to help with the inserting, selecting, and updating of <see cref="T:Mockup2.DatabaseClasses.Appointment"/> objects in the database.
+            </summary>
+        </member>
+        <member name="M:Mockup2.Factories.AppointmentFactory.#ctor(Mockup2.DatabaseClasses.DBConnection)">
+            <summary>
+            Sets the next availalbe appointment ID to ensure that appointments can be inserted with an ID that is suitable.
+            </summary>
+            <param name="dbCon"></param>
         </member>
         <member name="M:Mockup2.Factories.AppointmentFactory.GetNextAvailableAppointmentID">
             <summary>
@@ -577,15 +654,15 @@
         <member name="M:Mockup2.Factories.AppointmentFactory.SetNextAvailableAppointmentID">
             <summary>
             Sets the next available appointment id by pulling the last listed
-            Appointment from the database. Should only be called once.
+            <see cref="T:Mockup2.DatabaseClasses.Appointment"/> from the database. Should only be called once.
             </summary>
         </member>
         <member name="M:Mockup2.Factories.AppointmentFactory.GetTimeslots">
             <summary>
-            Returns a list of formatted strings to be used as timeslots when booking an appointment.
+            Returns a list of formatted <see cref="T:System.String"/> to be used as timeslots when booking an appointment.
             Timeslot increment is given as 10 minutes.
             </summary>
-            <returns>A list of strings formatted in the following way: hh:mm:ss, for example: 09:40:00</returns>
+            <returns>A <see cref="T:System.Collections.Generic.List`1"/> formatted in the following way: hh:mm:ss, for example: 09:40:00</returns>
         </member>
         <member name="M:Mockup2.Factories.AppointmentFactory.GetAppointments(Mockup2.DatabaseClasses.QueryBuilder)">
             <summary>
@@ -594,55 +671,66 @@
             SELECT * FROM Appointment
             with only the Where changing.
             </summary>
-            <param name="b">The QueryBuilder to use as the SQL query.</param>
-            <returns>A list of Appointments that match the SQL query.</returns>
+            <param name="b">The <see cref="T:Mockup2.DatabaseClasses.QueryBuilder"/> to use as the SQL query.</param>
+            <returns>A <see cref="T:System.Collections.Generic.List`1"/> matching the SQL query.</returns>
         </member>
         <member name="M:Mockup2.Factories.AppointmentFactory.GetAppointments">
             <summary>
             Convenience method to return all appointments, with no matching criteria, ie everything.
             </summary>
-            <returns>Every appointment in the database.</returns>
+            <returns>A <see cref="T:System.Collections.Generic.List`1"/> containing every appointment in the database.</returns>
         </member>
         <member name="M:Mockup2.Factories.AppointmentFactory.GetAppointmentsByDate(System.DateTime)">
             <summary>
-            Conveience method that gets all appointments on a given date.
+            Conveience method that gets all <see cref="T:Mockup2.DatabaseClasses.Appointment"/>s on a given <see cref="T:System.DateTime"/>.
             </summary>
-            <param name="date">The date to match appointments to.</param>
-            <returns>A list of appointments booked for the date given.</returns>
+            <param name="date">The <see cref="T:System.DateTime"/> to match <see cref="T:Mockup2.DatabaseClasses.Appointment"/>s to.</param>
+            <returns>A <see cref="T:System.Collections.Generic.List`1"/> booked for the <see cref="T:System.DateTime"/> given.</returns>
         </member>
         <member name="M:Mockup2.Factories.AppointmentFactory.GetAppointmentsByDateRange(System.DateTime,System.DateTime)">
             <summary>
-            Convenience method that gets all appointments booked between the given dates.
+            Convenience method that gets all <see cref="T:Mockup2.DatabaseClasses.Appointment"/>s booked between the given <see cref="T:System.DateTime"/>s.
             </summary>
-            <param name="date1">The minimum bound date to look for.</param>
-            <param name="date2">The maximum bound date to look for.</param>
-            <returns>A list of appointments that fall between the given dates.</returns>
+            <param name="date1">The minimum bound <see cref="T:System.DateTime"/> to look for.</param>
+            <param name="date2">The maximum bound <see cref="T:System.DateTime"/> to look for.</param>
+            <returns>A <see cref="T:System.Collections.Generic.List`1"/> that fall between the given <see cref="T:System.DateTime"/>s.</returns>
         </member>
         <member name="M:Mockup2.Factories.AppointmentFactory.UpdateAppointment(Mockup2.DatabaseClasses.Appointment)">
             <summary>
-            Updates an existing appointment in the database, based on the information provided
-            in the Appointment object.
+            Updates an existing <see cref="T:Mockup2.DatabaseClasses.Appointment"/> in the database, based on the information provided
+            in the <see cref="T:Mockup2.DatabaseClasses.Appointment"/> object.
             </summary>
-            <param name="a">The Appointment to pull data from.</param>
+            <param name="a">The <see cref="T:Mockup2.DatabaseClasses.Appointment"/> to pull data from.</param>
         </member>
         <member name="M:Mockup2.Factories.AppointmentFactory.SendConfirmationEmail(Mockup2.DatabaseClasses.Appointment)">
             <summary>
-            Sends a confirmation email to the patient linked to the appointment given.
+            Sends a confirmation email to the <see cref="T:Mockup2.DatabaseClasses.Patient"/> linked to the <see cref="T:Mockup2.DatabaseClasses.Appointment"/> given.
             </summary>
-            <param name="a">The appointment to notify the patient abour.</param>
+            <param name="a">The <see cref="T:Mockup2.DatabaseClasses.Appointment"/> to notify the <see cref="T:Mockup2.DatabaseClasses.Appointment"/> about.</param>
         </member>
         <member name="M:Mockup2.Factories.AppointmentFactory.InsertAppointment(Mockup2.DatabaseClasses.Appointment)">
             <summary>
-            Inserts a new appointment into the database, using information pulled from the given Appointment object.
-            
+            Inserts a new appointment into the database, using information pulled from the given <see cref="T:Mockup2.DatabaseClasses.Appointment"/> object.
             </summary>
-            <param name="a">The appointment object to pull data from.</param>
+            <param name="a">The <see cref="T:Mockup2.DatabaseClasses.Appointment"/> object to pull data from.</param>
         </member>
         <member name="M:Mockup2.Factories.AppointmentFactory.DeleteAppointment(Mockup2.DatabaseClasses.Appointment)">
             <summary>
-            Deletes an appointment from the database based on information given in the supplied Appointment.
+            Deletes an appointment from the database based on information given in the supplied <see cref="T:Mockup2.DatabaseClasses.Appointment"/> object.
             </summary>
-            <param name="a">The appointment object to delete.</param>
+            <param name="a">The <see cref="T:Mockup2.DatabaseClasses.Appointment"/> object to delete.</param>
+        </member>
+        <member name="T:Mockup2.Factories.CustomTableFactory">
+            <summary>
+            A convenience class to handle pulling data from the database that doesn't match any one of the predefined templates (<see cref="T:Mockup2.DatabaseClasses.Patient"/>, <see cref="T:Mockup2.DatabaseClasses.Staff"/>, etc).
+            Works in conjunction with <see cref="T:Mockup2.DatabaseClasses.CustomTable"/>.
+            </summary>
+        </member>
+        <member name="M:Mockup2.Factories.CustomTableFactory.#ctor(Mockup2.DatabaseClasses.DBConnection)">
+            <summary>
+            
+            </summary>
+            <param name="dbCon"></param>
         </member>
         <member name="M:Mockup2.Factories.CustomTableFactory.GetCustomTable(Mockup2.DatabaseClasses.QueryBuilder)">
             <summary>
@@ -660,29 +748,35 @@
         </member>
         <member name="M:Mockup2.Factories.MedicalNoteFactory.GetMedicalNotes(Mockup2.DatabaseClasses.QueryBuilder)">
             <summary>
-            Gets all MedicalNote objects that match the given SQL query criteria contained in the QueryBuilder.
+            Gets all <see cref="T:Mockup2.DatabaseClasses.MedicalNotes"/> objects that match the given SQL query criteria contained in the <see cref="T:Mockup2.DatabaseClasses.QueryBuilder"/>.
             </summary>
-            <param name="b">QueryBuilder containing the SQL query.</param>
-            <returns>A list of MedicalNote objects.</returns>
+            <param name="b"><see cref="T:Mockup2.DatabaseClasses.QueryBuilder"/> containing the SQL query.</param>
+            <returns>A <see cref="T:System.Collections.Generic.List`1"/>.</returns>
         </member>
         <member name="M:Mockup2.Factories.MedicalNoteFactory.GetMedicalNotes(System.Int32)">
             <summary>
-            Convenience method to get all MedicalNotes for a particular patient, keyed by their id.
+            Convenience method to get all <see cref="T:Mockup2.DatabaseClasses.MedicalNotes"/> for a particular patient, keyed by their id.
             </summary>
-            <param name="patientID">ID of the patient to get MedicalNotes for.</param>
-            <returns>A list of MedicalNotes for the Patient given by id.</returns>
+            <param name="patientID">ID of the <see cref="T:Mockup2.DatabaseClasses.Patient"/> to get <see cref="T:Mockup2.DatabaseClasses.MedicalNotes"/> for.</param>
+            <returns>A <see cref="T:System.Collections.Generic.List`1"/> for the <see cref="T:Mockup2.DatabaseClasses.Patient"/> given by ID.</returns>
         </member>
         <member name="M:Mockup2.Factories.MedicalNoteFactory.GetMedicalNotes">
             <summary>
-            Convenience method to get all the MedicalNotes in the database.
+            Convenience method to get all the <see cref="T:Mockup2.DatabaseClasses.MedicalNotes"/> in the database.
             </summary>
-            <returns>A list of all MedialNotes in the database.</returns>
+            <returns>A <see cref="T:System.Collections.Generic.List`1"/> containing all <see cref="T:Mockup2.DatabaseClasses.MedicalNotes"/> in the database.</returns>
         </member>
         <member name="M:Mockup2.Factories.MedicalNoteFactory.InsertPatientNote(Mockup2.DatabaseClasses.Patient,System.Collections.Generic.List{System.String})">
             <summary>
-            Convenience method to insert a new MedicalNotes object into the database.
+            Convenience method to insert a new <see cref="T:System.Collections.Generic.List`1"/> objects into the database, linked to a <see cref="T:Mockup2.DatabaseClasses.Patient"/>.
             </summary>
-            <param name="mn">The MedicalNotes object to pull data from.</param>
+            <param name="o">The <see cref="T:Mockup2.DatabaseClasses.Patient"/> to link the notes to.</param>
+            <param name="notes">A <see cref="!:List&lt;string&gt;"/> that are the notes needing to be added. </param>
+        </member>
+        <member name="T:Mockup2.Factories.MedicationFactory">
+            <summary>
+            Convenience class to help get information out of the database that concerns <see cref="T:Mockup2.DatabaseClasses.Medication"/>s.
+            </summary>
         </member>
         <member name="M:Mockup2.Factories.MedicationFactory.#ctor(Mockup2.DatabaseClasses.DBConnection)">
             <summary>
@@ -690,7 +784,13 @@
             </summary>
             <param name="dbCon"></param>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:Mockup2.Factories.MedicationFactory.md(Mockup2.DatabaseClasses.QueryBuilder)" -->
+        <member name="M:Mockup2.Factories.MedicationFactory.md(Mockup2.DatabaseClasses.QueryBuilder)">
+            <summary>
+            Returns a medication id from the database by name
+            </summary>
+            <param name="b"></param>
+            <returns ></returns>
+        </member>
         <member name="M:Mockup2.Factories.MedicationFactory.getMedicationID(System.String)">
             <summary>
             
@@ -709,54 +809,60 @@
             This method returns a list of medications from the database
             Takes a querybuilder as arguement
             </summary>
-            <param name="b"></param>
-            <returns></returns>
+            <param name="b">The <see cref="T:Mockup2.DatabaseClasses.QueryBuilder"/> containing code to execute.</param>
+            <returns>A <see cref="T:System.Collections.Generic.List`1"/>.</returns>
         </member>
         <member name="M:Mockup2.Factories.MedicineInFactory.GetMedicineIdByPrescription(System.Int32)">
             <summary>
             This function returns a list of medication instances that belongs to a prescription
             This function only relevant from database connection and to assign a new prescription
             </summary>
-            <param name="prescriptionId"></param>
-            <returns></returns>
+            <param name="prescriptionId">The ID of the <see cref="T:Mockup2.DatabaseClasses.Prescription"/> to match <see cref="T:Mockup2.DatabaseClasses.MedicationInstance"/>s to.</param>
+            <returns>A <see cref="T:System.Collections.Generic.List`1"/>.</returns>
         </member>
         <member name="M:Mockup2.Factories.MedicineInFactory.GetMedicneNameById(System.Int32)">
             <summary>
             This method returns a list of medications when medication id entered
             </summary>
-            <param name="medicineId"></param>
-            <returns></returns>
+            <param name="medicineId">ID of the <see cref="T:Mockup2.DatabaseClasses.Medication"/> object.</param>
+            <returns>A <see cref="T:System.Collections.Generic.List`1"/> that have the supplied ID.</returns>
         </member>
         <member name="M:Mockup2.Factories.MedicineInFactory.GetMedicationName(Mockup2.DatabaseClasses.QueryBuilder)">
             <summary>
             This method returns a medication list based on the query executed
             </summary>
-            <param name="b"></param>
-            <returns></returns>
+            <param name="b">The <see cref="T:Mockup2.DatabaseClasses.QueryBuilder"/> containing the code to execute.</param>
+            <returns>A <see cref="T:System.Collections.Generic.List`1"/>.</returns>
         </member>
         <member name="M:Mockup2.Factories.MedicineInFactory.getAllMedication">
             <summary>
             This method returns all the medications which are available in the database
             </summary>
-            <returns></returns>
+            <returns>A <see cref="T:System.Collections.Generic.List`1"/> containing all <see cref="T:Mockup2.DatabaseClasses.Medication"/>s available in the database.</returns>
         </member>
         <member name="M:Mockup2.Factories.MedicineInFactory.GetAllMedicationAvailable(Mockup2.DatabaseClasses.QueryBuilder)">
             <summary>
-            This methos returns a list of medications 
+            This method returns a list of medications 
             </summary>
-            <param name="b"></param>
-            <returns></returns>
+            <param name="b">The <see cref="T:Mockup2.DatabaseClasses.QueryBuilder"/> containing the code to execute.</param>
+            <returns>A <see cref="T:System.Collections.Generic.List`1"/> that match the criteria set in the <see cref="T:Mockup2.DatabaseClasses.QueryBuilder"/>.</returns>
         </member>
         <member name="M:Mockup2.Factories.MedicineInFactory.addmedicationInstance(Mockup2.DatabaseClasses.MedicationInstance)">
             <summary>
             This mehtod creates a connection in the database between two tables by entering medication instance table data
             </summary>
-            <param name="instance"></param>
+            <param name="instance">The <see cref="T:Mockup2.DatabaseClasses.MedicationInstance"/> to insert into the database.</param>
         </member>
         <member name="T:Mockup2.Factories.PrescriptionFactory">
             <summary>
             Convenience method to handle returning, updating, and inserting Prescription objects into the database.
             </summary>
+        </member>
+        <member name="M:Mockup2.Factories.PrescriptionFactory.#ctor(Mockup2.DatabaseClasses.DBConnection)">
+            <summary>
+            Sets the next available prescription ID, to ensure that subsequent insertions have a valid ID to use.
+            </summary>
+            <param name="dbCon">The instance of <see cref="T:Mockup2.DatabaseClasses.DBConnection"/> we are using.</param>
         </member>
         <member name="M:Mockup2.Factories.PrescriptionFactory.GetNextAvailablePrescriptionID">
             <summary>
@@ -800,6 +906,35 @@
             </summary>
             <param name="p">The <see cref="T:Mockup2.DatabaseClasses.Prescription"/> object to insert.</param>
         </member>
+        <member name="M:Mockup2.Factories.PrescriptionFactory.InsertEditedPrescription(System.Collections.Generic.List{Mockup2.DatabaseClasses.Prescription})">
+            <summary>
+            Inserts a list of <see cref="T:Mockup2.DatabaseClasses.Prescription"/> objects back into the database.
+            </summary>
+            <param name="pre">The <see cref="T:System.Collections.Generic.List`1"/> to insert.</param>
+        </member>
+        <member name="M:Mockup2.Factories.PrescriptionFactory.DeletePrescription(Mockup2.DatabaseClasses.Prescription)">
+            <summary>
+            Deletes the supplied <see cref="T:Mockup2.DatabaseClasses.Prescription"/> from the database.
+            </summary>
+            <param name="pre">The <see cref="T:Mockup2.DatabaseClasses.Prescription"/> to delete.</param>
+        </member>
+        <member name="M:Mockup2.Factories.PrescriptionFactory.addPrescription(Mockup2.DatabaseClasses.Prescription)">
+            <summary>
+            Adds a <see cref="T:Mockup2.DatabaseClasses.Prescription"/> to the database.
+            </summary>
+            <param name="p">The <see cref="T:Mockup2.DatabaseClasses.Prescription"/> to add.</param>
+        </member>
+        <member name="T:Mockup2.Factories.RotaFactory">
+            <summary>
+            Convenience class for inserting a member of <see cref="T:Mockup2.DatabaseClasses.Staff"/> into the Rota table, defaulting all work days to 0 (off).
+            </summary>
+        </member>
+        <member name="M:Mockup2.Factories.RotaFactory.#ctor(Mockup2.DatabaseClasses.DBConnection)">
+            <summary>
+            Sets base dbCon
+            </summary>
+            <param name="dbCon"></param>
+        </member>
         <member name="M:Mockup2.Factories.RotaFactory.InsertStaff(Mockup2.DatabaseClasses.Staff)">
             <summary>
             Inserts the <see cref="T:Mockup2.DatabaseClasses.Staff"/> member into the Rota table, defaulting all days to 0 (entire week off).
@@ -811,11 +946,17 @@
             Convenience class to handle returning, updating, and inserting Staff objects into the database.
             </summary>
         </member>
+        <member name="M:Mockup2.Factories.StaffFactory.#ctor(Mockup2.DatabaseClasses.DBConnection)">
+            <summary>
+            Calls <code>GetLatestStaffID()</code> to ensure <see cref="T:Mockup2.DatabaseClasses.Staff"/> objects are created witha valid ID.
+            </summary>
+            <param name="dbCon">The instance of <see cref="T:Mockup2.DatabaseClasses.DBConnection"/> we are using.</param>
+        </member>
         <member name="M:Mockup2.Factories.StaffFactory.RemoveStaffByID(System.Int32)">
             <summary>
             Removes the <see cref="T:Mockup2.DatabaseClasses.Staff"/> member associated with the given Staff ID.
             </summary>
-            <param name="id">An integer ID of the staff member to remove.</param>
+            
         </member>
         <member name="M:Mockup2.Factories.StaffFactory.GetLatestStaffID">
             <summary>
@@ -889,6 +1030,12 @@
             <summary>
             Convenience class to handle pulling Patients from, and inserting Patients into, the database. As well as updating them.
             </summary>
+        </member>
+        <member name="M:Mockup2.Factories.PatientFactory.#ctor(Mockup2.DatabaseClasses.DBConnection)">
+            <summary>
+            
+            </summary>
+            <param name="con"></param>
         </member>
         <member name="M:Mockup2.Factories.PatientFactory.InsertPatient(Mockup2.DatabaseClasses.Patient)">
             <summary>

@@ -8,8 +8,15 @@ using MySql.Data.MySqlClient;
 
 namespace Mockup2.Factories
 {
+    /// <summary>
+    /// Convenience class for inserting a member of <see cref="Staff"/> into the Rota table, defaulting all work days to 0 (off).
+    /// </summary>
     public class RotaFactory : AbstractFactory
     {
+        /// <summary>
+        /// Sets base dbCon
+        /// </summary>
+        /// <param name="dbCon"></param>
         public RotaFactory(DBConnection dbCon) : base(dbCon)
         {
         }
