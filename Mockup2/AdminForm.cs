@@ -79,8 +79,10 @@ namespace Mockup2
 
         private void AdminForm_Load(object sender, EventArgs e)
         {
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MinimumSize = this.Size;
             this.MaximumSize = this.Size;
+            this.Text = "Admin Form";
 
             PopulateAdminFormStaff();
             PopulateAdminFormRota();
@@ -148,6 +150,14 @@ namespace Mockup2
             {
                 foreach (var value in row.Values)
                 {
+                    //if ()
+                    //{
+                    //    value = "On";
+                    //}
+                    //else
+                    //{
+                    //    value = "Off";
+                    //}
                     Console.Write(value + " | ");
                 }
                 dataGridView1.Rows.Add(row.Values.ToArray());

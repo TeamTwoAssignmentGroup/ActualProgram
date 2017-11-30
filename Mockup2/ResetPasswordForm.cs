@@ -26,6 +26,7 @@ namespace Mockup2
         private void ResetPasswordForm_Load(object sender, EventArgs e)
         {
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.WindowState = FormWindowState.Maximized;
             PopulatePassword();
            
         }
