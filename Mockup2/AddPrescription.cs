@@ -24,7 +24,11 @@ namespace Mockup2
         private GPNurse controlGP;
 
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="connection"></param>
+        /// <param name="form"></param>
         public AddPrescription(DBConnection connection,GPNurse form)
         {
 

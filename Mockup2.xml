@@ -4,6 +4,13 @@
         <name>Mockup2</name>
     </assembly>
     <members>
+        <member name="M:Mockup2.AddPrescription.#ctor(Mockup2.DatabaseClasses.DBConnection,Mockup2.GPNurse)">
+            <summary>
+            
+            </summary>
+            <param name="connection"></param>
+            <param name="form"></param>
+        </member>
         <member name="M:Mockup2.AddPrescription.prescribeButton_Click(System.Object,System.EventArgs)">
             <summary>
             savescreate and save a prescription into the database
