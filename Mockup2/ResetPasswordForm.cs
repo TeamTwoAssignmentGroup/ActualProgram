@@ -36,6 +36,7 @@ namespace Mockup2
         {
             //this.FormBorderStyle = FormBorderStyle.FixedSingle;
             PopulatePassword();
+            this.Text = "Reset Password";
            
         }
 

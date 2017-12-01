@@ -83,6 +83,7 @@ namespace Mockup2.Support
 
 
 
+
         /// <summary>
         /// Returns prescriptions for the current patient as object(managable)
         /// </summary>
@@ -210,10 +211,8 @@ namespace Mockup2.Support
             history = medicalNote.GetMedicalNotes(currentPatient.ID);
             prescription = prescriptionFactory.GetPrescriptions(currentPatient.ID);
             testresults = test.GetTestResults(currentPatient.ID);
-            
-          
+                   
         }
-
 
       
 
@@ -329,7 +328,6 @@ namespace Mockup2.Support
             appointment = appointmentClass.getNextAppointment();
             nextPatientret = infoFac.GetAPatientByID(appointment.PatientId);
             return nextPatientret;
-
 
         }
 

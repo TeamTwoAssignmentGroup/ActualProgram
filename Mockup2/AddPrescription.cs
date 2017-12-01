@@ -21,19 +21,21 @@ namespace Mockup2
         private MedicationInstance medicationAndPrescription = new MedicationInstance();
         private int index;
         private bool ticked;
+        private GPNurse controlGP;
 
 
 
-
-        public AddPrescription(DBConnection connection)
+        public AddPrescription(DBConnection connection,GPNurse form)
         {
 
             this.dbCon = connection;
             getMedications = new MedicineInFactory(dbCon);
             managePrescription = new PrescriptionFactory(dbCon);
             medFact = new MedicationFactory(dbCon);
+            controlGP = form;
             InitializeComponent();
             showMedications();
+            
 
         }
 
@@ -57,8 +59,9 @@ namespace Mockup2
 
        public void initCurrentPatient(Patient o)
         {
-
+           
             patient = o;
+
         }
 
 
@@ -86,12 +89,17 @@ namespace Mockup2
 
                 createNewPrescription(medications[index].ScientificName.ToString());
                 this.Hide();
-
+                controlGP.loadCurrentPatient ( );
+                controlGP.refreshPrescriptionList ( );
+               
+               
             }
 
             if (result == System.Windows.Forms.DialogResult.No)
             {
             }
+
+            
         }
 
 

@@ -114,7 +114,7 @@ namespace Mockup2
                         s.ID = id;
                         rf.InsertStaff(s);
 
-                        MessageBox.Show("Staff Add Successful", "Completed Staff Add");
+                        MessageBox.Show("Staff Add Successful", "Completed");
                         this.Close();
                     }
                     else

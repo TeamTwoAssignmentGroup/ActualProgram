@@ -68,23 +68,28 @@ namespace Mockup2
 
         private void button3_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.SelectedRows.Count > 1)
-            {
-                //validate
+            //validates to make sure that at least 1 row is selected when trying to chage rota.
+            if (dataGridView1.SelectedRows.Count < 1)
+            {  
+                MessageBox.Show("Please select a member of staff to change rota off", "Error");
             }
-            int rowNumber = Convert.ToInt32(dataGridView1.SelectedRows[0].Index);
-            object[] pass = DataSet(rowNumber).Item1;
-            object[] staffName = DataSet(rowNumber).Item2;
-            int staffID = DataSet(rowNumber).Item3;
+            else
+            {
+                int rowNumber = Convert.ToInt32(dataGridView1.SelectedRows[0].Index);
+                object[] pass = DataSet(rowNumber).Item1;
+                object[] staffName = DataSet(rowNumber).Item2;
+                int staffID = DataSet(rowNumber).Item3;
 
-            Console.WriteLine(rowNumber + "\t" + staffID);
+                Console.WriteLine(rowNumber + "\t" + staffID);
 
-            this.Hide();
-            new UpdateStaff(dbCon, pass, staffName, staffID).ShowDialog();
-            dataGridView1.Rows.Clear();
-            dataGridView1.Refresh();
-            PopulateAdminFormRota();
-            this.Show();
+                this.Hide();
+                new UpdateStaff(dbCon, pass, staffName, staffID).ShowDialog();
+                dataGridView1.Rows.Clear();
+                dataGridView1.Refresh();
+                PopulateAdminFormRota();
+                this.Show();
+            }
+            
         }
 
         private void AdminForm_Load(object sender, EventArgs e)
@@ -184,8 +189,8 @@ namespace Mockup2
         }
         private void editStaffButton_Click(object sender, EventArgs e)
         {
-            int staffID = Convert.ToInt32(dataGridView2.SelectedRows[0].Cells[0].Value);
             // StaffID.ValueFromGrid
+            int staffID = Convert.ToInt32(dataGridView2.SelectedRows[0].Cells[0].Value);
             this.Hide();
             new EditStaffForm(dbCon, staffID).ShowDialog();
             dataGridView2.Rows.Clear();

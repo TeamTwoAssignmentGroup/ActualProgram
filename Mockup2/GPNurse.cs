@@ -19,7 +19,7 @@ namespace Mockup2
         */
         private DBConnection dbCon;
         private PatientFactory infoFac;
-        private AddPrescription PrescriptonForm;
+        private AddPrescription prescriptonForm;
         private Patient currentPatient;
         private Patient found;
         private Patient nextPatient;
@@ -38,6 +38,8 @@ namespace Mockup2
         private List<Prescription> prescriptionList = new List<Prescription>();
         private List<TestResult> testresultsList = new List<TestResult>();
         private bool isDoctor;
+        bool anotherFormIsRunning =false;
+       
 
 
 
@@ -57,12 +59,13 @@ namespace Mockup2
             timer1.Start ( );
 
             converter = new DatabaseConverter ( dbCon );
-            PrescriptonForm = new AddPrescription ( dbCon );
+            prescriptonForm = new AddPrescription ( dbCon,this );
+
+
         }
 
 
-
-
+     
         /**
          * Form 
          * Initialises a next patient and database components
@@ -84,6 +87,7 @@ namespace Mockup2
 
             allow.Visible = false;
             decline.Visible = false;
+        
 
         }
 
@@ -147,7 +151,7 @@ namespace Mockup2
         /**
          * This button (View this patient details) loads in selected patient details on the page
          * */
-        private void loadCurrentPatient ( )
+        public void loadCurrentPatient ( )
         {
 
             cleanAll ( );
@@ -160,19 +164,21 @@ namespace Mockup2
 
                 convert.loadList ( );
                 history = convert.HistoryData ( );
-                prescriptions = convert.PrescriptionData ( );
-                prescriptionList = convert.GetPrescription ( );
+              
                 if ( isDoctor == true )
                 {
+                    prescriptionList = convert.GetPrescription ( );
+                    prescriptions = convert.PrescriptionData ( );
                     testresultsList = convert.getTestResults ( );
-                    testresults = convert.TestResults ( );
+                    testresults = convert.TestResults ( );                    
                     ListBoxWriter ( testresults , testResultsListBox );
                 }
                 ListBoxWriter ( prescriptions , prescriptiptionsListBox );
                 textBoxWriter ( history , historyBox );
 
                 detailsBox.Text = currentPatient.FirstName + " " + currentPatient.LastName + " " + currentPatient.DOB.ToShortDateString ( ) + "\nGender: " + currentPatient.Gender + "\nNext of kin: " + currentPatient.NextOfKin + "\nAddress " + currentPatient.Address;
-                PrescriptonForm.initCurrentPatient ( currentPatient );
+                initCurrentPatientOnPrescriptionForm ( currentPatient);
+               
 
             }
             else
@@ -561,6 +567,9 @@ namespace Mockup2
 
                 TimeLabel.Text = timeIs;
                 nextLabel.Text = name;
+                
+
+
             }
             catch ( NullReferenceException ex ) { nextLabel.Text = "no patient "; }
         }
@@ -638,6 +647,7 @@ namespace Mockup2
         {
             string name =selectedPrescirption;
 
+        
             prescriptiptionsListBox.Items.Clear ( );
             prescriptiptionsListBox.Items.Add ( name );
             prescriptiptionsListBox.Items.Add ( prescriptionList [ editIndex ].IsRepeatable );
@@ -699,6 +709,7 @@ namespace Mockup2
          * */
         public void refreshPrescriptionList ( )
         {
+            
             ListBoxCleaner ( prescriptiptionsListBox );
             ListBoxWriter ( prescriptions , prescriptiptionsListBox );
         }
@@ -751,7 +762,7 @@ namespace Mockup2
         private void saveModifiedPrescription ( )
         {
 
-            PrescriptonForm.modified ( prescriptionList );
+            prescriptonForm.modified ( prescriptionList );
 
         }
 
@@ -778,8 +789,17 @@ namespace Mockup2
             }
         }
 
+        public void initCurrentPatientOnPrescriptionForm ( Patient p )
+        {
+          
 
 
+            prescriptonForm.initCurrentPatient ( currentPatient );
+         
+
+        }
+
+      
 
         /**
          * AddButton
@@ -787,15 +807,24 @@ namespace Mockup2
          * */
         private void addPrescription_Click ( object sender , EventArgs e )
         {
+          
             if ( currentPatient != null )
             {
-                PrescriptonForm.Show ( );
+                
+                prescriptonForm.Show ( );
+
+               
+
+
             }
             else
             {
                 MessageBox.Show ( "Please select patient" );
             }
+
+                
         }
+
 
 
 
