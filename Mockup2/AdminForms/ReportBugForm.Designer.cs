@@ -41,40 +41,45 @@
             // 
             // reportDate
             // 
-            this.reportDate.Location = new System.Drawing.Point(72, 14);
+            this.reportDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.reportDate.Location = new System.Drawing.Point(173, 12);
             this.reportDate.Name = "reportDate";
-            this.reportDate.Size = new System.Drawing.Size(200, 20);
+            this.reportDate.Size = new System.Drawing.Size(296, 40);
             this.reportDate.TabIndex = 0;
             // 
             // reportTime
             // 
+            this.reportTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.reportTime.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.reportTime.Location = new System.Drawing.Point(72, 40);
+            this.reportTime.Location = new System.Drawing.Point(173, 61);
             this.reportTime.Name = "reportTime";
             this.reportTime.ShowUpDown = true;
-            this.reportTime.Size = new System.Drawing.Size(200, 20);
+            this.reportTime.Size = new System.Drawing.Size(296, 40);
             this.reportTime.TabIndex = 1;
             // 
             // reportSubject
             // 
-            this.reportSubject.Location = new System.Drawing.Point(72, 66);
+            this.reportSubject.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.reportSubject.Location = new System.Drawing.Point(173, 107);
             this.reportSubject.Name = "reportSubject";
-            this.reportSubject.Size = new System.Drawing.Size(200, 20);
+            this.reportSubject.Size = new System.Drawing.Size(454, 40);
             this.reportSubject.TabIndex = 2;
             // 
             // reportMessage
             // 
-            this.reportMessage.Location = new System.Drawing.Point(72, 92);
+            this.reportMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.reportMessage.Location = new System.Drawing.Point(173, 153);
             this.reportMessage.Multiline = true;
             this.reportMessage.Name = "reportMessage";
-            this.reportMessage.Size = new System.Drawing.Size(200, 128);
+            this.reportMessage.Size = new System.Drawing.Size(454, 368);
             this.reportMessage.TabIndex = 3;
             // 
             // sendReportButton
             // 
-            this.sendReportButton.Location = new System.Drawing.Point(72, 226);
+            this.sendReportButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sendReportButton.Location = new System.Drawing.Point(427, 527);
             this.sendReportButton.Name = "sendReportButton";
-            this.sendReportButton.Size = new System.Drawing.Size(75, 23);
+            this.sendReportButton.Size = new System.Drawing.Size(200, 40);
             this.sendReportButton.TabIndex = 4;
             this.sendReportButton.Text = "Send Report";
             this.sendReportButton.UseVisualStyleBackColor = true;
@@ -83,36 +88,40 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(36, 20);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(91, 18);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(30, 13);
+            this.label1.Size = new System.Drawing.Size(76, 33);
             this.label1.TabIndex = 5;
             this.label1.Text = "Date";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(36, 46);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(86, 67);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(30, 13);
+            this.label2.Size = new System.Drawing.Size(81, 33);
             this.label2.TabIndex = 6;
             this.label2.Text = "Time";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(23, 69);
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(55, 110);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(43, 13);
+            this.label3.Size = new System.Drawing.Size(112, 33);
             this.label3.TabIndex = 7;
             this.label3.Text = "Subject";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 95);
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(5, 156);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(60, 13);
+            this.label4.Size = new System.Drawing.Size(162, 33);
             this.label4.TabIndex = 8;
             this.label4.Text = "Description";
             this.label4.Click += new System.EventHandler(this.label4_Click);
@@ -121,7 +130,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.ClientSize = new System.Drawing.Size(639, 579);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);

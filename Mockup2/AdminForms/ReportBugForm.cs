@@ -25,6 +25,7 @@ namespace Mockup2.AdminForms
 
         private void ReportBugForm_Load(object sender, EventArgs e)
         {
+            this.Text = "Report A Bug";
         }
 
         private void label4_Click(object sender, EventArgs e)
@@ -66,8 +67,9 @@ namespace Mockup2.AdminForms
         {
             try
             {
+                WebRequest.DefaultWebProxy.Credentials = CredentialCache.DefaultCredentials;
                 Credentials credentials = new Credentials(Program.AUTH_TOKEN);
-                GitHubClient gh = new GitHubClient(new ProductHeaderValue("OverSurgery"));
+                GitHubClient gh = new GitHubClient(new ProductHeaderValue("ActualProgram"));
                 gh.Credentials = credentials;
                 NewIssue issue = new NewIssue(subject);
                 issue.Body = "[Auto sent from OverSurgery application] "+System.Environment.NewLine+"[Date: "+date.ToShortDateString()+" Time: "+time.ToShortTimeString()+" ]"+System.Environment.NewLine+message;

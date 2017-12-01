@@ -114,12 +114,12 @@ namespace Mockup2
                         s.ID = id;
                         rf.InsertStaff(s);
 
-                        MessageBox.Show("Staff Add Successful");
+                        MessageBox.Show("Staff Add Successful", "Completed Staff Add");
                         this.Close();
                     }
                     else
                     {
-                        MessageBox.Show("You have not entered all the data, please fill out the form to continue.");
+                        MessageBox.Show("You have not entered all the data, please fill out the form to continue.", "Error");
                     }
                     break;
                 default:
@@ -145,12 +145,12 @@ namespace Mockup2
                         b.Update(Tables.STAFF_TABLE).Set(valuesToInsert).Where(b.IsEqual(Tables.STAFF_TABLE.ID, StaffID));
                         MySqlCommand cmdEdit = new MySqlCommand(b.ToString(), dbCon.GetConnection());
                         cmdEdit.ExecuteNonQuery();
-                        MessageBox.Show("Staff Edit Successful");
+                        MessageBox.Show("Staff Edit Successful", "Completed Staff Edit");
                         this.Close();
                     }
                     else
                     {
-                        MessageBox.Show("You have not entered all the data, please fill out the form to continue.");
+                        MessageBox.Show("You have not entered all the data, please fill out the form to continue.", "Error");
                     }
                     break;
             }

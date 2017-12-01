@@ -13,7 +13,7 @@ namespace Mockup2.AdminForms
     /// <summary>
     /// Shamelessly stolen from <see href="https://stackoverflow.com/questions/15853746/how-to-print-values-from-a-datagridview-control">this answer</see>, although it has been heavily modified.
     /// </summary>
-    class RotaPrinter
+    public class RotaPrinter
     {
         #region Variables
 

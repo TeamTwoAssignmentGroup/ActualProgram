@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{BD340830-9BE6-4E6B-836B-D002E69CBDB9}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <RootNamespace>Mockup2</RootNamespace>
     <AssemblyName>Mockup2</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
@@ -204,6 +204,7 @@
     <Compile Include="Support\AppointmentSort.cs" />
     <Compile Include="Support\DatabaseConverter.cs" />
     <Compile Include="AdminForms\RotaPrinter.cs" />
+    <Compile Include="Test\AppointmentPrinter.cs" />
     <Compile Include="UpdateStaff.cs">
       <SubType>Form</SubType>
     </Compile>

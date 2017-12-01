@@ -1,4 +1,5 @@
 ﻿using Mockup2.Factories;
+using Mockup2.Test;
 using MySql.Data.MySqlClient;
 using Octokit;
 using System;
@@ -29,7 +30,7 @@ namespace Mockup2.DatabaseClasses
         {
             AUTH_TOKEN = args[0];
             DBConnection dbCon = new DBConnection();
-            
+
             System.Windows.Forms.Application.EnableVisualStyles();
             System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
 
