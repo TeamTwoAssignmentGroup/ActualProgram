@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Mockup2.Factories;
 using Mockup2.DatabaseClasses;
 using MySql.Data.MySqlClient;
+using Mockup2.Support;
 
 namespace Mockup2
 {
@@ -87,7 +88,7 @@ namespace Mockup2
                     Console.Write(value + " | ");
                 }
                 dataGridView1.Rows.Add(row.Values.ToArray());
-                Console.WriteLine();
+                Log.WriteLine();
             }
         }
 

@@ -1,5 +1,6 @@
 ﻿using Mockup2.DatabaseClasses;
 using Mockup2.Factories;
+using Mockup2.Support;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -156,7 +157,7 @@ namespace Mockup2.AppointmentForms
             List<string> allTimeslots = af.GetTimeslots();
             foreach(var row in ctf.GetCustomTable(b).GetRows())
             {
-                Console.WriteLine(row[Tables.APPOINTMENT_TABLE.AppointmentTime].ToString());
+                Log.WriteLine(row[Tables.APPOINTMENT_TABLE.AppointmentTime].ToString());
                 allTimeslots.Remove(row[Tables.APPOINTMENT_TABLE.AppointmentTime].ToString());
             }
             timeslotcomboBox1.Items.Clear();
@@ -195,6 +196,7 @@ namespace Mockup2.AppointmentForms
                     app.Cause = causeTextBox.Text;
                     app.Status = statusComboBox.SelectedItem.ToString();
                     af.InsertAppointment(app);
+                    MessageBox.Show("Appointment created successfully.", "Success");
                 }catch(Exception ex1)
                 {
                     MessageBox.Show("Some input fields have been left blank.", "Please Fill All Forms");
@@ -216,6 +218,7 @@ namespace Mockup2.AppointmentForms
                     app.Cause = causeTextBox.Text;
                     app.Status = statusComboBox.SelectedItem.ToString();
                     af.UpdateAppointment(app);
+                    MessageBox.Show("Appointment updated successfully.", "Success");
                 }catch(Exception ex2)
                 {
                     MessageBox.Show("Some input fields have been left blank.", "Please Fill All Forms");

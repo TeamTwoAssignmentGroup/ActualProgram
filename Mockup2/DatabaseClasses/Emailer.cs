@@ -11,6 +11,7 @@ using System.IO;
 using System.Drawing.Imaging;
 using System.Net.Mime;
 using Mockup2.DatabaseClasses;
+using Mockup2.Support;
 
 namespace Mockup2.Classes
 {
@@ -33,11 +34,11 @@ namespace Mockup2.Classes
         {
             if (!Program.SEND_EMAILS)
             {
-                Console.WriteLine("You're attempting to send an email, but they're disabled in Program.");
+                Log.WriteLine("You're attempting to send an email, but they're disabled in Program.");
                 return;
             }
             new Thread(() => {
-                Console.WriteLine("Attempting to send email with subject: {0} message: {1} to: {2}", subject, message, email);
+                Log.WriteLine("Attempting to send email with subject: {0} message: {1} to: {2}", subject, message, email);
                 MailMessage mail = new MailMessage("noreply.oversurgery@gmail.com", email);
                 SmtpClient client = new SmtpClient();
 
@@ -94,7 +95,7 @@ namespace Mockup2.Classes
         {
             if (!Program.SEND_EMAILS)
             {
-                Console.WriteLine("You're attempting to send an email, but they're disabled in Program.");
+                Log.WriteLine("You're attempting to send an email, but they're disabled in Program.");
                 return;
             }
             string staffString = staff.JobRole + " " + staff.FirstName + " " + staff.LastName;

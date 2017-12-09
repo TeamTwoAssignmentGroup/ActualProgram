@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Mockup2.Support;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
@@ -126,7 +127,7 @@ namespace Mockup2.AdminForms
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex);
+                Log.WriteLine(ex);
                 MessageBox.Show(ex.Message, ToString());
             }
         }
@@ -144,7 +145,7 @@ namespace Mockup2.AdminForms
             for(int i = 1; i< gw.Columns.Count; i++)
             {
                 float cw = g.MeasureString(gw.Columns[i].HeaderText.ToString(), gw.Columns[i].DefaultCellStyle.Font).Width;
-                Console.WriteLine("String: " + gw.Columns[i].HeaderText.ToString() + " Has length: " + cw);
+                Log.WriteLine("String: " + gw.Columns[i].HeaderText.ToString() + " Has length: " + cw);
                 if (cw > maxColumnWidth)
                 {
                     maxColumnWidth = cw;
@@ -173,7 +174,7 @@ namespace Mockup2.AdminForms
 
             for(int i = 0; i < maxCellWidth.Count(); i++)
             {
-                Console.WriteLine($"Max column width: {maxColumnWidth} and current max cell width: {maxCellWidth[i]}");
+                Log.WriteLine($"Max column width: {maxColumnWidth} and current max cell width: {maxCellWidth[i]}");
                 if (maxColumnWidth > maxCellWidth[i])
                 {
                     maxCellWidth[i] = maxColumnWidth;
@@ -215,7 +216,7 @@ namespace Mockup2.AdminForms
         /// <param name="e"></param>
         private void _printDocument_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
-            Console.WriteLine($"From Page: {e.PageSettings.PrinterSettings.FromPage} To Page: {e.PageSettings.PrinterSettings.ToPage}");
+            Log.WriteLine($"From Page: {e.PageSettings.PrinterSettings.FromPage} To Page: {e.PageSettings.PrinterSettings.ToPage}");
             SetMaxWidth(e.Graphics);
             //try
             //{

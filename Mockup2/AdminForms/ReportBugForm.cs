@@ -1,5 +1,6 @@
 ﻿using Mockup2.Classes;
 using Mockup2.DatabaseClasses;
+using Mockup2.Support;
 using Octokit;
 using System;
 using System.Collections.Generic;
@@ -77,7 +78,7 @@ namespace Mockup2.AdminForms
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
+                Log.WriteLine(e);
             }
         }
     }

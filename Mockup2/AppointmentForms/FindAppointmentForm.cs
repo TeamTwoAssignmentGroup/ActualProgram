@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Mockup2.Support;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -75,7 +76,12 @@ namespace Mockup2.AppointmentForms
             {
                 if (dateTimePicker1.Value == null || dateTimePicker2.Value == null)
                 {
-                    MessageBox.Show("Please choose two dates to see appointments between.", "Incorrect Details");
+                    MessageBox.Show("Please choose two dates to see appointments between.", "Incorrect Dates");
+                }
+                if(dateTimePicker1.Value > dateTimePicker2.Value)
+                {
+                    MessageBox.Show("Minimum date cannot be further in future than maximum date.", "Incorrect Dates");
+                    return;
                 }
                 parent.PopulateAppointments(dateTimePicker1.Value, dateTimePicker2.Value);
                 parent.searchByName = false;
@@ -88,8 +94,8 @@ namespace Mockup2.AppointmentForms
 
         private void FindAppointmentForm_Load(object sender, EventArgs e)
         {
-            Console.WriteLine("Hello this is the form loader");
-            Console.WriteLine("Focusing the textbox was successful: "+this.firstNameTextBox.Focus());
+            Log.WriteLine("Hello this is the form loader");
+            Log.WriteLine("Focusing the textbox was successful: "+this.firstNameTextBox.Focus());
         }
     }
 }

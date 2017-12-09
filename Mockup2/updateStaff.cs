@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Mockup2.Factories;
 using Mockup2.DatabaseClasses;
 using MySql.Data.MySqlClient;
+using Mockup2.Support;
 
 namespace Mockup2
 {
@@ -69,7 +70,7 @@ namespace Mockup2
         private void UpdateRotaDays()
         {
             int i, j;
-            Console.WriteLine("var  " + StaffID.ToString() + '\t' + StaffName[0].ToString() + '\t' + StaffName[1].ToString());
+            Log.WriteLine("var  " + StaffID.ToString() + '\t' + StaffName[0].ToString() + '\t' + StaffName[1].ToString());
             dataGridView1.Rows.Add(StaffID, StaffName[0], StaffName[1]);
             for (i = 1, j = 0; i < 14; i += 2, j++)
             {
@@ -99,7 +100,7 @@ namespace Mockup2
                     //Console.Write(value + " | ");
                 }
                 dataGridView1.Rows.Add(row.Values.ToArray());
-                Console.WriteLine();
+                Log.WriteLine();
             }
         }
 
@@ -110,7 +111,7 @@ namespace Mockup2
                 Pass[i] = Convert.ToInt32(chkLDays.GetItemChecked(j));
                 b = new QueryBuilder();
             }
-            Console.WriteLine(b.Update(Tables.ROTA_TABLE).Set(Pass).Where(b.IsEqual(Tables.ROTA_TABLE.StaffID, StaffID)));
+            Log.WriteLine(b.Update(Tables.ROTA_TABLE).Set(Pass).Where(b.IsEqual(Tables.ROTA_TABLE.StaffID, StaffID)));
             b.Update(Tables.ROTA_TABLE).Set(Pass).Where(b.IsEqual(Tables.ROTA_TABLE.StaffID, StaffID));
             MySqlCommand cmd = new MySqlCommand(b.ToString(), dbCon.GetConnection());
             cmd.ExecuteNonQuery();

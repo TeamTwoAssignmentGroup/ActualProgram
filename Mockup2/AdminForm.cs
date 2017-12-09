@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Mockup2.Factories;
 using Mockup2.DatabaseClasses;
 using Mockup2.AdminForms;
+using Mockup2.Support;
 
 namespace Mockup2
 {
@@ -54,14 +55,14 @@ namespace Mockup2
 
         private void button1_Click(object sender, EventArgs e)
         {
-            this.Hide();
+
             new MessagePatientForm(dbCon).ShowDialog();
             this.Show();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            this.Hide();
+
             new ResetPasswordForm(dbCon).ShowDialog();
             this.Show();
         }
@@ -80,23 +81,23 @@ namespace Mockup2
                 object[] staffName = DataSet(rowNumber).Item2;
                 int staffID = DataSet(rowNumber).Item3;
 
-                Console.WriteLine(rowNumber + "\t" + staffID);
+                Log.WriteLine(rowNumber + "\t" + staffID);
 
-                this.Hide();
+                //this.Hide();
                 new UpdateStaff(dbCon, pass, staffName, staffID).ShowDialog();
                 dataGridView1.Rows.Clear();
                 dataGridView1.Refresh();
                 PopulateAdminFormRota();
-                this.Show();
+                //this.Show();
             }
             
         }
 
         private void AdminForm_Load(object sender, EventArgs e)
         {
-            this.FormBorderStyle = FormBorderStyle.FixedSingle;
-            this.MinimumSize = this.Size;
-            this.MaximumSize = this.Size;
+            //this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            //this.MinimumSize = this.Size;
+            //this.MaximumSize = this.Size;
             this.Text = "Admin Form";
 
             PopulateAdminFormStaff();
@@ -121,7 +122,7 @@ namespace Mockup2
                     Console.Write(value + " | ");
                 }
                 dataGridView2.Rows.Add(row.Values.ToArray());
-                Console.WriteLine();
+                Log.WriteLine();
             }
         }
 

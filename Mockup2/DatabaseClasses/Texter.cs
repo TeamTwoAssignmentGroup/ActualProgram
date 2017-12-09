@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Mockup2.Support;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -35,7 +36,7 @@ namespace Mockup2.DatabaseClasses
         {
             if (!Program.SEND_TEXTS)
             {
-                Console.WriteLine("You're attempting to send a text but they are disabled in Program. Please do not" +
+                Log.WriteLine("You're attempting to send a text but they are disabled in Program. Please do not" +
                     " enable them until we are ready to present!");
                 return;
             }
@@ -51,7 +52,7 @@ namespace Mockup2.DatabaseClasses
                     staff.JobRole,staff.FirstName,staff.LastName,System.Environment.NewLine));
 
 
-                Console.WriteLine("Message successfully sent.");
+                Log.WriteLine("Message successfully sent.");
             
         }
     }

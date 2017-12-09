@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Mockup2.Support;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,7 +42,7 @@ namespace Mockup2.DatabaseClasses
                 con = new MySqlConnection(connectionString);
                 con.Open();
             }catch(Exception e){
-                Console.WriteLine(e);
+                Log.WriteLine(e);
                 throw e;
             }
         }

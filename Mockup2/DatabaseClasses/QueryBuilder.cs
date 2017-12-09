@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Mockup2.Support;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -430,7 +431,7 @@ namespace Mockup2.DatabaseClasses
             }
             query += ";";
             AddQuery(query);
-            Console.WriteLine(query);
+            Log.WriteLine(query);
             return query;
         }
 
@@ -475,7 +476,7 @@ namespace Mockup2.DatabaseClasses
             StreamWriter sw = new StreamWriter("querylog.txt");
             foreach(KeyValuePair<string,int> kvp in pastQueries)
             {
-                Console.WriteLine("[{0}] : {1}",kvp.Value,kvp.Key);
+                Log.WriteLine("[{0}] : {1}",kvp.Value,kvp.Key);
                 sw.WriteLine("[{0}] : {1}", kvp.Value, kvp.Key);
             }
             sw.Flush();

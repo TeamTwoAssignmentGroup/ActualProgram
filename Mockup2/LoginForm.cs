@@ -1,5 +1,6 @@
 ﻿using Mockup2.DatabaseClasses;
 using Mockup2.Factories;
+using Mockup2.Support;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -48,12 +49,12 @@ namespace Mockup2
             {
                 return;
             }
-            Console.WriteLine("Incorrect login attempts:");
+            Log.WriteLine("Incorrect login attempts:");
             foreach(KeyValuePair<string,int> kvp in incorrectLoginAttempts)
             {
-                Console.WriteLine($"[{kvp.Key}] : [{kvp.Value}]");
+                Log.WriteLine($"[{kvp.Key}] : [{kvp.Value}]");
             }
-            Console.WriteLine("This could be an attempt to break into the system!");
+            Log.WriteLine("This could be an attempt to break into the system!");
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -79,7 +80,7 @@ namespace Mockup2
 
                 // After grabbing the password we have to hash it
                 string hashedPassword = Program.GetHashedString(password);
-                Console.WriteLine("Searching for ID:{0} Password:{1}",staffID,password);
+                Log.WriteLine("Searching for ID:{0} Password:{1}",staffID,password);
 
                 StaffFactory sf = new StaffFactory(dbCon);
                 List<Staff> s = sf.GetStaffByID(staffID);
@@ -115,6 +116,7 @@ namespace Mockup2
             Console.Out.WriteLine("Object: " + cbi);
 
             // Depending on which job role was returned, we create the appropriate form
+            this.Hide();
             switch (cbi)
             {
                 case "Admin":AdminForm af = new AdminForm(dbCon);
@@ -137,6 +139,10 @@ namespace Mockup2
                     rf.ShowDialog();
                     break;
             }
+            this.staffIDtextBox1.Text = "";
+            this.staffPasswordtextBox2.Text = "";
+            this.Show();
+            this.staffIDtextBox1.Focus();
         }
 
         private void loginForm_Load(object sender, EventArgs e)

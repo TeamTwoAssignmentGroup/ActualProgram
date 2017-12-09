@@ -255,7 +255,7 @@ namespace Mockup2.Support
 
                 
             }
-            catch (NullReferenceException ne) { Console.WriteLine("no object " + ne); }
+            catch (NullReferenceException ne) { Log.WriteLine("no object " + ne); }
 
         }
 

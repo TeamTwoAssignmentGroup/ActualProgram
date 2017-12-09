@@ -204,6 +204,7 @@
     <Compile Include="Support\AppointmentSort.cs" />
     <Compile Include="Support\DatabaseConverter.cs" />
     <Compile Include="AdminForms\RotaPrinter.cs" />
+    <Compile Include="Support\Log.cs" />
     <Compile Include="Test\AppointmentPrinter.cs" />
     <Compile Include="UpdateStaff.cs">
       <SubType>Form</SubType>
@@ -280,6 +281,8 @@
     <None Include="ClassDiagram3.cd" />
     <None Include="ClassDiagram4.cd" />
     <None Include="ClassDiagram5.cd" />
+    <None Include="ClassDiagram6.cd" />
+    <None Include="ClassDiagram7.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

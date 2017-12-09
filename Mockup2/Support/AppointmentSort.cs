@@ -95,7 +95,7 @@ namespace Mockup2.Support
 
                 }
 
-                }catch (ArgumentOutOfRangeException ex) { Console.WriteLine(ex); }  
+                }catch (ArgumentOutOfRangeException ex) { Log.WriteLine(ex); }  
                 
         }
 
@@ -114,7 +114,7 @@ namespace Mockup2.Support
                 runSort();
                 next = sort[0];
             }
-            catch (ArgumentOutOfRangeException ex) { Console.WriteLine(ex); }
+            catch (ArgumentOutOfRangeException ex) { Log.WriteLine(ex); }
             
             return next;
         }
@@ -132,7 +132,7 @@ namespace Mockup2.Support
             {
                 sort.RemoveAt(0);
             }
-            catch (ArgumentOutOfRangeException ex) { Console.WriteLine(ex); }
+            catch (ArgumentOutOfRangeException ex) { Log.WriteLine(ex); }
   
         }
            

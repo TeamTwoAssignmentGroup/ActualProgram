@@ -1,4 +1,5 @@
 ﻿using Mockup2.Factories;
+using Mockup2.Support;
 using Mockup2.Test;
 using MySql.Data.MySqlClient;
 using Octokit;
@@ -28,7 +29,14 @@ namespace Mockup2.DatabaseClasses
         [STAThread]
         static void Main(string[] args)
         {
-            AUTH_TOKEN = args[0];
+            if (args.Length > 0)
+            {
+                AUTH_TOKEN = args[0];
+            }
+            else
+            {
+                AUTH_TOKEN = "dummystring";
+            }
             DBConnection dbCon = new DBConnection();
 
             System.Windows.Forms.Application.EnableVisualStyles();
@@ -40,6 +48,7 @@ namespace Mockup2.DatabaseClasses
 
             QueryBuilder.DumpLog();
             loginForm.DumpIncorrectLogins();
+            Log.SaveLog();
             Console.ReadLine();
         }
 
@@ -62,7 +71,7 @@ namespace Mockup2.DatabaseClasses
                 sb.Append(b.ToString("x2").ToUpper());
             }
 
-            Console.WriteLine(sb.ToString());
+            Log.WriteLine(sb.ToString());
             return sb.ToString();
         }
 

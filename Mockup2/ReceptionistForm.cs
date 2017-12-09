@@ -3,6 +3,7 @@ using Mockup2.DatabaseClasses;
 using Mockup2.Factories;
 using Mockup2.PatientForms;
 using Mockup2.RotaForms;
+using Mockup2.Support;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -136,7 +137,7 @@ namespace Mockup2
                     Console.Write(value + " | ");
                 }
                 appointmentDataGridView.Rows.Add(row.Values.ToArray());
-                Console.WriteLine();
+                Log.WriteLine();
             }
             
         }
@@ -176,7 +177,7 @@ namespace Mockup2
                     //Console.Write(value + " | ");
                 }
                 appointmentDataGridView.Rows.Add(row.Values.ToArray());
-                //Console.WriteLine();
+                //Log.WriteLine();
             }
         }
 
@@ -211,13 +212,17 @@ namespace Mockup2
                // aaf.dateTimePicker2.Format = DateTimePickerFormat.Custom;
                 //aaf.dateTimePicker2.CustomFormat = "HH:mm tt";
                // aaf.dateTimePicker2.Value = aaf.dateTimePicker2.Value.Date + (TimeSpan) appointmentDataGridView.Rows[rowNum].Cells[5].Value;
-                Console.WriteLine("Time object is: " + appointmentDataGridView.Rows[rowNum].Cells[5].Value);
+                Log.WriteLine("Time object is: " + appointmentDataGridView.Rows[rowNum].Cells[5].Value);
                 aaf.statusComboBox.Text = appointmentDataGridView.Rows[rowNum].Cells[6].Value.ToString();
                 aaf.causeTextBox.Text = appointmentDataGridView.Rows[rowNum].Cells[7].Value.ToString();
-                Console.WriteLine("Index of selected timeslot is: " + aaf.timeslotcomboBox1.Items.IndexOf(appointmentDataGridView.Rows[rowNum].Cells[5].Value));
+                Log.WriteLine("Index of selected timeslot is: " + aaf.timeslotcomboBox1.Items.IndexOf(appointmentDataGridView.Rows[rowNum].Cells[5].Value));
                 aaf.timeslotcomboBox1.SelectedIndex = aaf.timeslotcomboBox1.FindStringExact(appointmentDataGridView.Rows[rowNum].Cells[5].Value.ToString());
                 aaf.ValidateTimeslots();
                 aaf.Show();
+            }
+            else
+            {
+                MessageBox.Show("No appointment selected.", "Please Select an Appointment");
             }
         }
 
@@ -328,7 +333,7 @@ namespace Mockup2
                 string time = row.Cells[5].Value.ToString();
 
                 Appointment a = GetAppointmentBy(sfn, sln, pfn, pln, date, time);
-                Console.WriteLine("Row index is: " + num + " Appointment is: " + a);
+                Log.WriteLine("Row index is: " + num + " Appointment is: " + a);
                 af.DeleteAppointment(a);
                 selectedAppointments.Remove(a);
                 appointmentDataGridView.Rows.RemoveAt(num);
@@ -339,7 +344,7 @@ namespace Mockup2
         {
             int patientID = infoFac.GetPatientsByName(pfn,pln)[0].ID;
             int staffID = sf.GetStaffByName(sfn, sln)[0].ID;
-            Console.WriteLine("Finding appointment that matches: {0} {1} {2} {3}",staffID,patientID,date,time);
+            Log.WriteLine("Finding appointment that matches: {0} {1} {2} {3}",staffID,patientID,date,time);
             foreach(Appointment a in selectedAppointments)
             {
                 if (a.PatientId == patientID && a.StaffId == staffID && a.AppointmentDate.ToString("yyyy-MM-dd") == date && a.AppointmentTime.ToString("HH:mm:ss") == time)
@@ -455,7 +460,7 @@ namespace Mockup2
         //        }
         //    }catch(Exception ex)
         //    {
-        //        Console.WriteLine(ex);
+        //        Log.WriteLine(ex);
         //    }
         //}
 
@@ -472,14 +477,14 @@ namespace Mockup2
         //    linesPerPage = ev.MarginBounds.Height /
         //       printFont.GetHeight(ev.Graphics);
 
-        //    Console.WriteLine("[Print Debug Output]");
+        //    Log.WriteLine("[Print Debug Output]");
         //    for(int i =0; i < rotaValues.Count; i++)
         //    {
         //        foreach(string s in rotaValues[i])
         //        {
         //            Console.Write(s + " | ");
         //        }
-        //        Console.WriteLine();
+        //        Log.WriteLine();
         //    }
 
         //    // Print each line of the file.

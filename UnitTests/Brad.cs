@@ -35,7 +35,7 @@ namespace UnitTests
         public void TestStaffFactory2()
         {
             int s = sf.GetNextAvailableStaffID();
-            Assert.AreEqual(s, 402);
+            Assert.AreEqual(s, 404);
         }
 
         [TestMethod]

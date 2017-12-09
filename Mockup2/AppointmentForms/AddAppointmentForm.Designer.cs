@@ -50,26 +50,32 @@
             // 
             // dateTimePicker1
             // 
+            this.dateTimePicker1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePicker1.Location = new System.Drawing.Point(267, 197);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 40);
+            this.dateTimePicker1.Size = new System.Drawing.Size(376, 40);
             this.dateTimePicker1.TabIndex = 3;
             this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // causeTextBox
             // 
+            this.causeTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.causeTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.causeTextBox.Location = new System.Drawing.Point(267, 384);
             this.causeTextBox.Multiline = true;
             this.causeTextBox.Name = "causeTextBox";
-            this.causeTextBox.Size = new System.Drawing.Size(200, 98);
+            this.causeTextBox.Size = new System.Drawing.Size(376, 179);
             this.causeTextBox.TabIndex = 7;
             // 
             // button1
             // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(267, 488);
+            this.button1.Location = new System.Drawing.Point(267, 569);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(200, 41);
             this.button1.TabIndex = 8;
@@ -81,11 +87,11 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(150, 246);
+            this.label1.Location = new System.Drawing.Point(187, 246);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(111, 33);
+            this.label1.Size = new System.Drawing.Size(74, 33);
             this.label1.TabIndex = 5;
-            this.label1.Text = "Staff ID";
+            this.label1.Text = "Staff";
             // 
             // label2
             // 
@@ -129,6 +135,8 @@
             // 
             // statusComboBox
             // 
+            this.statusComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.statusComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.statusComboBox.FormattingEnabled = true;
             this.statusComboBox.Items.AddRange(new object[] {
@@ -139,7 +147,7 @@
             "NoShow"});
             this.statusComboBox.Location = new System.Drawing.Point(267, 337);
             this.statusComboBox.Name = "statusComboBox";
-            this.statusComboBox.Size = new System.Drawing.Size(200, 41);
+            this.statusComboBox.Size = new System.Drawing.Size(376, 41);
             this.statusComboBox.TabIndex = 6;
             // 
             // label6
@@ -154,57 +162,69 @@
             // 
             // staffcomboBox1
             // 
+            this.staffcomboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.staffcomboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.staffcomboBox1.Enabled = false;
             this.staffcomboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.staffcomboBox1.FormattingEnabled = true;
             this.staffcomboBox1.Location = new System.Drawing.Point(267, 243);
             this.staffcomboBox1.Name = "staffcomboBox1";
-            this.staffcomboBox1.Size = new System.Drawing.Size(200, 41);
+            this.staffcomboBox1.Size = new System.Drawing.Size(376, 41);
             this.staffcomboBox1.TabIndex = 4;
             this.staffcomboBox1.SelectedIndexChanged += new System.EventHandler(this.staffcomboBox1_SelectedIndexChanged);
             // 
             // patientcomboBox2
             // 
+            this.patientcomboBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.patientcomboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.patientcomboBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.patientcomboBox2.FormattingEnabled = true;
             this.patientcomboBox2.Location = new System.Drawing.Point(267, 150);
             this.patientcomboBox2.Name = "patientcomboBox2";
-            this.patientcomboBox2.Size = new System.Drawing.Size(200, 41);
+            this.patientcomboBox2.Size = new System.Drawing.Size(376, 41);
             this.patientcomboBox2.TabIndex = 16;
             // 
             // timeslotcomboBox1
             // 
+            this.timeslotcomboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.timeslotcomboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.timeslotcomboBox1.FormattingEnabled = true;
             this.timeslotcomboBox1.Location = new System.Drawing.Point(267, 290);
             this.timeslotcomboBox1.Name = "timeslotcomboBox1";
-            this.timeslotcomboBox1.Size = new System.Drawing.Size(200, 41);
+            this.timeslotcomboBox1.Size = new System.Drawing.Size(376, 41);
             this.timeslotcomboBox1.TabIndex = 5;
             // 
             // firstnametextBox1
             // 
+            this.firstnametextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.firstnametextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.firstnametextBox1.Location = new System.Drawing.Point(267, 12);
             this.firstnametextBox1.Name = "firstnametextBox1";
-            this.firstnametextBox1.Size = new System.Drawing.Size(200, 40);
+            this.firstnametextBox1.Size = new System.Drawing.Size(376, 40);
             this.firstnametextBox1.TabIndex = 1;
             // 
             // lastnametextBox2
             // 
+            this.lastnametextBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lastnametextBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lastnametextBox2.Location = new System.Drawing.Point(267, 58);
             this.lastnametextBox2.Name = "lastnametextBox2";
-            this.lastnametextBox2.Size = new System.Drawing.Size(200, 40);
+            this.lastnametextBox2.Size = new System.Drawing.Size(376, 40);
             this.lastnametextBox2.TabIndex = 2;
             // 
             // findPatientButton
             // 
+            this.findPatientButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.findPatientButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.findPatientButton.Location = new System.Drawing.Point(267, 104);
             this.findPatientButton.Name = "findPatientButton";
-            this.findPatientButton.Size = new System.Drawing.Size(200, 40);
+            this.findPatientButton.Size = new System.Drawing.Size(376, 40);
             this.findPatientButton.TabIndex = 20;
             this.findPatientButton.Text = "Find";
             this.findPatientButton.UseVisualStyleBackColor = true;
@@ -234,7 +254,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(493, 541);
+            this.ClientSize = new System.Drawing.Size(655, 622);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.findPatientButton);

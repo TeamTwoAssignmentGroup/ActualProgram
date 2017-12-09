@@ -35,10 +35,15 @@ namespace Mockup2
             controlGP = form;
             InitializeComponent();
             showMedications();
-            
+            this.FormClosing += AddPrescription_FormClosing;
 
         }
 
+        private void AddPrescription_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel=true;
+            this.Hide();
+        }
 
         public void showMedications()
         {

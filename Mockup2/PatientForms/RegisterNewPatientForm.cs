@@ -89,6 +89,7 @@ namespace Mockup2.PatientForms
                 p.Email = patientEmailTextBox.Text;
                 
                 pf.InsertPatient(p);
+                MessageBox.Show("Patient details successfully registered.", "Success");
             }
             else
             {
@@ -104,6 +105,7 @@ namespace Mockup2.PatientForms
                 p.Phone = patientContactNumberTextBox.Text;
                 p.Email = patientEmailTextBox.Text;
                 pf.UpdatePatient(p);
+                MessageBox.Show("Patient details successfully updated.", "Success");
             }
             parent.firstNameTextbox.Text = patientFirstNameTextBox.Text;
             parent.lastNameTextbox.Text = patientLastNameTextBox.Text;
